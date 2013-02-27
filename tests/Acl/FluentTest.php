@@ -1,4 +1,4 @@
-<?php namespace tests\Acl;
+<?php namespace Orchestra\Support\Tests\Acl;
 
 class FluentTest extends \PHPUnit_Framework_TestCase {
 	
