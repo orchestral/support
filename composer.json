@@ -1,0 +1,18 @@
+{
+	"license": "MIT",
+	"authors": [
+		{
+			"name": "Mior Muhammad Zaki",
+			"email": "crynobone@gmail.com"
+		}
+	],
+	"require": {
+		"php" : ">=5.3.3"
+	},
+	"autoload": {
+		"psr-0": { 
+			"Orchestra\\Support" : "src/" 
+		}
+	},
+	"minimum-stability": "dev"
+}
