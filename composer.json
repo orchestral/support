@@ -1,6 +1,6 @@
 {
 	"name": "orchestra/support",
-	"description": "Orchestra Support Library for Illuminate",
+	"description": "Orchestra Platform Support Library for Illuminate",
 	"license": "MIT",
 	"authors": [
 		{
