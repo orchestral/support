@@ -13,7 +13,7 @@
 		"illuminate/support": "4.0.*@dev"
 	},
 	"require-dev": {
-        "patchwork/utf8": "1.0.*"
+		"patchwork/utf8": "1.0.*"
 	},
 	"autoload": {
 		"psr-0": { 
