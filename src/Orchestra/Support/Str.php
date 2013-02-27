@@ -1,6 +1,6 @@
 <?php namespace Orchestra\Support;
 
-use \Illuminate\Support\Str;
+use \Illuminate\Support\Str as S;
 
 class Str extends S {
 
