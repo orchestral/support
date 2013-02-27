@@ -10,7 +10,7 @@
  * 
  */
 
-use Orchestra\Support\FTP\Facade;
+use Orchestra\Support\Ftp\Facade;
 
 class Ftp {
 
@@ -261,7 +261,7 @@ class Ftp {
 	 *
 	 * @access public
 	 * @return bool
-	 * @throws FTP\Exception If unable to connect/login to FTP server.
+	 * @throws Ftp\Exception If unable to connect/login to FTP server.
 	 */
 	public function connect()
 	{
@@ -271,7 +271,7 @@ class Ftp {
 
 		if ( ! (@Facade::login($this->stream, $this->user, $this->password)))
 		{
-			throw new FTP\ServerException("Failed FTP login to [{$this->host}].");
+			throw new Ftp\ServerException("Failed FTP login to [{$this->host}].");
 		}
 
 		// Set passive mode.
@@ -288,7 +288,7 @@ class Ftp {
 	 *
 	 * @access protected
 	 * @return void
-	 * @throws FTP\Exception If unable to connect to FTP server.
+	 * @throws Ftp\Exception If unable to connect to FTP server.
 	 */
 	protected function connection()
 	{
@@ -296,14 +296,14 @@ class Ftp {
 		{
 			if ( ! ($this->stream = @Facade::ssl_connect($this->host, $this->port, $this->timeout))) 
 			{
-				throw new FTP\ServerException(
+				throw new Ftp\ServerException(
 					"Failed to connect to [{$this->host}] (SSL Connection)."
 				);
 			}
 		}
 		elseif ( ! ($this->stream = @Facade::connect($this->host, $this->port, $this->timeout)))
 		{
-			throw new FTP\ServerException("Failed to connect to [{$this->host}].");
+			throw new Ftp\ServerException("Failed to connect to [{$this->host}].");
 		}
 	}
 
