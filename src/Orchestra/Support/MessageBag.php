@@ -1,7 +1,7 @@
 <?php namespace Orchestra\Support;
 
-use \Illuminate\Support\Facades\Session,
-	\Illuminate\Support\MessageBag as M;
+use Illuminate\Support\Facades\Session,
+	Illuminate\Support\MessageBag as M;
 
 class MessageBag extends M {
 

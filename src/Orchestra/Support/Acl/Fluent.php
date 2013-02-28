@@ -1,7 +1,7 @@
 <?php namespace Orchestra\Support\Acl;
 
-use \InvalidArgumentException,
-	\Illuminate\Support\Str;
+use InvalidArgumentException,
+	Illuminate\Support\Str;
 
 class Fluent {
 

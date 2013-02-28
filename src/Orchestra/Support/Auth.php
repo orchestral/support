@@ -1,7 +1,7 @@
 <?php namespace Orchestra\Support;
 
-use \Illuminate\Support\Facades\Auth as AuthFacade, 
-	\Illuminate\Support\Facades\Event;
+use Illuminate\Support\Facades\Auth as AuthFacade, 
+	Illuminate\Support\Facades\Event;
 
 class Auth {
 	
