@@ -16,7 +16,7 @@ class Eloquent extends Driver {
 	 * @access  protected
 	 * @var     array
 	 */
-	protected $key_map = array();
+	protected $keyMap = array();
 
 	/**
 	 * Load the data from database using Eloquent ORM
@@ -36,7 +36,7 @@ class Eloquent extends Driver {
 
 			$this->put($memory->name, unserialize($value));
 
-			$this->key_map[$memory->name] = array(
+			$this->keyMap[$memory->name] = array(
 				'id'       => $memory->id,
 				'checksum' => md5($value),
 			);
@@ -57,10 +57,10 @@ class Eloquent extends Driver {
 			$id       = null;
 			$checksum = '';
 			
-			if (array_key_exists($key, $this->key_map))
+			if (array_key_exists($key, $this->keyMap))
 			{
 				$is_new = false;
-				extract($this->key_map[$key]);
+				extract($this->keyMap[$key]);
 			}
 
 			$serialize = serialize($value);
