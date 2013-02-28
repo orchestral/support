@@ -75,7 +75,7 @@ class Ftp {
 	 *
 	 * @var  string
 	 */
-	protected $system_type;
+	protected $systemType;
 
 	/**
 	 * Make a new FTP instance
@@ -278,7 +278,7 @@ class Ftp {
 		@Facade::pasv($this->stream, (bool) $this->passive);
 
 		// set system type
-		$this->system_type = @Facade::systype($this->stream);
+		$this->systemType = @Facade::systype($this->stream);
 		
 		return true;
 	}
@@ -292,9 +292,9 @@ class Ftp {
 	 */
 	protected function connection()
 	{
-		if ($this->ssl and @Facade::isCallable('ssl_connect'))
+		if ($this->ssl and @Facade::isCallable('sslConnect'))
 		{
-			if ( ! ($this->stream = @Facade::ssl_connect($this->host, $this->port, $this->timeout))) 
+			if ( ! ($this->stream = @Facade::sslConnect($this->host, $this->port, $this->timeout))) 
 			{
 				throw new Ftp\ServerException(
 					"Failed to connect to [{$this->host}] (SSL Connection)."
