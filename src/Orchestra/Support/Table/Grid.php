@@ -357,7 +357,6 @@ class Grid {
 	 */
 	private function key($key)
 	{
-		// @deprecated 'attr' key should be removed in 1.2.
-		return ($key === 'attr') ? 'markup' : $key;
+		return $key;
 	}
 }
