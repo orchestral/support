@@ -292,7 +292,7 @@ class Ftp {
 	 */
 	protected function connection()
 	{
-		if ($this->ssl and @Facade::is_callable('ssl_connect'))
+		if ($this->ssl and @Facade::isCallable('ssl_connect'))
 		{
 			if ( ! ($this->stream = @Facade::ssl_connect($this->host, $this->port, $this->timeout))) 
 			{

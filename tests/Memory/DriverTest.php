@@ -3,6 +3,43 @@
 class DriverTest extends \PHPUnit_Framework_TestCase {
 
 	/**
+	 * Get Mock instance 1.
+	 * 
+	 * @return MemoryDriverStub
+	 */
+	protected function getMockInstance1()
+	{
+		$mock = new MemoryDriverStub;
+		$mock->put('foo.bar', 'hello world');
+		$mock->put('username', 'laravel');
+
+		return $mock;
+	}
+
+	/**
+	 * Get Mock instance 2.
+	 *
+	 * @return MemoryDriverStub
+	 */
+	protected function getMockInstance2()
+	{
+		$mock = new MemoryDriverStub;
+		$mock->put('foo.bar', 'hello world');
+		$mock->put('username', 'laravel');
+		$mock->put('foobar', function ()
+		{
+			return 'hello world foobar';
+		});
+		
+		$mock->get('hello.world', function () use ($mock)
+		{
+			return $mock->put('hello.world', 'HELLO WORLD');
+		});
+
+		return $mock;
+	}
+
+	/**
 	 * Test Orchestra\Support\Memory\Driver::initiate()
 	 *
 	 * @test
@@ -49,7 +86,19 @@ class DriverTest extends \PHPUnit_Framework_TestCase {
 	 */
 	public function testGetMethod()
 	{
-		$this->markTestIncomplete('This test has not been implemented yet.');
+		$mock1 = $this->getMockInstance1();
+		$mock2 = $this->getMockInstance2();
+		
+		$this->assertEquals(array('bar' => 'hello world'), $mock1->get('foo'));
+		$this->assertEquals('hello world', $mock1->get('foo.bar'));
+		$this->assertEquals('laravel', $mock1->get('username'));
+		
+		$this->assertEquals(array('bar' => 'hello world'), $mock2->get('foo'));
+		$this->assertEquals('hello world', $mock2->get('foo.bar'));
+		$this->assertEquals('laravel', $mock2->get('username'));
+		
+		$this->assertEquals('hello world foobar', $mock2->get('foobar'));
+		$this->assertEquals('HELLO WORLD', $mock2->get('hello.world'));
 	}
 
 	/**
@@ -60,7 +109,17 @@ class DriverTest extends \PHPUnit_Framework_TestCase {
 	 */
 	public function testPutMethod()
 	{
-		$this->markTestIncomplete('This test has not been implemented yet.');
+		$stub = new MemoryDriverStub;
+
+		$refl = new \ReflectionObject($stub);
+		$data = $refl->getProperty('data');
+		$data->setAccessible(true);
+
+		$this->assertEquals(array(), $data->getValue($stub));
+
+		$stub->put('foo', 'foobar');
+
+		$this->assertEquals(array('foo' => 'foobar'), $data->getValue($stub));
 	}
 
 	/**
@@ -71,7 +130,10 @@ class DriverTest extends \PHPUnit_Framework_TestCase {
 	 */
 	public function testForgetMethod()
 	{
-		$this->markTestIncomplete('This test has not been implemented yet.');
+		$mock = $this->getMockInstance2();
+		$mock->forget('hello.world');
+
+		$this->assertEquals(array(), $mock->get('hello'));
 	}
 }
 
