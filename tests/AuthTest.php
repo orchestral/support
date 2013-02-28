@@ -7,15 +7,8 @@ class AuthTest extends \PHPUnit_Framework_TestCase {
 	 */
 	public function setUp()
 	{
-		$mock = \Mockery::mock('Application')
+		$appMock = \Mockery::mock('Application')
 			->shouldReceive('instance')->andReturn(true);
-		
-		$eventMock = \Mockery::mock('Event')
-			->shouldReceive('until')->andReturn(array('admin', 'editor'));
-		\Illuminate\Support\Facades\Event::setFacadeApplication(
-			$mock->getMock()
-		);
-		\Illuminate\Support\Facades\Event::swap($eventMock->getMock());
 
 		$userMock     = new \stdClass();
 		$userMock->id = 0;
@@ -23,7 +16,7 @@ class AuthTest extends \PHPUnit_Framework_TestCase {
 		$authMock = \Mockery::mock('Illuminate\Auth\Guard')
 			->shouldReceive('user')->andReturn($userMock);
 		\Illuminate\Support\Facades\Auth::setFacadeApplication(
-			$mock->getMock()
+			$appMock->getMock()
 		);
 		\Illuminate\Support\Facades\Auth::swap($authMock->getMock());
 	}
