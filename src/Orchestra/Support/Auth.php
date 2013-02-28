@@ -10,7 +10,17 @@ class Auth {
 	 * 
 	 * @var array
 	 */
-	protected static $user_roles = null;
+	protected static $userRoles = null;
+
+	/**
+	 * Magic method to forward call to Illuminate\Support\Facades\Auth.
+	 */
+	public static function __callStatic($method, $parameters)
+	{
+		$forwardTo = array('Illuminate\Support\Facades\Auth', $method);
+
+		return forward_static_call_array($forwardTo, $parameters);
+	}
 	
 	/**
 	 * Get the current user's roles of the application.
@@ -30,15 +40,15 @@ class Auth {
 		// only search for roles when user is logged
 		is_null($user) or $user_id = $user->id;
 
-		if ( ! isset(static::$user_roles[$user_id]) or is_null(static::$user_roles[$user_id]))
+		if ( ! isset(static::$userRoles[$user_id]) or is_null(static::$userRoles[$user_id]))
 		{
-			static::$user_roles[$user_id] = Event::until('orchestra.auth: roles', array(
+			static::$userRoles[$user_id] = Event::until('orchestra.auth: roles', array(
 				$user, 
 				$roles,
 			));
 		}
 
-		return static::$user_roles[$user_id];
+		return static::$userRoles[$user_id];
 	}
 
 	/**
