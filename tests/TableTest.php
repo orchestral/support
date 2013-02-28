@@ -129,7 +129,7 @@ class TableTest extends \PHPUnit_Framework_TestCase {
 		$mock2 = new \Orchestra\Support\Table(function ($t) use ($mock_data)
 		{
 			$t->rows($mock_data);
-			$t->attr = array('class' => 'foo');
+			$t->markup = array('class' => 'foo');
 
 			$t->column('ID', 'id');
 			$t->column('name', function ($c)
