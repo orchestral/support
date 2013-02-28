@@ -22,13 +22,13 @@ class CacheTest extends \PHPUnit_Framework_TestCase {
 			),
 		);
 
-		$mock = \Mockery::mock('Application')
+		$appMock = \Mockery::mock('Application')
 			->shouldReceive('instance')->andReturn(true);
 		
 		$cacheMock = \Mockery::mock('Cache')
 			->shouldReceive('get')->andReturn($value);
 		\Illuminate\Support\Facades\Cache::setFacadeApplication(
-			$mock->getMock()
+			$appMock->getMock()
 		);
 		\Illuminate\Support\Facades\Cache::swap($cacheMock->getMock());
 

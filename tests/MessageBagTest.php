@@ -7,10 +7,10 @@ class MessageBagTest extends \PHPUnit_Framework_TestCase {
 	 */
 	public function setUp()
 	{
-		$mock = \Mockery::mock('Application')
+		$appMock = \Mockery::mock('Application')
 			->shouldReceive('instance')->andReturn(true);
 		\Illuminate\Support\Facades\Session::setFacadeApplication(
-			$mock->getMock()
+			$appMock->getMock()
 		);
 	}
 
