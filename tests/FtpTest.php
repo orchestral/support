@@ -14,7 +14,7 @@ class FtpTest extends \PHPUnit_Framework_TestCase {
 	 */
 	public function setUp()
 	{
-		\Orchestra\Support\Ftp\Facade::$prefix = '\Orchestra\Support\Tests\stub1_ftp_';
+		\Orchestra\Support\Ftp\Facade::$prefix = '\Orchestra\Support\Tests\mock1_ftp_';
 
 		$this->stub = new \Orchestra\Support\Ftp(array(
 			'host'     => 'sftp://localhost:22',
@@ -39,7 +39,7 @@ class FtpTest extends \PHPUnit_Framework_TestCase {
 	 */
 	public function testInstanceOfFTP()
 	{
-		\Orchestra\Support\Ftp\Facade::$prefix = '\Orchestra\Support\Tests\stub1_ftp_';
+		\Orchestra\Support\Ftp\Facade::$prefix = '\Orchestra\Support\Tests\mock1_ftp_';
 
 		$stub = \Orchestra\Support\Ftp::make(array(
 			'stream' => new StreamStub,
@@ -78,7 +78,7 @@ class FtpTest extends \PHPUnit_Framework_TestCase {
 	 */
 	public function testConnectMethodSuccessful()
 	{
-		\Orchestra\Support\Ftp\Facade::$prefix = '\Orchestra\Support\Tests\stub1_ftp_';
+		\Orchestra\Support\Ftp\Facade::$prefix = '\Orchestra\Support\Tests\mock1_ftp_';
 
 		$this->assertFalse($this->stub->connected());
 		$this->assertTrue($this->stub->connect());
@@ -103,7 +103,7 @@ class FtpTest extends \PHPUnit_Framework_TestCase {
 	 */
 	public function testConnectMethodSFTPConnectThrowsException()
 	{
-		\Orchestra\Support\Ftp\Facade::$prefix = '\Orchestra\Support\Tests\stub2_ftp_';
+		\Orchestra\Support\Ftp\Facade::$prefix = '\Orchestra\Support\Tests\mock2_ftp_';
 
 		$stub = new \Orchestra\Support\Ftp(array(
 			'host'     => 'sftp://localhost:22',
@@ -122,7 +122,7 @@ class FtpTest extends \PHPUnit_Framework_TestCase {
 	 */
 	public function testConnectMethodFTPConnectThrowsException()
 	{
-		\Orchestra\Support\Ftp\Facade::$prefix = '\Orchestra\Support\Tests\stub2_ftp_';
+		\Orchestra\Support\Ftp\Facade::$prefix = '\Orchestra\Support\Tests\mock2_ftp_';
 
 		$stub = new \Orchestra\Support\Ftp(array(
 			'host'     => 'ftp://localhost:21',
@@ -141,7 +141,7 @@ class FtpTest extends \PHPUnit_Framework_TestCase {
 	 */
 	public function testConnectMethodFTPLoginThrowsException()
 	{
-		\Orchestra\Support\Ftp\Facade::$prefix = '\Orchestra\Support\Tests\stub3_ftp_';
+		\Orchestra\Support\Ftp\Facade::$prefix = '\Orchestra\Support\Tests\mock3_ftp_';
 
 		$stub = new \Orchestra\Support\Ftp(array(
 			'host'     => 'ftp://localhost:21',
@@ -160,7 +160,7 @@ class FtpTest extends \PHPUnit_Framework_TestCase {
 	 */
 	public function testFTPFacadeMethodsSuccessful()
 	{
-		\Orchestra\Support\Ftp\Facade::$prefix = '\Orchestra\Support\Tests\stub1_ftp_';
+		\Orchestra\Support\Ftp\Facade::$prefix = '\Orchestra\Support\Tests\mock1_ftp_';
 
 		$this->stub->connect();
 
@@ -184,7 +184,7 @@ class FtpTest extends \PHPUnit_Framework_TestCase {
 	 */
 	public function testFTPFacadeThrowsException()
 	{
-		\Orchestra\Support\Ftp\Facade::$prefix = '\Orchestra\Support\Tests\stub1_ftp_';
+		\Orchestra\Support\Ftp\Facade::$prefix = '\Orchestra\Support\Tests\mock1_ftp_';
 		
 		\Orchestra\Support\Ftp\Facade::fire('invalid_method', array());
 	}
@@ -192,86 +192,86 @@ class FtpTest extends \PHPUnit_Framework_TestCase {
 
 class StreamStub {}
 
-function stub1_ftp_ssl_connect() {
+function mock1_ftp_ssl_connect() {
 	return new StreamStub;
 }
 
-function stub1_ftp_connect() {
+function mock1_ftp_connect() {
 	return new StreamStub;
 }
 
-function stub1_ftp_login() {
+function mock1_ftp_login() {
 	return true;
 }
 
-function stub1_ftp_close() {
+function mock1_ftp_close() {
 	return true;
 }
 
-function stub1_ftp_pasv() {
+function mock1_ftp_pasv() {
 	return true;
 }
 
-function stub1_ftp_pwd() {
+function mock1_ftp_pwd() {
 	return '/var/www/';
 }
 
-function stub1_ftp_systype() {
+function mock1_ftp_systype() {
 	return 'unix';
 }
 
-function stub1_ftp_chdir() {
+function mock1_ftp_chdir() {
 	return true;
 }
 
-function stub1_ftp_get() {
+function mock1_ftp_get() {
 	return true;
 }
 
-function stub1_ftp_put() {
+function mock1_ftp_put() {
 	return true;
 }
 
-function stub1_ftp_rename() {
+function mock1_ftp_rename() {
 	return true;
 }
 
-function stub1_ftp_delete() {
+function mock1_ftp_delete() {
 	return true;
 }
 
-function stub1_ftp_chmod() {
+function mock1_ftp_chmod() {
 	return true;
 }
 
-function stub1_ftp_nlist() {
+function mock1_ftp_nlist() {
 	return array('foo.php', 'foobar.php');
 }
 
-function stub1_ftp_mkdir() {
+function mock1_ftp_mkdir() {
 	return true;
 }
 
-function stub1_ftp_rmdir() {
+function mock1_ftp_rmdir() {
 	return true;
 }
 
-function stub2_ftp_ssl_connect() {
+function mock2_ftp_ssl_connect() {
 	return false;
 }
 
-function stub2_ftp_connect() {
+function mock2_ftp_connect() {
 	return false;
 }
 
-function stub3_ftp_ssl_connect() {
+function mock3_ftp_ssl_connect() {
 	return new StreamStub;
 }
 
-function stub3_ftp_connect() {
+function mock3_ftp_connect() {
 	return new StreamStub;
 }
 
-function stub3_ftp_login() {
+function mock3_ftp_login() {
 	return false;
 }

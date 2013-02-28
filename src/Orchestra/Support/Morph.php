@@ -16,7 +16,7 @@ abstract class Morph {
 	 */
 	public static function __callStatic($method, $parameters)
 	{
-		if ( ! static::is_callable($method))
+		if ( ! static::isCallable($method))
 		{
 			throw new RuntimeException("Unable to call [{$method}].");
 		}
@@ -25,14 +25,14 @@ abstract class Morph {
 	}
 
 	/**
-	 * Determine of method is_callable().
+	 * Determine if method is callable.
 	 *
 	 * @static
 	 * @access public
 	 * @param  string   $method
 	 * @return bool
 	 */
-	public static function is_callable($method)
+	public static function isCallable($method)
 	{
 		return is_callable(static::$prefix.$method);
 	}
