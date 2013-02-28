@@ -14,7 +14,7 @@
 	},
 	"require-dev": {
 		"patchwork/utf8": "1.0.*",
-		"mockery/mockery": "0.7.2"
+		"mockery/mockery": "dev-master"
 	},
 	"suggest": {
 		"laravel/framework": "Allow using Orchestra Support Library outside of Orchestra Platform"
