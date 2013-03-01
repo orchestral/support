@@ -89,12 +89,12 @@ class Table extends Decorator {
 		}
 
 		$data = array(
-			'tableMarkup'  => $grid->markup,
-			'rowMarkup'    => $grid->rows->markup,
-			'emptyMessage' => $emptyMessage,
-			'columns'      => $grid->columns(),
-			'rows'         => $grid->rows(),
-			'pagination'   => $paginate,
+			'tableAttributes' => $grid->attributes,
+			'rowAttributes'   => $grid->rows->attributes,
+			'emptyMessage'    => $emptyMessage,
+			'columns'         => $grid->columns(),
+			'rows'            => $grid->rows(),
+			'pagination'      => $paginate,
 		);
 
 		// Build the view and render it.
