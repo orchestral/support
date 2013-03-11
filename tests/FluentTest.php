@@ -18,7 +18,7 @@ class FluentTest extends \PHPUnit_Framework_TestCase {
 		$attributes->setAccessible(true);
 
 		$this->assertEquals($array, $attributes->getValue($fluent));
-		$this->assertEquals($array, $fluent->get_attributes());
+		$this->assertEquals($array, $fluent->getAttributes());
 	}
 
 	/**
