@@ -120,22 +120,22 @@ class HtmlTest extends \PHPUnit_Framework_TestCase {
 	}
 
 	/**
-	 * Test Orchestra\Support\Html::compileAttributes() method.
+	 * Test Orchestra\Support\Html::decorate() method.
 	 *
 	 * @test
 	 * @group support
 	 */
-	public function testCompileAttributesMethod()
+	public function testDecorateMethod()
 	{
-		$output   = \Orchestra\Support\Html::compileAttributes(array('class' => 'span4 table'), array('id' => 'foobar'));
+		$output   = \Orchestra\Support\Html::decorate(array('class' => 'span4 table'), array('id' => 'foobar'));
 		$expected = array('id' => 'foobar', 'class' => 'span4 table');
 		$this->assertEquals($expected, $output);
 
-		$output   = \Orchestra\Support\Html::compileAttributes(array('class' => 'span4 !span12'), array('class' => 'span12'));
+		$output   = \Orchestra\Support\Html::decorate(array('class' => 'span4 !span12'), array('class' => 'span12'));
 		$expected = array('class' => 'span4');
 		$this->assertEquals($expected, $output);
 
-		$output   = \Orchestra\Support\Html::compileAttributes(array('id' => 'table'), array('id' => 'foobar', 'class' => 'span4'));
+		$output   = \Orchestra\Support\Html::decorate(array('id' => 'table'), array('id' => 'foobar', 'class' => 'span4'));
 		$expected = array('id' => 'table', 'class' => 'span4');
 		$this->assertEquals($expected, $output);
 	}

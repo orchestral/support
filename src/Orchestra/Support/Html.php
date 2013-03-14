@@ -106,7 +106,7 @@ class Html {
 	 * @param  array   $defaults
 	 * @return array
 	 */
-	public static function compileAttributes($attributes, $defaults = null)
+	public static function decorate($attributes, $defaults = null)
 	{
 		// Special consideration to class, where we need to merge both string from
 		// $attributes and $defaults and take union of both.

@@ -203,7 +203,7 @@ class Fieldset {
 					if ($options instanceof Closure) $options = $options($row, $control);
 
 					$data->method('select')
-						->attributes(Html::compileAttributes($control->attributes, $config['select']))
+						->attributes(Html::decorate($control->attributes, $config['select']))
 						->options($options);
 					break;
 				
@@ -219,25 +219,25 @@ class Fieldset {
 				
 				case (in_array($type, array('textarea', 'input:textarea'))):
 					$data->method('textarea')
-						->attributes(Html::compileAttributes($control->attributes, $config['textarea']));
+						->attributes(Html::decorate($control->attributes, $config['textarea']));
 					break;
 				
 				case (in_array($type, array('password', 'input:password'))) :
 					$data->method('password')
-						->attributes(Html::compileAttributes($control->attributes, $config['password']));
+						->attributes(Html::decorate($control->attributes, $config['password']));
 					break;
 				
 				case (isset($methods[0]) and $methods[0] === 'input') :
 					$methods[1] = $methods[1] ?: 'text';
 					$data->method('input')
 						->type($methods[1])
-						->attributes(Html::compileAttributes($control->attributes, $config['input']));
+						->attributes(Html::decorate($control->attributes, $config['input']));
 					break;
 				
 				default :
 					$data->method('input')
 						->type('text')
-						->attributes(Html::compileAttributes($control->attributes, $config['input']));
+						->attributes(Html::decorate($control->attributes, $config['input']));
 
 			}
 
