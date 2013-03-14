@@ -3,17 +3,17 @@
 class StrTest extends \PHPUnit_Framework_TestCase {
 
 	/**
-	 * Test Orchestra\Support\Str::getFromStream() method.
+	 * Test Orchestra\Support\Str::streamGetContents() method.
 	 *
 	 * @test
 	 * @group support
 	 */
-	public function testGetFromStreamMethod()
+	public function testStreamGetContentsMethod()
 	{
 		$base_path = __DIR__.'/stub/';
 		$expected = 'a:2:{s:4:"name";s:9:"Orchestra";s:5:"theme";a:2:{s:7:"backend";s:7:"default";s:8:"frontend";s:7:"default";}}';
 		$stream   = fopen($base_path.'driver1.stub.php', 'r');
-		$output   = \Orchestra\Support\Str::getFromStream($stream);
+		$output   = \Orchestra\Support\Str::streamGetContents($stream);
 
 		$this->assertEquals($expected, $output);
 
@@ -29,7 +29,7 @@ class StrTest extends \PHPUnit_Framework_TestCase {
 
 		$expected = 'a:2:{s:4:"name";s:9:"Orchestra";s:5:"theme";a:2:{s:7:"backend";s:7:"default";s:8:"frontend";s:7:"default";}}';
 		$stream   = fopen($base_path.'driver2.stub.php', 'r');
-		$output   = \Orchestra\Support\Str::getFromStream($stream);
+		$output   = \Orchestra\Support\Str::streamGetContents($stream);
 
 		$this->assertEquals($expected, $output);
 

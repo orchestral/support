@@ -14,7 +14,7 @@ class Str extends S {
 	 * @param  mixed    $data
 	 * @return string
 	 */
-	public static function getFromStream($data)
+	public static function streamGetContents($data)
 	{
 		// check if it's actually a resource, we can directly convert 
 		// string without any issue.

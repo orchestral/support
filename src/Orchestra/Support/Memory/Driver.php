@@ -61,7 +61,7 @@ abstract class Driver {
 	 */
 	public function stringify($data)
 	{
-		return Str::getFromStream($data);
+		return Str::streamGetContents($data);
 	}
 
 	/**
