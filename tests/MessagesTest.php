@@ -1,6 +1,6 @@
 <?php namespace Orchestra\Support\Tests;
 
-class MessageBagTest extends \PHPUnit_Framework_TestCase {
+class MessagesTest extends \PHPUnit_Framework_TestCase {
 
 	/**
 	 * Setup the test environment.
@@ -23,25 +23,45 @@ class MessageBagTest extends \PHPUnit_Framework_TestCase {
 	}
 
 	/**
-	 * Test Orchestra\Support\MessageBag::make()
+	 * Test Orchestra\Support\Messages::make()
 	 *
 	 * @test
 	 * @group support
 	 */
-	public function testMakeInstance()
+	public function testMakeMethod()
 	{
-		$messageBag = \Orchestra\Support\MessageBag::make('welcome', 'Hello world');
-		$messageBag->setFormat();
+		$message = \Orchestra\Support\Messages::make();
+		$message->add('welcome', 'Hello world');
+		$message->setFormat();
 
-		$this->assertInstanceOf('\Orchestra\Support\MessageBag', $messageBag);
-		$this->assertEquals(array('Hello world'), $messageBag->get('welcome'));
+		$this->assertInstanceOf('\Orchestra\Support\Messages', $message);
+		$this->assertEquals(array('Hello world'), $message->get('welcome'));
 
-		$messageBag->add('welcome', 'Hi Foobar');
-		$this->assertEquals(array('Hello world', 'Hi Foobar'), $messageBag->get('welcome'));
+		$message->add('welcome', 'Hi Foobar');
+		$this->assertEquals(array('Hello world', 'Hi Foobar'), $message->get('welcome'));
+		$this->assertTrue($message === \Orchestra\Support\Messages::make());
+	}
+		
+	/**
+	 * Test Orchestra\Support\Messages::shutdown()
+	 *
+	 * @test
+	 * @group support
+	 */
+	public function testShutdownMethod()
+	{
+		\Orchestra\Support\Messages::make();
+
+		$mock = \Mockery::mock('Session')
+			->shouldReceive('flash')->once()->andReturn(true);
+
+		\Illuminate\Support\Facades\Session::swap($mock->getMock());
+
+		\Orchestra\Support\Messages::shutdown();
 	}
 
 	/**
-	 * Test serializing and storing Orchestra\Support\MessageBag over
+	 * Test serializing and storing Orchestra\Support\Messages over
 	 * Session
 	 *
 	 * @test
@@ -54,11 +74,11 @@ class MessageBagTest extends \PHPUnit_Framework_TestCase {
 
 		\Illuminate\Support\Facades\Session::swap($mock->getMock());
 
-		$messageBag = new \Orchestra\Support\MessageBag;
-		$messageBag->add('hello', 'Hi World');
-		$messageBag->add('bye', 'Goodbye');
+		$message = new \Orchestra\Support\Messages;
+		$message->add('hello', 'Hi World');
+		$message->add('bye', 'Goodbye');
 
-		$serialize = $messageBag->serialize();
+		$serialize = $message->serialize();
 
 		$this->assertTrue(is_string($serialize));
 		$this->assertContains('hello', $serialize);
@@ -66,11 +86,11 @@ class MessageBagTest extends \PHPUnit_Framework_TestCase {
 		$this->assertContains('bye', $serialize);
 		$this->assertContains('Goodbye', $serialize);
 
-		$messageBag->store();
+		$message->save();
 	}
 
 	/**
-	 * Test un-serializing and retrieving Orchestra\Support\MessageBag over
+	 * Test un-serializing and retrieving Orchestra\Support\Messages over
 	 * Session
 	 *
 	 * @test
@@ -86,10 +106,10 @@ class MessageBagTest extends \PHPUnit_Framework_TestCase {
 
 		\Illuminate\Support\Facades\Session::swap($mock->getMock());
 
-		$retrieve = \Orchestra\Support\MessageBag::getSessionFlash();
+		$retrieve = \Orchestra\Support\Messages::retrieve();
 		$retrieve->setFormat();
 
-		$this->assertInstanceOf('\Orchestra\Support\MessageBag', $retrieve);
+		$this->assertInstanceOf('\Orchestra\Support\Messages', $retrieve);
 		$this->assertEquals(array('Hi World'), $retrieve->get('hello'));
 		$this->assertEquals(array('Goodbye'), $retrieve->get('bye'));
 	}
