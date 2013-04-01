@@ -3,15 +3,15 @@
 use Closure,
 	InvalidArgumentException;
 
-abstract class Decorator {
+abstract class Builder {
 
 	/**
-	 * Create a new Decorator instance
+	 * Create a new Builder instance
 	 *
 	 * @static
 	 * @access  public
 	 * @param   Closure     $callback
-	 * @return  Decorator
+	 * @return  Builder
 	 */
 	public static function make(Closure $callback)
 	{
@@ -19,7 +19,7 @@ abstract class Decorator {
 	}
 	
 	/**
-	 * Name of decorator.
+	 * Name of builder.
 	 *
 	 * @var string
 	 */
@@ -33,7 +33,7 @@ abstract class Decorator {
 	protected $grid = null;
 
 	/**
-	 * Create a new Decorator instance.
+	 * Create a new Builder instance.
 	 * 			
 	 * @access public
 	 * @param  Closure      $callback
