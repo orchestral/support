@@ -17,7 +17,8 @@ class Messages extends M {
 	 *
 	 * <code>
 	 *		// Add a message for the e-mail attribute
-	 *		Messages::make('email', 'The e-mail address is invalid.');
+	 *		$msg = Message::make();
+	 *		$msg->add('email', 'The e-mail address is invalid.');
 	 * </code>
 	 *
 	 * @static
