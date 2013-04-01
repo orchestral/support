@@ -1,7 +1,5 @@
 <?php namespace Orchestra\Support;
 
-use Illuminate\Support\Facades\Config;
-
 class Html {
 
 	/**
