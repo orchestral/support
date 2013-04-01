@@ -66,19 +66,6 @@ class DriverTest extends \PHPUnit_Framework_TestCase {
 	}
 
 	/**
-	 * Test Orchestra\Support\Memory\Driver::stringify() method.
-	 *
-	 * @test
-	 * @group support
-	 */
-	public function testStringifyMethod()
-	{
-		$stub     = new MemoryDriverStub;
-		$expected = 'foobar';
-		$this->assertEquals($expected, $stub->stringify($expected));
-	}
-
-	/**
 	 * Test Orchestra\Support\Memory\Driver::get() method.
 	 *
 	 * @test
