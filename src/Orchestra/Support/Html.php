@@ -9,7 +9,7 @@ class Html {
 	 *
 	 * @var string
 	 */
-	public static $encoding = null;
+	public static $encoding = 'UTF-8';
 
 	/**
 	 * Generate a HTML element
@@ -168,6 +168,6 @@ class Html {
 	 */
 	protected static function encoding()
 	{
-		return static::$encoding ?: static::$encoding = Config::get('application.encoding');
+		return static::$encoding;
 	}
 }

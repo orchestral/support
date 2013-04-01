@@ -3,22 +3,6 @@
 class HtmlTest extends \PHPUnit_Framework_TestCase {
 
 	/**
-	 * Setup the test environment.
-	 */
-	public function setUp() 
-	{
-		$appMock = \Mockery::mock('Application')
-			->shouldReceive('instance')->andReturn(true);
-
-		$configMock = \Mockery::mock('Config')
-			->shouldReceive('get')
-				->with('application.encoding')->andReturn('UTF-8');
-
-		\Illuminate\Support\Facades\Config::setFacadeApplication($appMock->getMock());
-		\Illuminate\Support\Facades\Config::swap($configMock->getMock());
-	}
-
-	/**
 	 * Teardown the test environment.
 	 */
 	public function tearDown() 
