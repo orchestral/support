@@ -15,9 +15,8 @@ class AuthTest extends \PHPUnit_Framework_TestCase {
 
 		$authMock = \Mockery::mock('Illuminate\Auth\Guard')
 			->shouldReceive('user')->andReturn($userMock);
-		\Illuminate\Support\Facades\Auth::setFacadeApplication(
-			$appMock->getMock()
-		);
+		
+		\Illuminate\Support\Facades\Auth::setFacadeApplication($appMock->getMock());
 		\Illuminate\Support\Facades\Auth::swap($authMock->getMock());
 	}
 
