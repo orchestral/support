@@ -226,6 +226,11 @@ class Fieldset {
 					$data->method('password')
 						->attributes(Html::decorate($control->attributes, $config['password']));
 					break;
+
+				case (in_array($type, array('file', 'input:file'))) :
+					$data->method('file')
+						->attributes(Html::decorate($control->attributes, $config['file']));
+					break;
 				
 				case (isset($methods[0]) and $methods[0] === 'input') :
 					$methods[1] = $methods[1] ?: 'text';

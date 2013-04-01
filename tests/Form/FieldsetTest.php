@@ -17,6 +17,7 @@ class FieldsetTest extends \PHPUnit_Framework_TestCase {
 					'textarea' => array(),
 					'input'    => array(),
 					'password' => array(),
+					'file'     => array(),
 					'radio'    => array(),
 				))
 			->shouldReceive('get')
@@ -24,6 +25,7 @@ class FieldsetTest extends \PHPUnit_Framework_TestCase {
 					'input'    => function ($data) { return $data->name; },
 					'textarea' => function ($data) { return $data->name; },
 					'password' => function ($data) { return $data->name; },
+					'file'     => function ($data) { return $data->name; },
 					'radio'    => function ($data) { return $data->name; },
 					'checkbox' => function ($data) { return $data->name; },
 					'select'   => function ($data) { return $data->name; },
@@ -37,7 +39,6 @@ class FieldsetTest extends \PHPUnit_Framework_TestCase {
 
 		\Illuminate\Support\Facades\Input::setFacadeApplication($appMock->getMock());
 		\Illuminate\Support\Facades\Input::swap($inputMock->getMock());
-
 	}
 
 	/**
@@ -121,6 +122,11 @@ class FieldsetTest extends \PHPUnit_Framework_TestCase {
 				$c->label('Foo')->value('foobar');
 			});
 
+			$f->control('file', 'file_foo', function ($c)
+			{
+				$c->label('Foo')->value('foobar');
+			});
+
 			$f->control('textarea', 'textarea_foo', function ($c)
 			{
 				$c->label('Foo')->value('foobar');
@@ -168,6 +174,12 @@ class FieldsetTest extends \PHPUnit_Framework_TestCase {
 		
 		$this->assertEquals('password_foo', $output->id);
 		$this->assertEquals('password_foo', 
+			 call_user_func($output->field, new \Illuminate\Support\Fluent, $output));
+
+		$output = $stub->of('file_foo');
+		
+		$this->assertEquals('file_foo', $output->id);
+		$this->assertEquals('file_foo', 
 			 call_user_func($output->field, new \Illuminate\Support\Fluent, $output));
 
 		$output = $stub->of('textarea_foo');
