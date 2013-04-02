@@ -1,9 +1,10 @@
 <?php namespace Orchestra\Support;
 
 use Closure,
-	InvalidArgumentException;
+	InvalidArgumentException,
+	Illuminate\Support\Contracts\RenderableInterface;
 
-abstract class Builder {
+abstract class Builder implements RenderableInterface {
 
 	/**
 	 * Create a new Builder instance

@@ -76,6 +76,8 @@ class TableTest extends \PHPUnit_Framework_TestCase {
 		$grid->setAccessible(true);
 
 		$this->assertInstanceOf('\Orchestra\Support\Table', $stub);
+		$this->assertInstanceOf('\Orchestra\Support\Builder', $stub);
+		$this->assertInstanceOf('\Illuminate\Support\Contracts\RenderableInterface', $stub);
 		
 		$this->assertNull($name->getValue($stub));
 		$this->assertNull($stub->name);

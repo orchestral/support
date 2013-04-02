@@ -45,6 +45,8 @@ class BuilderTest extends \PHPUnit_Framework_TestCase {
 
 		$this->assertInstanceOf('\Orchestra\Support\Builder', $stub1);
 		$this->assertInstanceOf('\Orchestra\Support\Builder', $stub2);
+		$this->assertInstanceOf('\Illuminate\Support\Contracts\RenderableInterface', $stub1);
+		$this->assertInstanceOf('\Illuminate\Support\Contracts\RenderableInterface', $stub2);
 
 		$this->assertNull($name->getValue($stub1));
 		$this->assertNull($stub1->name);
