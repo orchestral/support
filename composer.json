@@ -1,6 +1,6 @@
 {
 	"name": "orchestra/support",
-	"description": "Orchestra Platform Support Library for Illuminate",
+	"description": "Orchestra Platform Support Component",
 	"license": "MIT",
 	"authors": [
 		{
@@ -14,10 +14,10 @@
 	},
 	"require-dev": {
 		"patchwork/utf8": "1.0.*",
-		"mockery/mockery": "dev-master"
+		"mockery/mockery": "0.8.0"
 	},
 	"suggest": {
-		"laravel/framework": "Allow using Orchestra Support Library outside of Orchestra Platform"
+		"laravel/framework": "Allow using Orchestra Support Component outside of Orchestra Platform"
 	},
 	"autoload": {
 		"psr-0": { 
