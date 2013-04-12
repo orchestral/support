@@ -21,7 +21,7 @@ abstract class Manager extends \Illuminate\Support\Manager {
 		// drivers using their own customized driver creator Closure to create it.
 		if (isset($this->customCreators[$driver]))
 		{
-			return $this->callCustomCreator($driver, $name);
+			return $this->callCustomCreator($driverName);
 		}
 		elseif (method_exists($this, $method))
 		{
@@ -34,11 +34,13 @@ abstract class Manager extends \Illuminate\Support\Manager {
 	/**
 	 * Call a custom driver creator.
 	 *
-	 * @param  string  $driver
+	 * @param  string  $driverName
 	 * @return mixed
 	 */
-	protected function callCustomCreator($driver, $name)
+	protected function callCustomCreator($driverName)
 	{
+		list($driver, $name) = $this->getDriverName($driverName);
+		
 		return call_user_func($this->customCreators[$driver], $this->app, $name);
 	}
 
