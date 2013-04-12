@@ -3,6 +3,14 @@
 class ManagerTest extends \PHPUnit_Framework_TestCase {
 
 	/**
+	 * Teardown the test environment.
+	 */
+	public function tearDown()
+	{
+		\Mockery::close();
+	}
+
+	/**
 	 * Test Orchestra\Support\Manager::driver() method.
 	 *
 	 * @test
