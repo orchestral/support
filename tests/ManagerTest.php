@@ -30,7 +30,6 @@ class ManagerTest extends \PHPUnit_Framework_TestCase {
 		$this->assertEquals('daylerees', $output4->name);
 		$this->assertInstanceOf('\Orchestra\Support\Tests\Manager_AwesomeFoobar', $output5);
 		$this->assertEquals('taylor', $output5->name);
-
 	}
 
 	/**
