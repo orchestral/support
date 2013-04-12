@@ -5,6 +5,19 @@ use Closure;
 abstract class Manager extends \Illuminate\Support\Manager {
 
 	/**
+	 * Create a new instance.
+	 *
+	 * @access public
+	 * @param  string   $driver
+	 * @return mixed
+	 * @see    self::driver()
+	 */
+	public function make($driver) 
+	{
+		return $this->driver($driver);
+	}
+
+	/**
 	 * Create a new driver instance.
 	 *
 	 * @param  string  $driverName
@@ -40,7 +53,7 @@ abstract class Manager extends \Illuminate\Support\Manager {
 	protected function callCustomCreator($driverName)
 	{
 		list($driver, $name) = $this->getDriverName($driverName);
-		
+
 		return call_user_func($this->customCreators[$driver], $this->app, $name);
 	}
 

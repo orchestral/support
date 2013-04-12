@@ -23,7 +23,7 @@ class ManagerTest extends \PHPUnit_Framework_TestCase {
 			return new Manager_AwesomeFoobar($app, $name);
 		});
 
-		$output1 = $stub->driver('foo.bar');
+		$output1 = $stub->make('foo.bar');
 		$output2 = $stub->driver('foo.bar');
 		$output3 = $stub->driver('foo');
 		$output4 = $stub->driver('foobar.daylerees');
