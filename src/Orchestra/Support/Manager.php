@@ -12,7 +12,7 @@ abstract class Manager extends \Illuminate\Support\Manager {
 	 * @return mixed
 	 * @see    self::driver()
 	 */
-	public function make($driver) 
+	public function make($driver = null) 
 	{
 		return $this->driver($driver);
 	}
