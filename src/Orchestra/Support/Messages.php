@@ -6,67 +6,36 @@ use Illuminate\Support\Facades\Session,
 class Messages extends M {
 
 	/**
-	 * Messages instance.
-	 *
-	 * @var Messages
-	 */
-	public static $instance = null;
-
-	/**
-	 * Add a message to the collector.
-	 *
-	 * <code>
-	 *		// Add a message for the e-mail attribute
-	 *		$msg = Message::make();
-	 *		$msg->add('email', 'The e-mail address is invalid.');
-	 * </code>
-	 *
-	 * @static
-	 * @access public
-	 * @return void
-	 */
-	public static function make()
-	{
-		if (is_null(static::$instance))
-		{
-			static::$instance = new static();
-		}
-
-		return static::$instance;
-	}
-
-	/**
 	 * Retrieve Message instance from Session, the data should be in
 	 * serialize, so we need to unserialize it first.
 	 *
-	 * @static
 	 * @access public
 	 * @return Messages
 	 */
-	public static function retrieve()
+	public function retrieve()
 	{
-		$message = null;
+		$messages = null;
 
 		if (Session::has('message'))
 		{
-			$message = @unserialize(Session::getFlash('message', ''));
+			$messages = @unserialize(Session::getFlash('message', ''));
+			if (is_array($messages)) $this->messages = $messages;
 		}
 
 		Session::forget('message');
 
-		return new static($message);
+		return $this;
 	}
 
 	/**
 	 * Shudown the message instance.
 	 *
-	 * @static
 	 * @access public
 	 * @return void
 	 */
-	public static function shutdown()
+	public function shutdown()
 	{
-		if ( ! is_null(static::$instance)) static::$instance->save();
+		$this->save();
 	}
 	
 	/**

@@ -7,11 +7,11 @@ class MessagesTest extends \PHPUnit_Framework_TestCase {
 	 */
 	public function setUp()
 	{
-		$appMock = \Mockery::mock('Application')
-			->shouldReceive('instance')->andReturn(true);
 		\Illuminate\Support\Facades\Session::setFacadeApplication(
-			$appMock->getMock()
+			$appMock = \Mockery::mock('\Illuminate\Foundation\Application')
 		);
+
+		$appMock->shouldReceive('instance')->andReturn(true);
 	}
 
 	/**
@@ -30,7 +30,7 @@ class MessagesTest extends \PHPUnit_Framework_TestCase {
 	 */
 	public function testMakeMethod()
 	{
-		$message = \Orchestra\Support\Messages::make();
+		$message = new \Orchestra\Support\Messages;
 		$message->add('welcome', 'Hello world');
 		$message->setFormat();
 
@@ -39,7 +39,6 @@ class MessagesTest extends \PHPUnit_Framework_TestCase {
 
 		$message->add('welcome', 'Hi Foobar');
 		$this->assertEquals(array('Hello world', 'Hi Foobar'), $message->get('welcome'));
-		$this->assertTrue($message === \Orchestra\Support\Messages::make());
 	}
 		
 	/**
@@ -50,14 +49,14 @@ class MessagesTest extends \PHPUnit_Framework_TestCase {
 	 */
 	public function testShutdownMethod()
 	{
-		\Orchestra\Support\Messages::make();
+		$stub = new \Orchestra\Support\Messages;
 
-		$mock = \Mockery::mock('Session')
-			->shouldReceive('flash')->once()->andReturn(true);
+		\Illuminate\Support\Facades\Session::swap($sessionMock = \Mockery::mock('Session'));
+		$sessionMock->shouldReceive('flash')
+			->once()
+			->andReturn(true);
 
-		\Illuminate\Support\Facades\Session::swap($mock->getMock());
-
-		\Orchestra\Support\Messages::shutdown();
+		$stub->shutdown();
 	}
 
 	/**
@@ -69,11 +68,10 @@ class MessagesTest extends \PHPUnit_Framework_TestCase {
 	 */
 	public function testStoreMethod()
 	{
-		$mock = \Mockery::mock('Session')
-			->shouldReceive('flash')->once()->andReturn(true);
+		\Illuminate\Support\Facades\Session::swap($sessionMock = \Mockery::mock('Session'));
 
-		\Illuminate\Support\Facades\Session::swap($mock->getMock());
-
+		$sessionMock->shouldReceive('flash')->once()->andReturn(true);
+		
 		$message = new \Orchestra\Support\Messages;
 		$message->add('hello', 'Hi World');
 		$message->add('bye', 'Goodbye');
@@ -98,15 +96,18 @@ class MessagesTest extends \PHPUnit_Framework_TestCase {
 	 */
 	public function testGetSessionFlashMethod()
 	{
-		$mock = \Mockery::mock('Session')
-			->shouldReceive('has')->once()->andReturn(true)
-			->shouldReceive('getFlash')->once()->andReturn(
-				'a:2:{s:5:"hello";a:1:{i:0;s:8:"Hi World";}s:3:"bye";a:1:{i:0;s:7:"Goodbye";}}'
-			)->shouldReceive('forget')->once()->andReturn(true);
+		\Illuminate\Support\Facades\Session::swap($sessionMock = \Mockery::mock('Session'));
+		$sessionMock->shouldReceive('has')
+				->once()
+				->andReturn(true)
+			->shouldReceive('getFlash')
+				->once()
+				->andReturn('a:2:{s:5:"hello";a:1:{i:0;s:8:"Hi World";}s:3:"bye";a:1:{i:0;s:7:"Goodbye";}}')
+			->shouldReceive('forget')
+				->once()
+				->andReturn(true);
 
-		\Illuminate\Support\Facades\Session::swap($mock->getMock());
-
-		$retrieve = \Orchestra\Support\Messages::retrieve();
+		$retrieve = with(new \Orchestra\Support\Messages)->retrieve();
 		$retrieve->setFormat();
 
 		$this->assertInstanceOf('\Orchestra\Support\Messages', $retrieve);
