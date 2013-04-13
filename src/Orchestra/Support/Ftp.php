@@ -10,7 +10,7 @@
  * 
  */
 
-use Orchestra\Support\Ftp\Facade;
+use Orchestra\Support\Ftp\Morph as Facade;
 
 class Ftp {
 
