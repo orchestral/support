@@ -11,6 +11,30 @@ class SupportServiceProvider extends ServiceProvider {
 	 */
 	public function register()
 	{
+		$this->registerMessages();
+		$this->registerDecorator();
+	}
+
+	/**
+	 * Register the service provider for Decorator.
+	 *
+	 * @return void
+	 */
+	protected function registerDecorator()
+	{
+		$this->app['orchestra.decorator'] = $this->app->share(function($app)
+		{
+			return new Decorator;
+		});
+	}
+
+	/**
+	 * Register the service provider for Messages.
+	 *
+	 * @return void
+	 */
+	protected function registerMessages()
+	{
 		$this->app['orchestra.messages'] = $this->app->share(function($app)
 		{
 			return new Messages;

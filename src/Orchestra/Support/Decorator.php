@@ -9,7 +9,7 @@ class Decorator {
 	 *
 	 * @var array
 	 */
-	public static $macros = array();
+	protected $macros = array();
 
 	/**
 	 * Registers a custom macro.
@@ -18,23 +18,24 @@ class Decorator {
 	 * @param  Closure  $macro
 	 * @return void
 	 */
-	public static function macro($name, $macro)
+	public function macro($name, $macro)
 	{
-		static::$macros[$name] = $macro;
+		$this->macros[$name] = $macro;
 	}
 
 	/**
 	 * Dynamically handle calls to custom macros.
 	 *
-	 * @param  string  $method
-	 * @param  array   $parameters
+	 * @access public
+	 * @param  string   $method
+	 * @param  array    $parameters
 	 * @return mixed
 	 */
-	public static function __callStatic($method, $parameters)
+	public function __call($method, $parameters)
 	{
-		if (isset(static::$macros[$method]))
+		if (isset($this->macros[$method]))
 		{
-			return call_user_func_array(static::$macros[$method], $parameters);
+			return call_user_func_array($this->macros[$method], $parameters);
 		}
 
 		throw new BadMethodCallException("Method [$method] does not exist.");
