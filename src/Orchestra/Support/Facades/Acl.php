@@ -1,6 +1,6 @@
 <?php namespace Orchestra\Support\Facades;
 
-\Illuminate\Support\Facades\Facade;
+use \Illuminate\Support\Facades\Facade;
 
 class Acl extends Facade {
 	
