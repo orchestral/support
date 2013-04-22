@@ -1,6 +1,7 @@
 {
 	"name": "orchestra/support",
 	"description": "Orchestra Platform Support Component",
+	"keywords": ["orchestra-platform", "laravel"],
 	"license": "MIT",
 	"authors": [
 		{
