@@ -11,10 +11,10 @@
 	],
 	"require": {
 		"php": ">=5.3.3",
+		"patchwork/utf8": "1.1.*",
 		"illuminate/support": "4.0.*@dev"
 	},
 	"require-dev": {
-		"patchwork/utf8": "1.0.*",
 		"mockery/mockery": "0.8.0"
 	},
 	"suggest": {
