@@ -22,14 +22,14 @@
 	"require-dev": {
 		"mockery/mockery": "0.8.0"
 	},
-	"extra": {
-        "branch-alias": {
-            "dev-master": "2.0.x-dev"
-        }
-    },
 	"suggest": {
 		"laravel/framework": "Allow using orchestra/support component outside of Orchestra Platform",
 		"orchestra/foundation": "Allow using orchestra/support with Orchestra Platform"
+	},
+	"extra": {
+		"branch-alias": {
+			"dev-master": "2.0.x-dev"
+		}
 	},
 	"minimum-stability": "dev"
 }
