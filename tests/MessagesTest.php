@@ -8,10 +8,10 @@ class MessagesTest extends \PHPUnit_Framework_TestCase {
 	public function setUp()
 	{
 		\Illuminate\Support\Facades\Session::setFacadeApplication(
-			$appMock = \Mockery::mock('\Illuminate\Foundation\Application')
+			$app = \Mockery::mock('\Illuminate\Foundation\Application')
 		);
 
-		$appMock->shouldReceive('instance')->andReturn(true);
+		$app->shouldReceive('instance')->andReturn(true);
 	}
 
 	/**
@@ -51,10 +51,8 @@ class MessagesTest extends \PHPUnit_Framework_TestCase {
 	{
 		$stub = new \Orchestra\Support\Messages;
 
-		\Illuminate\Support\Facades\Session::swap($sessionMock = \Mockery::mock('Session'));
-		$sessionMock->shouldReceive('flash')
-			->once()
-			->andReturn(true);
+		\Illuminate\Support\Facades\Session::swap($session = \Mockery::mock('Session'));
+		$session->shouldReceive('put')->once()->andReturn(true);
 
 		$stub->shutdown();
 	}
@@ -68,9 +66,8 @@ class MessagesTest extends \PHPUnit_Framework_TestCase {
 	 */
 	public function testStoreMethod()
 	{
-		\Illuminate\Support\Facades\Session::swap($sessionMock = \Mockery::mock('Session'));
-
-		$sessionMock->shouldReceive('flash')->once()->andReturn(true);
+		\Illuminate\Support\Facades\Session::swap($session = \Mockery::mock('Session'));
+		$session->shouldReceive('put')->once()->andReturn(true);
 		
 		$message = new \Orchestra\Support\Messages;
 		$message->add('hello', 'Hi World');
@@ -96,16 +93,10 @@ class MessagesTest extends \PHPUnit_Framework_TestCase {
 	 */
 	public function testGetSessionFlashMethod()
 	{
-		\Illuminate\Support\Facades\Session::swap($sessionMock = \Mockery::mock('Session'));
-		$sessionMock->shouldReceive('has')
-				->once()
-				->andReturn(true)
-			->shouldReceive('getFlash')
-				->once()
-				->andReturn('a:2:{s:5:"hello";a:1:{i:0;s:8:"Hi World";}s:3:"bye";a:1:{i:0;s:7:"Goodbye";}}')
-			->shouldReceive('forget')
-				->once()
-				->andReturn(true);
+		\Illuminate\Support\Facades\Session::swap($session = \Mockery::mock('Session'));
+		$session->shouldReceive('has')->once()->andReturn(true)
+			->shouldReceive('get')->once()->andReturn('a:2:{s:5:"hello";a:1:{i:0;s:8:"Hi World";}s:3:"bye";a:1:{i:0;s:7:"Goodbye";}}')
+			->shouldReceive('forget')->once()->andReturn(true);
 
 		$retrieve = with(new \Orchestra\Support\Messages)->retrieve();
 		$retrieve->setFormat();

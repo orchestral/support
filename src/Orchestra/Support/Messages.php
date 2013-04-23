@@ -15,16 +15,17 @@ class Messages extends M {
 	public function retrieve()
 	{
 		$messages = null;
+		$instance = null;
 
 		if (Session::has('message'))
 		{
-			$messages = @unserialize(Session::getFlash('message', ''));
-			if (is_array($messages)) $this->messages = $messages;
+			$messages = @unserialize(Session::get('message', ''));
+			if (is_array($messages)) $instance = new static($messages);
 		}
 
 		Session::forget('message');
 
-		return $this;
+		return $instance;
 	}
 
 	/**
@@ -65,7 +66,7 @@ class Messages extends M {
 	 */
 	public function save()
 	{
-		Session::flash('message', $this->serialize());
+		Session::put('message', $this->serialize());
 	}
 
 	/**
@@ -76,6 +77,6 @@ class Messages extends M {
 	 */
 	public function serialize()
 	{
-		return serialize($this);
+		return serialize($this->messages);
 	}
 }
