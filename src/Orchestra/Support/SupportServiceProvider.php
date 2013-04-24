@@ -3,13 +3,6 @@
 use Illuminate\Support\ServiceProvider;
 
 class SupportServiceProvider extends ServiceProvider {
-
-	/**
-	 * Indicates if loading of the provider is deferred.
-	 *
-	 * @var bool
-	 */
-	protected $defer = true;
 	
 	/**
 	 * Register the service provider.
@@ -69,7 +62,7 @@ class SupportServiceProvider extends ServiceProvider {
 
 		$app->after(function($request, $response) use ($app)
 		{
-			$app->make('orchestra.messages')->shutdown();
+			$app['orchestra.messages']->shutdown();
 		});
 	}
 

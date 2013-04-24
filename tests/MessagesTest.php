@@ -52,7 +52,7 @@ class MessagesTest extends \PHPUnit_Framework_TestCase {
 		$stub = new \Orchestra\Support\Messages;
 
 		\Illuminate\Support\Facades\Session::swap($session = \Mockery::mock('Session'));
-		$session->shouldReceive('put')->once()->andReturn(true);
+		$session->shouldReceive('flash')->once()->andReturn(true);
 
 		$stub->shutdown();
 	}
@@ -67,7 +67,7 @@ class MessagesTest extends \PHPUnit_Framework_TestCase {
 	public function testStoreMethod()
 	{
 		\Illuminate\Support\Facades\Session::swap($session = \Mockery::mock('Session'));
-		$session->shouldReceive('put')->once()->andReturn(true);
+		$session->shouldReceive('flash')->once()->andReturn(true);
 		
 		$message = new \Orchestra\Support\Messages;
 		$message->add('hello', 'Hi World');
