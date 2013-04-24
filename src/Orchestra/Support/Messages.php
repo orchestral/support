@@ -66,7 +66,7 @@ class Messages extends M {
 	 */
 	public function save()
 	{
-		Session::flash('message', $this->serialize());
+		Session::put('message', $this->serialize());
 	}
 
 	/**
