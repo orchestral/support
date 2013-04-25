@@ -26,7 +26,6 @@ class MessagesTest extends \PHPUnit_Framework_TestCase {
 	 * Test Orchestra\Support\Messages::make()
 	 *
 	 * @test
-	 * @group support
 	 */
 	public function testMakeMethod()
 	{
@@ -45,7 +44,6 @@ class MessagesTest extends \PHPUnit_Framework_TestCase {
 	 * Test Orchestra\Support\Messages::shutdown()
 	 *
 	 * @test
-	 * @group support
 	 */
 	public function testShutdownMethod()
 	{
@@ -62,7 +60,6 @@ class MessagesTest extends \PHPUnit_Framework_TestCase {
 	 * Session
 	 *
 	 * @test
-	 * @group support
 	 */
 	public function testStoreMethod()
 	{
@@ -89,7 +86,6 @@ class MessagesTest extends \PHPUnit_Framework_TestCase {
 	 * Session
 	 *
 	 * @test
-	 * @group support
 	 */
 	public function testRetrieveMethod()
 	{

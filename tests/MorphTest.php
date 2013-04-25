@@ -6,7 +6,6 @@ class MorphTest extends \PHPUnit_Framework_TestCase {
 	 * Test MorphStub::connect() return foo_connect().
 	 * 
 	 * @test
-	 * @group support
 	 */
 	public function testStubFooConnect()
 	{
@@ -17,7 +16,6 @@ class MorphTest extends \PHPUnit_Framework_TestCase {
 	 * Test MorphStub::invalid() throws an Exception.
 	 *
 	 * @expectedException \RuntimeException
-	 * @group support
 	 */
 	public function testStubFooInvalidThrowsException()
 	{

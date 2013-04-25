@@ -35,7 +35,6 @@ class FtpTest extends \PHPUnit_Framework_TestCase {
 	 * Test instance of Orchestra\Support\Ftp.
 	 *
 	 * @test
-	 * @group support
 	 */
 	public function testInstanceOfFTP()
 	{
@@ -74,7 +73,6 @@ class FtpTest extends \PHPUnit_Framework_TestCase {
 	 * Test Orchestra\Support\Ftp::connect() method successful.
 	 *
 	 * @test
-	 * @group support
 	 */
 	public function testConnectMethodSuccessful()
 	{
@@ -99,7 +97,6 @@ class FtpTest extends \PHPUnit_Framework_TestCase {
 	 * Test Orchestra\Support\Ftp::connect() method with ftp_ssl_connect() throws exception.
 	 *
 	 * @expectedException \Orchestra\Support\Ftp\ServerException
-	 * @group support
 	 */
 	public function testConnectMethodSFTPConnectThrowsException()
 	{
@@ -118,7 +115,6 @@ class FtpTest extends \PHPUnit_Framework_TestCase {
 	 * Test Orchestra\Support\Ftp::connect() method with ftp_connect() throws exception.
 	 *
 	 * @expectedException \Orchestra\Support\Ftp\ServerException
-	 * @group support
 	 */
 	public function testConnectMethodFTPConnectThrowsException()
 	{
@@ -137,7 +133,6 @@ class FtpTest extends \PHPUnit_Framework_TestCase {
 	 * Test Orchestra\Support\Ftp::connect() method with ftp_login() throws exception.
 	 *
 	 * @expectedException \Orchestra\Support\Ftp\ServerException
-	 * @group support
 	 */
 	public function testConnectMethodFTPLoginThrowsException()
 	{
@@ -156,7 +151,6 @@ class FtpTest extends \PHPUnit_Framework_TestCase {
 	 * Test Orchestra\Support\Ftp\Morph methods.
 	 *
 	 * @test
-	 * @group support
 	 */
 	public function testFTPFacadeMethodsSuccessful()
 	{
@@ -180,7 +174,6 @@ class FtpTest extends \PHPUnit_Framework_TestCase {
 	 * Test Orchestra\Support\Ftp\Morph method throws Exception.
 	 *
 	 * @expectedException \Orchestra\Support\Ftp\RuntimeException
-	 * @group support
 	 */
 	public function testFTPFacadeThrowsException()
 	{

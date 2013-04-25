@@ -3,10 +3,20 @@
 class StrTest extends \PHPUnit_Framework_TestCase {
 
 	/**
+	 * Test the Orchestra\Support\Str::title method.
+	 *
+	 * @test
+	 */
+	public function testStringCanBeConvertedToTitleCase()
+	{
+		$this->assertEquals('Taylor', \Orchestra\Support\Str::title('taylor'));
+		$this->assertEquals('Άχιστη', \Orchestra\Support\Str::title('άχιστη'));
+	}
+
+	/**
 	 * Test Orchestra\Support\Str::streamGetContents() method.
 	 *
 	 * @test
-	 * @group support
 	 */
 	public function testStreamGetContentsMethod()
 	{

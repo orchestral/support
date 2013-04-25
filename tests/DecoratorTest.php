@@ -6,7 +6,6 @@ class DecoratorTest extends \PHPUnit_Framework_TestCase {
 	 * Test add and using macros.
 	 *
 	 * @test
-	 * @group support
 	 */
 	public function testAddAndUsingMacros()
 	{
@@ -24,7 +23,6 @@ class DecoratorTest extends \PHPUnit_Framework_TestCase {
 	 * Test calling undefined macros throws an exception.
 	 *
 	 * @expectedException \BadMethodCallException
-	 * @group support
 	 */
 	public function testCallingUndefinedMacrosThrowsException()
 	{

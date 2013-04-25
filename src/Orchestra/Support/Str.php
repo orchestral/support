@@ -5,6 +5,25 @@ use Illuminate\Support\Str as S;
 class Str extends S {
 
 	/**
+	 * Convert a string to title case (ucwords equivalent).
+	 *
+	 * <code>
+	 *		// Convert a string to title case
+	 *		$title = Str::title('taylor otwell');
+	 *
+	 *		// Convert a multi-byte string to title case
+	 *		$title = Str::title('νωθρού κυνός');
+	 * </code>
+	 *
+	 * @param  string  $value
+	 * @return string
+	 */
+	public static function title($value)
+	{
+		return mb_convert_case($value, MB_CASE_TITLE, 'UTF-8');
+	}
+
+	/**
 	 * Convert filter to string, this process is required to filter stream 
 	 * data return from Postgres where blob type schema would actually use 
 	 * BYTEA and convert the string to stream.
