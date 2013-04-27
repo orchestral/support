@@ -1,5 +1,7 @@
 <?php namespace Orchestra\Support\Tests;
 
+use Mockery as m;
+
 class ValidatorTest extends \PHPUnit_Framework_TestCase {
 	
 	/**
@@ -8,7 +10,8 @@ class ValidatorTest extends \PHPUnit_Framework_TestCase {
 	public function setUp()
 	{
 		$_SERVER['validator.onFoo'] = null;
-		$app = \Mockery::mock('\Illuminate\Foundation\Application');
+
+		$app = m::mock('\Illuminate\Foundation\Application');
 		$app->shouldReceive('instance')->andReturn(true);
 
 		\Illuminate\Support\Facades\Event::setFacadeApplication($app);
@@ -20,7 +23,7 @@ class ValidatorTest extends \PHPUnit_Framework_TestCase {
 	public function tearDown()
 	{
 		unset($_SERVER['validator.onFoo']);
-		\Mockery::close();
+		m::close();
 	}
 
 	/**
@@ -30,12 +33,15 @@ class ValidatorTest extends \PHPUnit_Framework_TestCase {
 	 */
 	public function testValidation()
 	{
-		\Illuminate\Support\Facades\Event::swap($event = \Mockery::mock('Event'));
-		\Illuminate\Support\Facades\Validator::swap($validator = \Mockery::mock('Validator'));
-		
-		$event->shouldReceive('fire')->once()->with('foo.event', \Mockery::any())->andReturn(null);
+		$event     = m::mock('Event');
+		$validator = m::mock('Validator');
+
+		$event->shouldReceive('fire')->once()->with('foo.event', m::any())->andReturn(null);
 		$validator->shouldReceive('make')->once()->with(array(), array())->andReturn('foo');
 
+		\Illuminate\Support\Facades\Event::swap($event);
+		\Illuminate\Support\Facades\Validator::swap($validator);
+		
 		$stub = new FooValidator;
 		$stub->on('foo');
 		

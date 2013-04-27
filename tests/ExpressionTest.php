@@ -1,5 +1,7 @@
 <?php namespace Orchestra\Support\Tests;
 
+use Orchestra\Support\Expression;
+
 class ExpressionTest extends \PHPUnit_Framework_TestCase {
 	
 	/**
@@ -10,7 +12,7 @@ class ExpressionTest extends \PHPUnit_Framework_TestCase {
 	public function testConstructMethod()
 	{
 		$expected = "foobar";
-		$actual   = new \Orchestra\Support\Expression($expected);
+		$actual   = new Expression($expected);
 
 		$this->assertInstanceOf('\Orchestra\Support\Expression', $actual);
 		$this->assertEquals($expected, $actual);

@@ -1,5 +1,7 @@
 <?php namespace Orchestra\Support\Tests;
 
+use Mockery as m;
+
 class ManagerTest extends \PHPUnit_Framework_TestCase {
 
 	/**
@@ -7,7 +9,7 @@ class ManagerTest extends \PHPUnit_Framework_TestCase {
 	 */
 	public function tearDown()
 	{
-		\Mockery::close();
+		m::close();
 	}
 
 	/**
@@ -17,7 +19,7 @@ class ManagerTest extends \PHPUnit_Framework_TestCase {
 	 */
 	public function testDriverMethod()
 	{
-		$stub = new ManagerStub(\Mockery::mock('\Illuminate\Foundation\Application'));
+		$stub = new ManagerStub(m::mock('\Illuminate\Foundation\Application'));
 		$stub->extend('awesome', function ($app, $name)
 		{
 			return new Manager_AwesomeFoobar($app, $name);
@@ -47,9 +49,7 @@ class ManagerTest extends \PHPUnit_Framework_TestCase {
 	 */
 	public function testDriverMethodThrowsException()
 	{
-		$stub = new ManagerStub(\Mockery::mock('\Illuminate\Foundation\Application'));
-
-		$stub->driver('invalidDriver');
+		with(new ManagerStub(m::mock('\Illuminate\Foundation\Application')))->driver('invalidDriver');
 	}
 }
 

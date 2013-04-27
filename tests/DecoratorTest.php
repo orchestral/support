@@ -1,5 +1,7 @@
 <?php namespace Orchestra\Support\Tests;
 
+use Orchestra\Support\Decorator;
+
 class DecoratorTest extends \PHPUnit_Framework_TestCase {
 
 	/**
@@ -9,7 +11,7 @@ class DecoratorTest extends \PHPUnit_Framework_TestCase {
 	 */
 	public function testAddAndUsingMacros()
 	{
-		$stub = new \Orchestra\Support\Decorator;
+		$stub = new Decorator;
 		
 		$stub->macro('foo', function ()
 		{
@@ -26,6 +28,6 @@ class DecoratorTest extends \PHPUnit_Framework_TestCase {
 	 */
 	public function testCallingUndefinedMacrosThrowsException()
 	{
-		with(new \Orchestra\Support\Decorator)->foobar();
+		with(new Decorator)->foobar();
 	}
 }

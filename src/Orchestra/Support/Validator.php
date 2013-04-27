@@ -1,7 +1,7 @@
 <?php namespace Orchestra\Support;
 
-use Illuminate\Support\Facades\Event,
-	Illuminate\Support\Facades\Validator as V;
+use Illuminate\Support\Facades\Event;
+use Illuminate\Support\Facades\Validator as V;
 
 abstract class Validator {
 	

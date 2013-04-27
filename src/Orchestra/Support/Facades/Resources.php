@@ -1,6 +1,6 @@
 <?php namespace Orchestra\Support\Facades;
 
-use \Illuminate\Support\Facades\Facade;
+use Illuminate\Support\Facades\Facade;
 
 class Resources extends Facade {
 	
