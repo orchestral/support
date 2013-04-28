@@ -99,7 +99,7 @@ class Ftp {
 	 */
 	public function __construct($config = array())
 	{
-		if ( ! empty($config)) $this->setup($config);
+		if ( ! empty($config)) $this->setUp($config);
 	}
 
 	/**
@@ -108,7 +108,7 @@ class Ftp {
 	 * @access public
 	 * @return void
 	 */
-	public function setup($config = array())
+	public function setUp($config = array())
 	{
 		$host = isset($config['host']) ? $config['host'] : null;
 
