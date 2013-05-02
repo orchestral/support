@@ -50,7 +50,7 @@ class MessagesTest extends \PHPUnit_Framework_TestCase {
 	public function testShutdownMethod()
 	{
 		$session = m::mock('Session');
-		$session->shouldReceive('put')->once()->andReturn(true);
+		$session->shouldReceive('flash')->once()->andReturn(true);
 
 		\Illuminate\Support\Facades\Session::swap($session);
 
@@ -66,7 +66,7 @@ class MessagesTest extends \PHPUnit_Framework_TestCase {
 	public function testStoreMethod()
 	{
 		$session = m::mock('Session');
-		$session->shouldReceive('put')->once()->andReturn(true);		
+		$session->shouldReceive('flash')->once()->andReturn(true);		
 		\Illuminate\Support\Facades\Session::swap($session);
 		
 		$message = new Messages;
