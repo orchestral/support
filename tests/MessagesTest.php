@@ -43,18 +43,18 @@ class MessagesTest extends \PHPUnit_Framework_TestCase {
 	}
 		
 	/**
-	 * Test Orchestra\Support\Messages::shutdown()
+	 * Test Orchestra\Support\Messages::save()
 	 *
 	 * @test
 	 */
-	public function testShutdownMethod()
+	public function testSaveMethod()
 	{
 		$session = m::mock('Session');
 		$session->shouldReceive('flash')->once()->andReturn(true);
 
 		\Illuminate\Support\Facades\Session::swap($session);
 
-		with(new Messages)->shutdown();
+		with(new Messages)->save();
 	}
 
 	/**

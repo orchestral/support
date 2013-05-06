@@ -27,17 +27,6 @@ class Messages extends M {
 
 		return $instance;
 	}
-
-	/**
-	 * Shudown the message instance.
-	 *
-	 * @access public
-	 * @return void
-	 */
-	public function shutdown()
-	{
-		$this->save();
-	}
 	
 	/**
 	 * Add a message to the collector.

@@ -28,7 +28,7 @@ class MessagesServiceProvider extends ServiceProvider {
 
 		$app->after(function($request, $response) use ($app)
 		{
-			$app['orchestra.messages']->shutdown();
+			$app['orchestra.messages']->save();
 		});
 	}
 }
