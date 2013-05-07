@@ -15,12 +15,12 @@
 		}
 	},
 	"require": {
-		"php": ">=5.3.3",
-		"patchwork/utf8": "1.1.*",
-		"illuminate/support": "4.0.*"
+		"php": ">=5.3.3"
 	},
 	"require-dev": {
-		"mockery/mockery": "0.8.0"
+		"mockery/mockery": "0.8.0",
+		"patchwork/utf8": "1.1.*",
+		"illuminate/support": "4.0.*"
 	},
 	"suggest": {
 		"laravel/framework": "Allow using orchestra/support component outside of Orchestra Platform",
