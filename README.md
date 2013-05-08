@@ -25,7 +25,6 @@ Next add the service provider in `app/config/app.php`.
 	
 	// ...
 	
-	'Orchestra\Support\DecoratorServiceProvider',
 	'Orchestra\Support\MessagesServiceProvider',
 ),
 ```
@@ -37,7 +36,6 @@ You might want to add following facades to class aliases in `app/config/app.php`
 
 	// ...
 
-	'Orchestra\Decorator' => 'Orchestra\Support\Facades\Decorator',
 	'Orchestra\Messages'  => 'Orchestra\Support\Facades\Messages',
 ),
 ```
