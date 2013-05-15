@@ -1,15 +1,5 @@
 <?php namespace Orchestra\Support;
 
-/**
- * FTP Class based from Simple FTP Class
- * 
- * @package     FTP
- * @author      Shay Anderson 05.11
- * @link        http://www.shayandeerson.com/php/simple-ftp-class-for-php.htm
- * @license     GPL License <http://www.gnu.org/licenses/gpl.html>
- * 
- */
-
 use Orchestra\Support\Ftp\Morph as Facade;
 
 class Ftp {
@@ -43,30 +33,30 @@ class Ftp {
 	protected $password = null;
 
 	/**
-	 * FTP Stream
+	 * FTP Stream Connection.
 	 *
-	 * @var  resource_id
+	 * @var  Stream
 	 */
-	protected $stream = null;
+	protected $connection = null;
 
 	/**
 	 * FTP timeout.
 	 *
-	 * @var  int
+	 * @var  integer
 	 */
 	protected $timeout = 90;
 
 	/**
 	 * FTP passive mode flag
 	 *
-	 * @var  bool
+	 * @var  boolean
 	 */
 	protected $passive = false;
 
 	/**
 	 * SSL-FTP connection flag.
 	 *
-	 * @var  bool
+	 * @var  boolean
 	 */
 	protected $ssl = false;
 
@@ -133,11 +123,11 @@ class Ftp {
 	 *
 	 * @access public
 	 * @param  string   $directory
-	 * @return bool
+	 * @return boolean
 	 */
-	public function cd($directory)
+	public function changeDirectory($directory)
 	{
-		return @Facade::fire('chdir', array($this->stream, $directory));
+		return @Facade::fire('chdir', array($this->connection, $directory));
 	}
 
 	/**
@@ -146,50 +136,50 @@ class Ftp {
 	 * @access public
 	 * @return string
 	 */
-	public function pwd()
+	public function currentDirectory()
 	{
-		return @Facade::pwd($this->stream);
+		return @Facade::pwd($this->connection);
 	}
 
 	/**
 	 * Download file from FTP server.
 	 *
-	 * @access public
-	 * @param  string $remote_file
-	 * @param  string $local_file
-	 * @param  int $mode
+	 * @access public	
+	 * @param  string   $remoteFile
+	 * @param  string   $localFile
+	 * @param  integer  $mode
 	 * @return bool
 	 */
-	public function get($remote_file, $local_file, $mode = FTP_ASCII)
+	public function get($remoteFile, $localFile, $mode = FTP_ASCII)
 	{
-		return @Facade::fire('get', array($this->stream, $local_file, $remote_file, $mode));
+		return @Facade::fire('get', array($this->connection, $localFile, $remoteFile, $mode));
 	}
 
 	/**
 	 * Upload file to FTP server.
 	 *
 	 * @access public
-	 * @param  string $local_file
-	 * @param  string $remote_file
-	 * @param  int $mode
+	 * @param  string   $localFile
+	 * @param  string   $remoteFile
+	 * @param  integer  $mode
 	 * @return bool
 	 */
-	public function put($local_file, $remote_file, $mode = FTP_ASCII)
+	public function put($localFile, $remoteFile, $mode = FTP_ASCII)
 	{
-		return @Facade::fire('put', array($this->stream, $remote_file, $local_file, $mode));
+		return @Facade::fire('put', array($this->connection, $remoteFile, $localFile, $mode));
 	}
 
 	/**
 	 * Rename file on FTP server.
 	 *
 	 * @access public
-	 * @param  string $old_name
-	 * @param  string $new_name
-	 * @return bool
+	 * @param  string   $oldName
+	 * @param  string   $newName
+	 * @return boolean
 	 */
-	public function rename($old_name, $new_name)
+	public function rename($oldName, $newName)
 	{
-		return @Facade::fire('rename', array($this->stream, $old_name, $new_name));
+		return @Facade::fire('rename', array($this->connection, $oldName, $newName));
 	}
 
 	/**
@@ -201,21 +191,21 @@ class Ftp {
 	 */
 	public function delete($remote_file)
 	{
-		return @Facade::fire('delete', array($this->stream, $remote_file));
+		return @Facade::fire('delete', array($this->connection, $remote_file));
 	}
 
 	/**
 	 * Set file permissions.
 	 *
 	 * @access public
-	 * @param  string   $remote_file
+	 * @param  string   $remoteFile
 	 * @param  int      $permissions    For example: 0644
-	 * @return bool
-	 * @throws RuntimeException         If unable to chmod $remote_file
+	 * @return boolean
+	 * @throws RuntimeException         If unable to chmod $remoteFile
 	 */
-	public function chmod($remote_file, $permission = 0644)
+	public function chmod($remoteFile, $permission = 0644)
 	{
-		return @Facade::fire('chmod', array($this->stream, $permission, $remote_file));
+		return @Facade::fire('chmod', array($this->connection, $permission, $remoteFile));
 	}
 
 	/**
@@ -227,7 +217,7 @@ class Ftp {
 	 */
 	public function ls($directory)
 	{
-		$list = @Facade::fire('nlist', array($this->stream, $directory));
+		$list = @Facade::fire('nlist', array($this->connection, $directory));
 
 		return is_array($list) ? $list : array();
 	}
@@ -239,9 +229,9 @@ class Ftp {
 	 * @param  string $directory
 	 * @return bool
 	 */
-	public function mkdir($directory) 
+	public function makeDirectory($directory) 
 	{
-		return @Facade::fire('mkdir', array($this->stream, $directory));
+		return @Facade::fire('mkdir', array($this->connection, $directory));
 	}
 
 	/**
@@ -251,9 +241,9 @@ class Ftp {
 	 * @param  string $directory
 	 * @return bool
 	 */
-	public function rmdir($directory)
+	public function removeDirectory($directory)
 	{
-		return @Facade::fire('rmdir', array($this->stream, $directory));
+		return @Facade::fire('rmdir', array($this->connection, $directory));
 	}
 
 	/**
@@ -267,18 +257,18 @@ class Ftp {
 	{
 		if (is_null($this->host)) return ;
 
-		$this->connection();
+		$this->createConnection();
 
-		if ( ! (@Facade::login($this->stream, $this->user, $this->password)))
+		if ( ! (@Facade::login($this->connection, $this->user, $this->password)))
 		{
 			throw new Ftp\ServerException("Failed FTP login to [{$this->host}].");
 		}
 
 		// Set passive mode.
-		@Facade::pasv($this->stream, (bool) $this->passive);
+		@Facade::pasv($this->connection, (bool) $this->passive);
 
 		// set system type
-		$this->systemType = @Facade::systype($this->stream);
+		$this->systemType = @Facade::systype($this->connection);
 		
 		return true;
 	}
@@ -290,18 +280,18 @@ class Ftp {
 	 * @return void
 	 * @throws Ftp\Exception If unable to connect to FTP server.
 	 */
-	protected function connection()
+	protected function createConnection()
 	{
 		if ($this->ssl and @Facade::isCallable('sslConnect'))
 		{
-			if ( ! ($this->stream = @Facade::sslConnect($this->host, $this->port, $this->timeout))) 
+			if ( ! ($this->connection = @Facade::sslConnect($this->host, $this->port, $this->timeout))) 
 			{
 				throw new Ftp\ServerException(
 					"Failed to connect to [{$this->host}] (SSL Connection)."
 				);
 			}
 		}
-		elseif ( ! ($this->stream = @Facade::connect($this->host, $this->port, $this->timeout)))
+		elseif ( ! ($this->connection = @Facade::connect($this->host, $this->port, $this->timeout)))
 		{
 			throw new Ftp\ServerException("Failed to connect to [{$this->host}].");
 		}
@@ -316,19 +306,21 @@ class Ftp {
 	 */
 	public function close()
 	{
-		if ($this->stream) @Facade::close($this->stream);
-		
-		$this->stream = null;
+		if ( ! is_null($this->connection)) 
+		{
+			@Facade::close($this->connection);
+			$this->connection = null;
+		}
 	}
 
 	/**
 	 * Check FTP connection status.
 	 *
 	 * @access public
-	 * @return bool
+	 * @return boolean
 	 */
 	public function connected()
 	{
-		return ( ! is_null($this->stream));
+		return ( ! is_null($this->connection));
 	}
 }

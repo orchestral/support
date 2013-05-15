@@ -43,9 +43,10 @@ class FtpTest extends \PHPUnit_Framework_TestCase {
 	{
 		Morph::$prefix = '\Orchestra\Support\Tests\mock1_ftp_';
 
-		$stub = Ftp::make(array('stream' => new StreamStub));
+		$stub = Ftp::make(array('connection' => new StreamStub));
 
 		$this->assertInstanceOf('\Orchestra\Support\Ftp', $stub);
+
 		$this->assertTrue($stub->connected());
 		$stub->close();
 		$this->assertFalse($stub->connected());
@@ -159,16 +160,16 @@ class FtpTest extends \PHPUnit_Framework_TestCase {
 
 		$this->stub->connect();
 
-		$this->assertEquals('/var/www/', $this->stub->pwd());
-		$this->assertTrue($this->stub->cd('/var/www/'));
+		$this->assertEquals('/var/www/', $this->stub->currentDirectory());
+		$this->assertTrue($this->stub->changeDirectory('/var/www/'));
 		$this->assertTrue($this->stub->get('/var/www/home.php', '/var/www/home.php'));
 		$this->assertTrue($this->stub->put('/var/www/home.php', '/var/www/home.php'));
 		$this->assertTrue($this->stub->rename('/var/www/home.php', '/var/www/dashboard.php'));
 		$this->assertTrue($this->stub->delete('/var/www/home.php'));
 		$this->assertTrue($this->stub->chmod('/var/www/index.php', 755));
 		$this->assertEquals(array('foo.php', 'foobar.php'), $this->stub->ls('/var/www/foo/'));
-		$this->assertTrue($this->stub->mkdir('/var/www/orchestra'));
-		$this->assertTrue($this->stub->rmdir('/var/www/orchestra'));
+		$this->assertTrue($this->stub->makeDirectory('/var/www/orchestra'));
+		$this->assertTrue($this->stub->removeDirectory('/var/www/orchestra'));
 	}
 
 	/**
