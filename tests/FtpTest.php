@@ -166,8 +166,8 @@ class FtpTest extends \PHPUnit_Framework_TestCase {
 		$this->assertTrue($this->stub->put('/var/www/home.php', '/var/www/home.php'));
 		$this->assertTrue($this->stub->rename('/var/www/home.php', '/var/www/dashboard.php'));
 		$this->assertTrue($this->stub->delete('/var/www/home.php'));
-		$this->assertTrue($this->stub->chmod('/var/www/index.php', 755));
-		$this->assertEquals(array('foo.php', 'foobar.php'), $this->stub->ls('/var/www/foo/'));
+		$this->assertTrue($this->stub->permission('/var/www/index.php', 755));
+		$this->assertEquals(array('foo.php', 'foobar.php'), $this->stub->allFiles('/var/www/foo/'));
 		$this->assertTrue($this->stub->makeDirectory('/var/www/orchestra'));
 		$this->assertTrue($this->stub->removeDirectory('/var/www/orchestra'));
 	}

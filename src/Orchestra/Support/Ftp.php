@@ -203,7 +203,7 @@ class Ftp {
 	 * @return boolean
 	 * @throws RuntimeException         If unable to chmod $remoteFile
 	 */
-	public function chmod($remoteFile, $permission = 0644)
+	public function permission($remoteFile, $permission = 0644)
 	{
 		return @Facade::fire('chmod', array($this->connection, $permission, $remoteFile));
 	}
@@ -215,7 +215,7 @@ class Ftp {
 	 * @param  string $directory
 	 * @return array
 	 */
-	public function ls($directory)
+	public function allFiles($directory)
 	{
 		$list = @Facade::fire('nlist', array($this->connection, $directory));
 
