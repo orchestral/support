@@ -38,8 +38,8 @@ class MessagesTest extends \PHPUnit_Framework_TestCase {
 		$this->assertInstanceOf('\Orchestra\Support\Messages', $message);
 		$this->assertEquals(array('Hello world'), $message->get('welcome'));
 
-		$message->add('welcome', 'Hi Foobar');
-		$this->assertEquals(array('Hello world', 'Hi Foobar'), $message->get('welcome'));
+		$message->add('welcome', 'Hi Foobar')->add('welcome', 'Heya Admin');
+		$this->assertEquals(array('Hello world', 'Hi Foobar', 'Heya Admin'), $message->get('welcome'));
 	}
 		
 	/**
