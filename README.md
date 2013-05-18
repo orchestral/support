@@ -29,17 +29,6 @@ Next add the service provider in `app/config/app.php`.
 ),
 ```
 
-You might want to add following facades to class aliases in `app/config/app.php`:
-
-```php
-'aliases' => array(
-
-	// ...
-
-	'Orchestra\Messages'  => 'Orchestra\Support\Facades\Messages',
-),
-```
-
 ## Resources
 
 * [Documentation](http://docs.orchestraplatform.com/pages/components/support)
