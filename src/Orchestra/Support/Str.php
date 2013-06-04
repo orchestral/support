@@ -5,22 +5,16 @@ use Illuminate\Support\Str as S;
 class Str extends S {
 
 	/**
-	 * Convert a string to title case (ucwords equivalent).
+	 * Convert slug type text to human readable text.
 	 *
-	 * <code>
-	 *		// Convert a string to title case
-	 *		$title = Str::title('taylor otwell');
-	 *
-	 *		// Convert a multi-byte string to title case
-	 *		$title = Str::title('νωθρού κυνός');
-	 * </code>
-	 *
-	 * @param  string  $value
+	 * @static
+	 * @access public
+	 * @param  string   $text
 	 * @return string
 	 */
-	public static function title($value)
+	public static function humanize($text)
 	{
-		return mb_convert_case($value, MB_CASE_TITLE, 'UTF-8');
+		return static::title(str_replace(array('-', '_'), ' ', $text));
 	}
 
 	/**
@@ -67,4 +61,22 @@ class Str extends S {
 		return $data;
 	}
 
+	/**
+	 * Convert a string to title case (ucwords equivalent).
+	 *
+	 * <code>
+	 *		// Convert a string to title case
+	 *		$title = Str::title('taylor otwell');
+	 *
+	 *		// Convert a multi-byte string to title case
+	 *		$title = Str::title('νωθρού κυνός');
+	 * </code>
+	 *
+	 * @param  string  $value
+	 * @return string
+	 */
+	public static function title($value)
+	{
+		return mb_convert_case($value, MB_CASE_TITLE, 'UTF-8');
+	}
 }

@@ -5,14 +5,16 @@ use Orchestra\Support\Str;
 class StrTest extends \PHPUnit_Framework_TestCase {
 
 	/**
-	 * Test the Orchestra\Support\Str::title method.
+	 * Test Authorize\Str::humanize() method.
 	 *
 	 * @test
 	 */
-	public function testStringCanBeConvertedToTitleCase()
+	public function testHumanizeSuccessful()
 	{
-		$this->assertEquals('Taylor', Str::title('taylor'));
-		$this->assertEquals('Άχιστη', Str::title('άχιστη'));
+		$expected = 'Foobar Is Awesome';
+		$output   = Str::humanize('foobar-is-awesome');
+
+		$this->assertEquals($expected, $output);
 	}
 
 	/**
@@ -54,5 +56,16 @@ class StrTest extends \PHPUnit_Framework_TestCase {
 		);
 
 		$this->assertEquals($expected, unserialize($output));
+	}
+
+	/**
+	 * Test the Orchestra\Support\Str::title method.
+	 *
+	 * @test
+	 */
+	public function testStringCanBeConvertedToTitleCase()
+	{
+		$this->assertEquals('Taylor', Str::title('taylor'));
+		$this->assertEquals('Άχιστη', Str::title('άχιστη'));
 	}
 }
