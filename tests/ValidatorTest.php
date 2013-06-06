@@ -54,7 +54,7 @@ class ValidatorTest extends \PHPUnit_Framework_TestCase {
 
 class FooValidator extends \Orchestra\Support\Validator {
 
-	protected static $rules = array(
+	protected $rules = array(
 		'email' => array('email', 'num{eric}'),
 		'name'  => 'any',
 	);
