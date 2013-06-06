@@ -10,14 +10,14 @@ abstract class Validator {
 	 *
 	 * @var array
 	 */
-	protected static $rules = array();
+	protected $rules = array();
 
 	/**
 	 * List of events.
 	 *
 	 * @var array
 	 */
-	protected static $events = array();
+	protected $events = array();
 
 	/**
 	 * List of bindings.
@@ -80,7 +80,7 @@ abstract class Validator {
 	 */
 	protected function getBindedRules()
 	{
-		$rules    = static::$rules;
+		$rules    = $this->rules;
 		$bindings = $this->prepareBindings('{', '}');
 
 		$filter = function ( & $value, $key, $bindings)
@@ -127,7 +127,7 @@ abstract class Validator {
 	 */
 	protected function runValidationEvents($events)
 	{
-		$events = array_merge(static::$events, (array) $events);
+		$events = array_merge($this->events, (array) $events);
 
 		foreach ((array) $events as $event) 
 		{
