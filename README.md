@@ -3,7 +3,7 @@ Orchestra Platform Support Component
 
 Orchestra\Support is basically a basic set of class required by Orchestra Platform. The idea behind it is similar to what is Illuminate\Support to Laravel 4 Framework.
  
-[![Build Status](https://travis-ci.org/orchestral/support.png?branch=master)](https://travis-ci.org/orchestral/support)
+[![Build Status](https://travis-ci.org/orchestral/support.png?branch=2.0)](https://travis-ci.org/orchestral/support) [![Coverage Status](https://coveralls.io/repos/orchestral/support/badge.png?branch=2.0)](https://coveralls.io/r/orchestral/support?branch=2.0)
 
 ## Quick Installation
 
