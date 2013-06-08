@@ -1,12 +1,14 @@
 {
 	"name": "orchestra/support",
 	"description": "Orchestra Platform Support Component",
-	"keywords": ["orchestra-platform", "laravel"],
+	"homepage": "http://orchestraplatform.com/docs/2.0/components/support/",
+	"keywords": ["orchestra-platform", "orchestral", "laravel"],
 	"license": "MIT",
 	"authors": [
 		{
 			"name": "Mior Muhammad Zaki",
-			"email": "crynobone@gmail.com"
+			"email": "crynobone@gmail.com",
+			"homepage": "https://github.com/crynobone"
 		}
 	],
 	"autoload": {
