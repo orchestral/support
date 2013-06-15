@@ -5,23 +5,21 @@ use Illuminate\Support\Fluent;
 class Nesty {
 
 	/**
-	 * List of items
-	 *
-	 * @access  protected
-	 * @var     array
+	 * List of items.
+	 * 
+	 * @var array
 	 */
 	protected $items = array();
 
 	/**
-	 * Configuration
-	 *
-	 * @access  protected
-	 * @var     array
+	 * Configuration.
+	 * 
+	 * @var array
 	 */
 	protected $config = array();
 
 	/**
-	 * Construct a new instance
+	 * Construct a new instance.
 	 *
 	 * @access public
 	 * @param  array    $config
@@ -34,10 +32,10 @@ class Nesty {
 
 	/**
 	 * Create a new Fluent instance while appending default config.
-	 *
+	 * 
 	 * @access protected
-	 * @param  int  $id
-	 * @return Illuminate\Support\Fluent
+	 * @param  integer  $id
+	 * @return \Illuminate\Support\Fluent
 	 */
 	protected function toFluent($id)
 	{
@@ -51,13 +49,12 @@ class Nesty {
 	}
 
 	/**
-	 * Add item before reference $before
+	 * Add item before reference $before.
 	 *
-	 * @static
 	 * @access protected
 	 * @param  string   $id
 	 * @param  string   $before
-	 * @return Illuminate\Support\Fluent
+	 * @return \Illuminate\Support\Fluent
 	 */
 	protected function addBefore($id, $before)
 	{
@@ -91,12 +88,12 @@ class Nesty {
 	}
 
 	/**
-	 * Add item after reference $after
+	 * Add item after reference $after.
 	 *
 	 * @access protected
 	 * @param  string   $id
 	 * @param  string   $after
-	 * @return Fluent
+	 * @return \Illuminate\Support\Fluent
 	 */
 	protected function addAfter($id, $after)
 	{
@@ -130,12 +127,12 @@ class Nesty {
 	}
 
 	/**
-	 * Add item as child of $parent
+	 * Add item as child of $parent.
 	 *
 	 * @access protected
 	 * @param  string   $id
 	 * @param  string   $parent
-	 * @return Illuminate\Support\Fluent
+	 * @return \Illuminate\Support\Fluent
 	 */
 	protected function addChild($id, $parent)
 	{
@@ -143,7 +140,7 @@ class Nesty {
 
 		// it might be possible parent is not defined due to ACL, in this
 		// case we should simply ignore this request as child should
-		// inherit parent ACL access
+		// inherit parent ACL access.
 		if ( ! isset($node)) return null;
 
 		$item = $node->childs;
@@ -155,11 +152,11 @@ class Nesty {
 	}
 
 	/**
-	 * Add item as parent
+	 * Add item as parent.
 	 *
 	 * @access protected
 	 * @param  string   $id
-	 * @return Fluent
+	 * @return \Illuminate\Support\Fluent
 	 */
 	protected function addParent($id)
 	{
@@ -199,11 +196,11 @@ class Nesty {
 	}
 
 	/**
-	 * Get node from items recursively
+	 * Get node from items recursively.
 	 * 
 	 * @access protected
-	 * @param  string       $key
-	 * @return Fluent
+	 * @param  string   $key
+	 * @return \Illuminate\Support\Fluent
 	 */
 	protected function descendants($key)
 	{
@@ -236,7 +233,7 @@ class Nesty {
 	}
 
 	/**
-	 * Return all items
+	 * Return all items.
 	 *
 	 * @access public
 	 * @return array

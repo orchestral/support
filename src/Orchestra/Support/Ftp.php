@@ -5,75 +5,75 @@ use Orchestra\Support\Ftp\Morph as Facade;
 class Ftp {
 
 	/**
-	 * FTP Host.
+	 * FTP host.
 	 *
-	 * @var  string
+	 * @var string
 	 */
 	protected $host = null;
 	
 	/**
-	 * FTP Port.
+	 * FTP port.
 	 *
-	 * @var  int
+	 * @var integer
 	 */
 	protected $port = 21;
 
 	/**
-	 * FTP User.
+	 * FTP user.
 	 *
-	 * @var  string
+	 * @var string
 	 */
 	protected $user = null;
 
 	/**
-	 * FTP Password.
+	 * FTP password.
 	 *
-	 * @var  string
+	 * @var string
 	 */
 	protected $password = null;
 
 	/**
-	 * FTP Stream Connection.
+	 * FTP stream connection.
 	 *
-	 * @var  Stream
+	 * @var Stream
 	 */
 	protected $connection = null;
 
 	/**
 	 * FTP timeout.
 	 *
-	 * @var  integer
+	 * @var integer
 	 */
 	protected $timeout = 90;
 
 	/**
 	 * FTP passive mode flag
 	 *
-	 * @var  boolean
+	 * @var boolean
 	 */
 	protected $passive = false;
 
 	/**
 	 * SSL-FTP connection flag.
 	 *
-	 * @var  boolean
+	 * @var boolean
 	 */
 	protected $ssl = false;
 
 	/**
 	 * System type of FTP server.
 	 *
-	 * @var  string
+	 * @var string
 	 */
 	protected $systemType;
 
 	/**
-	 * Make a new FTP instance
+	 * Make a new FTP instance.
 	 *
 	 * @static
 	 * @access public
 	 * @param  array    $config
-	 * @return FTP
+	 * @return self
 	 */
 	public static function make($config = array())
 	{
@@ -81,7 +81,7 @@ class Ftp {
 	}
 
 	/**
-	 * Initialize connection params
+	 * Make a new FTP instance.
 	 *
 	 * @access public	
 	 * @param  array    $config
@@ -96,6 +96,7 @@ class Ftp {
 	 * Configure FTP.
 	 *
 	 * @access public
+	 * @param  array    $config
 	 * @return void
 	 */
 	public function setUp($config = array())
@@ -144,11 +145,11 @@ class Ftp {
 	/**
 	 * Download file from FTP server.
 	 *
-	 * @access public	
+	 * @access public
 	 * @param  string   $remoteFile
 	 * @param  string   $localFile
 	 * @param  integer  $mode
-	 * @return bool
+	 * @return boolean
 	 */
 	public function get($remoteFile, $localFile, $mode = FTP_ASCII)
 	{
@@ -162,7 +163,7 @@ class Ftp {
 	 * @param  string   $localFile
 	 * @param  string   $remoteFile
 	 * @param  integer  $mode
-	 * @return bool
+	 * @return boolean
 	 */
 	public function put($localFile, $remoteFile, $mode = FTP_ASCII)
 	{
@@ -199,7 +200,7 @@ class Ftp {
 	 *
 	 * @access public
 	 * @param  string   $remoteFile
-	 * @param  int      $permissions    For example: 0644
+	 * @param  integer  $permissions    For example: 0644
 	 * @return boolean
 	 * @throws RuntimeException         If unable to chmod $remoteFile
 	 */
@@ -212,7 +213,7 @@ class Ftp {
 	 * Get list of files/directories on FTP server.
 	 *
 	 * @access public
-	 * @param  string $directory
+	 * @param  string   $directory
 	 * @return array
 	 */
 	public function allFiles($directory)
@@ -226,8 +227,8 @@ class Ftp {
 	 * Create directory on FTP server.
 	 *
 	 * @access public
-	 * @param  string $directory
-	 * @return bool
+	 * @param  string   $directory
+	 * @return boolean
 	 */
 	public function makeDirectory($directory) 
 	{
@@ -238,8 +239,8 @@ class Ftp {
 	 * Remove directory on FTP server.
 	 *
 	 * @access public
-	 * @param  string $directory
-	 * @return bool
+	 * @param  string   $directory
+	 * @return boolean
 	 */
 	public function removeDirectory($directory)
 	{
@@ -250,8 +251,9 @@ class Ftp {
 	 * Connect to FTP server.
 	 *
 	 * @access public
-	 * @return bool
-	 * @throws Ftp\Exception If unable to connect/login to FTP server.
+	 * @return boolean
+	 * @throws \Orchestra\Support\Ftp\Exception If unable to connect/login 
+	 *                                          to FTP server.
 	 */
 	public function connect()
 	{
@@ -267,7 +269,7 @@ class Ftp {
 		// Set passive mode.
 		@Facade::pasv($this->connection, (bool) $this->passive);
 
-		// set system type
+		// Set system type.
 		$this->systemType = @Facade::systype($this->connection);
 		
 		return true;
@@ -278,7 +280,8 @@ class Ftp {
 	 *
 	 * @access protected
 	 * @return void
-	 * @throws Ftp\Exception If unable to connect to FTP server.
+	 * @throws \Orchestra\Support\Ftp\Exception If unable to connect to FTP 
+	 *                                          server.
 	 */
 	protected function createConnection()
 	{
@@ -302,7 +305,7 @@ class Ftp {
 	 *
 	 * @access public
 	 * @return void
-	 * @throws RuntimeException If unable to close connection.
+	 * @throws \RuntimeException If unable to close connection.
 	 */
 	public function close()
 	{

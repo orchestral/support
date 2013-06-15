@@ -10,7 +10,7 @@ class Messages extends M {
 	 * serialize, so we need to unserialize it first.
 	 *
 	 * @access public
-	 * @return Messages
+	 * @return self
 	 */
 	public function retrieve()
 	{
