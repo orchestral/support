@@ -30,7 +30,7 @@ abstract class Morph {
 	 * @static
 	 * @access public
 	 * @param  string   $method
-	 * @return bool
+	 * @return boolean
 	 */
 	public static function isCallable($method)
 	{

@@ -72,6 +72,8 @@ class Str extends S {
 	 *		$title = Str::title('νωθρού κυνός');
 	 * </code>
 	 *
+	 * @static
+	 * @access public
 	 * @param  string  $value
 	 * @return string
 	 */

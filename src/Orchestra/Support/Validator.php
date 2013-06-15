@@ -62,7 +62,7 @@ abstract class Validator {
 	 * @access public
 	 * @param  array    $input
 	 * @param  string   $event
-	 * @return void
+	 * @return \Illuminate\Validation\Factory
 	 */
 	public function with($input, $events = array())
 	{
@@ -123,6 +123,7 @@ abstract class Validator {
 	 * Run validation events.
 	 *
 	 * @access protected
+	 * @param  array    $events
 	 * @return void
 	 */
 	protected function runValidationEvents($events)

@@ -1,6 +1,7 @@
 <?php namespace Orchestra\Support;
 
 use Closure;
+use InvalidArgumentException;
 
 abstract class Manager extends \Illuminate\Support\Manager {
 
@@ -20,6 +21,7 @@ abstract class Manager extends \Illuminate\Support\Manager {
 	/**
 	 * Create a new driver instance.
 	 *
+	 * @access protected
 	 * @param  string  $driverName
 	 * @return mixed
 	 */
@@ -29,9 +31,10 @@ abstract class Manager extends \Illuminate\Support\Manager {
 
 		$method = 'create'.ucfirst($driver).'Driver';
 
-		// We'll check to see if a creator method exists for the given driver. If not we
-		// will check for a custom driver creator, which allows developers to create
-		// drivers using their own customized driver creator Closure to create it.
+		// We'll check to see if a creator method exists for the given driver. 
+		// If not we will check for a custom driver creator, which allows 
+		// developers to create drivers using their own customized driver 
+		// creator Closure to create it.
 		if (isset($this->customCreators[$driver]))
 		{
 			return $this->callCustomCreator($driverName);
@@ -41,12 +44,13 @@ abstract class Manager extends \Illuminate\Support\Manager {
 			return call_user_func(array($this, $method), $name);
 		}
 
-		throw new \InvalidArgumentException("Driver [$driver] not supported.");
+		throw new InvalidArgumentException("Driver [$driver] not supported.");
 	}
 
 	/**
 	 * Call a custom driver creator.
 	 *
+	 * @access protected
 	 * @param  string  $driverName
 	 * @return mixed
 	 */
