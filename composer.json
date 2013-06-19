@@ -1,6 +1,6 @@
 {
 	"name": "orchestra/support",
-	"description": "Orchestra Platform Support Component",
+	"description": "Orchestra Platform 2 Support Component",
 	"homepage": "http://orchestraplatform.com/docs/2.0/components/support/",
 	"keywords": ["orchestra-platform", "orchestral", "laravel"],
 	"license": "MIT",
@@ -26,8 +26,8 @@
 		"satooshi/php-coveralls": "~0.6"
 	},
 	"suggest": {
-		"laravel/framework": "Allow using orchestra/support component outside of Orchestra Platform",
-		"orchestra/foundation": "Allow using orchestra/support with Orchestra Platform"
+		"laravel/framework": "Allow using orchestra/support component outside of Orchestra Platform 2",
+		"orchestra/foundation": "Allow using orchestra/support with Orchestra Platform 2"
 	},
 	"extra": {
 		"branch-alias": {
