@@ -79,7 +79,7 @@ abstract class Validator {
 	public function with($input, $events = array())
 	{
 		$rules = $this->getBindedRules();
-		$this->runValidationEvents($events);
+		$this->runValidationEvents($events, $rules);
 
 		return V::make($input, $rules->getAttributes());
 	}
@@ -138,13 +138,12 @@ abstract class Validator {
 	 * @param  array    $events
 	 * @return void
 	 */
-	protected function runValidationEvents($events)
+	protected function runValidationEvents($events, $rules)
 	{
 		$events = array_merge($this->events, (array) $events);
-
 		foreach ((array) $events as $event) 
 		{
-			Event::fire($event, array( & $this->rules));
+			Event::fire($event, array( & $rules));
 		}
 	}
 }
