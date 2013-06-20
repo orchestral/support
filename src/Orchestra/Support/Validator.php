@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Facades\Validator as V;
+use Illuminate\Support\Fluent;
 
 abstract class Validator {
 	
@@ -25,6 +26,17 @@ abstract class Validator {
 	 * @var array
 	 */
 	protected $bindings = array();
+
+	/**
+	 * Create a new instance.
+	 *
+	 * @access public
+	 * @return void
+	 */
+	public function __construct()
+	{
+		$this->rules = new Fluent($this->rules);
+	}
 
 	/**
 	 * Create a scope scenario.
@@ -69,7 +81,7 @@ abstract class Validator {
 		$rules = $this->getBindedRules();
 		$this->runValidationEvents($events);
 
-		return V::make($input, $rules);
+		return V::make($input, $rules->getAttributes());
 	}
 
 	/**
@@ -88,7 +100,7 @@ abstract class Validator {
 			$value = strtr($value, $bindings);
 		};
 
-		foreach ($rules as $key => $value)
+		foreach ($rules->getAttributes() as $key => $value)
 		{
 			if (is_array($value)) array_walk($value, $filter, $bindings);
 			else $value = strtr($value, $bindings);
@@ -132,7 +144,7 @@ abstract class Validator {
 
 		foreach ((array) $events as $event) 
 		{
-			Event::fire($event, array( & $rules));
+			Event::fire($event, array( & $this->rules));
 		}
 	}
 }
