@@ -44,11 +44,11 @@ class ValidatorTest extends \PHPUnit_Framework_TestCase {
 		\Illuminate\Support\Facades\Validator::swap($validator);
 		
 		$stub = new FooValidator;
-		$stub->on('foo')->bind(array('eric' => 'eric'));
+		$stub->on('foo', array('orchestra'))->bind(array('eric' => 'eric'));
 		
 		$validation = $stub->with(array(), 'foo.event');
 
-		$this->assertEquals('foobar', $_SERVER['validator.onFoo']);
+		$this->assertEquals('orchestra', $_SERVER['validator.onFoo']);
 	}
 }
 
@@ -59,8 +59,8 @@ class FooValidator extends \Orchestra\Support\Validator {
 		'name'  => 'any',
 	);
 
-	protected function onFoo()
+	protected function onFoo($value)
 	{
-		$_SERVER['validator.onFoo'] = 'foobar';
+		$_SERVER['validator.onFoo'] = $value;
 	}
 }
