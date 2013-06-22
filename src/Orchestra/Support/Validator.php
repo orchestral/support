@@ -35,7 +35,7 @@ abstract class Validator {
 	 */
 	public function __construct()
 	{
-		$this->rules = new Fluent($this->rules);
+		$this->setRules($this->rules);
 	}
 
 	/**
@@ -96,6 +96,9 @@ abstract class Validator {
 	 */
 	protected function getBindedRules()
 	{
+		// If rules is not instance of \Illuminate\Support\Fluent, set it.
+		if ( ! $this->rules instanceof Fluent) $this->setRules($this->rules);
+
 		$rules    = $this->rules;
 		$bindings = $this->prepareBindings('{', '}');
 
@@ -150,5 +153,17 @@ abstract class Validator {
 		{
 			Event::fire($event, array( & $rules));
 		}
+	}
+
+	/**
+	 * Set validation rules, this would override all previously defined 
+	 * rules.
+	 *
+	 * @access public
+	 * @return void
+	 */
+	public function setRules($rules = array())
+	{
+		$this->rules = new Fluent($rules);
 	}
 }
