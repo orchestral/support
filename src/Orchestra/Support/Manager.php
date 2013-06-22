@@ -8,7 +8,7 @@ abstract class Manager extends \Illuminate\Support\Manager {
 	/**
 	 * Define blacklisted character in name.
 	 *
-	 * @var
+	 * @var array
 	 */
 	protected $blacklisted = array('.');
 
@@ -88,8 +88,9 @@ abstract class Manager extends \Illuminate\Support\Manager {
 
 	/**
 	 * Check if name is not blacklisted.
-	 *
+	 * 
 	 * @access protected
+	 * @param  string   $name
 	 * @return void
 	 * @throws \InvalidArgumentException
 	 */

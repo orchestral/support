@@ -35,7 +35,7 @@ abstract class Validator {
 	 */
 	public function __construct()
 	{
-		$this->rules = new Fluent($this->rules);
+		$this->setRules($this->rules);
 	}
 
 	/**
@@ -43,13 +43,17 @@ abstract class Validator {
 	 *
 	 * @access public
 	 * @param  string   $scenario
+	 * @param  array    $parameters
 	 * @return self
 	 */
-	public function on($scenario)
+	public function on($scenario, $parameters = array())
 	{
 		$method = 'on'.ucfirst($scenario);
 
-		if (method_exists($this, $method)) $this->{$method}();
+		if (method_exists($this, $method)) 
+		{
+			call_user_func_array(array($this, $method), $parameters);
+		}
 
 		return $this;
 	}
@@ -92,6 +96,9 @@ abstract class Validator {
 	 */
 	protected function getBindedRules()
 	{
+		// If rules is not instance of \Illuminate\Support\Fluent, set it.
+		if ( ! $this->rules instanceof Fluent) $this->setRules($this->rules);
+
 		$rules    = $this->rules;
 		$bindings = $this->prepareBindings('{', '}');
 
@@ -141,9 +148,22 @@ abstract class Validator {
 	protected function runValidationEvents($events, $rules)
 	{
 		$events = array_merge($this->events, (array) $events);
+
 		foreach ((array) $events as $event) 
 		{
 			Event::fire($event, array( & $rules));
 		}
+	}
+
+	/**
+	 * Set validation rules, this would override all previously defined 
+	 * rules.
+	 *
+	 * @access public
+	 * @return void
+	 */
+	public function setRules($rules = array())
+	{
+		$this->rules = new Fluent($rules);
 	}
 }
