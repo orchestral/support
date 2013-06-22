@@ -51,6 +51,18 @@ class ManagerTest extends \PHPUnit_Framework_TestCase {
 	{
 		with(new ManagerStub(m::mock('\Illuminate\Foundation\Application')))->driver('invalidDriver');
 	}
+
+	/**
+	 * Test Orchestra\Support\Manager::driver() throws exception when name 
+	 * contain dotted.
+	 *
+	 * @expectedException \InvalidArgumentException
+	 */
+	public function testDriverMethodGivenNameWithDottedThrowsException()
+	{
+		with(new ManagerStub(m::mock('\Illuminate\Foundation\Application')))
+			->driver('foo.bar.hello');
+	}
 }
 
 class Manager_Foo {
@@ -62,6 +74,7 @@ class Manager_Foo {
 		$this->name = $name;
 	}
 }
+
 class Manager_Foobar {
 
 	public $name = null;
