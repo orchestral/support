@@ -6,6 +6,13 @@ use InvalidArgumentException;
 abstract class Manager extends \Illuminate\Support\Manager {
 
 	/**
+	 * Define blacklisted character in name.
+	 *
+	 * @var
+	 */
+	protected $blacklisted = array('.');
+
+	/**
 	 * Create a new instance.
 	 *
 	 * @access public
@@ -74,12 +81,27 @@ abstract class Manager extends \Illuminate\Support\Manager {
 
 		list($driver, $name) = explode('.', $driverName, 2);
 
-		if (Str::contains($name, '.'))
-		{
-			throw new InvalidArgumentException("Invalid character in driver name [{$name}].");
-		}
+		$this->checkNameIsNotBlacklisted($name);
 
 		return array($driver, $name);
+	}
+
+	/**
+	 * Check if name is not blacklisted.
+	 *
+	 * @access protected
+	 * @return void
+	 * @throws \InvalidArgumentException
+	 */
+	protected function checkNameIsNotBlacklisted($name)
+	{
+		foreach ($this->blacklisted as $character)
+		{
+			if (Str::contains($name, $character))
+			{
+				throw new InvalidArgumentException("Invalid character in driver name [{$name}].");
+			}
+		}
 	}
 
 }
