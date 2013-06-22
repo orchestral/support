@@ -29,7 +29,7 @@ abstract class Manager extends \Illuminate\Support\Manager {
 	{
 		list($driver, $name) = $this->getDriverName($driverName);
 
-		$method = 'create'.ucfirst($driver).'Driver';
+		$method = 'create'.Str::studly($driver).'Driver';
 
 		// We'll check to see if a creator method exists for the given driver. 
 		// If not we will check for a custom driver creator, which allows 
@@ -72,7 +72,14 @@ abstract class Manager extends \Illuminate\Support\Manager {
 	{
 		if (false === strpos($driverName, '.')) $driverName = $driverName.'.default';
 
-		return explode('.', $driverName, 2);
+		list($driver, $name) = explode('.', $driverName, 2);
+
+		if (Str::contains($name, '.'))
+		{
+			throw new InvalidArgumentException("Invalid character in driver name [{$name}].");
+		}
+
+		return array($driver, $name);
 	}
 
 }
