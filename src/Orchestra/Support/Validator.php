@@ -82,10 +82,9 @@ abstract class Validator {
 	 */
 	public function with($input, $events = array())
 	{
-		$rules = $this->getBindedRules();
-		$this->runValidationEvents($events, $rules);
+		$rules = $this->runValidationEvents($events);
 
-		return V::make($input, $rules->getAttributes());
+		return V::make($input, $rules);
 	}
 
 	/**
@@ -96,9 +95,6 @@ abstract class Validator {
 	 */
 	protected function getBindedRules()
 	{
-		// If rules is not instance of \Illuminate\Support\Fluent, set it.
-		if ( ! $this->rules instanceof Fluent) $this->setRules($this->rules);
-
 		$rules    = $this->rules;
 		$bindings = $this->prepareBindings('{', '}');
 
@@ -107,7 +103,7 @@ abstract class Validator {
 			$value = strtr($value, $bindings);
 		};
 
-		foreach ($rules->getAttributes() as $key => $value)
+		foreach ($rules as $key => $value)
 		{
 			if (is_array($value)) array_walk($value, $filter, $bindings);
 			else $value = strtr($value, $bindings);
@@ -139,20 +135,27 @@ abstract class Validator {
 	}
 
 	/**
-	 * Run validation events.
+	 * Run validation events and return the finalize rules.
 	 *
 	 * @access protected
 	 * @param  array    $events
-	 * @return void
+	 * @return array
 	 */
-	protected function runValidationEvents($events, $rules)
+	protected function runValidationEvents($events)
 	{
+		// Merge all the events.
 		$events = array_merge($this->events, (array) $events);
+
+		// Convert rules array to Fluent, in order to pass it by references 
+		// in all event listening to this validation.
+		$rules  = new Fluent($this->getBindedRules());
 
 		foreach ((array) $events as $event) 
 		{
 			Event::fire($event, array( & $rules));
 		}
+
+		return $rules->getAttributes();
 	}
 
 	/**
@@ -160,10 +163,10 @@ abstract class Validator {
 	 * rules.
 	 *
 	 * @access public
-	 * @return void
+	 * @return array
 	 */
 	public function setRules($rules = array())
 	{
-		$this->rules = new Fluent($rules);
+		return $this->rules = $rules;
 	}
 }
