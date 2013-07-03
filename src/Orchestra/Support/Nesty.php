@@ -65,7 +65,7 @@ class Nesty {
 		$keys     = array_keys($this->items);
 		$position = array_search($before, $keys);
 
-		if (is_null($position)) return $this->add_parent($id);
+		if (is_null($position)) return $this->addParent($id);
 
 		if ($position > 0) $position--;
 
@@ -104,7 +104,7 @@ class Nesty {
 		$keys     = array_keys($this->items);
 		$position = array_search($after, $keys);
 
-		if (is_null($position)) return $this->add_parent($id);
+		if (is_null($position)) return $this->addParent($id);
 
 		$position++;
 
