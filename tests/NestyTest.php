@@ -70,6 +70,10 @@ class NestyTest extends \PHPUnit_Framework_TestCase {
 	public function testAddMethod()
 	{
 		$expected = array(
+			'crynobone' => new Fluent(array(
+				'id'     => 'crynobone',
+				'childs' => array(),
+			)),
 			'hello' => new Fluent(array(
 				'id'     => 'hello',
 				'childs' => array(),
@@ -103,10 +107,14 @@ class NestyTest extends \PHPUnit_Framework_TestCase {
 						'childs' => array(),
 					)),
 				),
-			))
+			)),
+			'orchestra' => new Fluent(array(
+				'id'     => 'orchestra',
+				'childs' => array(),
+			)),
 		);
 
-		$this->stub->add('foo');
+		$this->stub->add('foo', '<');
 		$this->stub->add('hello', '<:foo');
 		$this->stub->add('world', '>:hello');
 		$this->stub->add('bar', '^:foo');
@@ -114,6 +122,8 @@ class NestyTest extends \PHPUnit_Framework_TestCase {
 		$this->stub->add('foo-bar', '^:foo');
 		$this->stub->add('hello-foobar', '^:foo.foobar');
 		$this->stub->add('hello-world-foobar', '^:foo.dummy');
+		$this->stub->add('crynobone', '<');
+		$this->stub->add('orchestra', '#');
 
 		$this->assertEquals($expected, $this->stub->getItems());
 	}

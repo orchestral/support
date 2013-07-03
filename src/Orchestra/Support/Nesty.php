@@ -174,9 +174,15 @@ class Nesty {
 	public function add($id, $location = '#')
 	{
 		preg_match('/^(<|>|\^):(.+)$/', $location, $matches);
-
+		
 		switch (true)
 		{
+			case $location === '<' :
+				$keys = array_keys($this->items);
+
+				if (count($keys) > 0) return $this->addBefore($id, $keys[0]);
+				break;
+
 			case count($matches) >= 3 and $matches[1] === '<' :
 				return $this->addBefore($id, $matches[2]);
 				break;
@@ -190,9 +196,10 @@ class Nesty {
 				break;
 
 			default :
-				return $this->addParent($id);
-				break;
+				# passthru;
 		}
+
+		return $this->addParent($id);
 	}
 
 	/**
