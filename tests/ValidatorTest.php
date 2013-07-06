@@ -35,7 +35,7 @@ class ValidatorTest extends \PHPUnit_Framework_TestCase {
 	{
 		$event     = m::mock('Event');
 		$validator = m::mock('Validator');
-		$rules     = array('email' => array('email', 'numeric'), 'name' => 'any');
+		$rules     = array('email' => array('email', 'foo:2'), 'name' => 'any');
 
 		$event->shouldReceive('fire')->once()->with('foo.event', m::any())->andReturn(null);
 		$validator->shouldReceive('make')->once()->with(array(), $rules)->andReturn('foo');
@@ -44,7 +44,7 @@ class ValidatorTest extends \PHPUnit_Framework_TestCase {
 		\Illuminate\Support\Facades\Validator::swap($validator);
 		
 		$stub = new FooValidator;
-		$stub->on('foo', array('orchestra'))->bind(array('eric' => 'eric'));
+		$stub->on('foo', array('orchestra'))->bind(array('id' => '2'));
 		
 		$validation = $stub->with(array(), 'foo.event');
 
@@ -55,7 +55,7 @@ class ValidatorTest extends \PHPUnit_Framework_TestCase {
 class FooValidator extends \Orchestra\Support\Validator {
 
 	protected $rules = array(
-		'email' => array('email', 'num{eric}'),
+		'email' => array('email', 'foo:{id}'),
 		'name'  => 'any',
 	);
 
