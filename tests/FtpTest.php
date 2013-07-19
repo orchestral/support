@@ -175,12 +175,21 @@ class FtpTest extends \PHPUnit_Framework_TestCase {
 	/**
 	 * Test Orchestra\Support\Ftp\Morph method throws Exception.
 	 *
-	 * @expectedException Orchestra\Support\Ftp\RuntimeException
+	 * @test
 	 */
 	public function testFTPFacadeThrowsException()
 	{
 		Morph::$prefix = '\Orchestra\Support\Tests\mock1_ftp_';
-		Morph::fire('invalid_method', array());
+
+		try
+		{
+			Morph::fire('invalid_method', array('foo'));
+		}
+		catch (\Orchestra\Support\Ftp\RuntimeException $e)
+		{
+			$this->assertTrue(true, 'Excepted Exception');
+			$this->assertEquals(array('foo'), $e->getParameters());
+		}
 	}
 }
 
