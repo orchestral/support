@@ -9,7 +9,6 @@ class Messages extends M {
 	 * Retrieve Message instance from Session, the data should be in
 	 * serialize, so we need to unserialize it first.
 	 *
-	 * @access public
 	 * @return self
 	 */
 	public function retrieve()
@@ -31,7 +30,6 @@ class Messages extends M {
 	/**
 	 * Store current instance.
 	 *
-	 * @access public
 	 * @return void
 	 */
 	public function save()
@@ -42,7 +40,6 @@ class Messages extends M {
 	/**
 	 * Compile the instance into serialize
 	 *
-	 * @access public
 	 * @return string   serialize of this instance
 	 */
 	public function serialize()

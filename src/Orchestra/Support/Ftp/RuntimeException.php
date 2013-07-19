@@ -2,8 +2,20 @@
 
 class RuntimeException extends \RuntimeException {
 
+	/**
+	 * Parameters.
+	 * 
+	 * @var array
+	 */
 	protected $parameters = array();
 
+	/**
+	 * Construct a new exception.
+	 * 
+	 * @param  string   $exception
+	 * @param  array    $parameters
+	 * @return void
+	 */
 	public function __construct($exception, array $parameters = array())
 	{
 		$this->parameters = $parameters;

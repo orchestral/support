@@ -15,7 +15,6 @@ abstract class Manager extends \Illuminate\Support\Manager {
 	/**
 	 * Create a new instance.
 	 *
-	 * @access public
 	 * @param  string   $driver
 	 * @return mixed
 	 * @see    self::driver()
@@ -28,7 +27,6 @@ abstract class Manager extends \Illuminate\Support\Manager {
 	/**
 	 * Create a new driver instance.
 	 *
-	 * @access protected
 	 * @param  string  $driverName
 	 * @return mixed
 	 */
@@ -57,7 +55,6 @@ abstract class Manager extends \Illuminate\Support\Manager {
 	/**
 	 * Call a custom driver creator.
 	 *
-	 * @access protected
 	 * @param  string  $driverName
 	 * @return mixed
 	 */
@@ -71,7 +68,6 @@ abstract class Manager extends \Illuminate\Support\Manager {
 	/**
 	 * Get driver name.
 	 * 
-	 * @access protected
 	 * @param  string   $driverName
 	 * @return array
 	 */
@@ -89,7 +85,6 @@ abstract class Manager extends \Illuminate\Support\Manager {
 	/**
 	 * Check if name is not blacklisted.
 	 * 
-	 * @access protected
 	 * @param  string   $name
 	 * @return void
 	 * @throws \InvalidArgumentException

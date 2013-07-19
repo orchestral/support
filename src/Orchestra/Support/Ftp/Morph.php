@@ -11,6 +11,11 @@ class Morph extends \Orchestra\Support\Morph {
 
 	/**
 	 * Magic method to ftp methods.
+	 *
+	 * @param  string   $method
+	 * @param  array    $parameters
+	 * @return mixed
+	 * @throws \RuntimeException
 	 */
 	public static function fire($method, $parameters)
 	{

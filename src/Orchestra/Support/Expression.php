@@ -12,7 +12,6 @@ class Expression {
 	/**
 	 * Create a new expression instance.
 	 *
-	 * @access public
 	 * @param  string  $value
 	 * @return void
 	 */
@@ -24,7 +23,6 @@ class Expression {
 	/**
 	 * Get the string value of the expression.
 	 *
-	 * @access public
 	 * @return string
 	 */
 	public function get()
@@ -35,7 +33,6 @@ class Expression {
 	/**
 	 * Get the string value of the expression.
 	 *
-	 * @access public
 	 * @return string
 	 */
 	public function __toString()

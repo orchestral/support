@@ -30,7 +30,6 @@ abstract class Validator {
 	/**
 	 * Create a new instance.
 	 *
-	 * @access public
 	 * @return void
 	 */
 	public function __construct()
@@ -41,7 +40,6 @@ abstract class Validator {
 	/**
 	 * Create a scope scenario.
 	 *
-	 * @access public
 	 * @param  string   $scenario
 	 * @param  array    $parameters
 	 * @return self
@@ -61,7 +59,6 @@ abstract class Validator {
 	/**
 	 * Add bindings.
 	 *
-	 * @access public
 	 * @param  array    $bindings
 	 * @return self
 	 */
@@ -75,7 +72,6 @@ abstract class Validator {
 	/**
 	 * Execute validation service.
 	 *
-	 * @access public
 	 * @param  array    $input
 	 * @param  string   $event
 	 * @return \Illuminate\Validation\Factory
@@ -90,7 +86,6 @@ abstract class Validator {
 	/**
 	 * Run rules bindings.
 	 *
-	 * @access protected
 	 * @return array
 	 */
 	protected function getBindedRules()
@@ -117,7 +112,6 @@ abstract class Validator {
 	/**
 	 * Prepare strtr() bindings.
 	 *
-	 * @access protected
 	 * @param  string   $prefix
 	 * @param  string   $suffix
 	 * @return array
@@ -137,7 +131,6 @@ abstract class Validator {
 	/**
 	 * Run validation events and return the finalize rules.
 	 *
-	 * @access protected
 	 * @param  array    $events
 	 * @return array
 	 */
@@ -162,7 +155,6 @@ abstract class Validator {
 	 * Set validation rules, this would override all previously defined 
 	 * rules.
 	 *
-	 * @access public
 	 * @return array
 	 */
 	public function setRules($rules = array())
