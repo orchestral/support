@@ -21,4 +21,14 @@ class RuntimeException extends \RuntimeException {
 		$this->parameters = $parameters;
 		parent::__construct($exception);
 	}
+
+	/**
+	 * Get exceptions parameters.
+	 * 
+	 * @return array
+	 */
+	public function getParameters()
+	{
+		return $this->parameters;
+	}
 }
