@@ -7,8 +7,6 @@ class Str extends S {
 	/**
 	 * Convert slug type text to human readable text.
 	 *
-	 * @static
-	 * @access public
 	 * @param  string   $text
 	 * @return string
 	 */
@@ -22,8 +20,6 @@ class Str extends S {
 	 * data return from Postgres where blob type schema would actually use 
 	 * BYTEA and convert the string to stream.
 	 *
-	 * @static
-	 * @access public
 	 * @param  mixed    $data
 	 * @return string
 	 */
@@ -71,9 +67,7 @@ class Str extends S {
 	 *		// Convert a multi-byte string to title case
 	 *		$title = Str::title('νωθρού κυνός');
 	 * </code>
-	 *
-	 * @static
-	 * @access public
+	 * 
 	 * @param  string  $value
 	 * @return string
 	 */

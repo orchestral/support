@@ -70,8 +70,6 @@ class Ftp {
 	/**
 	 * Make a new FTP instance.
 	 *
-	 * @static
-	 * @access public
 	 * @param  array    $config
 	 * @return self
 	 */
@@ -83,7 +81,6 @@ class Ftp {
 	/**
 	 * Make a new FTP instance.
 	 *
-	 * @access public	
 	 * @param  array    $config
 	 * @return void
 	 */
@@ -94,8 +91,7 @@ class Ftp {
 
 	/**
 	 * Configure FTP.
-	 *
-	 * @access public
+	 * 
 	 * @param  array    $config
 	 * @return void
 	 */
@@ -122,7 +118,6 @@ class Ftp {
 	/**
 	 * Change current directory on FTP server.
 	 *
-	 * @access public
 	 * @param  string   $directory
 	 * @return boolean
 	 */
@@ -134,7 +129,6 @@ class Ftp {
 	/**
 	 * Get current directory path.
 	 *
-	 * @access public
 	 * @return string
 	 */
 	public function currentDirectory()
@@ -145,7 +139,6 @@ class Ftp {
 	/**
 	 * Download file from FTP server.
 	 *
-	 * @access public
 	 * @param  string   $remoteFile
 	 * @param  string   $localFile
 	 * @param  integer  $mode
@@ -159,7 +152,6 @@ class Ftp {
 	/**
 	 * Upload file to FTP server.
 	 *
-	 * @access public
 	 * @param  string   $localFile
 	 * @param  string   $remoteFile
 	 * @param  integer  $mode
@@ -173,7 +165,6 @@ class Ftp {
 	/**
 	 * Rename file on FTP server.
 	 *
-	 * @access public
 	 * @param  string   $oldName
 	 * @param  string   $newName
 	 * @return boolean
@@ -186,19 +177,17 @@ class Ftp {
 	/**
 	 * Delete file on FTP server.
 	 * 
-	 * @access public
-	 * @param  string   $remote_file
+	 * @param  string   $remoteFile
 	 * @return bool
 	 */
-	public function delete($remote_file)
+	public function delete($remoteFile)
 	{
-		return @Facade::fire('delete', array($this->connection, $remote_file));
+		return @Facade::fire('delete', array($this->connection, $remoteFile));
 	}
 
 	/**
 	 * Set file permissions.
 	 *
-	 * @access public
 	 * @param  string   $remoteFile
 	 * @param  integer  $permissions    For example: 0644
 	 * @return boolean
@@ -212,7 +201,6 @@ class Ftp {
 	/**
 	 * Get list of files/directories on FTP server.
 	 *
-	 * @access public
 	 * @param  string   $directory
 	 * @return array
 	 */
@@ -226,7 +214,6 @@ class Ftp {
 	/**
 	 * Create directory on FTP server.
 	 *
-	 * @access public
 	 * @param  string   $directory
 	 * @return boolean
 	 */
@@ -238,7 +225,6 @@ class Ftp {
 	/**
 	 * Remove directory on FTP server.
 	 *
-	 * @access public
 	 * @param  string   $directory
 	 * @return boolean
 	 */
@@ -250,7 +236,6 @@ class Ftp {
 	/**
 	 * Connect to FTP server.
 	 *
-	 * @access public
 	 * @return boolean
 	 * @throws \Orchestra\Support\Ftp\Exception If unable to connect/login 
 	 *                                          to FTP server.
@@ -278,7 +263,6 @@ class Ftp {
 	/**
 	 * Create a FTP connection.
 	 *
-	 * @access protected
 	 * @return void
 	 * @throws \Orchestra\Support\Ftp\Exception If unable to connect to FTP 
 	 *                                          server.
@@ -303,7 +287,6 @@ class Ftp {
 	/**
 	 * Close FTP connection.
 	 *
-	 * @access public
 	 * @return void
 	 * @throws \RuntimeException If unable to close connection.
 	 */
@@ -319,7 +302,6 @@ class Ftp {
 	/**
 	 * Check FTP connection status.
 	 *
-	 * @access public
 	 * @return boolean
 	 */
 	public function connected()

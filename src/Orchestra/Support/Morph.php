@@ -13,6 +13,11 @@ abstract class Morph {
 
 	/**
 	 * Magic method to call passtru PHP functions.
+	 *
+	 * @param  string   $method
+	 * @param  array    $parameters
+	 * @return mixed
+	 * @throws \RuntimeException
 	 */
 	public static function __callStatic($method, $parameters)
 	{
@@ -27,8 +32,6 @@ abstract class Morph {
 	/**
 	 * Determine if method is callable.
 	 *
-	 * @static
-	 * @access public
 	 * @param  string   $method
 	 * @return boolean
 	 */

@@ -21,7 +21,6 @@ class Nesty {
 	/**
 	 * Construct a new instance.
 	 *
-	 * @access public
 	 * @param  array    $config
 	 * @return void
 	 */
@@ -33,7 +32,6 @@ class Nesty {
 	/**
 	 * Create a new Fluent instance while appending default config.
 	 * 
-	 * @access protected
 	 * @param  integer  $id
 	 * @return \Illuminate\Support\Fluent
 	 */
@@ -51,7 +49,6 @@ class Nesty {
 	/**
 	 * Add item before reference $before.
 	 *
-	 * @access protected
 	 * @param  string   $id
 	 * @param  string   $before
 	 * @return \Illuminate\Support\Fluent
@@ -90,7 +87,6 @@ class Nesty {
 	/**
 	 * Add item after reference $after.
 	 *
-	 * @access protected
 	 * @param  string   $id
 	 * @param  string   $after
 	 * @return \Illuminate\Support\Fluent
@@ -129,7 +125,6 @@ class Nesty {
 	/**
 	 * Add item as child of $parent.
 	 *
-	 * @access protected
 	 * @param  string   $id
 	 * @param  string   $parent
 	 * @return \Illuminate\Support\Fluent
@@ -154,7 +149,6 @@ class Nesty {
 	/**
 	 * Add item as parent.
 	 *
-	 * @access protected
 	 * @param  string   $id
 	 * @return \Illuminate\Support\Fluent
 	 */
@@ -166,10 +160,9 @@ class Nesty {
 	/**
 	 * Add a new item, prepending or appending
 	 *
-	 * @access  public
-	 * @param   string  $id
-	 * @param   string  $prepend
-	 * @return  self
+	 * @param  string  $id
+	 * @param  string  $prepend
+	 * @return self
 	 */
 	public function add($id, $location = '#')
 	{
@@ -205,7 +198,6 @@ class Nesty {
 	/**
 	 * Get node from items recursively.
 	 * 
-	 * @access protected
 	 * @param  string   $key
 	 * @return \Illuminate\Support\Fluent
 	 */
@@ -242,7 +234,6 @@ class Nesty {
 	/**
 	 * Return all items.
 	 *
-	 * @access public
 	 * @return array
 	 */
 	public function getItems()
