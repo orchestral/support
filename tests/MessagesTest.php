@@ -106,4 +106,34 @@ class MessagesTest extends \PHPUnit_Framework_TestCase {
 		$this->assertEquals(array('Hi World'), $retrieve->get('hello'));
 		$this->assertEquals(array('Goodbye'), $retrieve->get('bye'));
 	}
+
+	/**
+	 * Test un-serializing and extending Orchestra\Support\Messages over
+	 * Session
+	 *
+	 * @test
+	 */
+	public function testExtendMethod()
+	{
+		$session = m::mock('Session');
+		$session->shouldReceive('has')->once()->andReturn(true)
+			->shouldReceive('get')->once()->andReturn('a:1:{s:5:"hello";a:1:{i:0;s:8:"Hi World";}}')
+			->shouldReceive('forget')->once()->andReturn(true);
+
+		\Illuminate\Support\Facades\Session::swap($session);
+
+		$callback = function ($msg)
+		{
+			$msg->add('hello', 'Hi Orchestra Platform');
+		};
+		
+		$stub = new Messages;
+		$stub->extend($callback);
+
+		$retrieve = $stub->retrieve();
+		$retrieve->setFormat();
+
+		$this->assertInstanceOf('\Orchestra\Support\Messages', $retrieve);
+		$this->assertEquals(array('Hi World', 'Hi Orchestra Platform'), $retrieve->get('hello'));
+	}
 }
