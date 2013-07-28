@@ -1,9 +1,17 @@
 <?php namespace Orchestra\Support;
 
+use Closure;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\MessageBag as M;
 
 class Messages extends M {
+
+	/**
+	 * Cached messages to be extends to current request.
+	 *
+	 * @var self
+	 */
+	protected $instance = null;
 
 	/**
 	 * Retrieve Message instance from Session, the data should be in
@@ -13,18 +21,36 @@ class Messages extends M {
 	 */
 	public function retrieve()
 	{
-		$messages = null;
-		$instance = null;
+		$messages = array();
 
-		if (Session::has('message'))
+		if (is_null($this->instance)) 
 		{
-			$messages = @unserialize(Session::get('message', ''));
-			if (is_array($messages)) $instance = new static($messages);
+			$this->instance = new static();
+
+			if (Session::has('message'))
+			{
+				$messages = @unserialize(Session::get('message', ''));
+				if ( ! is_array($messages)) $messages = array();
+			}
+				
+			Session::forget('message');
+
+			$this->instance->merge($messages);
 		}
 
-		Session::forget('message');
+		return $this->instance;
+	}
 
-		return $instance;
+	/**
+	 * Extend Messages instance from session.
+	 * 
+	 * @param  Closure  $callback
+	 * @return void
+	 */
+	public function extend(Closure $callback)
+	{
+		$instance = $this->retrieve();
+		call_user_func($callback, $instance);
 	}
 
 	/**
