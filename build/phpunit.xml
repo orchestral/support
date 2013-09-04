@@ -12,7 +12,7 @@
 >
 
     <testsuites>
-        <testsuite name="Orchestra\Resources Test Suite">
+        <testsuite name="Orchestra\Support Test Suite">
             <directory suffix="Test.php">../tests/</directory>
         </testsuite>
     </testsuites>
