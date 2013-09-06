@@ -18,6 +18,24 @@ class StrTest extends \PHPUnit_Framework_TestCase {
 	}
 
 	/**
+	 * Test Authorize\Str::searchable() method.
+	 *
+	 * @test
+	 */
+	public function testSearchableSuccessful()
+	{
+		$expected = array('foobar%'); 
+		$output   = Str::searchable('foobar*');
+
+		$this->assertEquals($expected, $output);
+
+		$expected = array('foobar', 'foobar%', '%foobar', '%foobar%'); 
+		$output   = Str::searchable('foobar');
+
+		$this->assertEquals($expected, $output);
+	}
+
+	/**
 	 * Test Orchestra\Support\Str::streamGetContents() method.
 	 *
 	 * @test

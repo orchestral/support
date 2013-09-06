@@ -18,11 +18,19 @@ class Str extends S {
 	/**
 	 * Convert basic string to searchable result.
 	 */
-	public static function searchable($text)
+	public static function searchable($text, $wildcard = '*', $replacement = '%')
 	{
-		if (static::contains($text, '_') or static::contains($text, '%') return array($text);
-
-		return array("{$text}", "{$text}%", "%{$text}", "%{$text}%");
+		if ( ! static::contains($text, $wildcard)) 
+		{
+			return array(
+				"{$text}", 
+				"{$text}{$replacement}", 
+				"{$replacement}{$text}", 
+				"{$replacement}{$text}{$replacement}",
+			);
+		}
+		
+		return array(str_replace($wildcard, $replacement, $text));
 	}
 
 	/**
