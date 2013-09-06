@@ -16,6 +16,16 @@ class Str extends S {
 	}
 
 	/**
+	 * Convert basic string to searchable result.
+	 */
+	public static function searchable($text)
+	{
+		if (static::contains($text, '_') or static::contains($text, '%') return array($text);
+
+		return array("{$text}", "{$text}%", "%{$text}", "%{$text}%");
+	}
+
+	/**
 	 * Convert filter to string, this process is required to filter stream 
 	 * data return from Postgres where blob type schema would actually use 
 	 * BYTEA and convert the string to stream.
