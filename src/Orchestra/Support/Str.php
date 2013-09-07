@@ -17,6 +17,11 @@ class Str extends S {
 
 	/**
 	 * Convert basic string to searchable result.
+	 *
+	 * @param  string   $text
+	 * @param  string   $wildcard
+	 * @param  string   $replacement
+	 * @return array
 	 */
 	public static function searchable($text, $wildcard = '*', $replacement = '%')
 	{
