@@ -196,6 +196,17 @@ class Nesty {
 	}
 
 	/**
+	 * Retrieve an item by id.
+	 *
+	 * @param  string   $key
+	 * @return \Illuminate\Support\Fluent
+	 */
+	public function is($key)
+	{
+		return $this->descendants($key);
+	}
+
+	/**
 	 * Get node from items recursively.
 	 * 
 	 * @param  string   $key

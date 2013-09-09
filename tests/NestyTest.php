@@ -69,6 +69,34 @@ class NestyTest extends \PHPUnit_Framework_TestCase {
 	 */
 	public function testAddMethod()
 	{
+		$foobar = new Fluent(array(
+			'id'     => 'foobar',
+			'childs' => array(
+				'hello-foobar' => new Fluent(array(
+					'id'     => 'hello-foobar',
+					'childs' => array(),
+				)),
+			),
+		));
+		$foo = new Fluent(array(
+			'id'     => 'foo',
+			'childs' => array(
+				'bar' => new Fluent(array(
+					'id'     => 'bar',
+					'childs' => array(),
+				)),
+				'foobar' => $foobar,
+				'foo-bar' => new Fluent(array(
+					'id'     => 'foo-bar',
+					'childs' => array(),
+				)),
+				'hello-world-foobar' => new Fluent(array(
+					'id'     => 'hello-world-foobar',
+					'childs' => array(),
+				)),
+			)
+		));
+
 		$expected = array(
 			'crynobone' => new Fluent(array(
 				'id'     => 'crynobone',
@@ -82,32 +110,7 @@ class NestyTest extends \PHPUnit_Framework_TestCase {
 				'id'     => 'world',
 				'childs' => array(),
 			)),
-			'foo' => new Fluent(array(
-				'id'     => 'foo',
-				'childs' => array(
-					'bar' => new Fluent(array(
-						'id'     => 'bar',
-						'childs' => array(),
-					)),
-					'foobar' => new Fluent(array(
-						'id'     => 'foobar',
-						'childs' => array(
-							'hello-foobar' => new Fluent(array(
-								'id'     => 'hello-foobar',
-								'childs' => array(),
-							)),
-						),
-					)),
-					'foo-bar' => new Fluent(array(
-						'id'     => 'foo-bar',
-						'childs' => array(),
-					)),
-					'hello-world-foobar' => new Fluent(array(
-						'id'     => 'hello-world-foobar',
-						'childs' => array(),
-					)),
-				),
-			)),
+			'foo' => $foo,
 			'orchestra' => new Fluent(array(
 				'id'     => 'orchestra',
 				'childs' => array(),
@@ -126,6 +129,8 @@ class NestyTest extends \PHPUnit_Framework_TestCase {
 		$this->stub->add('orchestra', '#');
 
 		$this->assertEquals($expected, $this->stub->getItems());
+		$this->assertEquals($foo, $this->stub->is('foo'));
+		$this->assertEquals($foobar, $this->stub->is('foo.foobar'));
 	}
 
 	/**
