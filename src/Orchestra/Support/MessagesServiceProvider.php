@@ -12,7 +12,7 @@ class MessagesServiceProvider extends ServiceProvider {
 	 */
 	public function register()
 	{
-		$this->app['orchestra.messages'] = $this->app->share(function($app)
+		$this->app['orchestra.messages'] = $this->app->share(function()
 		{
 			return new Messages;
 		});
@@ -33,7 +33,7 @@ class MessagesServiceProvider extends ServiceProvider {
 	{
 		$app = $this->app;
 
-		$app->after(function($request, $response) use ($app)
+		$app->after(function() use ($app)
 		{
 			$app['orchestra.messages']->save();
 		});
