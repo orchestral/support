@@ -63,20 +63,26 @@ class Str extends S {
 		// Check if it's actually a hex string before trying to convert.
 		if ( ! ctype_xdigit($hex)) return $hex;
 
-		$transform = function ($hex)
+		return static::fromHex($hex);
+	}
+
+	/**
+	 * Convert hex to string.
+	 * 
+	 * @param  string   $hex
+	 * @return string
+	 */
+	protected static function fromHex($hex)
+	{
+		$data = '';
+
+		// Convert hex to string.
+		for ($i = 0; $i < strlen($hex) - 1; $i += 2)
 		{
-			$data = '';
+			$data .= chr(hexdec($hex[$i].$hex[$i+1]));
+		}
 
-			// Convert hex to string.
-			for ($i = 0; $i < strlen($hex) - 1; $i += 2)
-			{
-				$data .= chr(hexdec($hex[$i].$hex[$i+1]));
-			}
-
-			return $data;
-		};
-
-		return $transform($hex);
+		return $data;
 	}
 
 	/**
