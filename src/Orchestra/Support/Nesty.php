@@ -168,7 +168,7 @@ class Nesty {
 	{ 
 		if (preg_match('/^(<|>|\^):(.+)$/', $location, $matches))
 		{
-			$this->pickTraverseFromMatchedExpression($id, $location, $matches);
+			return $this->pickTraverseFromMatchedExpression($id, $location, $matches);
 		}
 
 		return $this->addParent($id);
