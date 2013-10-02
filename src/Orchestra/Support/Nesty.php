@@ -161,38 +161,49 @@ class Nesty {
 	 * Add a new item, prepending or appending
 	 *
 	 * @param  string  $id
-	 * @param  string  $prepend
+	 * @param  string  $location
 	 * @return self
 	 */
 	public function add($id, $location = '#')
 	{
-		preg_match('/^(<|>|\^):(.+)$/', $location, $matches);
-		
-		switch (true)
+		if ($location === '<' and count($keys = array_keys($this->items)) > 0)
 		{
-			case $location === '<' :
-				$keys = array_keys($this->items);
-
-				if (count($keys) > 0) return $this->addBefore($id, $keys[0]);
-				break;
-
-			case count($matches) >= 3 and $matches[1] === '<' :
-				return $this->addBefore($id, $matches[2]);
-				break;
-
-			case count($matches) >= 3 and $matches[1] === '>' :
-				return $this->addAfter($id, $matches[2]);
-				break;
-
-			case count($matches) >= 3 and $matches[1] === '^' :
-				return $this->addChild($id, $matches[2]);
-				break;
-
-			default :
-				# passthru;
+			return $this->addBefore($id, $keys[0]);
+		}
+		elseif (preg_match('/^(<|>|\^):(.+)$/', $location, $matches) and count($matches) >= 3) 
+		{
+			return $this->pickTraverseFromMatchedExpression($id, $location, $matches);
 		}
 
 		return $this->addParent($id);
+	}
+
+	/**
+	 * Pick traverse from matched expression.
+	 *
+	 * @param  string  $id
+	 * @param  string  $location
+	 * @param  array   $matches
+	 * @return self
+	 */
+	protected function pickTraverseFromMatchedExpression($id, $location, $matches)
+	{
+		$method = null;
+
+		switch($matches[1])
+		{
+			case '<' :
+				$method = 'addBefore';
+				break;
+			case '>' :
+				$method = 'addAfter';
+				break;
+			case '^' :
+				$method = 'addChild';
+				break;
+		}
+
+		return call_user_func(array($this, $method), $id, $matches[2]);
 	}
 
 	/**

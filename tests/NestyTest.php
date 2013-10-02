@@ -117,7 +117,7 @@ class NestyTest extends \PHPUnit_Framework_TestCase {
 			)),
 		);
 
-		$this->stub->add('foo', '<');
+		$this->stub->add('foo');
 		$this->stub->add('hello', '<:foo');
 		$this->stub->add('world', '>:hello');
 		$this->stub->add('bar', '^:foo');

@@ -63,38 +63,25 @@ class Str extends S {
 		// Check if it's actually a hex string before trying to convert.
 		if ( ! ctype_xdigit($hex)) return $hex;
 
-		$transform = function ($hex)
-		{
-			$data = '';
-
-			// Convert hex to string.
-			for ($i = 0; $i < strlen($hex) - 1; $i += 2)
-			{
-				$data .= chr(hexdec($hex[$i].$hex[$i+1]));
-			}
-
-			return $data;
-		};
-
-		return $transform($hex);
+		return static::fromHex($hex);
 	}
 
 	/**
-	 * Convert a string to title case (ucwords equivalent).
-	 *
-	 * <code>
-	 *		// Convert a string to title case
-	 *		$title = Str::title('taylor otwell');
-	 *
-	 *		// Convert a multi-byte string to title case
-	 *		$title = Str::title('νωθρού κυνός');
-	 * </code>
+	 * Convert hex to string.
 	 * 
-	 * @param  string  $value
+	 * @param  string   $hex
 	 * @return string
 	 */
-	public static function title($value)
+	protected static function fromHex($hex)
 	{
-		return mb_convert_case($value, MB_CASE_TITLE, 'UTF-8');
+		$data = '';
+
+		// Convert hex to string.
+		for ($i = 0; $i < strlen($hex) - 1; $i += 2)
+		{
+			$data .= chr(hexdec($hex[$i].$hex[$i+1]));
+		}
+
+		return $data;
 	}
 }
