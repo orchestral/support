@@ -28,9 +28,14 @@ abstract class Validator {
 	protected $bindings = array();
 
 	/**
-	 * Create a new instance.
+	 * Current scope.
 	 *
-	 * @return void
+	 * @var string
+	 */
+	protected $scope = null;
+
+	/**
+	 * Create a new instance.
 	 */
 	public function __construct()
 	{
@@ -46,6 +51,8 @@ abstract class Validator {
 	 */
 	public function on($scenario, $parameters = array())
 	{
+		$this->scope = $scenario;
+
 		$method = 'on'.ucfirst($scenario);
 
 		if (method_exists($this, $method)) 
@@ -78,9 +85,19 @@ abstract class Validator {
 	 */
 	public function with($input, $events = array())
 	{
-		$rules = $this->runValidationEvents($events);
+		$rules      = $this->runValidationEvents($events);
+		$validation = V::make($input, $rules);
+		
+		if (is_null($this->scope)) return $validation;
 
-		return V::make($input, $rules);
+		$method = 'extend'.ucfirst($this->scope);
+
+		if (method_exists($this, $method)) 
+		{
+			call_user_func(array($this, $method), $validation);
+		}
+
+		return $validation;
 	}
 
 	/**
