@@ -36,8 +36,6 @@ abstract class Validator {
 
 	/**
 	 * Create a new instance.
-	 *
-	 * @return void
 	 */
 	public function __construct()
 	{
