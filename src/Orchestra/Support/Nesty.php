@@ -172,7 +172,7 @@ class Nesty {
 		}
 		elseif (preg_match('/^(<|>|\^):(.+)$/', $location, $matches) and count($matches) >= 3) 
 		{
-			return $this->pickTraverseFromMatchedExpression($id, $location, $matches);
+			return $this->pickTraverseFromMatchedExpression($id, $matches[1], $matches[2]);
 		}
 
 		return $this->addParent($id);
@@ -182,28 +182,21 @@ class Nesty {
 	 * Pick traverse from matched expression.
 	 *
 	 * @param  string  $id
+	 * @param  string  $key
 	 * @param  string  $location
-	 * @param  array   $matches
 	 * @return self
 	 */
-	protected function pickTraverseFromMatchedExpression($id, $location, $matches)
+	protected function pickTraverseFromMatchedExpression($id, $key, $location)
 	{
-		$method = null;
+		$matching = array(
+			'<' => 'addBefore',
+			'>' => 'addAfter',
+			'^' => 'addChild',
+		);
 
-		switch($matches[1])
-		{
-			case '<' :
-				$method = 'addBefore';
-				break;
-			case '>' :
-				$method = 'addAfter';
-				break;
-			case '^' :
-				$method = 'addChild';
-				break;
-		}
-
-		return call_user_func(array($this, $method), $id, $matches[2]);
+		$method = $matching[$key];
+		
+		return call_user_func(array($this, $method), $id, $location);
 	}
 
 	/**
