@@ -227,6 +227,11 @@ class Nesty {
 
 		if ( ! isset($array[$first])) return null;
 
+		$isLastDecendent = function ($array, $segment)
+		{
+			return ( ! is_array($array->childs) or ! isset($array->childs[$segment]));
+		};
+
 		$array = $array[$first];
 
 		// To retrieve the array item using dot syntax, we'll iterate through
@@ -235,7 +240,7 @@ class Nesty {
 		// and look for the next segment.
 		foreach ($keys as $segment)
 		{
-			if ( ! is_array($array->childs) or ! isset($array->childs[$segment]))
+			if ($isLastDecendent($array, $segment))
 			{
 				return $array;
 			}
