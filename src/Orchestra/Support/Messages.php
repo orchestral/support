@@ -21,7 +21,7 @@ class Messages extends M {
 	 */
 	public function retrieve()
 	{
-		$messages = array();
+		$messages = null;
 
 		if (is_null($this->instance)) 
 		{
@@ -30,12 +30,11 @@ class Messages extends M {
 			if (Session::has('message'))
 			{
 				$messages = @unserialize(Session::get('message', ''));
-				if ( ! is_array($messages)) $messages = array();
 			}
 				
 			Session::forget('message');
 
-			$this->instance->merge($messages);
+			if (is_array($messages)) $this->instance->merge($messages);
 		}
 
 		return $this->instance;
@@ -44,7 +43,7 @@ class Messages extends M {
 	/**
 	 * Extend Messages instance from session.
 	 * 
-	 * @param  Closure  $callback
+	 * @param  \Closure $callback
 	 * @return void
 	 */
 	public function extend(Closure $callback)
@@ -64,7 +63,7 @@ class Messages extends M {
 	}
 
 	/**
-	 * Compile the instance into serialize
+	 * Compile the instance into serialize.
 	 *
 	 * @return string   serialize of this instance
 	 */
