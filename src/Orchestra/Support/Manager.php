@@ -73,7 +73,7 @@ abstract class Manager extends \Illuminate\Support\Manager {
 	 */
 	protected function getDriverName($driverName)
 	{
-		if (false === strpos($driverName, '.')) $driverName = $driverName.'.default';
+		if (false === strpos($driverName, '.')) $driverName = "{$driverName}.default";
 
 		list($driver, $name) = explode('.', $driverName, 2);
 
