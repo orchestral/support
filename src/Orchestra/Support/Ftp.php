@@ -178,7 +178,7 @@ class Ftp {
 	 * Delete file on FTP server.
 	 * 
 	 * @param  string   $remoteFile
-	 * @return bool
+	 * @return boolean
 	 */
 	public function delete($remoteFile)
 	{
@@ -191,7 +191,7 @@ class Ftp {
 	 * @param  string   $remoteFile
 	 * @param  integer  $permissions    For example: 0644
 	 * @return boolean
-	 * @throws RuntimeException         If unable to chmod $remoteFile
+	 * @throws \RuntimeException        If unable to chmod $remoteFile
 	 */
 	public function permission($remoteFile, $permission = 0644)
 	{

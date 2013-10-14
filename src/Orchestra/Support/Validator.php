@@ -47,7 +47,7 @@ abstract class Validator {
 	 *
 	 * @param  string   $scenario
 	 * @param  array    $parameters
-	 * @return self
+	 * @return Validator
 	 */
 	public function on($scenario, $parameters = array())
 	{
@@ -67,7 +67,7 @@ abstract class Validator {
 	 * Add bindings.
 	 *
 	 * @param  array    $bindings
-	 * @return self
+	 * @return Validator
 	 */
 	public function bind($bindings)
 	{
@@ -147,7 +147,7 @@ abstract class Validator {
 
 	/**
 	 * Run validation events and return the finalize rules.
-	 *
+	 * 
 	 * @param  array    $events
 	 * @return array
 	 */

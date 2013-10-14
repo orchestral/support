@@ -162,7 +162,7 @@ class Nesty {
 	 *
 	 * @param  string  $id
 	 * @param  string  $location
-	 * @return self
+	 * @return \Illuminate\Support\Fluent
 	 */
 	public function add($id, $location = '#')
 	{
@@ -184,7 +184,7 @@ class Nesty {
 	 * @param  string  $id
 	 * @param  string  $key
 	 * @param  string  $location
-	 * @return self
+	 * @return \Illuminate\Support\Fluent
 	 */
 	protected function pickTraverseFromMatchedExpression($id, $key, $location)
 	{

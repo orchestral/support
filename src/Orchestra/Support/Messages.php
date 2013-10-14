@@ -17,7 +17,7 @@ class Messages extends M {
 	 * Retrieve Message instance from Session, the data should be in
 	 * serialize, so we need to unserialize it first.
 	 *
-	 * @return self
+	 * @return Messages
 	 */
 	public function retrieve()
 	{
