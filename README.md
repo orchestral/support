@@ -1,7 +1,7 @@
 Orchestra Platform Support Component
 ==============
 
-Orchestra\Support is basically a basic set of class required by Orchestra Platform. The idea behind it is similar to what is Illuminate\Support to Laravel 4 Framework.
+`Orchestra\Support` is basically a basic set of class required by Orchestra Platform. The idea behind it is similar to what is `Illuminate\Support` to Laravel 4 Framework.
 
 [![Latest Stable Version](https://poser.pugx.org/orchestra/support/v/stable.png)](https://packagist.org/packages/orchestra/support) 
 [![Total Downloads](https://poser.pugx.org/orchestra/support/downloads.png)](https://packagist.org/packages/orchestra/support) 
