@@ -96,11 +96,11 @@ class Nesty
         }
 
         foreach ($keys as $key => $fluent) {
+            $items[$fluent] = $this->items[$fluent];
+
             if ($key === $position) {
                 $items[$id] = $item;
             }
-
-            $items[$fluent] = $this->items[$fluent];
         }
 
         $this->items = $items;
