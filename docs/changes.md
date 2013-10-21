@@ -5,7 +5,8 @@ Support Change Log
 
 ### v2.0.11@dev
 
-* Simplify `Orchestra\Support\Nesty:: pickTraverseFromMatchedExpression()`.
+* Refactor and Simplify `Orchestra\Support\Nesty`.
+* Implement [PSR-2](https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-2-coding-style-guide.md) coding standard.
 
 ### v2.0.10
 
