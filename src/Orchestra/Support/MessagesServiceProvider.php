@@ -14,11 +14,6 @@ class MessagesServiceProvider extends ServiceProvider
         $this->app['orchestra.messages'] = $this->app->share(function () {
             return new Messages;
         });
-
-        $this->app->booting(function () {
-            $loader = AliasLoader::getInstance();
-            $loader->alias('Orchestra\Messages', 'Orchestra\Support\Facades\Messages');
-        });
     }
 
     /**
