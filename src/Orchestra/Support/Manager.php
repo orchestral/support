@@ -1,6 +1,5 @@
 <?php namespace Orchestra\Support;
 
-use Closure;
 use InvalidArgumentException;
 
 abstract class Manager extends \Illuminate\Support\Manager
