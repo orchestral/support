@@ -110,13 +110,13 @@ abstract class Validator
         $rules    = $this->rules;
         $bindings = $this->prepareBindings('{', '}');
 
-        $filter = function (& $value, $key, $bindings) {
-            $value = strtr($value, $bindings);
+        $filter = function ($value) use ($bindings) {
+            return strtr($value, $bindings);
         };
 
         foreach ($rules as $key => $value) {
             if (is_array($value)) {
-                array_walk($value, $filter, $bindings);
+                $value = array_map($filter, $value);
             } else {
                 $value = strtr($value, $bindings);
             }
