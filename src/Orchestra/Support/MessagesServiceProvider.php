@@ -1,7 +1,6 @@
 <?php namespace Orchestra\Support;
 
 use Illuminate\Support\ServiceProvider;
-use Illuminate\Foundation\AliasLoader;
 
 class MessagesServiceProvider extends ServiceProvider
 {
