@@ -108,41 +108,14 @@ abstract class Validator
     protected function getBindedRules()
     {
         $rules    = $this->rules;
-        $bindings = $this->prepareBindings('{', '}');
 
-        $filter = function ($value) use ($bindings) {
-            return strtr($value, $bindings);
-        };
-
-        foreach ($rules as $key => $value) {
-            if (is_array($value)) {
-                $value = array_map($filter, $value);
-            } else {
-                $value = strtr($value, $bindings);
+        if (! empty($this->bindings)) {
+            foreach ($rules as $key => $value) {
+                $rules[$key] = Str::replace($value, $this->bindings);
             }
-
-            $rules[$key] = $value;
         }
 
         return $rules;
-    }
-
-    /**
-     * Prepare strtr() bindings.
-     *
-     * @param  string   $prefix
-     * @param  string   $suffix
-     * @return array
-     */
-    protected function prepareBindings($prefix = '{', $suffix = '}')
-    {
-        $bindings = $this->bindings;
-
-        foreach ($bindings as $key => $value) {
-            $bindings["{$prefix}{$key}{$suffix}"] = $value;
-        }
-
-        return $bindings;
     }
 
     /**
