@@ -10,6 +10,7 @@ Support Change Log
 * Add `Orchestra\Support\Messages::extend()` and tweak how Messages notification can be manipulated on current request.
 * Add `Orchestra\Support\Nesty::is()` to return instance of `Illuminate\Support\Fluent` to allow further chaining of the instance.
 * Add `Orchestra\Support\Relic`.
+* Add `Orchestra\Support\Str::replace()`.
 
 ## Version 2.0
 

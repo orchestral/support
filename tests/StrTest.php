@@ -9,10 +9,36 @@ class StrTest extends \PHPUnit_Framework_TestCase
      *
      * @test
      */
-    public function testHumanizeSuccessful()
+    public function testHumanizeMethod()
     {
         $expected = 'Foobar Is Awesome';
         $output   = Str::humanize('foobar-is-awesome');
+
+        $this->assertEquals($expected, $output);
+    }
+
+    /**
+     * Test Authorize\Str::replace() method.
+     *
+     * @test
+     */
+    public function testReplaceMethod()
+    {
+        $expected = 'Orchestra Platform is awesome';
+        $output   = Str::replace('{name} is awesome', array('name' => 'Orchestra Platform'));
+
+        $this->assertEquals($expected, $output);
+
+        $expected = array(
+            'Orchestra Platform is awesome',
+            'Orchestra Platform is not a foobar',
+        );
+
+        $data     = array(
+            '{name} is awesome',
+            '{name} is not a {foo}',
+        );
+        $output   = Str::replace($data, array('name' => 'Orchestra Platform', 'foo' => 'foobar'));
 
         $this->assertEquals($expected, $output);
     }
@@ -22,7 +48,7 @@ class StrTest extends \PHPUnit_Framework_TestCase
      *
      * @test
      */
-    public function testSearchableSuccessful()
+    public function testSearchableMethod()
     {
         $expected = array('foobar%');
         $output   = Str::searchable('foobar*');

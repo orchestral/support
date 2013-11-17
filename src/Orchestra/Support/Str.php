@@ -16,6 +16,46 @@ class Str extends S
     }
 
     /**
+     * Replace a text using strtr().
+     *
+     * @param  string  $text
+     * @param  array   $replacements
+     * @return string
+     */
+    public static function replace($text, $replacements)
+    {
+        $replacements = static::prepareBinding($replacements, '{', '}');
+
+        $filter = function ($text) use ($replacements) {
+            return strtr($text, $replacements);
+        };
+
+        if (is_array($text)) {
+            $text = array_map($filter, $text);
+        } else {
+            $text = strtr($text, $replacements);
+        }
+
+        return $text;
+    }
+
+    /**
+     * Prepare bindings for text replacement.
+     *
+     * @param  array   $bindings
+     * @param  string  $prefix
+     * @param  string  $suffix
+     */
+    protected static function prepareBinding(array $bindings = array(), $prefix = '{', $suffix = '}')
+    {
+        foreach ($bindings as $key => $value) {
+            $bindings["{$prefix}{$key}{$suffix}"] = $value;
+        }
+
+        return $bindings;
+    }
+
+    /**
      * Convert basic string to searchable result.
      *
      * @param  string   $text
