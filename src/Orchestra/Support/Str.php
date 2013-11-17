@@ -22,7 +22,7 @@ class Str extends S
      * @param  array   $replacements
      * @return string
      */
-    public static function replace($text, $replacements)
+    public static function replace($text, array $replacements = array())
     {
         $replacements = static::prepareBinding($replacements, '{', '}');
 
