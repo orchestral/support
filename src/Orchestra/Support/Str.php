@@ -33,7 +33,7 @@ class Str extends S
         if (is_array($text)) {
             $text = array_map($filter, $text);
         } else {
-            $text = strtr($text, $replacements);
+            $text = $filter($text);
         }
 
         return $text;
