@@ -1,5 +1,6 @@
 <?php namespace Orchestra\Support\Tests;
 
+use Illuminate\Support\Collection;
 use Illuminate\Support\Fluent;
 use Orchestra\Support\Nesty;
 
@@ -52,7 +53,7 @@ class NestyTest extends \PHPUnit_Framework_TestCase
      */
     public function testNewInstanceReturnEmptyArray()
     {
-        $this->assertEquals(array(), with(new Nesty(array()))->getItems());
+        $this->assertEquals(new Collection(array()), with(new Nesty(array()))->getItems());
     }
 
     /**
@@ -121,7 +122,7 @@ class NestyTest extends \PHPUnit_Framework_TestCase
         $this->stub->add('crynobone', '<');
         $this->stub->add('orchestra', '#');
 
-        $this->assertEquals($expected, $this->stub->getItems());
+        $this->assertEquals(new Collection($expected), $this->stub->getItems());
         $this->assertEquals($expected, $this->stub->is(null));
         $this->assertEquals($foo, $this->stub->is('foo'));
         $this->assertEquals($foobar, $this->stub->is('foo.foobar'));
@@ -149,7 +150,7 @@ class NestyTest extends \PHPUnit_Framework_TestCase
         $stub->add('foo', '<:home');
         $stub->add('foobar', '<:foo');
 
-        $this->assertEquals($expected, $stub->getItems());
+        $this->assertEquals(new Collection($expected), $stub->getItems());
     }
 
     /**
@@ -173,7 +174,7 @@ class NestyTest extends \PHPUnit_Framework_TestCase
         $stub->add('foobar', '>:home');
         $stub->add('foo', '>:foobar');
 
-        $this->assertEquals($expected, $stub->getItems());
+        $this->assertEquals(new Collection($expected), $stub->getItems());
     }
 
     /**
@@ -187,6 +188,6 @@ class NestyTest extends \PHPUnit_Framework_TestCase
         $stub = new Nesty(array());
 
         $stub->add('foo', '^:home');
-        $this->assertEquals(array(), $stub->getItems());
+        $this->assertEquals(new Collection(array()), $stub->getItems());
     }
 }

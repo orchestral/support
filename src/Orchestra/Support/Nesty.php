@@ -1,5 +1,6 @@
 <?php namespace Orchestra\Support;
 
+use Illuminate\Support\Collection;
 use Illuminate\Support\Fluent;
 
 class Nesty
@@ -244,6 +245,6 @@ class Nesty
      */
     public function getItems()
     {
-        return $this->items;
+        return new Collection($this->items);
     }
 }
