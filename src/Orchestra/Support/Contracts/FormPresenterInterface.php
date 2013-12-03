@@ -1,7 +1,5 @@
 <?php namespace Orchestra\Support\Contracts;
 
-use Orchestra\Html\Form\Grid;
-
 interface FormPresenterInterface
 {
     /**
@@ -18,5 +16,5 @@ interface FormPresenterInterface
      * @param  \Orchestra\Html\Form\Grid    $form
      * @return void
      */
-    public function formLayout(Grid $form);
+    public function formLayout($form);
 }
