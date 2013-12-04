@@ -11,10 +11,10 @@ interface FormPresenterInterface
     public function handles($url);
 
     /**
-     * Setup form layout.
+     * Setup form.
      *
      * @param  \Orchestra\Html\Form\Grid    $form
      * @return void
      */
-    public function formLayout($form);
+    public function setupForm($form);
 }
