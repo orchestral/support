@@ -11,6 +11,10 @@ Support Change Log
 * Add `Orchestra\Support\Nesty::is()` to return instance of `Illuminate\Support\Fluent` to allow further chaining of the instance.
 * Add `Orchestra\Support\Relic`.
 * Add `Orchestra\Support\Str::replace()`.
+* Refactor `Orchestra\Support\Validator::getBindedRules()` to use `Orchestra\Support\Str::replace()`.
+* Add following facades:
+  - `Orchestra\Support\Facades\Debug`
+* Return `Orchestra\Support\Nesty::getItems()` as instance of `Illuminate\Support\Collection`.
 
 ## Version 2.0
 
