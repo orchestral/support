@@ -1,5 +1,6 @@
-Support Component
-==============
+---
+title: Support Component
+---
 
 * [Installation](#installation)
 * [Configuration](#configuration)
