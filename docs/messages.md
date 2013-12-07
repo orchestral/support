@@ -1,55 +1,47 @@
-Using Messages
-==============
+---
+title: Using Messages
+---
 
 `Orchestra\Messages` utilize `Illuminate\Support\MessageBag` to bring notification support through-out Orchestra Platform (and Laravel 4).
 
-## Adding a Message
+* [Adding a Message](#add-message)
+* [Extending a Message to Current Response](#extend-for-current-request)
+* [Displaying the Message in a View](#displaying-message)
+
+## Adding a Message {#add-message}
 
 Adding a message is as easy as following:
 
-```php
-Orchestra\Messages::add('success', 'A successful message');
-```
+	Orchestra\Messages::add('success', 'A successful message');
 
 You can also chain messages:
 
-```php
-Orchestra\Messages::add('success', 'A successful message')
-	->add('error', 'Some error');
-```
-</article>
+	Orchestra\Messages::add('success', 'A successful message')
+		->add('error', 'Some error');
 
-## Extending a Message to Current Response
+## Extending a Message to Current Response {#extend-for-current-request}
 
 There might be situation where you need to extend a message to the current response instead of the following request. You can do this with:
 
-```php
-Orchestra\Messages::extend(function ($message)
-{
-	$message->add('info', 'Read-only mode');
-});
-```
+	Orchestra\Messages::extend(function ($message) {
+		$message->add('info', 'Read-only mode');
+	});
 
-## Displaying the Message in a View
+## Displaying the Message in a View {#displaying-message}
 
 Here's an example how you can display the message:
 
-```php
-<?php 
+<?php
 
-$message = Orchestra\Messages::retrieve();
+	$message = Orchestra\Messages::retrieve();
 
-if ($message instanceof Orchestra\Support\Messages)
-{
-	foreach (['error', 'info', 'success'] as $key)
-	{
-		if ($message->has($key))
-		{			
-			$message->setFormat(
-				'<div class="alert alert-'.$key.'">:message</div>'
-			);
-			echo implode('', $message->get($key));
+	if ($message instanceof Orchestra\Support\Messages) {
+		foreach (['error', 'info', 'success'] as $key) {
+			if ($message->has($key)) {
+				$message->setFormat(
+					'<div class="alert alert-'.$key.'">:message</div>'
+				);
+				echo implode('', $message->get($key));
+			}
 		}
 	}
-}
-```
