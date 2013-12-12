@@ -16,7 +16,7 @@ To install through composer, simply put the following in your `composer.json` fi
 ```json
 {
 	"require": {
-		"orchestra/support": "2.0.*"
+		"orchestra/support": "2.1.*@dev"
 	}
 }
 ```
@@ -25,14 +25,14 @@ Next add the service provider in `app/config/app.php`.
 
 ```php
 'providers' => array(
-	
+
 	// ...
-	
+
 	'Orchestra\Support\MessagesServiceProvider',
 ),
 ```
 
 ## Resources
 
-* [Documentation](http://orchestraplatform.com/docs/2.0/components/support)
-* [Change Log](http://orchestraplatform.com/docs/2.0/components/support/changes#v2.1)
+* [Documentation](http://orchestraplatform.com/docs/latest/components/support)
+* [Change Log](http://orchestraplatform.com/docs/latest/components/support/changes#v2-1)
