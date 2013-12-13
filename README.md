@@ -5,8 +5,8 @@ Orchestra Platform Support Component
 
 [![Latest Stable Version](https://poser.pugx.org/orchestra/support/v/stable.png)](https://packagist.org/packages/orchestra/support) 
 [![Total Downloads](https://poser.pugx.org/orchestra/support/downloads.png)](https://packagist.org/packages/orchestra/support) 
-[![Build Status](https://travis-ci.org/orchestral/support.png?branch=2.1)](https://travis-ci.org/orchestral/support) 
-[![Coverage Status](https://coveralls.io/repos/orchestral/support/badge.png?branch=2.1)](https://coveralls.io/r/orchestral/support?branch=2.1) 
+[![Build Status](https://travis-ci.org/orchestral/support.png?branch=master)](https://travis-ci.org/orchestral/support) 
+[![Coverage Status](https://coveralls.io/repos/orchestral/support/badge.png?branch=master)](https://coveralls.io/r/orchestral/support?branch=master) 
 [![Scrutinizer Quality Score](https://scrutinizer-ci.com/g/orchestral/support/badges/quality-score.png?s=80403bdb1e88f15e75c62eca92316227e08176c3)](https://scrutinizer-ci.com/g/orchestral/support/)
 
 ## Quick Installation
