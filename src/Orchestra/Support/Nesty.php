@@ -197,12 +197,12 @@ class Nesty
     }
 
     /**
-     * Get node from items recursively.
+     * Get last descendant node from items recursively.
      *
      * @param  string   $key
      * @return \Illuminate\Support\Fluent
      */
-    protected function descendants($key)
+    protected function descendants($key = null)
     {
         $array = $this->items;
 
@@ -217,18 +217,28 @@ class Nesty
             return null;
         }
 
-        $isLastDecendent = function ($array, $segment) {
+        return $this->resolveLastDecendant($array[$first], $keys);
+    }
+
+    /**
+     * Resolve last descendant node from items.
+     *
+     * @param  array    $array
+     * @param  array    $key
+     * @return \Illuminate\Support\Fluent
+     */
+    protected function resolveLastDecendant($array, $keys)
+    {
+        $isLastDescendant = function ($array, $segment) {
             return ( ! is_array($array->childs) or ! isset($array->childs[$segment]));
         };
-
-        $array = $array[$first];
 
         // To retrieve the array item using dot syntax, we'll iterate through
         // each segment in the key and look for that value. If it exists,
         // we will return it, otherwise we will set the depth of the array
         // and look for the next segment.
         foreach ($keys as $segment) {
-            if ($isLastDecendent($array, $segment)) {
+            if ($isLastDescendant($array, $segment)) {
                 return $array;
             }
 
