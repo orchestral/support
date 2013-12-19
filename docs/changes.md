@@ -16,6 +16,8 @@ title: Support Change Log
 * Refactor `Orchestra\Support\Validator::getBindedRules()` to use `Orchestra\Support\Str::replace()`.
 * Add following facades:
   - `Orchestra\Support\Facades\Debug`
+  - `Orchestra\Support\Facades\Notifier`
+  - `Orchestra\Support\Facades\Warden`
 * Return `Orchestra\Support\Nesty::getItems()` as instance of `Illuminate\Support\Collection`.
 
 ## Version 2.0 {#v2-0}
