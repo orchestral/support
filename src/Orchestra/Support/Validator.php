@@ -39,7 +39,11 @@ abstract class Validator
      *
      * @var array
      */
-    protected $scenario = null;
+    protected $queued = array(
+        'on'         => null,
+        'extend'     => null,
+        'parameters' => array(),
+    );
 
     /**
      * Create a scope scenario.
@@ -50,12 +54,14 @@ abstract class Validator
      */
     public function on($scenario, array $parameters = array())
     {
-        $this->scenario = $scenario;
-        $method = 'on'.ucfirst($scenario);
+        $on     = 'on'.ucfirst($scenario);
+        $extend = 'extend'.ucfirst($scenario);
 
-        if (method_exists($this, $method)) {
-            call_user_func_array(array($this, $method), $parameters);
-        }
+        $this->queued = array(
+            'on'         => method_exists($this, $on) ? $on : null,
+            'extend'     => method_exists($this, $extend) ? $extend : null,
+            'parameters' => $parameters,
+        );
 
         return $this;
     }
@@ -82,18 +88,13 @@ abstract class Validator
      */
     public function with(array $input, $events = array())
     {
-        is_array($events) or $events = (array) $events;
+        $this->runQueuedOn();
+
         $rules = $this->runValidationEvents($events);
 
         $this->resolver = V::make($input, $rules);
 
-        if (! is_null($this->scenario)) {
-            $method = 'extend'.ucfirst($this->scenario);
-
-            if (method_exists($this, $method)) {
-                call_user_func(array($this, $method), $this->resolver);
-            }
-        }
+        $this->runQueuedExtend($this->resolver);
 
         return $this->resolver;
     }
@@ -117,13 +118,40 @@ abstract class Validator
     }
 
     /**
+     * Run queued on scenario.
+     *
+     * @return void
+     */
+    protected function runQueuedOn()
+    {
+        if (! is_null($method = $this->queued['on'])) {
+            call_user_func_array(array($this, $method), $this->queued['parameters']);
+        }
+    }
+
+    /**
+     * Run queued extend scenario.
+     *
+     * @param  \Illuminate\Validation\Validator    $resolver
+     * @return void
+     */
+    protected function runQueuedExtend($resolver)
+    {
+        if (! is_null($method = $this->queued['extend'])) {
+            call_user_func(array($this, $method), $resolver);
+        }
+    }
+
+    /**
      * Run validation events and return the finalize rules.
      *
-     * @param  array   $events
+     * @param  array|string    $events
      * @return array
      */
-    protected function runValidationEvents(array $events)
+    protected function runValidationEvents($events)
     {
+        is_array($events) or $events = (array) $events;
+
         // Merge all the events.
         $events = array_merge($this->events, $events);
 
