@@ -36,7 +36,7 @@ class Relic
      */
     public function set($key, $value = null)
     {
-        return array_set($this->items, $key, $value);
+        return array_set($this->items, $key, value($value));
     }
 
     /**
