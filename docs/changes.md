@@ -5,7 +5,7 @@ title: Support Change Log
 
 ## Version 2.1 {#v2-1}
 
-### v2.1.0@dev {#v2-1-0}
+### v2.1.0 {#v2-1-0}
 
 * `Orchestra\Support\Manager` should be able to set blacklisted name, for example `Orchestra\Memory` shouldn't allow dotted.
 * Allow `Orchestra\Support\Nesty` to prepend an item without knowing the current first item.
@@ -14,11 +14,12 @@ title: Support Change Log
 * Add `Orchestra\Support\Relic`.
 * Add `Orchestra\Support\Str::replace()`.
 * Refactor `Orchestra\Support\Validator::getBindedRules()` to use `Orchestra\Support\Str::replace()`.
+* Refactor `Orchestra\Support\Nesty::decendants()`.
+* Return `Orchestra\Support\Nesty::getItems()` as instance of `Illuminate\Support\Collection`.
 * Add following facades:
   - `Orchestra\Support\Facades\Debug`
   - `Orchestra\Support\Facades\Notifier`
   - `Orchestra\Support\Facades\Warden`
-* Return `Orchestra\Support\Nesty::getItems()` as instance of `Illuminate\Support\Collection`.
 
 ## Version 2.0 {#v2-0}
 
