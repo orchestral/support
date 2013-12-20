@@ -39,7 +39,7 @@ abstract class Validator
      *
      * @var array
      */
-    protected $queued = null;
+    protected $scenario = null;
 
     /**
      * Create a scope scenario.
@@ -50,12 +50,11 @@ abstract class Validator
      */
     public function on($scenario, array $parameters = array())
     {
+        $this->scenario = $scenario;
         $method = 'on'.ucfirst($scenario);
 
         if (method_exists($this, $method)) {
-            $this->queued = array('method' => $method, 'parameters' => $parameters);
-        } else {
-            $this->queued = null;
+            call_user_func_array(array($this, $method), $parameters);
         }
 
         return $this;
@@ -88,11 +87,12 @@ abstract class Validator
 
         $this->resolver = V::make($input, $rules);
 
-        if (! is_null($this->queued)) {
-            call_user_func_array(
-                array($this, $this->queued['method']),
-                $this->queued['parameters']
-            );
+        if (! is_null($this->scenario)) {
+            $method = 'extend'.ucfirst($this->scenario);
+
+            if (method_exists($this, $method)) {
+                call_user_func(array($this, $method), $this->resolver);
+            }
         }
 
         return $this->resolver;
