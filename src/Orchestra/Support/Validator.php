@@ -7,6 +7,13 @@ use Illuminate\Support\Fluent;
 abstract class Validator
 {
     /**
+     * Laravel validator instance.
+     *
+     * @var \Illuminate\Validation\Validator
+     */
+    protected $resolver;
+
+    /**
      * List of rules.
      *
      * @var array
@@ -28,19 +35,15 @@ abstract class Validator
     protected $bindings = array();
 
     /**
-     * Current scope.
+     * Scenario queues.
      *
-     * @var string
+     * @var array
      */
-    protected $scope = null;
-
-    /**
-     * Create a new instance.
-     */
-    public function __construct()
-    {
-        $this->setRules($this->rules);
-    }
+    protected $queued = array(
+        'on'         => null,
+        'extend'     => null,
+        'parameters' => array(),
+    );
 
     /**
      * Create a scope scenario.
@@ -49,15 +52,16 @@ abstract class Validator
      * @param  array    $parameters
      * @return Validator
      */
-    public function on($scenario, $parameters = array())
+    public function on($scenario, array $parameters = array())
     {
-        $this->scope = $scenario;
+        $on     = 'on'.ucfirst($scenario);
+        $extend = 'extend'.ucfirst($scenario);
 
-        $method = 'on'.ucfirst($scenario);
-
-        if (method_exists($this, $method)) {
-            call_user_func_array(array($this, $method), $parameters);
-        }
+        $this->queued = array(
+            'on'         => method_exists($this, $on) ? $on : null,
+            'extend'     => method_exists($this, $extend) ? $extend : null,
+            'parameters' => $parameters,
+        );
 
         return $this;
     }
@@ -68,7 +72,7 @@ abstract class Validator
      * @param  array    $bindings
      * @return Validator
      */
-    public function bind($bindings)
+    public function bind(array $bindings)
     {
         $this->bindings = array_merge($this->bindings, $bindings);
 
@@ -78,26 +82,21 @@ abstract class Validator
     /**
      * Execute validation service.
      *
-     * @param  array    $input
-     * @param  string   $event
-     * @return \Illuminate\Validation\Factory
+     * @param  array           $input
+     * @param  string|array    $event
+     * @return \Illuminate\Validation\Validator
      */
-    public function with($input, $events = array())
+    public function with(array $input, $events = array())
     {
-        $rules      = $this->runValidationEvents($events);
-        $validation = V::make($input, $rules);
+        $this->runQueuedOn();
 
-        if (is_null($this->scope)) {
-            return $validation;
-        }
+        $rules = $this->runValidationEvents($events);
 
-        $method = 'extend'.ucfirst($this->scope);
+        $this->resolver = V::make($input, $rules);
 
-        if (method_exists($this, $method)) {
-            call_user_func(array($this, $method), $validation);
-        }
+        $this->runQueuedExtend($this->resolver);
 
-        return $validation;
+        return $this->resolver;
     }
 
     /**
@@ -107,7 +106,7 @@ abstract class Validator
      */
     protected function getBindedRules()
     {
-        $rules    = $this->rules;
+        $rules = $this->rules;
 
         if (! empty($this->bindings)) {
             foreach ($rules as $key => $value) {
@@ -119,35 +118,51 @@ abstract class Validator
     }
 
     /**
+     * Run queued on scenario.
+     *
+     * @return void
+     */
+    protected function runQueuedOn()
+    {
+        if (! is_null($method = $this->queued['on'])) {
+            call_user_func_array(array($this, $method), $this->queued['parameters']);
+        }
+    }
+
+    /**
+     * Run queued extend scenario.
+     *
+     * @param  \Illuminate\Validation\Validator    $resolver
+     * @return void
+     */
+    protected function runQueuedExtend($resolver)
+    {
+        if (! is_null($method = $this->queued['extend'])) {
+            call_user_func(array($this, $method), $resolver);
+        }
+    }
+
+    /**
      * Run validation events and return the finalize rules.
      *
-     * @param  array    $events
+     * @param  array|string    $events
      * @return array
      */
     protected function runValidationEvents($events)
     {
+        is_array($events) or $events = (array) $events;
+
         // Merge all the events.
-        $events = array_merge($this->events, (array) $events);
+        $events = array_merge($this->events, $events);
 
         // Convert rules array to Fluent, in order to pass it by references
         // in all event listening to this validation.
-        $rules  = new Fluent($this->getBindedRules());
+        $rules = new Fluent($this->getBindedRules());
 
         foreach ((array) $events as $event) {
             Event::fire($event, array(& $rules));
         }
 
         return $rules->getAttributes();
-    }
-
-    /**
-     * Set validation rules, this would override all previously defined
-     * rules.
-     *
-     * @return array
-     */
-    public function setRules($rules = array())
-    {
-        return $this->rules = $rules;
     }
 }

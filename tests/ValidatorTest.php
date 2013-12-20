@@ -51,7 +51,7 @@ class ValidatorTest extends \PHPUnit_Framework_TestCase
         $validation = $stub->with(array(), 'foo.event');
 
         $this->assertEquals('orchestra', $_SERVER['validator.onFoo']);
-        $this->assertInstanceOf('Validator', $_SERVER['validator.extendFoo']);
+        $this->assertEquals($validation, $_SERVER['validator.extendFoo']);
         $this->assertInstanceOf('Validator', $validation);
     }
 

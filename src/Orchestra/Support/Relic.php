@@ -18,7 +18,13 @@ class Relic
      */
     public function get($key, $default = null)
     {
-        return array_get($this->items, $key, $default);
+        $value = array_get($this->items, $key, $default);
+
+        if (is_null($value)) {
+            return value($default);
+        }
+
+        return $value;
     }
 
     /**
@@ -30,7 +36,7 @@ class Relic
      */
     public function set($key, $value = null)
     {
-        return array_set($this->items, $key, $value);
+        return array_set($this->items, $key, value($value));
     }
 
     /**
