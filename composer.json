@@ -22,6 +22,7 @@
 	"require-dev": {
 		"mockery/mockery": "0.8.*",
 		"patchwork/utf8": "1.1.*",
+		"illuminate/session": "4.2.*",
 		"illuminate/support": "4.2.*"
 	},
 	"suggest": {

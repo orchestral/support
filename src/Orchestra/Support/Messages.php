@@ -1,17 +1,63 @@
 <?php namespace Orchestra\Support;
 
 use Closure;
-use Illuminate\Support\Facades\Session;
+use Illuminate\Session\Store as SessionStore;
 use Illuminate\Support\MessageBag as M;
 
 class Messages extends M
 {
     /**
+     * The session store instance.
+     *
+     * @var \Illuminate\Session\Store
+     */
+    protected $session;
+
+    /**
      * Cached messages to be extends to current request.
      *
-     * @var self
+     * @var Messages
      */
-    protected $instance = null;
+    protected $instance;
+
+    /**
+     * Create a new message bag instance.
+     *
+     * @param  array                       $messages
+     * @param  \Illuminate\Session\Store   $session
+     * @return void
+     */
+    public function __construct(array $messages = array(), SessionStore $session = null)
+    {
+        parent::__construct($messages);
+
+        if (! is_null($session)) {
+            $this->setSession($session);
+        }
+    }
+
+    /**
+     * Set the session store.
+     *
+     * @param  \Illuminate\Session\Store   $session
+     * @return Messages
+     */
+    public function setSession(SessionStore $session)
+    {
+        $this->session = $session;
+
+        return $this;
+    }
+
+    /**
+     * Get the session store.
+     *
+     * @return \Illuminate\Session\Store
+     */
+    public function getSession()
+    {
+        return $this->session;
+    }
 
     /**
      * Retrieve Message instance from Session, the data should be in
@@ -23,14 +69,15 @@ class Messages extends M
     {
         $messages = null;
 
-        if (is_null($this->instance)) {
-            $this->instance = new static();
+        if (! isset($this->instance)) {
+            $this->instance = new static;
+            $this->instance->setSession($this->session);
 
-            if (Session::has('message')) {
-                $messages = @unserialize(Session::get('message', ''));
+            if ($this->session->has('message')) {
+                $messages = @unserialize($this->session->get('message', ''));
             }
 
-            Session::forget('message');
+            $this->session->forget('message');
 
             if (is_array($messages)) {
                 $this->instance->merge($messages);
@@ -59,7 +106,7 @@ class Messages extends M
      */
     public function save()
     {
-        Session::flash('message', $this->serialize());
+        $this->session->flash('message', $this->serialize());
     }
 
     /**
