@@ -21,22 +21,6 @@ class Messages extends M
     protected $instance;
 
     /**
-     * Create a new message bag instance.
-     *
-     * @param  array                       $messages
-     * @param  \Illuminate\Session\Store   $session
-     * @return void
-     */
-    public function __construct(array $messages = array(), SessionStore $session = null)
-    {
-        parent::__construct($messages);
-
-        if (! is_null($session)) {
-            $this->setSession($session);
-        }
-    }
-
-    /**
      * Set the session store.
      *
      * @param  \Illuminate\Session\Store   $session

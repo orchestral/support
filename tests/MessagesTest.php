@@ -22,7 +22,7 @@ class MessagesTest extends \PHPUnit_Framework_TestCase
     {
         $session = m::mock('\Illuminate\Session\Store');
 
-        $message = new Messages(array(), $session);
+        $message = with(new Messages)->setSession($session);
         $message->add('welcome', 'Hello world');
         $message->setFormat();
 
@@ -45,7 +45,7 @@ class MessagesTest extends \PHPUnit_Framework_TestCase
         $session = m::mock('\Illuminate\Session\Store');
         $session->shouldReceive('flash')->once()->andReturn(true);
 
-        with(new Messages(array(), $session))->save();
+        with(new Messages)->setSession($session)->save();
     }
 
     /**
@@ -60,7 +60,7 @@ class MessagesTest extends \PHPUnit_Framework_TestCase
 
         $session->shouldReceive('flash')->once()->andReturn(true);
 
-        $message = new Messages(array(), $session);
+        $message = with(new Messages)->setSession($session);
         $message->add('hello', 'Hi World');
         $message->add('bye', 'Goodbye');
 
@@ -89,7 +89,7 @@ class MessagesTest extends \PHPUnit_Framework_TestCase
                 ->andReturn('a:2:{s:5:"hello";a:1:{i:0;s:8:"Hi World";}s:3:"bye";a:1:{i:0;s:7:"Goodbye";}}')
             ->shouldReceive('forget')->once()->andReturn(true);
 
-        $retrieve = with(new Messages(array(), $session))->retrieve();
+        $retrieve = with(new Messages)->setSession($session)->retrieve();
         $retrieve->setFormat();
 
         $this->assertInstanceOf('\Orchestra\Support\Messages', $retrieve);
@@ -115,7 +115,7 @@ class MessagesTest extends \PHPUnit_Framework_TestCase
             $msg->add('hello', 'Hi Orchestra Platform');
         };
 
-        $stub = new Messages(array(), $session);
+        $stub = with(new Messages)->setSession($session);
         $stub->extend($callback);
 
         $retrieve = $stub->retrieve();
