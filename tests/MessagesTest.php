@@ -6,17 +6,6 @@ use Orchestra\Support\Messages;
 class MessagesTest extends \PHPUnit_Framework_TestCase
 {
     /**
-     * Setup the test environment.
-     */
-    public function setUp()
-    {
-        $app = m::mock('\Illuminate\Foundation\Application');
-        $app->shouldReceive('instance')->andReturn(true);
-
-        \Illuminate\Support\Facades\Session::setFacadeApplication($app);
-    }
-
-    /**
      * Teardown the test environment.
      */
     public function tearDown()
@@ -25,13 +14,13 @@ class MessagesTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test Orchestra\Support\Messages::make()
+     * Test Orchestra\Support\Messages::make() method.
      *
      * @test
      */
     public function testMakeMethod()
     {
-        $message = new Messages;
+        $message = new Messages(array(), m::mock('\Illuminate\Session\Store'));
         $message->add('welcome', 'Hello world');
         $message->setFormat();
 
@@ -43,18 +32,16 @@ class MessagesTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test Orchestra\Support\Messages::save()
+     * Test Orchestra\Support\Messages::save() method.
      *
      * @test
      */
     public function testSaveMethod()
     {
-        $session = m::mock('Session');
+        $session = m::mock('\Illuminate\Session\Store');
         $session->shouldReceive('flash')->once()->andReturn(true);
 
-        \Illuminate\Support\Facades\Session::swap($session);
-
-        with(new Messages)->save();
+        with(new Messages(array(), $session))->save();
     }
 
     /**
@@ -65,11 +52,11 @@ class MessagesTest extends \PHPUnit_Framework_TestCase
      */
     public function testStoreMethod()
     {
-        $session = m::mock('Session');
-        $session->shouldReceive('flash')->once()->andReturn(true);
-        \Illuminate\Support\Facades\Session::swap($session);
+        $session = m::mock('\Illuminate\Session\Store');
 
-        $message = new Messages;
+        $session->shouldReceive('flash')->once()->andReturn(true);
+
+        $message = new Messages(array(), $session);
         $message->add('hello', 'Hi World');
         $message->add('bye', 'Goodbye');
 
@@ -92,14 +79,13 @@ class MessagesTest extends \PHPUnit_Framework_TestCase
      */
     public function testRetrieveMethod()
     {
-        $session = m::mock('Session');
+        $session = m::mock('\Illuminate\Session\Store');
         $session->shouldReceive('has')->once()->andReturn(true)
-            ->shouldReceive('get')->once()->andReturn('a:2:{s:5:"hello";a:1:{i:0;s:8:"Hi World";}s:3:"bye";a:1:{i:0;s:7:"Goodbye";}}')
+            ->shouldReceive('get')->once()
+                ->andReturn('a:2:{s:5:"hello";a:1:{i:0;s:8:"Hi World";}s:3:"bye";a:1:{i:0;s:7:"Goodbye";}}')
             ->shouldReceive('forget')->once()->andReturn(true);
 
-        \Illuminate\Support\Facades\Session::swap($session);
-
-        $retrieve = with(new Messages)->retrieve();
+        $retrieve = with(new Messages(array(), $session))->retrieve();
         $retrieve->setFormat();
 
         $this->assertInstanceOf('\Orchestra\Support\Messages', $retrieve);
@@ -115,18 +101,17 @@ class MessagesTest extends \PHPUnit_Framework_TestCase
      */
     public function testExtendMethod()
     {
-        $session = m::mock('Session');
+        $session = m::mock('\Illuminate\Session\Store');
         $session->shouldReceive('has')->once()->andReturn(true)
-            ->shouldReceive('get')->once()->andReturn('a:1:{s:5:"hello";a:1:{i:0;s:8:"Hi World";}}')
+            ->shouldReceive('get')->once()
+                ->andReturn('a:1:{s:5:"hello";a:1:{i:0;s:8:"Hi World";}}')
             ->shouldReceive('forget')->once()->andReturn(true);
-
-        \Illuminate\Support\Facades\Session::swap($session);
 
         $callback = function ($msg) {
             $msg->add('hello', 'Hi Orchestra Platform');
         };
 
-        $stub = new Messages;
+        $stub = new Messages(array(), $session);
         $stub->extend($callback);
 
         $retrieve = $stub->retrieve();

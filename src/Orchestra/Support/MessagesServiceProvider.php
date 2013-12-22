@@ -11,8 +11,8 @@ class MessagesServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->bindShared('orchestra.messages', function () {
-            return new Messages;
+        $this->app->bindShared('orchestra.messages', function ($app) {
+            return new Messages(array(), $app['session.store']);
         });
     }
 
