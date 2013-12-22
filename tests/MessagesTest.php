@@ -20,7 +20,9 @@ class MessagesTest extends \PHPUnit_Framework_TestCase
      */
     public function testMakeMethod()
     {
-        $message = new Messages(array(), m::mock('\Illuminate\Session\Store'));
+        $session = m::mock('\Illuminate\Session\Store');
+
+        $message = new Messages(array(), $session);
         $message->add('welcome', 'Hello world');
         $message->setFormat();
 
@@ -29,6 +31,8 @@ class MessagesTest extends \PHPUnit_Framework_TestCase
 
         $message->add('welcome', 'Hi Foobar')->add('welcome', 'Heya Admin');
         $this->assertEquals(array('Hello world', 'Hi Foobar', 'Heya Admin'), $message->get('welcome'));
+
+        $this->assertEquals($session, $message->getSession());
     }
 
     /**

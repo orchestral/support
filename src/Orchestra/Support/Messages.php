@@ -23,15 +23,40 @@ class Messages extends M
     /**
      * Create a new message bag instance.
      *
-     * @param  array                        $messages
-     * @param  \Illuminate\Session\Store    $session
+     * @param  array                       $messages
+     * @param  \Illuminate\Session\Store   $session
      * @return void
      */
-    public function __construct(array $messages = array(), SessionStore $session)
+    public function __construct(array $messages = array(), SessionStore $session = null)
     {
         parent::__construct($messages);
 
+        if (! is_null($session)) {
+            $this->setSession($session);
+        }
+    }
+
+    /**
+     * Set the session store.
+     *
+     * @param  \Illuminate\Session\Store   $session
+     * @return Messages
+     */
+    public function setSession(SessionStore $session)
+    {
         $this->session = $session;
+
+        return $this;
+    }
+
+    /**
+     * Get the session store.
+     *
+     * @return \Illuminate\Session\Store
+     */
+    public function getSession()
+    {
+        return $this->session;
     }
 
     /**
@@ -45,7 +70,8 @@ class Messages extends M
         $messages = null;
 
         if (! isset($this->instance)) {
-            $this->instance = new static(array(), $this->session);
+            $this->instance = new static;
+            $this->instance->setSession($this->session);
 
             if ($this->session->has('message')) {
                 $messages = @unserialize($this->session->get('message', ''));
