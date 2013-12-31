@@ -84,15 +84,16 @@ abstract class Validator
      *
      * @param  array           $input
      * @param  string|array    $event
+     * @param  array           $messages
      * @return \Illuminate\Validation\Validator
      */
-    public function with(array $input, $events = array())
+    public function with(array $input, $events = array(), $messages = array())
     {
         $this->runQueuedOn();
 
         $rules = $this->runValidationEvents($events);
 
-        $this->resolver = V::make($input, $rules);
+        $this->resolver = V::make($input, $rules, $messages);
 
         $this->runQueuedExtend($this->resolver);
 
