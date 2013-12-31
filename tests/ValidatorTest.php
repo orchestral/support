@@ -35,12 +35,13 @@ class ValidatorTest extends \PHPUnit_Framework_TestCase
      */
     public function testValidation()
     {
-        $event     = m::mock('Event');
-        $validator = m::mock('Validator');
+        $event     = m::mock('\Illuminate\Events\Dispatcher[fire]');
+        $validator = m::mock('\Illuminate\Validation\Factory');
         $rules     = array('email' => array('email', 'foo:2'), 'name' => 'any');
 
         $event->shouldReceive('fire')->once()->with('foo.event', m::any())->andReturn(null);
-        $validator->shouldReceive('make')->once()->with(array(), $rules)->andReturn($validator);
+        $validator->shouldReceive('make')->once()->with(array(), $rules, array())
+            ->andReturn(m::mock('\Illuminate\Validation\Validator'));
 
         \Illuminate\Support\Facades\Event::swap($event);
         \Illuminate\Support\Facades\Validator::swap($validator);
@@ -52,7 +53,7 @@ class ValidatorTest extends \PHPUnit_Framework_TestCase
 
         $this->assertEquals('orchestra', $_SERVER['validator.onFoo']);
         $this->assertEquals($validation, $_SERVER['validator.extendFoo']);
-        $this->assertInstanceOf('Validator', $validation);
+        $this->assertInstanceOf('\Illuminate\Validation\Validator', $validation);
     }
 
     /**
@@ -62,11 +63,12 @@ class ValidatorTest extends \PHPUnit_Framework_TestCase
      */
     public function testValidationWithoutAScope()
     {
-        $event     = m::mock('Event');
-        $validator = m::mock('Validator');
+        $event     = m::mock('\Illuminate\Events\Dispatcher[fire]');
+        $validator = m::mock('\Illuminate\Validation\Factory');
         $rules     = array('email' => array('email', 'foo:2'), 'name' => 'any');
 
-        $validator->shouldReceive('make')->once()->with(array(), $rules)->andReturn($validator);
+        $validator->shouldReceive('make')->once()->with(array(), $rules, array())
+            ->andReturn(m::mock('\Illuminate\Validation\Validator'));
 
         \Illuminate\Support\Facades\Event::swap($event);
         \Illuminate\Support\Facades\Validator::swap($validator);
@@ -76,7 +78,7 @@ class ValidatorTest extends \PHPUnit_Framework_TestCase
 
         $validation = $stub->with(array());
 
-        $this->assertInstanceOf('Validator', $validation);
+        $this->assertInstanceOf('\Illuminate\Validation\Validator', $validation);
     }
 }
 
