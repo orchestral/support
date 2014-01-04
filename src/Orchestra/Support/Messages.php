@@ -75,12 +75,14 @@ class Messages extends M
      * Extend Messages instance from session.
      *
      * @param  \Closure $callback
-     * @return void
+     * @return Messages
      */
     public function extend(Closure $callback)
     {
         $instance = $this->retrieve();
         call_user_func($callback, $instance);
+
+        return $instance;
     }
 
     /**
