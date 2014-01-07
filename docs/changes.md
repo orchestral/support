@@ -11,11 +11,17 @@ title: Support Change Log
 * Allow `Orchestra\Support\Nesty` to prepend an item without knowing the current first item.
 * Add `Orchestra\Support\Messages::extend()` and tweak how Messages notification can be manipulated on current request.
 * Add `Orchestra\Support\Nesty::is()` to return instance of `Illuminate\Support\Fluent` to allow further chaining of the instance.
+* Add `Orchestra\Support\Str::searchable()` for better pattern matching.
 * Add `Orchestra\Support\Relic`.
 * Add `Orchestra\Support\Str::replace()`.
+* `Illuminate\Support\Str::title()` is implemented, remove duplicate method.
+* Add support to use `Orchestra\Support\Validator::extendScope()`, useful to have when need to deal with conditional rules <http://laravel.com/docs/validation#conditionally-adding-rules>.
+* Refactor `Orchestra\Support\Str::streamGetContents()`.
+* Implement [PSR-2](https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-2-coding-style-guide.md) coding standard.
 * Refactor `Orchestra\Support\Validator::getBindedRules()` to use `Orchestra\Support\Str::replace()`.
 * Refactor `Orchestra\Support\Nesty::decendants()`.
 * Return `Orchestra\Support\Nesty::getItems()` as instance of `Illuminate\Support\Collection`.
+* Add support for custom messages on `Orchestra\Support\Validator` using `$phrases` protected property.
 * Add following facades:
   - `Orchestra\Support\Facades\Debug`
   - `Orchestra\Support\Facades\Notifier`

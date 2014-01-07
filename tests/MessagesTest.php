@@ -116,11 +116,12 @@ class MessagesTest extends \PHPUnit_Framework_TestCase
         };
 
         $stub = with(new Messages)->setSession($session);
-        $stub->extend($callback);
+        $output = $stub->extend($callback);
 
         $retrieve = $stub->retrieve();
         $retrieve->setFormat();
 
+        $this->assertInstanceOf('\Orchestra\Support\Messages', $output);
         $this->assertInstanceOf('\Orchestra\Support\Messages', $retrieve);
         $this->assertEquals(array('Hi World', 'Hi Orchestra Platform'), $retrieve->get('hello'));
     }
