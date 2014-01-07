@@ -38,9 +38,10 @@ class ValidatorTest extends \PHPUnit_Framework_TestCase
         $event     = m::mock('\Illuminate\Events\Dispatcher[fire]');
         $validator = m::mock('\Illuminate\Validation\Factory');
         $rules     = array('email' => array('email', 'foo:2'), 'name' => 'any');
+        $phrases   = array('email.required' => 'Email required');
 
         $event->shouldReceive('fire')->once()->with('foo.event', m::any())->andReturn(null);
-        $validator->shouldReceive('make')->once()->with(array(), $rules, array())
+        $validator->shouldReceive('make')->once()->with(array(), $rules, $phrases)
             ->andReturn(m::mock('\Illuminate\Validation\Validator'));
 
         \Illuminate\Support\Facades\Event::swap($event);
@@ -66,8 +67,9 @@ class ValidatorTest extends \PHPUnit_Framework_TestCase
         $event     = m::mock('\Illuminate\Events\Dispatcher[fire]');
         $validator = m::mock('\Illuminate\Validation\Factory');
         $rules     = array('email' => array('email', 'foo:2'), 'name' => 'any');
+        $phrases   = array('email.required' => 'Email required', 'name' => 'Any name');
 
-        $validator->shouldReceive('make')->once()->with(array(), $rules, array())
+        $validator->shouldReceive('make')->once()->with(array(), $rules, $phrases)
             ->andReturn(m::mock('\Illuminate\Validation\Validator'));
 
         \Illuminate\Support\Facades\Event::swap($event);
@@ -76,7 +78,7 @@ class ValidatorTest extends \PHPUnit_Framework_TestCase
         $stub = new FooValidator;
         $stub->bind(array('id' => '2'));
 
-        $validation = $stub->with(array());
+        $validation = $stub->with(array(), null, array('name' => 'Any name'));
 
         $this->assertInstanceOf('\Illuminate\Validation\Validator', $validation);
     }
@@ -87,6 +89,10 @@ class FooValidator extends \Orchestra\Support\Validator
     protected $rules = array(
         'email' => array('email', 'foo:{id}'),
         'name'  => 'any',
+    );
+
+    protected $phrases = array(
+        'email.required' => 'Email required',
     );
 
     protected function onFoo($value)

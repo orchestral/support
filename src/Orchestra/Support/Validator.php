@@ -14,6 +14,13 @@ abstract class Validator
     protected $resolver;
 
     /**
+     * List of phrases.
+     *
+     * @var array
+     */
+    protected $phrases = array();
+
+    /**
      * List of rules.
      *
      * @var array
@@ -84,16 +91,16 @@ abstract class Validator
      *
      * @param  array           $input
      * @param  string|array    $event
-     * @param  array           $messages
+     * @param  array           $phrases
      * @return \Illuminate\Validation\Validator
      */
-    public function with(array $input, $events = array(), $messages = array())
+    public function with(array $input, $events = array(), array $phrases = array())
     {
         $this->runQueuedOn();
 
-        $rules = $this->runValidationEvents($events);
+        list($rules, $phrases) = $this->runValidationEvents($events, $phrases);
 
-        $this->resolver = V::make($input, $rules, $messages);
+        $this->resolver = V::make($input, $rules, $phrases);
 
         $this->runQueuedExtend($this->resolver);
 
@@ -144,12 +151,13 @@ abstract class Validator
     }
 
     /**
-     * Run validation events and return the finalize rules.
+     * Run validation events and return the finalize rules and phrases.
      *
      * @param  array|string    $events
+     * @param  array           $phrases
      * @return array
      */
-    protected function runValidationEvents($events)
+    protected function runValidationEvents($events, array $phrases)
     {
         is_array($events) or $events = (array) $events;
 
@@ -158,12 +166,16 @@ abstract class Validator
 
         // Convert rules array to Fluent, in order to pass it by references
         // in all event listening to this validation.
-        $rules = new Fluent($this->getBindedRules());
+        $rules   = new Fluent($this->getBindedRules());
+        $phrases = new Fluent(array_merge($this->phrases, $phrases));
 
         foreach ((array) $events as $event) {
-            Event::fire($event, array(& $rules));
+            Event::fire($event, array(& $rules, & $phrases));
         }
 
-        return $rules->getAttributes();
+        return array(
+            $rules->getAttributes(),
+            $phrases->getAttributes(),
+        );
     }
 }
