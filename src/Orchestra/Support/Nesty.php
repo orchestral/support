@@ -155,9 +155,9 @@ class Nesty
      */
     public function add($id, $location = '#')
     {
-        if ($location === '<' and count($keys = array_keys($this->items)) > 0) {
+        if ($location === '<' && count($keys = array_keys($this->items)) > 0) {
             return $this->addBefore($id, $keys[0]);
-        } elseif (preg_match('/^(<|>|\^):(.+)$/', $location, $matches) and count($matches) >= 3) {
+        } elseif (preg_match('/^(<|>|\^):(.+)$/', $location, $matches) && count($matches) >= 3) {
             return $this->pickTraverseFromMatchedExpression($id, $matches[1], $matches[2]);
         }
 
@@ -230,7 +230,7 @@ class Nesty
     protected function resolveLastDecendant($array, $keys)
     {
         $isLastDescendant = function ($array, $segment) {
-            return ( ! is_array($array->childs) or ! isset($array->childs[$segment]));
+            return ( ! is_array($array->childs) || ! isset($array->childs[$segment]));
         };
 
         // To retrieve the array item using dot syntax, we'll iterate through

@@ -159,7 +159,7 @@ abstract class Validator
      */
     protected function runValidationEvents($events, array $phrases)
     {
-        is_array($events) or $events = (array) $events;
+        is_array($events) || $events = (array) $events;
 
         // Merge all the events.
         $events = array_merge($this->events, $events);
