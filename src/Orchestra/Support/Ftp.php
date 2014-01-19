@@ -272,7 +272,7 @@ class Ftp
      */
     protected function createConnection()
     {
-        if ($this->ssl and @Facade::isCallable('sslConnect')) {
+        if ($this->ssl && @Facade::isCallable('sslConnect')) {
             if (! ($this->connection = @Facade::sslConnect($this->host, $this->port, $this->timeout))) {
                 throw new Ftp\ServerException(
                     "Failed to connect to [{$this->host}] (SSL Connection)."

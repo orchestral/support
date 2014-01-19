@@ -22,7 +22,7 @@ class Morph extends \Orchestra\Support\Morph
         $result = null;
 
         if (! static::isCallable($method)
-            or ! $result = call_user_func_array(static::$prefix.$method, $parameters)) {
+            || ! $result = call_user_func_array(static::$prefix.$method, $parameters)) {
             throw new RuntimeException("Failed to use {$method}.", $parameters);
         }
 
