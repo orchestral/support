@@ -20,7 +20,7 @@
 		"php": ">=5.3.3"
 	},
 	"require-dev": {
-		"mockery/mockery": "0.8.*",
+		"mockery/mockery": "0.9.*",
 		"patchwork/utf8": "1.1.*",
 		"illuminate/events": "4.1.*",
 		"illuminate/session": "4.1.*",
