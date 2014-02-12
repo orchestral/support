@@ -13,7 +13,6 @@ class Expression
      * Create a new expression instance.
      *
      * @param  string  $value
-     * @return void
      */
     public function __construct($value)
     {
