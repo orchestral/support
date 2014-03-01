@@ -12,7 +12,7 @@ class MessagesServiceProvider extends ServiceProvider
     public function register()
     {
         $this->app->bindShared('orchestra.messages', function ($app) {
-            return with(new Messages)->setSession($app['session.store']);
+            return with(new Messages)->setSessionStore($app['session.store']);
         });
     }
 
