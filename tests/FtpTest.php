@@ -1,4 +1,4 @@
-<?php namespace Orchestra\Support\Tests;
+<?php namespace Orchestra\Support\TestCase;
 
 use Orchestra\Support\Ftp\Morph;
 use Orchestra\Support\Ftp;
@@ -17,7 +17,7 @@ class FtpTest extends \PHPUnit_Framework_TestCase
      */
     public function setUp()
     {
-        Morph::$prefix = '\Orchestra\Support\Tests\mock1_ftp_';
+        Morph::$prefix = '\Orchestra\Support\TestCase\mock1_ftp_';
 
         $this->stub = new Ftp(array(
             'host'     => 'sftp://localhost:22',
@@ -41,7 +41,7 @@ class FtpTest extends \PHPUnit_Framework_TestCase
      */
     public function testInstanceOfFTP()
     {
-        Morph::$prefix = '\Orchestra\Support\Tests\mock1_ftp_';
+        Morph::$prefix = '\Orchestra\Support\TestCase\mock1_ftp_';
 
         $stub = Ftp::make(array('connection' => new StreamStub));
 
@@ -78,7 +78,7 @@ class FtpTest extends \PHPUnit_Framework_TestCase
      */
     public function testConnectMethodSuccessful()
     {
-        Morph::$prefix = '\Orchestra\Support\Tests\mock1_ftp_';
+        Morph::$prefix = '\Orchestra\Support\TestCase\mock1_ftp_';
 
         $this->assertFalse($this->stub->connected());
         $this->assertTrue($this->stub->connect());
@@ -102,7 +102,7 @@ class FtpTest extends \PHPUnit_Framework_TestCase
      */
     public function testConnectMethodWhenHostIsNotDefined()
     {
-        Morph::$prefix = '\Orchestra\Support\Tests\mock1_ftp_';
+        Morph::$prefix = '\Orchestra\Support\TestCase\mock1_ftp_';
 
         $stub = new Ftp(array(
             'user'     => 'foo',
@@ -119,7 +119,7 @@ class FtpTest extends \PHPUnit_Framework_TestCase
      */
     public function testConnectMethodSFTPConnectThrowsException()
     {
-        Morph::$prefix = '\Orchestra\Support\Tests\mock2_ftp_';
+        Morph::$prefix = '\Orchestra\Support\TestCase\mock2_ftp_';
 
         $stub = new Ftp(array(
             'host'     => 'sftp://localhost:22',
@@ -137,7 +137,7 @@ class FtpTest extends \PHPUnit_Framework_TestCase
      */
     public function testConnectMethodFTPConnectThrowsException()
     {
-        Morph::$prefix = '\Orchestra\Support\Tests\mock2_ftp_';
+        Morph::$prefix = '\Orchestra\Support\TestCase\mock2_ftp_';
 
         $stub = new Ftp(array(
             'host'     => 'ftp://localhost:21',
@@ -155,7 +155,7 @@ class FtpTest extends \PHPUnit_Framework_TestCase
      */
     public function testConnectMethodFTPLoginThrowsException()
     {
-        Morph::$prefix = '\Orchestra\Support\Tests\mock3_ftp_';
+        Morph::$prefix = '\Orchestra\Support\TestCase\mock3_ftp_';
 
         $stub = new Ftp(array(
             'host'     => 'ftp://localhost:21',
@@ -173,7 +173,7 @@ class FtpTest extends \PHPUnit_Framework_TestCase
      */
     public function testFTPFacadeMethodsSuccessful()
     {
-        Morph::$prefix = '\Orchestra\Support\Tests\mock1_ftp_';
+        Morph::$prefix = '\Orchestra\Support\TestCase\mock1_ftp_';
 
         $this->stub->connect();
 
@@ -196,7 +196,7 @@ class FtpTest extends \PHPUnit_Framework_TestCase
      */
     public function testFTPFacadeThrowsException()
     {
-        Morph::$prefix = '\Orchestra\Support\Tests\mock1_ftp_';
+        Morph::$prefix = '\Orchestra\Support\TestCase\mock1_ftp_';
 
         try {
             Morph::fire('invalid_method', array('foo'));

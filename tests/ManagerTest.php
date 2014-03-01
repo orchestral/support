@@ -1,4 +1,4 @@
-<?php namespace Orchestra\Support\Tests;
+<?php namespace Orchestra\Support\TestCase;
 
 use Mockery as m;
 
@@ -30,14 +30,14 @@ class ManagerTest extends \PHPUnit_Framework_TestCase
         $output4 = $stub->driver('foobar.daylerees');
         $output5 = $stub->driver('awesome.taylor');
 
-        $this->assertInstanceOf('\Orchestra\Support\Tests\ManagerFoo', $output1);
+        $this->assertInstanceOf('\Orchestra\Support\TestCase\ManagerFoo', $output1);
         $this->assertEquals('bar', $output1->name);
         $this->assertEquals($output1, $output2);
         $this->assertEquals('default', $output3->name);
         $this->assertNotEquals($output2, $output3);
-        $this->assertInstanceOf('\Orchestra\Support\Tests\ManagerFoobar', $output4);
+        $this->assertInstanceOf('\Orchestra\Support\TestCase\ManagerFoobar', $output4);
         $this->assertEquals('daylerees', $output4->name);
-        $this->assertInstanceOf('\Orchestra\Support\Tests\ManagerAwesomeFoobar', $output5);
+        $this->assertInstanceOf('\Orchestra\Support\TestCase\ManagerAwesomeFoobar', $output5);
         $this->assertEquals('taylor', $output5->name);
     }
 
