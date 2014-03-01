@@ -8,6 +8,7 @@ title: Support Change Log
 ### v2.2.0@dev {#v2-2-0}
 
 * Rename `getSession` and `setSession` to `getSessionStore` and `setSessionStore` for consistency on `Orchestra\Support\Messages`.
+* Add `Orchestra\Support\Traits\MacroableTrait`.
 
 ## Version 2.1 {#v2-1}
 
