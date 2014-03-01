@@ -20,11 +20,13 @@ class Str extends S
      *
      * @param  string  $text
      * @param  array   $replacements
+     * @param  string  $prefix
+     * @param  string  $suffix
      * @return string
      */
-    public static function replace($text, array $replacements = array())
+    public static function replace($text, array $replacements = array(), $prefix = '{', $suffix = '}')
     {
-        $replacements = static::prepareBinding($replacements, '{', '}');
+        $replacements = static::prepareBinding($replacements, $prefix, $suffix);
 
         $filter = function ($text) use ($replacements) {
             return strtr($text, $replacements);
