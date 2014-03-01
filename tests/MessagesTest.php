@@ -22,7 +22,7 @@ class MessagesTest extends \PHPUnit_Framework_TestCase
     {
         $session = m::mock('\Illuminate\Session\Store');
 
-        $message = with(new Messages)->setSession($session);
+        $message = with(new Messages)->setSessionStore($session);
         $message->add('welcome', 'Hello world');
         $message->setFormat();
 
@@ -32,7 +32,7 @@ class MessagesTest extends \PHPUnit_Framework_TestCase
         $message->add('welcome', 'Hi Foobar')->add('welcome', 'Heya Admin');
         $this->assertEquals(array('Hello world', 'Hi Foobar', 'Heya Admin'), $message->get('welcome'));
 
-        $this->assertEquals($session, $message->getSession());
+        $this->assertEquals($session, $message->getSessionStore());
     }
 
     /**
@@ -45,7 +45,7 @@ class MessagesTest extends \PHPUnit_Framework_TestCase
         $session = m::mock('\Illuminate\Session\Store');
         $session->shouldReceive('flash')->once()->andReturn(true);
 
-        with(new Messages)->setSession($session)->save();
+        with(new Messages)->setSessionStore($session)->save();
     }
 
     /**
@@ -60,7 +60,7 @@ class MessagesTest extends \PHPUnit_Framework_TestCase
 
         $session->shouldReceive('flash')->once()->andReturn(true);
 
-        $message = with(new Messages)->setSession($session);
+        $message = with(new Messages)->setSessionStore($session);
         $message->add('hello', 'Hi World');
         $message->add('bye', 'Goodbye');
 
@@ -89,7 +89,7 @@ class MessagesTest extends \PHPUnit_Framework_TestCase
                 ->andReturn('a:2:{s:5:"hello";a:1:{i:0;s:8:"Hi World";}s:3:"bye";a:1:{i:0;s:7:"Goodbye";}}')
             ->shouldReceive('forget')->once()->andReturn(true);
 
-        $retrieve = with(new Messages)->setSession($session)->retrieve();
+        $retrieve = with(new Messages)->setSessionStore($session)->retrieve();
         $retrieve->setFormat();
 
         $this->assertInstanceOf('\Orchestra\Support\Messages', $retrieve);
@@ -115,7 +115,7 @@ class MessagesTest extends \PHPUnit_Framework_TestCase
             $msg->add('hello', 'Hi Orchestra Platform');
         };
 
-        $stub = with(new Messages)->setSession($session);
+        $stub = with(new Messages)->setSessionStore($session);
         $output = $stub->extend($callback);
 
         $retrieve = $stub->retrieve();

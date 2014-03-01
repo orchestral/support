@@ -26,7 +26,7 @@ class Messages extends M
      * @param  \Illuminate\Session\Store   $session
      * @return Messages
      */
-    public function setSession(SessionStore $session)
+    public function setSessionStore(SessionStore $session)
     {
         $this->session = $session;
 
@@ -38,7 +38,7 @@ class Messages extends M
      *
      * @return \Illuminate\Session\Store
      */
-    public function getSession()
+    public function getSessionStore()
     {
         return $this->session;
     }
@@ -55,7 +55,7 @@ class Messages extends M
 
         if (! isset($this->instance)) {
             $this->instance = new static;
-            $this->instance->setSession($this->session);
+            $this->instance->setSessionStore($this->session);
 
             if ($this->session->has('message')) {
                 $messages = @unserialize($this->session->get('message', ''));
