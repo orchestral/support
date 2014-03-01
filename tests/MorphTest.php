@@ -1,4 +1,4 @@
-<?php namespace Orchestra\Support\Tests;
+<?php namespace Orchestra\Support\TestCase;
 
 class MorphTest extends \PHPUnit_Framework_TestCase
 {
@@ -30,5 +30,5 @@ function foo_connect()
 
 class MorphStub extends \Orchestra\Support\Morph
 {
-    public static $prefix = '\Orchestra\Support\Tests\foo_';
+    public static $prefix = '\Orchestra\Support\TestCase\foo_';
 }

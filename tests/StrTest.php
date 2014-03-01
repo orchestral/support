@@ -1,4 +1,4 @@
-<?php namespace Orchestra\Support\Tests;
+<?php namespace Orchestra\Support\TestCase;
 
 use Orchestra\Support\Str;
 
