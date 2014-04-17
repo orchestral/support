@@ -118,7 +118,7 @@ class Nesty
      */
     protected function addChild($id, $parent)
     {
-        $node = $this->descendants($parent);
+        $node = $this->descendants($this->items, $parent);
 
         // it might be possible parent is not defined due to ACL, in this
         // case we should simply ignore this request as child should
@@ -193,19 +193,18 @@ class Nesty
      */
     public function is($key)
     {
-        return $this->descendants($key);
+        return $this->descendants($this->items, $key);
     }
 
     /**
      * Get last descendant node from items recursively.
      *
+     * @param  array    $array
      * @param  string   $key
      * @return \Illuminate\Support\Fluent
      */
-    protected function descendants($key = null)
+    protected function descendants(array $array, $key = null)
     {
-        $array = $this->items;
-
         if (is_null($key)) {
             return $array;
         }
