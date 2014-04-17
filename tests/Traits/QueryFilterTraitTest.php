@@ -14,21 +14,45 @@ class QueryFilterTraitTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test \Orchestra\Support\Traits\QueryFilterTrait is executable.
+     * Test \Orchestra\Support\Traits\QueryFilterTrait::setupBasicQueryFilter()
+     * method.
      *
      * @test
      */
-    public function testMacroIsExecutable()
+    public function testSetupBasicQueryFilterMethod()
     {
         $stub = new QueryFilter;
         $query = m::mock('\Illuminate\Database\Query\Builder');
 
         $query->shouldReceive('orderBy')->once()->with('updated_at', 'DESC')->andReturn($query);
 
-        $this->assertInstanceOf('\Illuminate\Database\Query\Builder', $stub->stub($query, [
+        $this->assertInstanceOf('\Illuminate\Database\Query\Builder', $stub->stubSetupBasicQueryFilter($query, [
             'order' => 'updated',
             'sort'  => 'desc',
         ]));
+    }
+
+    /**
+     * Test \Orchestra\Support\Traits\QueryFilterTrait::setupWildcardQueryFilter()
+     * method.
+     *
+     * @test
+     */
+    public function testSetupWildcardQueryFilterMethod()
+    {
+        $stub = new QueryFilter;
+        $query = m::mock('\Illuminate\Database\Query\Builder');
+
+        $query->shouldReceive('where')->once()->with(m::type('Closure'))
+                ->andReturnUsing(function ($c) use ($query) {
+                    $c($query);
+                })
+            ->shouldReceive('orWhere')->once()->with('name', 'LIKE', 'hello')
+            ->shouldReceive('orWhere')->once()->with('name', 'LIKE', 'hello%')
+            ->shouldReceive('orWhere')->once()->with('name', 'LIKE', '%hello')
+            ->shouldReceive('orWhere')->once()->with('name', 'LIKE', '%hello%');
+
+        $this->assertInstanceOf('\Illuminate\Database\Query\Builder', $stub->stubSetupWildcardQueryFilter($query, 'hello', ['name']));
     }
 }
 
@@ -36,8 +60,13 @@ class QueryFilter
 {
     use QueryFilterTrait;
 
-    public function stub($query, $input)
+    public function stubSetupBasicQueryFilter($query, $input)
     {
         return $this->setupBasicQueryFilter($query, $input);
+    }
+
+    public function stubSetupWildcardQueryFilter($query, $keyword, $fields)
+    {
+        return $this->setupWildcardQueryFilter($query, $keyword, $fields);
     }
 }
