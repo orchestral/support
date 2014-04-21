@@ -14,6 +14,10 @@ title: Support Change Log
 
 ## Version 2.1 {#v2-1}
 
+### v2.1.3 {#v2-1-2}
+
+* Convert `Orchestra\Support\Nesty` to utilize `Orchestra\Support\Collection`.
+
 ### v2.1.2 {#v2-1-2}
 
 * Add `Orchestra\Support\Collection` which bring support to native to CSV export.

@@ -1,7 +1,7 @@
 <?php namespace Orchestra\Support\TestCase;
 
-use Illuminate\Support\Collection;
 use Illuminate\Support\Fluent;
+use Orchestra\Support\Collection;
 use Orchestra\Support\Nesty;
 
 class NestyTest extends \PHPUnit_Framework_TestCase
