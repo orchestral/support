@@ -5,6 +5,10 @@ title: Support Change Log
 
 ## Version 2.1 {#v2-1}
 
+### v2.1.2 {#v2-1-2}
+
+* Add `Orchestra\Support\Collection` which bring support to native to CSV export.
+
 ### v2.1.1 {#v2-1-1}
 
 * Allow to specify `$prefix` and `$suffix` for `Orchestra\Support\Str::replace()` helper.
