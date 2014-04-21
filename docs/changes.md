@@ -3,7 +3,7 @@ title: Support Change Log
 
 ---
 
-## Version 2.1 {#v2-1
+## Version 2.1 {#v2-1}
 
 ### v2.1.3 {#v2-1-2}
 
