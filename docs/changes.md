@@ -5,12 +5,14 @@ title: Support Change Log
 
 ## Version 2.2 {#v2-2}
 
-### v2.2.0@dev {#v2-2-0}
+### v2.2.0 {#v2-2-0}
 
 * Rename `getSession` and `setSession` to `getSessionStore` and `setSessionStore` for consistency on `Orchestra\Support\Messages`.
-* Add `Orchestra\Support\Traits\QueryFilterTrait` to create basic filtering based on URL query string for query builder or eloquent.
-* Add `Orchestra\Support\Traits\ControllerResponseTrait` to add response helpers for controller.
-* Add `Orchestra\Support\Traits\MacroableTrait`.
+* Add multiple traits:
+  - `Orchestra\Support\Traits\ControllerResponseTrait` to add response helpers for controller.
+  - `Orchestra\Support\Traits\MacroableTrait` for working with macro enabled classes.
+  - `Orchestra\Support\Traits\QueryFilterTrait` to create basic filtering based on URL query string for query builder or eloquent.
+  - `Orchestra\Support\Traits\UploadableTrait` for uploading files.
 
 ## Version 2.1 {#v2-1}
 
