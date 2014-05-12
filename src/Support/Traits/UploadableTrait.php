@@ -1,37 +1,46 @@
 <?php namespace Orchestra\Support\Traits;
 
-use Orchestra\Support\Str;
 use Illuminate\Support\Facades\File;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
+use Orchestra\Support\Str;
 
-trait UploadableTrait {
-
+trait UploadableTrait
+{
     /**
-     * Save uploaded file into directory
+     * Save uploaded file into directory.
      *
-     * @param  use Symfony\Component\HttpFoundation\File\UploadedFile
-     * @param  string $path
+     * @param  \Symfony\Component\HttpFoundation\File\UploadedFile  $file
+     * @param  string                                               $path
      * @return string
      */
-    protected function save(UploadedFile $file, $path)
+    protected function saveUploadedFile(UploadedFile $file, $path)
     {
-        $extension = $file->getClientOriginalExtension();
-        $filename = Str::random(10).".{$extension}";
-
-        $file->move($path, $filename);
+        $file->move($path, $filename = $this->getUploadedFilename($file));
 
         return $filename;
     }
 
     /**
      * Delete uploaded from directory
-     * 
+     *
      * @param  string $file
      * @return bool
      */
-    protected function delete($file)
+    protected function deleteUploadedFile($file)
     {
         return File::delete($file);
     }
 
+    /**
+     * Get uploaded filename.
+     *
+     * @param  \Symfony\Component\HttpFoundation\File\UploadedFile  $file
+     * @return string
+     */
+    protected function getUploadedFilename(UploadedFile $file)
+    {
+        $extension = $file->getClientOriginalExtension();
+
+        return Str::random(10).".{$extension}";
+    }
 }
