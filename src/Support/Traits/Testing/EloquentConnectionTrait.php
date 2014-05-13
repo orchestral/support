@@ -1,4 +1,4 @@
-<?php namespace Orchestra\Support\Traits;
+<?php namespace Orchestra\Support\Traits\Testing;
 
 use Mockery as m;
 
