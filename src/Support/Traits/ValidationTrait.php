@@ -9,13 +9,6 @@ use Orchestra\Support\Str;
 trait ValidationTrait
 {
     /**
-     * Laravel validator instance.
-     *
-     * @var \Illuminate\Validation\Validator
-     */
-    protected $validationResolver;
-
-    /**
      * List of phrases.
      *
      * @var array
@@ -102,11 +95,11 @@ trait ValidationTrait
 
         list($rules, $phrases) = $this->runValidationEvents($events, $phrases);
 
-        $this->validationResolver = V::make($input, $rules, $phrases);
+        $validationResolver = V::make($input, $rules, $phrases);
 
-        $this->runQueuedExtend($this->validationResolver);
+        $this->runQueuedExtend($validationResolver);
 
-        return $this->validationResolver;
+        return $validationResolver;
     }
 
     /**
@@ -135,7 +128,7 @@ trait ValidationTrait
     protected function runQueuedOn()
     {
         if (! is_null($method = $this->validationScenarios['on'])) {
-            call_user_func_array(array($this, $method), $this->validationScenarios['parameters']);
+            call_user_func_array([$this, $method], $this->validationScenarios['parameters']);
         }
     }
 
