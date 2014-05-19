@@ -4,14 +4,6 @@ use Illuminate\Events\Dispatcher;
 
 trait ObservableTrait
 {
-
-    /**
-     * User exposed observable events.
-     *
-     * @var array
-     */
-    protected $observables = [];
-
     /**
      * The event dispatcher instance.
      *
@@ -54,9 +46,9 @@ trait ObservableTrait
      *
      * @return array
      */
-    protected function getObservableEvents()
+    public function getObservableEvents()
     {
-        return $this->observables;
+        return [];
     }
 
     /**

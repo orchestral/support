@@ -9,50 +9,11 @@ use Orchestra\Support\Str;
 trait ValidationTrait
 {
     /**
-     * Laravel validator instance.
-     *
-     * @var \Illuminate\Validation\Validator
-     */
-    protected $validationResolver;
-
-    /**
-     * List of phrases.
-     *
-     * @var array
-     */
-    protected $phrases = [];
-
-    /**
-     * List of rules.
-     *
-     * @var array
-     */
-    protected $rules = [];
-
-    /**
-     * List of events.
-     *
-     * @var array
-     */
-    protected $validationEvents = [];
-
-    /**
      * List of bindings.
      *
      * @var array
      */
     protected $validationBindings = [];
-
-    /**
-     * Scenario queues.
-     *
-     * @var array
-     */
-    protected $validationScenarios = [
-        'on'         => null,
-        'extend'     => null,
-        'parameters' => [],
-    ];
 
     /**
      * Create a scope scenario.
@@ -98,15 +59,19 @@ trait ValidationTrait
      */
     public function runValidation(array $input, $events = [], array $phrases = [])
     {
+        if (! isset($this->validationScenarios)) {
+            $this->onValidationScenario('any');
+        }
+
         $this->runQueuedOn();
 
         list($rules, $phrases) = $this->runValidationEvents($events, $phrases);
 
-        $this->validationResolver = V::make($input, $rules, $phrases);
+        $validationResolver = V::make($input, $rules, $phrases);
 
-        $this->runQueuedExtend($this->validationResolver);
+        $this->runQueuedExtend($validationResolver);
 
-        return $this->validationResolver;
+        return $validationResolver;
     }
 
     /**
@@ -116,7 +81,7 @@ trait ValidationTrait
      */
     protected function getBindedRules()
     {
-        $rules = $this->rules;
+        $rules = $this->getValidationRules();
 
         if (! empty($this->validationBindings)) {
             foreach ($rules as $key => $value) {
@@ -135,7 +100,7 @@ trait ValidationTrait
     protected function runQueuedOn()
     {
         if (! is_null($method = $this->validationScenarios['on'])) {
-            call_user_func_array(array($this, $method), $this->validationScenarios['parameters']);
+            call_user_func_array([$this, $method], $this->validationScenarios['parameters']);
         }
     }
 
@@ -164,12 +129,12 @@ trait ValidationTrait
         is_array($events) || $events = (array) $events;
 
         // Merge all the events.
-        $events = array_merge($this->validationEvents, $events);
+        $events = array_merge($this->getValidationEvents(), $events);
 
         // Convert rules array to Fluent, in order to pass it by references
         // in all event listening to this validation.
         $rules   = new Fluent($this->getBindedRules());
-        $phrases = new Fluent(array_merge($this->phrases, $phrases));
+        $phrases = new Fluent(array_merge($this->getValidationPhrases(), $phrases));
 
         foreach ((array) $events as $event) {
             Event::fire($event, [& $rules, & $phrases]);
@@ -179,5 +144,35 @@ trait ValidationTrait
             $rules->getAttributes(),
             $phrases->getAttributes(),
         ];
+    }
+
+    /**
+     * Get validation events.
+     *
+     * @return array
+     */
+    public function getValidationEvents()
+    {
+        return [];
+    }
+
+    /**
+     * Get validation phrases.
+     *
+     * @return array
+     */
+    public function getValidationPhrases()
+    {
+        return [];
+    }
+
+    /**
+     * Get validation rules.
+     *
+     * @return array
+     */
+    public function getValidationRules()
+    {
+        return [];
     }
 }
