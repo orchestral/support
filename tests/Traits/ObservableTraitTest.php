@@ -13,6 +13,11 @@ class ObservableTraitTest extends \PHPUnit_Framework_TestCase
         m::close();
     }
 
+    /**
+     * Test Orchestra\Support\Traits\ObservableTrait::$dispatcher.
+     *
+     * @test
+     */
     public function testEventDispatcher()
     {
         $dispatcher = m::mock('\Illuminate\Events\Dispatcher');
@@ -28,6 +33,12 @@ class ObservableTraitTest extends \PHPUnit_Framework_TestCase
         $this->assertNull(ObservableStub::getEventDispatcher());
     }
 
+    /**
+     * Test Orchestra\Support\Traits\ObservableTrait::getObservableEvents()
+     * method.
+     *
+     * @test
+     */
     public function testGetObservableEventsMethod()
     {
         $stub1 = new ObservableStub;
@@ -37,6 +48,12 @@ class ObservableTraitTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals(array(), $stub2->getObservableEvents());
     }
 
+    /**
+     * Test Orchestra\Support\Traits\ObservableTrait::observe()
+     * method without event dispatcher.
+     *
+     * @test
+     */
     public function testObserveWithoutDispatcher()
     {
         ObservableStub::flushEventListeners();
@@ -50,6 +67,12 @@ class ObservableTraitTest extends \PHPUnit_Framework_TestCase
         $this->assertFalse($stub->saved);
     }
 
+    /**
+     * Test Orchestra\Support\Traits\ObservableTrait::observe()
+     * method with event dispatcher.
+     *
+     * @test
+     */
     public function testObserveWithDispatcher()
     {
         $dispatcher = m::mock('\Illuminate\Events\Dispatcher');
