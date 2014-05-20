@@ -51,24 +51,18 @@ class FtpTest extends \PHPUnit_Framework_TestCase
         $stub->close();
         $this->assertFalse($stub->connected());
 
-        $refl     = new \ReflectionObject($this->stub);
-        $host     = $refl->getProperty('host');
-        $port     = $refl->getProperty('port');
-        $ssl      = $refl->getProperty('ssl');
-        $user     = $refl->getProperty('user');
-        $password = $refl->getProperty('password');
+        $refl   = new \ReflectionObject($this->stub);
+        $config = $refl->getProperty('config');
 
-        $host->setAccessible(true);
-        $port->setAccessible(true);
-        $ssl->setAccessible(true);
-        $user->setAccessible(true);
-        $password->setAccessible(true);
+        $config->setAccessible(true);
 
-        $this->assertEquals('localhost', $host->getValue($this->stub));
-        $this->assertTrue($ssl->getValue($this->stub));
-        $this->assertEquals('22', $port->getValue($this->stub));
-        $this->assertEquals('foo', $user->getValue($this->stub));
-        $this->assertEquals('foobar', $password->getValue($this->stub));
+        $configuration = $config->getValue($this->stub);
+
+        $this->assertEquals('localhost', $configuration['host']);
+        $this->assertTrue($configuration['ssl']);
+        $this->assertEquals('22', $configuration['port']);
+        $this->assertEquals('foo', $configuration['user']);
+        $this->assertEquals('foobar', $configuration['password']);
     }
 
     /**

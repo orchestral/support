@@ -1,7 +1,6 @@
 <?php namespace Orchestra\Support\TestCase;
 
 use Mockery as m;
-use Illuminate\Container\Container;
 use Orchestra\Support\Relic;
 
 class RelicTest extends \PHPUnit_Framework_TestCase
@@ -22,7 +21,7 @@ class RelicTest extends \PHPUnit_Framework_TestCase
      */
     public function testGetMethod()
     {
-        $stub = new Relic;
+        $stub = new RelicStub;
 
         $refl = new \ReflectionObject($stub);
         $items = $refl->getProperty('items');
@@ -44,7 +43,7 @@ class RelicTest extends \PHPUnit_Framework_TestCase
      */
     public function testSetMethod()
     {
-        $stub = new Relic;
+        $stub = new RelicStub;
         $stub->set('title', 'Foo');
         $stub->set('foo.bar', 'Foobar');
 
@@ -60,7 +59,7 @@ class RelicTest extends \PHPUnit_Framework_TestCase
      */
     public function testHasMethod()
     {
-        $stub = new Relic;
+        $stub = new RelicStub;
 
         $refl = new \ReflectionObject($stub);
         $items = $refl->getProperty('items');
@@ -84,7 +83,7 @@ class RelicTest extends \PHPUnit_Framework_TestCase
      */
     public function testForgetMethod()
     {
-        $stub = new Relic;
+        $stub = new RelicStub;
 
         $refl = new \ReflectionObject($stub);
         $items = $refl->getProperty('items');
@@ -108,4 +107,9 @@ class RelicTest extends \PHPUnit_Framework_TestCase
         $this->assertFalse($stub->has('hello'));
         $this->assertEquals(array('hello' => 'foo'), $stub->get('foo'));
     }
+}
+
+class RelicStub extends Relic
+{
+
 }

@@ -16,6 +16,13 @@ trait ValidationTrait
     protected $validationBindings = [];
 
     /**
+     * Validation scenario configuration.
+     *
+     * @var array
+     */
+    protected $validationScenarios;
+
+    /**
      * Create a scope scenario.
      *
      * @param  string   $scenario
@@ -59,7 +66,7 @@ trait ValidationTrait
      */
     public function runValidation(array $input, $events = [], array $phrases = [])
     {
-        if (! isset($this->validationScenarios)) {
+        if (is_null($this->validationScenarios)) {
             $this->onValidationScenario('any');
         }
 
