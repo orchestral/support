@@ -1,37 +1,10 @@
 <?php namespace Orchestra\Support;
 
 use Orchestra\Support\Ftp\Morph as Facade;
+use Orchestra\Support\Ftp\ServerException;
 
 class Ftp
 {
-    /**
-     * FTP host.
-     *
-     * @var string
-     */
-    protected $host = null;
-
-    /**
-     * FTP port.
-     *
-     * @var integer
-     */
-    protected $port = 21;
-
-    /**
-     * FTP user.
-     *
-     * @var string
-     */
-    protected $user = null;
-
-    /**
-     * FTP password.
-     *
-     * @var string
-     */
-    protected $password = null;
-
     /**
      * FTP stream connection.
      *
@@ -40,25 +13,19 @@ class Ftp
     protected $connection = null;
 
     /**
-     * FTP timeout.
+     * FTP configuration.
      *
-     * @var integer
+     * @var array
      */
-    protected $timeout = 90;
-
-    /**
-     * FTP passive mode flag
-     *
-     * @var boolean
-     */
-    protected $passive = false;
-
-    /**
-     * SSL-FTP connection flag.
-     *
-     * @var boolean
-     */
-    protected $ssl = false;
+    protected $config = array(
+        'host'     => null,
+        'port'     => 21,
+        'user'     => null,
+        'password' => null,
+        'timeout'  => 90,
+        'passive'  => false,
+        'ssl'      => false,
+    );
 
     /**
      * System type of FTP server.
@@ -99,20 +66,16 @@ class Ftp
      */
     public function setUp($config = array())
     {
-        $host = array_get($config, 'host');
+        $this->connection = array_pull($config, 'connection', $this->connection);
 
-        if (preg_match('/^(ftp|sftp):\/\/([a-zA-Z0-9\.\-_]*):?(\d{1,4})$/', $host, $matches)) {
+        if (preg_match('/^(ftp|sftp):\/\/([a-zA-Z0-9\.\-_]*):?(\d{1,4})$/', array_get($config, 'host'), $matches)) {
             $config['host'] = $matches[2];
             $config['ssl']  = ($matches[1] === 'sftp' ? true : false);
 
             isset($matches[3]) && $config['port'] = $matches[3];
         }
 
-        foreach ($config as $key => $value) {
-            if (property_exists($this, $key)) {
-                $this->{$key} = $value;
-            }
-        }
+        $this->config = array_merge($this->config, $config);
     }
 
     /**
@@ -242,18 +205,25 @@ class Ftp
      */
     public function connect()
     {
-        if (is_null($this->host)) {
+        $host     = array_get($this->config, 'host');
+        $port     = array_get($this->config, 'port');
+        $user     = array_get($this->config, 'user');
+        $password = array_get($this->config, 'password');
+        $passive  = array_get($this->config, 'passive');
+        $timeout  = array_get($this->config, 'timeout');
+
+        if (is_null($host)) {
             return ;
         }
 
-        $this->createConnection();
+        $this->createConnection($host, $port, $timeout);
 
-        if (! (@Facade::login($this->connection, $this->user, $this->password))) {
-            throw new Ftp\ServerException("Failed FTP login to [{$this->host}].");
+        if (! (@Facade::login($this->connection, $user, $password))) {
+            throw new ServerException("Failed FTP login to [{$host}].");
         }
 
         // Set passive mode.
-        @Facade::pasv($this->connection, (bool) $this->passive);
+        @Facade::pasv($this->connection, (bool) $passive);
 
         // Set system type.
         $this->systemType = @Facade::systype($this->connection);
@@ -264,30 +234,36 @@ class Ftp
     /**
      * Create a FTP connection.
      *
+     * @param  string   $host
+     * @param  integer  $port
+     * @param  integer  $timeout
      * @return void
-     * @throws \Orchestra\Support\Ftp\Exception If unable to connect to FTP
-     *                                          server.
+     * @throws \Orchestra\Support\Ftp\ServerException   If unable to connect to FTP
+     *                                                  server.
      */
-    protected function createConnection()
+    protected function createConnection($host, $port = 21, $timeout = 90)
     {
-        if ($this->ssl && @Facade::isCallable('sslConnect')) {
-            return $this->createSecureConnection();
-        } elseif (! ($this->connection = @Facade::connect($this->host, $this->port, $this->timeout))) {
-            throw new Ftp\ServerException("Failed to connect to [{$this->host}].");
+        if ($this->config['ssl'] && @Facade::isCallable('sslConnect')) {
+            return $this->createSecureConnection($host, $port, $timeout);
+        } elseif (! ($this->connection = @Facade::connect($host, $port, $timeout))) {
+            throw new ServerException("Failed to connect to [{$host}].");
         }
     }
 
     /**
      * Create a secure (SSL) FTP connection.
      *
+     * @param  string   $host
+     * @param  integer  $port
+     * @param  integer  $timeout
      * @return void
      * @throws \Orchestra\Support\Ftp\ServerException
      */
-    protected function createSecureConnection()
+    protected function createSecureConnection($host, $port = 21, $timeout = 90)
     {
-        if (!($this->connection = @Facade::sslConnect($this->host, $this->port, $this->timeout))) {
-            throw new Ftp\ServerException(
-                "Failed to connect to [{$this->host}] (SSL Connection)."
+        if (! ($this->connection = @Facade::sslConnect($host, $port, $timeout))) {
+            throw new ServerException(
+                "Failed to connect to [{$host}] (SSL Connection)."
             );
         }
     }
