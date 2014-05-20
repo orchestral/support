@@ -271,13 +271,24 @@ class Ftp
     protected function createConnection()
     {
         if ($this->ssl && @Facade::isCallable('sslConnect')) {
-            if (! ($this->connection = @Facade::sslConnect($this->host, $this->port, $this->timeout))) {
-                throw new Ftp\ServerException(
-                    "Failed to connect to [{$this->host}] (SSL Connection)."
-                );
-            }
+            return $this->createSecureConnection();
         } elseif (! ($this->connection = @Facade::connect($this->host, $this->port, $this->timeout))) {
             throw new Ftp\ServerException("Failed to connect to [{$this->host}].");
+        }
+    }
+
+    /**
+     * Create a secure (SSL) FTP connection.
+     *
+     * @return void
+     * @throws \Orchestra\Support\Ftp\ServerException
+     */
+    protected function createSecureConnection()
+    {
+        if (!($this->connection = @Facade::sslConnect($this->host, $this->port, $this->timeout))) {
+            throw new Ftp\ServerException(
+                "Failed to connect to [{$this->host}] (SSL Connection)."
+            );
         }
     }
 
