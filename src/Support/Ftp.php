@@ -99,15 +99,13 @@ class Ftp
      */
     public function setUp($config = array())
     {
-        $host = isset($config['host']) ? $config['host'] : null;
+        $host = array_get($config, 'host');
 
         if (preg_match('/^(ftp|sftp):\/\/([a-zA-Z0-9\.\-_]*):?(\d{1,4})$/', $host, $matches)) {
             $config['host'] = $matches[2];
             $config['ssl']  = ($matches[1] === 'sftp' ? true : false);
 
-            if (isset($matches[3])) {
-                $config['port'] = $matches[3];
-            }
+            isset($matches[3]) && $config['port'] = $matches[3];
         }
 
         foreach ($config as $key => $value) {
