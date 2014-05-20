@@ -205,25 +205,20 @@ class Ftp
      */
     public function connect()
     {
-        $host     = array_get($this->config, 'host');
-        $port     = array_get($this->config, 'port');
-        $user     = array_get($this->config, 'user');
-        $password = array_get($this->config, 'password');
-        $passive  = array_get($this->config, 'passive');
-        $timeout  = array_get($this->config, 'timeout');
+        $config = $this->config;
 
-        if (is_null($host)) {
+        if (is_null($config['host'])) {
             return ;
         }
 
-        $this->createConnection($host, $port, $timeout);
+        $this->createConnection($config['host'], $config['port'], $config['timeout']);
 
-        if (! (@Facade::login($this->connection, $user, $password))) {
-            throw new ServerException("Failed FTP login to [{$host}].");
+        if (! (@Facade::login($this->connection, $config['user'], $config['password']))) {
+            throw new ServerException("Failed FTP login to [{$config['host']}].");
         }
 
         // Set passive mode.
-        @Facade::pasv($this->connection, (bool) $passive);
+        @Facade::pasv($this->connection, (bool) $config['passive']);
 
         // Set system type.
         $this->systemType = @Facade::systype($this->connection);
