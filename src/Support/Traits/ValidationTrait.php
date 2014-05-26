@@ -31,8 +31,7 @@ trait ValidationTrait
      */
     public function onValidationScenario($scenario, array $parameters = [])
     {
-        $on     = 'on'.ucfirst($scenario);
-        $extend = 'extend'.ucfirst($scenario);
+        list($on, $extend) = $this->getValidationSchemasName($scenario);
 
         $this->validationScenarios = [
             'on'         => method_exists($this, $on) ? $on : null,
@@ -181,5 +180,19 @@ trait ValidationTrait
     public function getValidationRules()
     {
         return [];
+    }
+
+    /**
+     * Get validation schemas name.
+     *
+     * @param  string   $scenario
+     * @return array
+     */
+    protected function getValidationSchemasName($scenario)
+    {
+        $on = 'on'.ucfirst($scenario);
+        $extend = 'extend'.ucfirst($scenario);
+
+        return [$on, $extend];
     }
 }
