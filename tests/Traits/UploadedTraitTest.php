@@ -32,7 +32,10 @@ class UploadedTraitTest extends \PHPUnit_Framework_TestCase
     public function testSaveUploadedFileMethod()
     {
         $path = '/var/www/public/';
-        $file = m::mock('\Symfony\Component\HttpFoundation\File\UploadedFile');
+        $file = m::mock('\Symfony\Component\HttpFoundation\File\UploadedFile[getClientOriginalExtension,move]', array(
+            realpath(__DIR__.'/fixtures').'/test.gif',
+            'test',
+        ));
 
         $file->shouldReceive('getClientOriginalExtension')->once()->andReturn('jpg')
             ->shouldReceive('move')->once()->with($path, m::type('String'))->andReturnNull();
@@ -51,7 +54,10 @@ class UploadedTraitTest extends \PHPUnit_Framework_TestCase
     public function testSaveUploadedFileMethodWithCustomFilename()
     {
         $path = '/var/www/public/';
-        $file = m::mock('\Symfony\Component\HttpFoundation\File\UploadedFile');
+        $file = m::mock('\Symfony\Component\HttpFoundation\File\UploadedFile[move]', array(
+            realpath(__DIR__.'/fixtures').'/test.gif',
+            'test',
+        ));
 
         $file->shouldReceive('move')->once()->with($path, 'foo.jpg')->andReturnNull();
 
