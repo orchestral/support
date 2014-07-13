@@ -2,7 +2,7 @@
 	"name": "orchestra/support",
 	"description": "Orchestra Platform 2 Support Component",
 	"homepage": "http://orchestraplatform.com/docs/latest/components/support/",
-	"keywords": ["orchestra-platform", "orchestral", "laravel"],
+	"keywords": ["orchestra-platform", "orchestral", "laravel", "messages", "notification", "validator", "utilities"],
 	"license": "MIT",
 	"authors": [
 		{
