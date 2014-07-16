@@ -16,6 +16,10 @@ title: Support Change Log
 
 ## Version 2.1 {#v2-1}
 
+### v2.1.4@dev {#v2-1-4}
+
+* Fixes exception shouldn't be thrown when casting `Orchestra\Support\Collection` to CSV when no data is available.
+
 ### v2.1.3 {#v2-1-2}
 
 * Convert `Orchestra\Support\Nesty` to utilize `Orchestra\Support\Collection`.

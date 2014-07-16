@@ -11,8 +11,13 @@ class Collection extends IlluminateCollection implements Contracts\CsvableInterf
     {
         $delimiter = ',';
         $enclosure = '"';
-        $single    = max($this->items);
-        $header    = array_keys(array_dot($single));
+        $single    = 0;
+        $header    = array();
+
+        if (! $this->isEmpty()) {
+            $single = max($this->items);
+            $header = array_keys(array_dot($single));
+        }
 
         ob_start();
 
