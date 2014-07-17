@@ -106,8 +106,8 @@ class ManagerStub extends \Orchestra\Support\Manager
         return new ManagerFoobar($this->app, $name);
     }
 
-    public function createDefaultDriver()
+    public function getDefaultDriver()
     {
-        return $this->createFooDriver();
+        return 'foo';
     }
 }
