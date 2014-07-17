@@ -5,6 +5,10 @@ title: Support Change Log
 
 ## Version 2.2 {#v2-2}
 
+### v2.2.1@dev {#v2-2-1}
+
+* Fixes exception shouldn't be thrown when casting `Orchestra\Support\Collection` to CSV when no data is available.
+
 ### v2.2.0 {#v2-2-0}
 
 * Rename `getSession` and `setSession` to `getSessionStore` and `setSessionStore` for consistency on `Orchestra\Support\Messages`.
