@@ -11,13 +11,7 @@ class Collection extends IlluminateCollection implements Contracts\CsvableInterf
     {
         $delimiter = ',';
         $enclosure = '"';
-        $single    = 0;
-        $header    = array();
-
-        if (! $this->isEmpty()) {
-            $single = max($this->items);
-            $header = array_keys(array_dot($single));
-        }
+        $header    = $this->resolveCsvHeader();
 
         ob_start();
 
@@ -30,5 +24,22 @@ class Collection extends IlluminateCollection implements Contracts\CsvableInterf
         }
 
         return ob_get_clean();
+    }
+
+    /**
+     * Resolve CSV header.
+     *
+     * @return array
+     */
+    protected function resolveCsvHeader()
+    {
+        $header = array();
+
+        if (! $this->isEmpty()) {
+            $single = $this->first();
+            $header = array_keys(array_dot($single));
+        }
+
+        return $header;
     }
 }
