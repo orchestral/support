@@ -5,7 +5,7 @@ title: Support Change Log
 
 ## Version 2.1 {#v2-1}
 
-### v2.1.4@dev {#v2-1-4}
+### v2.1.4 {#v2-1-4}
 
 * Fixes exception shouldn't be thrown when casting `Orchestra\Support\Collection` to CSV when no data is available.
 
