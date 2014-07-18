@@ -1,8 +1,8 @@
 <?php namespace Orchestra\Support;
 
-use Illuminate\Support\Collection as IlluminateCollection;
+use Orchestra\Support\Contracts\CsvableInterface;
 
-class Collection extends IlluminateCollection implements Contracts\CsvableInterface
+class Collection extends \Illuminate\Support\Collection implements CsvableInterface
 {
     /**
      * {@inheritdoc}
