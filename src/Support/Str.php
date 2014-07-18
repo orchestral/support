@@ -1,8 +1,6 @@
 <?php namespace Orchestra\Support;
 
-use Illuminate\Support\Str as S;
-
-class Str extends S
+class Str extends \Illuminate\Support\Str
 {
     /**
      * Convert slug type text to human readable text.
