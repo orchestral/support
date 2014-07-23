@@ -1,5 +1,6 @@
 <?php namespace Orchestra\Support\Traits;
 
+use Illuminate\Support\Arr;
 use Orchestra\Support\Str;
 
 trait QueryFilterTrait
@@ -13,7 +14,7 @@ trait QueryFilterTrait
      */
     protected function setupBasicQueryFilter($query, array $input = array())
     {
-        $order = array_get($input, 'order', null);
+        $order = Arr::get($input, 'order', null);
         $sort  = Str::upper(array_get($input, 'sort', ''));
 
         ! in_array($sort, ['ASC', 'DESC']) && $sort = 'ASC';

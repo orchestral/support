@@ -1,5 +1,7 @@
 <?php namespace Orchestra\Support\Traits;
 
+use Illuminate\Support\Arr;
+
 trait DataContainerTrait
 {
     /**
@@ -18,7 +20,7 @@ trait DataContainerTrait
      */
     public function get($key, $default = null)
     {
-        $value = array_get($this->items, $key, $default);
+        $value = Arr::get($this->items, $key, $default);
 
         if (is_null($value)) {
             return value($default);
@@ -36,7 +38,7 @@ trait DataContainerTrait
      */
     public function set($key, $value = null)
     {
-        return array_set($this->items, $key, value($value));
+        return Arr::set($this->items, $key, value($value));
     }
 
     /**
@@ -58,7 +60,7 @@ trait DataContainerTrait
      */
     public function forget($key)
     {
-        return array_forget($this->items, $key);
+        Arr::forget($this->items, $key);
     }
 
     /**
