@@ -3,14 +3,14 @@
 class Relic
 {
     /**
-     * Data for site.
+     * Item or collection.
      *
      * @var array
      */
     protected $items = array();
 
     /**
-     * Get a site value.
+     * Get a item value.
      *
      * @param  string   $key
      * @param  mixed    $default
@@ -28,7 +28,7 @@ class Relic
     }
 
     /**
-     * Set a site value.
+     * Set a item value.
      *
      * @param  string   $key
      * @param  mixed    $value
@@ -40,7 +40,7 @@ class Relic
     }
 
     /**
-     * Check if site key has a value.
+     * Check if item key has a value.
      *
      * @param  string   $key
      * @return boolean
@@ -51,14 +51,14 @@ class Relic
     }
 
     /**
-     * Remove a site key.
+     * Remove a item key.
      *
      * @param  string   $key
      * @return void
      */
     public function forget($key)
     {
-        return array_forget($this->items, $key);
+        array_forget($this->items, $key);
     }
 
     /**
