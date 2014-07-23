@@ -24,7 +24,7 @@ class Nesty
      * @param  array    $config
      * @return void
      */
-    public function __construct($config)
+    public function __construct(array $config = array())
     {
         $this->config = $config;
     }
