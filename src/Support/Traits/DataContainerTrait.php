@@ -5,14 +5,14 @@ use Illuminate\Support\Arr;
 trait DataContainerTrait
 {
     /**
-     * Data for site.
+     * Item or collection.
      *
      * @var array
      */
     protected $items = [];
 
     /**
-     * Get a site value.
+     * Get a item value.
      *
      * @param  string   $key
      * @param  mixed    $default
@@ -30,7 +30,7 @@ trait DataContainerTrait
     }
 
     /**
-     * Set a site value.
+     * Set a item value.
      *
      * @param  string   $key
      * @param  mixed    $value
@@ -42,7 +42,7 @@ trait DataContainerTrait
     }
 
     /**
-     * Check if site key has a value.
+     * Check if item key has a value.
      *
      * @param  string   $key
      * @return boolean
@@ -53,7 +53,7 @@ trait DataContainerTrait
     }
 
     /**
-     * Remove a site key.
+     * Remove a item key.
      *
      * @param  string   $key
      * @return void
