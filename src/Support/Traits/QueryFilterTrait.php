@@ -14,14 +14,16 @@ trait QueryFilterTrait
      */
     protected function setupBasicQueryFilter($query, array $input = array())
     {
-        $order = Arr::get($input, 'order', null);
-        $sort  = Str::upper(array_get($input, 'sort', ''));
+        $order = Arr::get($input, 'order', '');
+        $sort  = Str::upper(Arr::get($input, 'sort', null));
 
         ! in_array($sort, ['ASC', 'DESC']) && $sort = 'ASC';
 
         if (in_array($order, ['created', 'updated', 'deleted'])) {
-            $query->orderBy("{$order}_at", $sort);
+            $order = "{$order}_at";
         }
+
+        ! empty($order) && $query->orderBy($order, $sort);
 
         return $query;
     }
