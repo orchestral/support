@@ -5,6 +5,10 @@ title: Support Change Log
 
 ## Version 2.2 {#v2-2}
 
+### v2.2.2 {#v2-2-2}
+
+* `Orchestra\Support\Traits\QueryFilterTrait::setupBasicQueryFilter()` should allow filtering none `*_at` fields.
+
 ### v2.2.1 {#v2-2-1}
 
 * Fixes exception shouldn't be thrown when casting `Orchestra\Support\Collection` to CSV when no data is available.

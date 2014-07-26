@@ -40,7 +40,7 @@ class Ftp
      * @param  array    $config
      * @return self
      */
-    public static function make($config = array())
+    public static function make(array $config = array())
     {
         return new static($config);
     }
@@ -51,7 +51,7 @@ class Ftp
      * @param  array    $config
      * @return void
      */
-    public function __construct($config = array())
+    public function __construct(array $config = array())
     {
         if (! empty($config)) {
             $this->setUp($config);
@@ -64,7 +64,7 @@ class Ftp
      * @param  array    $config
      * @return void
      */
-    public function setUp($config = array())
+    public function setUp(array $config = array())
     {
         $this->connection = array_pull($config, 'connection', $this->connection);
 
@@ -82,7 +82,7 @@ class Ftp
      * Change current directory on FTP server.
      *
      * @param  string   $directory
-     * @return boolean
+     * @return bool
      */
     public function changeDirectory($directory)
     {
@@ -178,7 +178,7 @@ class Ftp
      * Create directory on FTP server.
      *
      * @param  string   $directory
-     * @return boolean
+     * @return bool
      */
     public function makeDirectory($directory)
     {
@@ -189,7 +189,7 @@ class Ftp
      * Remove directory on FTP server.
      *
      * @param  string   $directory
-     * @return boolean
+     * @return bool
      */
     public function removeDirectory($directory)
     {
@@ -199,16 +199,16 @@ class Ftp
     /**
      * Connect to FTP server.
      *
-     * @return boolean
-     * @throws \Orchestra\Support\Ftp\Exception If unable to connect/login
-     *                                          to FTP server.
+     * @return bool|null
+     * @throws \Orchestra\Support\Ftp\ServerException   If unable to connect/login
+     *                                                  to FTP server.
      */
     public function connect()
     {
         $config = $this->config;
 
         if (is_null($config['host'])) {
-            return ;
+            return null;
         }
 
         $this->createConnection($config['host'], $config['port'], $config['timeout']);
@@ -239,7 +239,7 @@ class Ftp
     protected function createConnection($host, $port = 21, $timeout = 90)
     {
         if ($this->config['ssl'] && @Facade::isCallable('sslConnect')) {
-            return $this->createSecureConnection($host, $port, $timeout);
+            $this->createSecureConnection($host, $port, $timeout);
         } elseif (! ($this->connection = @Facade::connect($host, $port, $timeout))) {
             throw new ServerException("Failed to connect to [{$host}].");
         }
@@ -280,7 +280,7 @@ class Ftp
     /**
      * Check FTP connection status.
      *
-     * @return boolean
+     * @return bool
      */
     public function connected()
     {
