@@ -5,9 +5,14 @@ title: Support Change Log
 
 ## Version 2.2 {#v2-2}
 
+### v2.2.3 {#v2-2-3}
+
+* `Orchestra\Support\Traits\QueryFilterTrait::setupBasicQueryFilter()` should priotize `order_by` and `direction` key for consistency.
+* Separate `Messages` class to it's own repository, accessible as `orchestra/messages`.
+
 ### v2.2.2 {#v2-2-2}
 
-* `Orchestra\Support\Traits\QueryFilterTrait::setupBasicQueryFilter()` should allow filtering none `*_at` fields.
+* `Orchestra\Support\Traits\QueryFilterTrait::setupBasicQueryFilter()` should allow filtering other than `*_at` fields.
 
 ### v2.2.1 {#v2-2-1}
 
