@@ -27,7 +27,7 @@ trait ValidationTrait
      *
      * @param  string   $scenario
      * @param  array    $parameters
-     * @return ValidationTrait
+     * @return $this
      */
     public function onValidationScenario($scenario, array $parameters = [])
     {
@@ -46,7 +46,7 @@ trait ValidationTrait
      * Add bindings.
      *
      * @param  array    $bindings
-     * @return ValidationTrait
+     * @return $this
      */
     public function bindToValidation(array $bindings)
     {
