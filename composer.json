@@ -26,11 +26,13 @@
 		"illuminate/events": "4.3.*",
 		"illuminate/session": "4.3.*",
 		"illuminate/validation": "4.3.*",
-		"illuminate/support": "4.3.*"
+		"illuminate/support": "4.3.*",
+		"orchestra/messages": "2.3.*"
 	},
 	"suggest": {
 		"laravel/framework": "Allow using orchestra/support component outside of Orchestra Platform 2",
-		"orchestra/foundation": "Allow using orchestra/support with Orchestra Platform 2"
+		"orchestra/foundation": "Allow using orchestra/support with Orchestra Platform 2",
+		"orchestra/messages": "Allow using Messages component"
 	},
 	"extra": {
 		"branch-alias": {
