@@ -17,8 +17,7 @@
 		}
 	},
 	"require": {
-		"php": ">=5.4.0",
-		"orchestra/messages": "2.2.*"
+		"php": ">=5.4.0"
 	},
 	"require-dev": {
 		"mockery/mockery": "0.9.*",
@@ -27,11 +26,13 @@
 		"illuminate/events": "4.2.*",
 		"illuminate/session": "4.2.*",
 		"illuminate/validation": "4.2.*",
-		"illuminate/support": "4.2.*"
+		"illuminate/support": "4.2.*",
+		"orchestra/messages": "2.2.*"
 	},
 	"suggest": {
 		"laravel/framework": "Allow using orchestra/support component outside of Orchestra Platform 2",
-		"orchestra/foundation": "Allow using orchestra/support with Orchestra Platform 2"
+		"orchestra/foundation": "Allow using orchestra/support with Orchestra Platform 2",
+		"orchestra/messages": "Allow using Messages component"
 	},
 	"extra": {
 		"branch-alias": {
