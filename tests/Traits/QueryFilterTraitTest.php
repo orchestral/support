@@ -5,6 +5,8 @@ use Orchestra\Support\Traits\QueryFilterTrait;
 
 class QueryFilterTraitTest extends \PHPUnit_Framework_TestCase
 {
+    use QueryFilterTrait;
+
     /**
      * Teardown the test environment.
      */
@@ -21,12 +23,11 @@ class QueryFilterTraitTest extends \PHPUnit_Framework_TestCase
      */
     public function testSetupBasicQueryFilterMethod()
     {
-        $stub = new QueryFilter;
         $query = m::mock('\Illuminate\Database\Query\Builder');
 
         $query->shouldReceive('orderBy')->once()->with('updated_at', 'DESC')->andReturn($query);
 
-        $this->assertInstanceOf('\Illuminate\Database\Query\Builder', $stub->stubSetupBasicQueryFilter($query, [
+        $this->assertEquals($query, $this->setupBasicQueryFilter($query, [
             'order' => 'updated',
             'sort'  => 'desc',
         ]));
@@ -40,7 +41,6 @@ class QueryFilterTraitTest extends \PHPUnit_Framework_TestCase
      */
     public function testSetupWildcardQueryFilterMethod()
     {
-        $stub = new QueryFilter;
         $query = m::mock('\Illuminate\Database\Query\Builder');
 
         $query->shouldReceive('where')->once()->with(m::type('Closure'))
@@ -52,21 +52,6 @@ class QueryFilterTraitTest extends \PHPUnit_Framework_TestCase
             ->shouldReceive('orWhere')->once()->with('name', 'LIKE', '%hello')
             ->shouldReceive('orWhere')->once()->with('name', 'LIKE', '%hello%');
 
-        $this->assertInstanceOf('\Illuminate\Database\Query\Builder', $stub->stubSetupWildcardQueryFilter($query, 'hello', ['name']));
-    }
-}
-
-class QueryFilter
-{
-    use QueryFilterTrait;
-
-    public function stubSetupBasicQueryFilter($query, $input)
-    {
-        return $this->setupBasicQueryFilter($query, $input);
-    }
-
-    public function stubSetupWildcardQueryFilter($query, $keyword, $fields)
-    {
-        return $this->setupWildcardQueryFilter($query, $keyword, $fields);
+        $this->assertEquals($query, $this->setupWildcardQueryFilter($query, 'hello', ['name']));
     }
 }

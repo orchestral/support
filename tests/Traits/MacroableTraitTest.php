@@ -11,7 +11,7 @@ class MacroableTraitTest extends \PHPUnit_Framework_TestCase
      */
     public function testMacroIsExecutable()
     {
-        $stub = new Macroable;
+        $stub = new MacroableStub;
 
         $stub->macro('foo', function () {
             return 'foobar';
@@ -29,11 +29,11 @@ class MacroableTraitTest extends \PHPUnit_Framework_TestCase
      */
     public function testMacroThrowsExceptionWhenMacroIsntExecutable()
     {
-        with(new Macroable)->foo();
+        with(new MacroableStub)->foo();
     }
 }
 
-class Macroable
+class MacroableStub
 {
     use MacroableTrait;
 }
