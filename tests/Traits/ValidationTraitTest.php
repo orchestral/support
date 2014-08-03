@@ -4,6 +4,8 @@ use Orchestra\Support\Traits\ValidationTrait;
 
 class ValidationTraitTest extends \PHPUnit_Framework_TestCase
 {
+    use ValidationTrait;
+
     /**
      * Test Orchestra\Support\Traits\ValidationTrait.
      *
@@ -11,15 +13,8 @@ class ValidationTraitTest extends \PHPUnit_Framework_TestCase
      */
     public function testGetValidationHelpers()
     {
-        $stub = new ValidationStub;
-
-        $this->assertEquals(array(), $stub->getValidationEvents());
-        $this->assertEquals(array(), $stub->getValidationPhrases());
-        $this->assertEquals(array(), $stub->getValidationRules());
+        $this->assertEquals(array(), $this->getValidationEvents());
+        $this->assertEquals(array(), $this->getValidationPhrases());
+        $this->assertEquals(array(), $this->getValidationRules());
     }
-}
-
-class ValidationStub
-{
-    use ValidationTrait;
 }

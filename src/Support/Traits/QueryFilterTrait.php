@@ -14,16 +14,21 @@ trait QueryFilterTrait
      */
     protected function setupBasicQueryFilter($query, array $input = array())
     {
-        $order = Arr::get($input, 'order', '');
-        $sort  = Str::upper(Arr::get($input, 'sort', null));
+        $orderBy = Arr::first($input, function ($key) {
+            return in_array($key, ['order_by', 'order']);
+        }, '');
 
-        ! in_array($sort, ['ASC', 'DESC']) && $sort = 'ASC';
+        $direction = Str::upper(Arr::first($input, function ($key) {
+            return in_array($key, ['direction', 'sort']);
+        }, ''));
 
-        if (in_array($order, ['created', 'updated', 'deleted'])) {
-            $order = "{$order}_at";
+        ! in_array($direction, ['ASC', 'DESC']) && $direction = 'ASC';
+
+        if (in_array($orderBy, ['created', 'updated', 'deleted'])) {
+            $orderBy = "{$orderBy}_at";
         }
 
-        ! empty($order) && $query->orderBy($order, $sort);
+        ! empty($orderBy) && $query->orderBy($orderBy, $direction);
 
         return $query;
     }
