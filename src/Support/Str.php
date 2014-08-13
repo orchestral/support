@@ -1,5 +1,7 @@
 <?php namespace Orchestra\Support;
 
+use Illuminate\Support\Arr;
+
 class Str extends \Illuminate\Support\Str
 {
     /**
@@ -42,13 +44,17 @@ class Str extends \Illuminate\Support\Str
     /**
      * Prepare bindings for text replacement.
      *
-     * @param  array   $bindings
+     * @param  array   $replacements
      * @param  string  $prefix
      * @param  string  $suffix
+     * @return array
      */
-    protected static function prepareBinding(array $bindings = array(), $prefix = '{', $suffix = '}')
+    protected static function prepareBinding(array $replacements = array(), $prefix = '{', $suffix = '}')
     {
-        foreach ($bindings as $key => $value) {
+        $replacements = Arr::dot($replacements);
+        $bindings     = array();
+
+        foreach ($replacements as $key => $value) {
             $bindings["{$prefix}{$key}{$suffix}"] = $value;
         }
 
