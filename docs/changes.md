@@ -5,6 +5,10 @@ title: Support Change Log
 
 ## Version 2.2 {#v2-2}
 
+### v2.2.4@dev {#v2-2-4}
+
+* Convert multi-dimensional array to single level array when using `Orchestra\Support\Str::replace()` method.
+
 ### v2.2.3 {#v2-2-3}
 
 * `Orchestra\Support\Traits\QueryFilterTrait::setupBasicQueryFilter()` should priotize `order_by` and `direction` key for consistency.
