@@ -1,5 +1,6 @@
 <?php namespace Orchestra\Support;
 
+use Illuminate\Support\Arr;
 use Orchestra\Support\Contracts\CsvableInterface;
 
 class Collection extends \Illuminate\Support\Collection implements CsvableInterface
@@ -20,7 +21,7 @@ class Collection extends \Illuminate\Support\Collection implements CsvableInterf
         fputcsv($instance, $header, $delimiter, $enclosure);
 
         foreach ($this->items as $key => $item) {
-            fputcsv($instance, array_dot($item), $delimiter, $enclosure);
+            fputcsv($instance, Arr::dot($item), $delimiter, $enclosure);
         }
 
         return ob_get_clean();
@@ -37,7 +38,7 @@ class Collection extends \Illuminate\Support\Collection implements CsvableInterf
 
         if (! $this->isEmpty()) {
             $single = $this->first();
-            $header = array_keys(array_dot($single));
+            $header = array_keys(Arr::dot($single));
         }
 
         return $header;

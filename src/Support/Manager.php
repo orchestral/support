@@ -89,10 +89,8 @@ abstract class Manager extends \Illuminate\Support\Manager
      */
     protected function checkNameIsNotBlacklisted($name)
     {
-        foreach ($this->blacklisted as $character) {
-            if (Str::contains($name, $character)) {
-                throw new InvalidArgumentException("Invalid character in driver name [{$name}].");
-            }
+        if (Str::contains($name, $this->blacklisted)) {
+            throw new InvalidArgumentException("Invalid character in driver name [{$name}].");
         }
     }
 }

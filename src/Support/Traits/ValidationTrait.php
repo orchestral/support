@@ -119,7 +119,7 @@ trait ValidationTrait
     protected function runQueuedExtend(Validator $validationResolver)
     {
         if (! is_null($method = $this->validationScenarios['extend'])) {
-            call_user_func(array($this, $method), $validationResolver);
+            call_user_func([$this, $method], $validationResolver);
         }
     }
 
