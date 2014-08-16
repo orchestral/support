@@ -1,5 +1,6 @@
 <?php namespace Orchestra\Support;
 
+use Illuminate\Support\Arr;
 use Orchestra\Support\Ftp\Morph as Facade;
 use Orchestra\Support\Ftp\ServerException;
 
@@ -66,9 +67,9 @@ class Ftp
      */
     public function setUp(array $config = array())
     {
-        $this->connection = array_pull($config, 'connection', $this->connection);
+        $this->connection = Arr::pull($config, 'connection', $this->connection);
 
-        if (preg_match('/^(ftp|sftp):\/\/([a-zA-Z0-9\.\-_]*):?(\d{1,4})$/', array_get($config, 'host'), $matches)) {
+        if (preg_match('/^(ftp|sftp):\/\/([a-zA-Z0-9\.\-_]*):?(\d{1,4})$/', Arr::get($config, 'host'), $matches)) {
             $config['host'] = $matches[2];
             $config['ssl']  = ($matches[1] === 'sftp' ? true : false);
 
