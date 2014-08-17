@@ -17,7 +17,7 @@ Support Component is basically a basic set of class required by Orchestra Platfo
 
 ## Version Compatibility
 
-Laravel    | Asset
+Laravel    | Support
 :----------|:----------
  4.0.x     | 2.0.x
  4.1.x     | 2.1.x
