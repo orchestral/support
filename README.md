@@ -1,15 +1,30 @@
-Orchestra Platform Support Component
+Support Component for Orchestra Platform 2
 ==============
 
-`Orchestra\Support` is basically a basic set of class required by Orchestra Platform. The idea behind it is similar to what is `Illuminate\Support` to Laravel 4 Framework.
+Support Component is basically a basic set of class required by Orchestra Platform. The idea behind it is similar to what is `Illuminate\Support` to Laravel 4 Framework.
 
-[![Latest Stable Version](https://poser.pugx.org/orchestra/support/v/stable.png)](https://packagist.org/packages/orchestra/support) 
-[![Total Downloads](https://poser.pugx.org/orchestra/support/downloads.png)](https://packagist.org/packages/orchestra/support) 
-[![Build Status](https://travis-ci.org/orchestral/support.svg?branch=master)](https://travis-ci.org/orchestral/support) 
-[![Coverage Status](https://coveralls.io/repos/orchestral/support/badge.png?branch=master)](https://coveralls.io/r/orchestral/support?branch=master) 
-[![Scrutinizer Quality Score](https://scrutinizer-ci.com/g/orchestral/support/badges/quality-score.png?s=80403bdb1e88f15e75c62eca92316227e08176c3)](https://scrutinizer-ci.com/g/orchestral/support/)
+[![Latest Stable Version](https://poser.pugx.org/orchestra/support/v/stable.png)](https://packagist.org/packages/orchestra/support)
+[![Total Downloads](https://poser.pugx.org/orchestra/support/downloads.png)](https://packagist.org/packages/orchestra/support)
+[![Build Status](https://travis-ci.org/orchestral/support.svg?branch=master)](https://travis-ci.org/orchestral/support)
+[![Coverage Status](https://coveralls.io/repos/orchestral/support/badge.png?branch=master)](https://coveralls.io/r/orchestral/support?branch=master)
+[![Scrutinizer Quality Score](https://scrutinizer-ci.com/g/orchestral/support/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/orchestral/support/)
 
-## Quick Installation
+## Table of Content
+
+* [Version Compatibility](#version-compatibility)
+* [Installation](#installation)
+* [Change Log](http://orchestraplatform.com/docs/latest/components/support/changes#v2-1)
+
+## Version Compatibility
+
+Laravel    | Support
+:----------|:----------
+ 4.0.x     | 2.0.x
+ 4.1.x     | 2.1.x
+ 4.2.x     | 2.2.x
+ 4.3.x     | 2.3.x@dev
+
+## Installation
 
 To install through composer, simply put the following in your `composer.json` file:
 
@@ -21,16 +36,13 @@ To install through composer, simply put the following in your `composer.json` fi
 }
 ```
 
-Next add the service provider in `app/config/app.php`.
+And then run `composer install` from the terminal.
 
-```php
-'providers' => array(
+### Quick Installation
 
-	// ...
+Above installation can also be simplify by using the following command:
 
-	'Orchestra\Support\MessagesServiceProvider',
-),
-```
+	composer require "orchestra/support=2.3.*"
 
 ## Resources
 
