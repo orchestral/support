@@ -3,6 +3,12 @@ title: Support Change Log
 
 ---
 
+## Version 2.3 {#v2-3}
+
+### v2.3.0@dev {#v2-3-0}
+
+* Add `Orchestra\Support\Facades\HTML` facade.
+
 ## Version 2.2 {#v2-2}
 
 ### v2.2.4 {#v2-2-4}
