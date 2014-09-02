@@ -8,6 +8,7 @@ title: Support Change Log
 ### v2.3.0@dev {#v2-3-0}
 
 * Add `Orchestra\Support\Facades\HTML` facade.
+* Rename `Orchestra\Support\Facades\Acl` to `Orchestra\Support\Facades\ACL`. 
 
 ## Version 2.2 {#v2-2}
 
