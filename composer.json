@@ -1,6 +1,6 @@
 {
 	"name": "orchestra/support",
-	"description": "Support Component for Orchestra Platform 2",
+	"description": "Support Component for Orchestra Platform",
 	"homepage": "http://orchestraplatform.com/docs/latest/components/support/",
 	"keywords": ["orchestra-platform", "orchestral", "laravel", "validator", "utilities"],
 	"license": "MIT",
@@ -22,21 +22,21 @@
 	"require-dev": {
 		"mockery/mockery": "0.9.*",
 		"patchwork/utf8": "1.1.*",
-		"illuminate/database": "4.3.*",
-		"illuminate/events": "4.3.*",
-		"illuminate/session": "4.3.*",
-		"illuminate/validation": "4.3.*",
-		"illuminate/support": "4.3.*",
-		"orchestra/messages": "2.3.*"
+		"illuminate/database": "5.0.*",
+		"illuminate/events": "5.0.*",
+		"illuminate/session": "5.0.*",
+		"illuminate/validation": "5.0.*",
+		"illuminate/support": "5.0.*",
+		"orchestra/messages": "3.0.*"
 	},
 	"suggest": {
-		"laravel/framework": "Allow using orchestra/support component outside of Orchestra Platform 2",
-		"orchestra/foundation": "Allow using orchestra/support with Orchestra Platform 2",
+		"laravel/framework": "Allow using orchestra/support component outside of Orchestra Platform",
+		"orchestra/foundation": "Allow using orchestra/support with Orchestra Platform",
 		"orchestra/messages": "Allow using Messages component"
 	},
 	"extra": {
 		"branch-alias": {
-			"dev-master": "2.3-dev"
+			"dev-master": "3.0-dev"
 		}
 	},
 	"minimum-stability": "dev"

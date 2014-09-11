@@ -1,7 +1,7 @@
-Support Component for Orchestra Platform 2
+Support Component for Orchestra Platform
 ==============
 
-Support Component is basically a basic set of class required by Orchestra Platform. The idea behind it is similar to what is `Illuminate\Support` to Laravel 4 Framework.
+Support Component is basically a basic set of class required by Orchestra Platform. The idea behind it is similar to what is `Illuminate\Support` to Laravel 5 Framework.
 
 [![Latest Stable Version](https://poser.pugx.org/orchestra/support/v/stable.png)](https://packagist.org/packages/orchestra/support)
 [![Total Downloads](https://poser.pugx.org/orchestra/support/downloads.png)](https://packagist.org/packages/orchestra/support)
@@ -22,7 +22,7 @@ Laravel    | Support
  4.0.x     | 2.0.x
  4.1.x     | 2.1.x
  4.2.x     | 2.2.x
- 4.3.x     | 2.3.x@dev
+ 5.0.x     | 3.0.x@dev
 
 ## Installation
 
@@ -31,7 +31,7 @@ To install through composer, simply put the following in your `composer.json` fi
 ```json
 {
 	"require": {
-		"orchestra/support": "2.3.*"
+		"orchestra/support": "3.0.*"
 	}
 }
 ```
@@ -42,9 +42,9 @@ And then run `composer install` from the terminal.
 
 Above installation can also be simplify by using the following command:
 
-	composer require "orchestra/support=2.3.*"
+	composer require "orchestra/support=3.0.*"
 
 ## Resources
 
 * [Documentation](http://orchestraplatform.com/docs/latest/components/support)
-* [Change Log](http://orchestraplatform.com/docs/latest/components/support/changes#v2-1)
+* [Change Log](http://orchestraplatform.com/docs/latest/components/support/changes#v3-0)

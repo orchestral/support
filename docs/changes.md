@@ -3,12 +3,12 @@ title: Support Change Log
 
 ---
 
-## Version 2.3 {#v2-3}
+## Version 3.0 {#v3-0}
 
-### v2.3.0@dev {#v2-3-0}
+### v3.0.0@dev {#v3-0-0}
 
 * Add `Orchestra\Support\Facades\HTML` facade.
-* Rename `Orchestra\Support\Facades\Acl` to `Orchestra\Support\Facades\ACL`. 
+* Rename `Orchestra\Support\Facades\Acl` to `Orchestra\Support\Facades\ACL`.
 
 ## Version 2.2 {#v2-2}
 
