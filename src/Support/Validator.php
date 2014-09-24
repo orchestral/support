@@ -54,7 +54,7 @@ abstract class Validator
      * Execute validation service.
      *
      * @param  array           $input
-     * @param  string|array    $event
+     * @param  string|array    $events
      * @param  array           $phrases
      * @return \Illuminate\Validation\Validator
      */
