@@ -1,6 +1,6 @@
 {
-	"name": "orchestra/support",
-	"description": "Support Component for Orchestra Platform",
+	"name": "orchestra/support-core",
+	"description": "Support (Core) Component for Orchestra Platform",
 	"homepage": "http://orchestraplatform.com/docs/latest/components/support/",
 	"keywords": ["orchestra-platform", "orchestral", "laravel", "validator", "utilities"],
 	"license": "MIT",
@@ -13,22 +13,11 @@
 	],
 	"autoload": {
 		"psr-4": {
-			"Orchestra\\Support\\Facades\\" : "src/Facades/",
-			"Orchestra\\Support\\" : "src/Support/"
+			"Orchestra\\Support\\" : ""
 		}
 	},
 	"require": {
 		"php": ">=5.4.0"
-	},
-	"require-dev": {
-		"mockery/mockery": "0.9.*",
-		"patchwork/utf8": "1.1.*",
-		"illuminate/database": "5.0.*",
-		"illuminate/events": "5.0.*",
-		"illuminate/session": "5.0.*",
-		"illuminate/validation": "5.0.*",
-		"illuminate/support": "5.0.*",
-		"orchestra/messages": "3.0.*"
 	},
 	"suggest": {
 		"laravel/framework": "Allow using orchestra/support component outside of Orchestra Platform",
