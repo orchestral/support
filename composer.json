@@ -30,6 +30,10 @@
 		"illuminate/support": "5.0.*",
 		"orchestra/messages": "3.0.*"
 	},
+	"replace": {
+		"orchestra/support-core": "self.version",
+		"orchestra/support-facades": "self.version"
+	},
 	"suggest": {
 		"laravel/framework": "Allow using orchestra/support component outside of Orchestra Platform",
 		"orchestra/foundation": "Allow using orchestra/support with Orchestra Platform",
