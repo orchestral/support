@@ -2,7 +2,7 @@
     "name": "orchestra/support-facades",
     "description": "Support (Facades) Component for Orchestra Platform",
     "homepage": "http://orchestraplatform.com/docs/latest/components/support/",
-    "keywords": ["orchestra-platform", "orchestral", "laravel", "validator", "utilities"],
+    "keywords": ["orchestra-platform", "orchestral", "laravel"],
     "license": "MIT",
     "authors": [
         {
