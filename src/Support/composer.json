@@ -17,7 +17,8 @@
 		}
 	},
 	"require": {
-		"php": ">=5.4.0"
+		"php": ">=5.4.0",
+		"illuminate/support": "~5.0"
 	},
 	"suggest": {
 		"laravel/framework": "Allow using orchestra/support component outside of Orchestra Platform",
