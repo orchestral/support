@@ -1,10 +1,8 @@
-<?php namespace Orchestra\Support;
+<?php namespace Orchestra\Support\Ftp;
 
 use Illuminate\Support\Arr;
-use Orchestra\Support\Ftp\Morph as Facade;
-use Orchestra\Support\Ftp\ServerException;
 
-class Ftp
+class Client
 {
     /**
      * FTP stream connection.
@@ -87,7 +85,7 @@ class Ftp
      */
     public function changeDirectory($directory)
     {
-        return @Facade::fire('chdir', array($this->connection, $directory));
+        return @Morph::fire('chdir', array($this->connection, $directory));
     }
 
     /**
@@ -97,7 +95,7 @@ class Ftp
      */
     public function currentDirectory()
     {
-        return @Facade::pwd($this->connection);
+        return @Morph::pwd($this->connection);
     }
 
     /**
@@ -110,7 +108,7 @@ class Ftp
      */
     public function get($remoteFile, $localFile, $mode = FTP_ASCII)
     {
-        return @Facade::fire('get', array($this->connection, $localFile, $remoteFile, $mode));
+        return @Morph::fire('get', array($this->connection, $localFile, $remoteFile, $mode));
     }
 
     /**
@@ -123,7 +121,7 @@ class Ftp
      */
     public function put($localFile, $remoteFile, $mode = FTP_ASCII)
     {
-        return @Facade::fire('put', array($this->connection, $remoteFile, $localFile, $mode));
+        return @Morph::fire('put', array($this->connection, $remoteFile, $localFile, $mode));
     }
 
     /**
@@ -135,7 +133,7 @@ class Ftp
      */
     public function rename($oldName, $newName)
     {
-        return @Facade::fire('rename', array($this->connection, $oldName, $newName));
+        return @Morph::fire('rename', array($this->connection, $oldName, $newName));
     }
 
     /**
@@ -146,7 +144,7 @@ class Ftp
      */
     public function delete($remoteFile)
     {
-        return @Facade::fire('delete', array($this->connection, $remoteFile));
+        return @Morph::fire('delete', array($this->connection, $remoteFile));
     }
 
     /**
@@ -159,7 +157,7 @@ class Ftp
      */
     public function permission($remoteFile, $permission = 0644)
     {
-        return @Facade::fire('chmod', array($this->connection, $permission, $remoteFile));
+        return @Morph::fire('chmod', array($this->connection, $permission, $remoteFile));
     }
 
     /**
@@ -170,7 +168,7 @@ class Ftp
      */
     public function allFiles($directory)
     {
-        $list = @Facade::fire('nlist', array($this->connection, $directory));
+        $list = @Morph::fire('nlist', array($this->connection, $directory));
 
         return is_array($list) ? $list : array();
     }
@@ -183,7 +181,7 @@ class Ftp
      */
     public function makeDirectory($directory)
     {
-        return @Facade::fire('mkdir', array($this->connection, $directory));
+        return @Morph::fire('mkdir', array($this->connection, $directory));
     }
 
     /**
@@ -194,7 +192,7 @@ class Ftp
      */
     public function removeDirectory($directory)
     {
-        return @Facade::fire('rmdir', array($this->connection, $directory));
+        return @Morph::fire('rmdir', array($this->connection, $directory));
     }
 
     /**
@@ -214,15 +212,15 @@ class Ftp
 
         $this->createConnection($config['host'], $config['port'], $config['timeout']);
 
-        if (! (@Facade::login($this->connection, $config['user'], $config['password']))) {
+        if (! (@Morph::login($this->connection, $config['user'], $config['password']))) {
             throw new ServerException("Failed FTP login to [{$config['host']}].");
         }
 
         // Set passive mode.
-        @Facade::pasv($this->connection, (bool) $config['passive']);
+        @Morph::pasv($this->connection, (bool) $config['passive']);
 
         // Set system type.
-        $this->systemType = @Facade::systype($this->connection);
+        $this->systemType = @Morph::systype($this->connection);
 
         return true;
     }
@@ -239,9 +237,9 @@ class Ftp
      */
     protected function createConnection($host, $port = 21, $timeout = 90)
     {
-        if ($this->config['ssl'] && @Facade::isCallable('sslConnect')) {
+        if ($this->config['ssl'] && @Morph::isCallable('sslConnect')) {
             $this->createSecureConnection($host, $port, $timeout);
-        } elseif (! ($this->connection = @Facade::connect($host, $port, $timeout))) {
+        } elseif (! ($this->connection = @Morph::connect($host, $port, $timeout))) {
             throw new ServerException("Failed to connect to [{$host}].");
         }
     }
@@ -257,7 +255,7 @@ class Ftp
      */
     protected function createSecureConnection($host, $port = 21, $timeout = 90)
     {
-        if (! ($this->connection = @Facade::sslConnect($host, $port, $timeout))) {
+        if (! ($this->connection = @Morph::sslConnect($host, $port, $timeout))) {
             throw new ServerException(
                 "Failed to connect to [{$host}] (SSL Connection)."
             );
@@ -273,7 +271,7 @@ class Ftp
     public function close()
     {
         if (! is_null($this->connection)) {
-            @Facade::close($this->connection);
+            @Morph::close($this->connection);
             $this->connection = null;
         }
     }

@@ -14,6 +14,7 @@
 	"autoload": {
 		"psr-4": {
 			"Orchestra\\Support\\Facades\\" : "src/Facades/",
+			"Orchestra\\Support\\Ftp\\" : "src/Ftp/",
 			"Orchestra\\Support\\" : "src/Support/"
 		}
 	},
