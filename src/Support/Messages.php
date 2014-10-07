@@ -1,8 +1,8 @@
 <?php namespace Orchestra\Support;
 
 use Closure;
-use Illuminate\Session\Store as SessionStore;
 use Illuminate\Support\MessageBag as M;
+use Illuminate\Session\Store as SessionStore;
 
 class Messages extends M
 {
