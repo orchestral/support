@@ -28,8 +28,7 @@
 		"illuminate/database": "5.0.*",
 		"illuminate/events": "5.0.*",
 		"illuminate/session": "5.0.*",
-		"illuminate/validation": "5.0.*",
-		"orchestra/messages": "3.0.*"
+		"illuminate/validation": "5.0.*"
 	},
 	"replace": {
 		"orchestra/support-core": "self.version",
@@ -37,8 +36,7 @@
 	},
 	"suggest": {
 		"laravel/framework": "Allow using orchestra/support component outside of Orchestra Platform",
-		"orchestra/foundation": "Allow using orchestra/support with Orchestra Platform",
-		"orchestra/messages": "Allow using Messages component"
+		"orchestra/foundation": "Allow using orchestra/support with Orchestra Platform"
 	},
 	"extra": {
 		"branch-alias": {
