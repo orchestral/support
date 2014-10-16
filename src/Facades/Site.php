@@ -11,6 +11,6 @@ class Site extends Facade
      */
     protected static function getFacadeAccessor()
     {
-        return 'orchestra.site';
+        return 'orchestra.meta';
     }
 }
