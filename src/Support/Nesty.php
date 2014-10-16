@@ -203,7 +203,7 @@ class Nesty
      *
      * @return array
      */
-    public function getItems()
+    public function items()
     {
         return new Collection($this->items);
     }
