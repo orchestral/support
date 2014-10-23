@@ -1,8 +1,10 @@
 <?php namespace Orchestra\Support\Traits;
 
 use Illuminate\Support\Facades\App;
-use Illuminate\Support\Facades\Redirect;
 use Orchestra\Support\Facades\Messages;
+use Illuminate\Support\Facades\Redirect;
+use Symfony\Component\HttpKernel\Exception\HttpException
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException
 
 trait ControllerResponseTrait
 {
@@ -12,7 +14,7 @@ trait ControllerResponseTrait
      * @param  string  $to
      * @param  string  $message
      * @param  string  $type
-     * @return Response
+     * @return mixed
      */
     public function redirectWithMessage($to, $message = null, $type = 'success')
     {
@@ -26,7 +28,7 @@ trait ControllerResponseTrait
      *
      * @param  string  $to
      * @param  mixed   $errors
-     * @return Response
+     * @return mixed
      */
     public function redirectWithErrors($to, $errors)
     {
@@ -37,9 +39,7 @@ trait ControllerResponseTrait
      * Redirect.
      *
      * @param  string  $to
-     * @param  string  $message
-     * @param  string  $type
-     * @return Response
+     * @return mixed
      */
     public function redirect($to)
     {
@@ -49,11 +49,17 @@ trait ControllerResponseTrait
     /**
      * Halt current request using App::abort().
      *
-     * @param  integer $status
-     * @return Response
+     * @param  int  $code
+     * @return void
+     * @throws \Symfony\Component\HttpKernel\Exception\HttpException
+     * @throws \Symfony\Component\HttpKernel\Exception\NotFoundHttpException
      */
-    public function suspend($status)
+    public function suspend($code)
     {
-        return App::abort($status);
+        if ($status == 404) {
+            throw new NotFoundHttpException('');
+        }
+
+        throw new HttpException($code, '', null, []);
     }
 }
