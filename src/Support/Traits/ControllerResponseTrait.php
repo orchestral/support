@@ -56,7 +56,7 @@ trait ControllerResponseTrait
      */
     public function suspend($code)
     {
-        if ($status == 404) {
+        if ($code == 404) {
             throw new NotFoundHttpException('');
         }
 
