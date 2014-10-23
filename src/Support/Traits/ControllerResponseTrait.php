@@ -3,8 +3,8 @@
 use Illuminate\Support\Facades\App;
 use Orchestra\Support\Facades\Messages;
 use Illuminate\Support\Facades\Redirect;
-use Symfony\Component\HttpKernel\Exception\HttpException
-use Symfony\Component\HttpKernel\Exception\NotFoundHttpException
+use Symfony\Component\HttpKernel\Exception\HttpException;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 trait ControllerResponseTrait
 {
