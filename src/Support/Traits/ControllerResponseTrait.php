@@ -54,12 +54,12 @@ trait ControllerResponseTrait
      * @throws \Symfony\Component\HttpKernel\Exception\HttpException
      * @throws \Symfony\Component\HttpKernel\Exception\NotFoundHttpException
      */
-    public function suspend($code)
+    public function suspend($code, $message = '', array $headers = [])
     {
         if ($code == 404) {
-            throw new NotFoundHttpException('');
+            throw new NotFoundHttpException($message);
         }
 
-        throw new HttpException($code, '', null, []);
+        throw new HttpException($code, $message, null, $headers);
     }
 }
