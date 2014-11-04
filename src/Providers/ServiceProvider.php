@@ -60,7 +60,7 @@ abstract class ServiceProvider extends \Illuminate\Support\ServiceProvider
             $this->app['view']->addNamespace($namespace, $path);
         }
     }
-    
+
     /**
      * Register the package's component namespaces.
      *
