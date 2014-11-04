@@ -15,7 +15,7 @@
 		"psr-4": {
 			"Orchestra\\Support\\Facades\\" : "src/Facades/",
 			"Orchestra\\Support\\Ftp\\" : "src/Ftp/",
-            "Orchestra\\Support\\Providers\\" : "src/Providers/",
+			"Orchestra\\Support\\Providers\\" : "src/Providers/",
 			"Orchestra\\Support\\" : "src/Support/"
 		}
 	},
