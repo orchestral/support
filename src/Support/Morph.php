@@ -32,7 +32,7 @@ abstract class Morph
      * Determine if method is callable.
      *
      * @param  string   $method
-     * @return boolean
+     * @return bool
      */
     public static function isCallable($method)
     {

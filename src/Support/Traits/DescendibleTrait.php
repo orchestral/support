@@ -28,8 +28,8 @@ trait DescendibleTrait
     /**
      * Resolve last descendant node from items.
      *
-     * @param  array    $array
-     * @param  array    $key
+     * @param  array   $array
+     * @param  array   $keys
      * @return \Illuminate\Support\Fluent
      */
     protected function resolveLastDecendant($array, $keys)

@@ -8,8 +8,8 @@ trait QueryFilterTrait
     /**
      * Setup basic query string filter to eloquent or query builder.
      *
-     * @param  \Illuminate\Database\Eloquent\Builder|\Illuminate\Database\Query\Builder    $query
-     * @param  array                                                                       $input
+     * @param  \Illuminate\Database\Eloquent\Builder|\Illuminate\Database\Query\Builder   $query
+     * @param  array   $input
      * @return \Illuminate\Database\Eloquent\Builder|\Illuminate\Database\Query\Builder
      */
     protected function setupBasicQueryFilter($query, array $input = array())
@@ -36,9 +36,9 @@ trait QueryFilterTrait
     /**
      * Setup wildcard query string filter to eloquent or query builder.
      *
-     * @param  \Illuminate\Database\Eloquent\Builder|\Illuminate\Database\Query\Builder    $query
-     * @param  mixed                                                                       $keyword
-     * @param  array                                                                       $fields
+     * @param  \Illuminate\Database\Eloquent\Builder|\Illuminate\Database\Query\Builder   $query
+     * @param  mixed   $keyword
+     * @param  array   $fields
      * @return \Illuminate\Database\Eloquent\Builder|\Illuminate\Database\Query\Builder
      */
     protected function setupWildcardQueryFilter($query, $keyword, array $fields)

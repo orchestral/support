@@ -16,7 +16,6 @@ abstract class Manager extends \Illuminate\Support\Manager
      *
      * @param  string   $driver
      * @return object
-     * @see    Manager::driver()
      */
     public function make($driver = null)
     {
@@ -26,7 +25,7 @@ abstract class Manager extends \Illuminate\Support\Manager
     /**
      * Create a new driver instance.
      *
-     * @param  string  $driverName
+     * @param  string   $driverName
      * @return object
      */
     protected function createDriver($driverName)
@@ -51,7 +50,7 @@ abstract class Manager extends \Illuminate\Support\Manager
     /**
      * Call a custom driver creator.
      *
-     * @param  string  $driverName
+     * @param  string   $driverName
      * @return object
      */
     protected function callCustomCreator($driverName)

@@ -1,5 +1,6 @@
 <?php namespace Orchestra\Support;
 
+use Illuminate\Support\Arr;
 use Illuminate\Support\Fluent;
 use Orchestra\Support\Traits\DescendibleTrait;
 
@@ -12,22 +13,21 @@ class Nesty
      *
      * @var array
      */
-    protected $items = array();
+    protected $items = [];
 
     /**
      * Configuration.
      *
      * @var array
      */
-    protected $config = array();
+    protected $config = [];
 
     /**
      * Construct a new instance.
      *
-     * @param  array    $config
-     * @return void
+     * @param  array   $config
      */
-    public function __construct(array $config = array())
+    public function __construct(array $config = [])
     {
         $this->config = $config;
     }
@@ -35,18 +35,17 @@ class Nesty
     /**
      * Create a new Fluent instance while appending default config.
      *
-     * @param  integer  $id
+     * @param  int  $id
      * @return \Illuminate\Support\Fluent
      */
     protected function toFluent($id)
     {
-        $defaults = isset($this->config['defaults']) ?
-            $this->config['defaults'] : array();
+        $defaults = Arr::get($this->config, 'defaults', []);
 
-        return new Fluent(array_merge($defaults, array(
+        return new Fluent(array_merge($defaults, [
             'id'     => $id,
-            'childs' => array(),
-        )));
+            'childs' => [],
+        ]));
     }
 
     /**
@@ -58,7 +57,7 @@ class Nesty
      */
     protected function addBefore($id, $before)
     {
-        $items    = array();
+        $items    = [];
         $item     = $this->toFluent($id);
         $keys     = array_keys($this->items);
         $position = array_search($before, $keys);
@@ -129,7 +128,7 @@ class Nesty
             return null;
         }
 
-        $item = $node->childs;
+        $item = $node->get('childs');
         $item[$id] = $this->toFluent($id);
 
         $node->childs($item);
@@ -149,10 +148,10 @@ class Nesty
     }
 
     /**
-     * Add a new item, prepending or appending
+     * Add a new item, by prepend or append.
      *
-     * @param  string  $id
-     * @param  string  $location
+     * @param  string   $id
+     * @param  string   $location
      * @return \Illuminate\Support\Fluent
      */
     public function add($id, $location = '#')
@@ -169,18 +168,18 @@ class Nesty
     /**
      * Pick traverse from matched expression.
      *
-     * @param  string  $id
-     * @param  string  $key
-     * @param  string  $location
+     * @param  string   $id
+     * @param  string   $key
+     * @param  string   $location
      * @return \Illuminate\Support\Fluent
      */
     protected function pickTraverseFromMatchedExpression($id, $key, $location)
     {
-        $matching = array(
+        $matching = [
             '<' => 'addBefore',
             '>' => 'addAfter',
             '^' => 'addChild',
-        );
+        ];
 
         $method = $matching[$key];
 

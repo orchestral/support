@@ -12,7 +12,7 @@ class Expression
     /**
      * Create a new expression instance.
      *
-     * @param  string  $value
+     * @param  string   $value
      */
     public function __construct($value)
     {

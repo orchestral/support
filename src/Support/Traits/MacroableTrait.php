@@ -12,7 +12,7 @@ trait MacroableTrait
     /**
      * Register a custom HTML macro.
      *
-     * @param  string    $name
+     * @param  string   $name
      * @param  callable  $macro
      * @return void
      */
@@ -24,8 +24,8 @@ trait MacroableTrait
     /**
      * Dynamically handle calls to the html class.
      *
-     * @param  string  $method
-     * @param  array   $parameters
+     * @param  string   $method
+     * @param  array    $parameters
      * @return mixed
      * @throws \BadMethodCallException
      */

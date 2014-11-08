@@ -11,9 +11,9 @@ trait ControllerResponseTrait
     /**
      * Queue notification and redirect.
      *
-     * @param  string  $to
-     * @param  string  $message
-     * @param  string  $type
+     * @param  string   $to
+     * @param  string   $message
+     * @param  string   $type
      * @return mixed
      */
     public function redirectWithMessage($to, $message = null, $type = 'success')
@@ -26,8 +26,8 @@ trait ControllerResponseTrait
     /**
      * Queue notification and redirect.
      *
-     * @param  string  $to
-     * @param  mixed   $errors
+     * @param  string   $to
+     * @param  mixed    $errors
      * @return mixed
      */
     public function redirectWithErrors($to, $errors)
@@ -38,7 +38,7 @@ trait ControllerResponseTrait
     /**
      * Redirect.
      *
-     * @param  string  $to
+     * @param  string   $to
      * @return mixed
      */
     public function redirect($to)
@@ -49,7 +49,7 @@ trait ControllerResponseTrait
     /**
      * Halt current request using App::abort().
      *
-     * @param  int  $code
+     * @param  int   $code
      * @return void
      * @throws \Symfony\Component\HttpKernel\Exception\HttpException
      * @throws \Symfony\Component\HttpKernel\Exception\NotFoundHttpException
