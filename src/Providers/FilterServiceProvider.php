@@ -1,7 +1,5 @@
 <?php namespace Orchestra\Support\Providers;
 
-use Illuminate\Support\ServiceProvider;
-
 class FilterServiceProvider extends ServiceProvider
 {
     /**
