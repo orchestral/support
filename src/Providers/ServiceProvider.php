@@ -12,8 +12,7 @@ abstract class ServiceProvider extends \Illuminate\Support\ServiceProvider
      */
     public function addConfigComponent($package, $namespace, $path)
     {
-        if ($this->app['files']->isDirectory($path))
-        {
+        if ($this->app['files']->isDirectory($path)) {
             $this->app['config']->package($package, $path, $namespace);
         }
     }
@@ -28,8 +27,7 @@ abstract class ServiceProvider extends \Illuminate\Support\ServiceProvider
      */
     public function addLanguageComponent($package, $namespace, $path)
     {
-        if ($this->app['files']->isDirectory($path))
-        {
+        if ($this->app['files']->isDirectory($path)) {
             $this->app['translator']->addNamespace($namespace, $path);
         }
     }
@@ -46,8 +44,7 @@ abstract class ServiceProvider extends \Illuminate\Support\ServiceProvider
     {
         $appView = $this->getAppViewPath($package);
 
-        if ($this->app['files']->isDirectory($appView))
-        {
+        if ($this->app['files']->isDirectory($appView)) {
             $this->app['view']->addNamespace($namespace, $appView);
         }
 
@@ -55,8 +52,7 @@ abstract class ServiceProvider extends \Illuminate\Support\ServiceProvider
         // the views available in this package. We use a standard convention when
         // registering the paths to every package's views and other components.
 
-        if ($this->app['files']->isDirectory($path))
-        {
+        if ($this->app['files']->isDirectory($path)) {
             $this->app['view']->addNamespace($namespace, $path);
         }
     }
