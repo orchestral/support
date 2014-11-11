@@ -1,6 +1,5 @@
 <?php namespace Orchestra\Support\Traits;
 
-use Illuminate\Support\Facades\App;
 use Orchestra\Support\Facades\Messages;
 use Illuminate\Support\Facades\Redirect;
 use Symfony\Component\HttpKernel\Exception\HttpException;
