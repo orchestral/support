@@ -11,12 +11,6 @@ class ValidatorTest extends \PHPUnit_Framework_TestCase
     {
         $_SERVER['validator.onFoo'] = null;
         $_SERVER['validator.onFoo'] = null;
-
-        $app = m::mock('\Illuminate\Foundation\Application');
-        $app->shouldReceive('instance')->andReturn(true);
-
-        \Illuminate\Support\Facades\Event::setFacadeApplication($app);
-        \Illuminate\Support\Facades\Validator::setFacadeApplication($app);
     }
     /**
      * Teardown the test environment.
@@ -35,19 +29,17 @@ class ValidatorTest extends \PHPUnit_Framework_TestCase
      */
     public function testValidation()
     {
-        $event     = m::mock('\Illuminate\Events\Dispatcher[fire]');
-        $validator = m::mock('\Illuminate\Validation\Factory');
-        $rules     = array('email' => array('email', 'foo:2'), 'name' => 'any');
-        $phrases   = array('email.required' => 'Email required');
+        $event     = m::mock('\Illuminate\Contracts\Events\Dispatcher');
+        $validator = m::mock('\Illuminate\Contracts\Validation\Factory');
+
+        $rules   = array('email' => array('email', 'foo:2'), 'name' => 'any');
+        $phrases = array('email.required' => 'Email required');
 
         $event->shouldReceive('fire')->once()->with('foo.event', m::any())->andReturn(null);
         $validator->shouldReceive('make')->once()->with(array(), $rules, $phrases)
             ->andReturn(m::mock('\Illuminate\Validation\Validator'));
 
-        \Illuminate\Support\Facades\Event::swap($event);
-        \Illuminate\Support\Facades\Validator::swap($validator);
-
-        $stub = new FooValidator;
+        $stub = new FooValidator($validator, $event);
         $stub->on('foo', array('orchestra'))->bind(array('id' => '2'));
 
         $validation = $stub->with(array(), 'foo.event');
@@ -64,18 +56,16 @@ class ValidatorTest extends \PHPUnit_Framework_TestCase
      */
     public function testValidationWithoutAScope()
     {
-        $event     = m::mock('\Illuminate\Events\Dispatcher[fire]');
-        $validator = m::mock('\Illuminate\Validation\Factory');
-        $rules     = array('email' => array('email', 'foo:2'), 'name' => 'any');
-        $phrases   = array('email.required' => 'Email required', 'name' => 'Any name');
+        $event     = m::mock('\Illuminate\Contracts\Events\Dispatcher');
+        $validator = m::mock('\Illuminate\Contracts\Validation\Factory');
+
+        $rules   = array('email' => array('email', 'foo:2'), 'name' => 'any');
+        $phrases = array('email.required' => 'Email required', 'name' => 'Any name');
 
         $validator->shouldReceive('make')->once()->with(array(), $rules, $phrases)
             ->andReturn(m::mock('\Illuminate\Validation\Validator'));
 
-        \Illuminate\Support\Facades\Event::swap($event);
-        \Illuminate\Support\Facades\Validator::swap($validator);
-
-        $stub = new FooValidator;
+        $stub = new FooValidator($validator, $event);
         $stub->bind(array('id' => '2'));
 
         $validation = $stub->with(array(), null, array('name' => 'Any name'));

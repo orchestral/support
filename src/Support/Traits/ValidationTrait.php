@@ -2,12 +2,25 @@
 
 use Orchestra\Support\Str;
 use Illuminate\Support\Fluent;
-use Illuminate\Validation\Validator;
 use Illuminate\Support\Facades\Event;
-use Illuminate\Support\Facades\Validator as V;
+use Illuminate\Contracts\Validation\Validator;
 
 trait ValidationTrait
 {
+    /**
+     * The validation factory implementation.
+     *
+     * @var \Illuminate\Contracts\Validation\Factory
+     */
+    protected $validationFactory;
+
+    /**
+     * The event dispatcher implementation.
+     *
+     * @var \Illuminate\Contracts\Events\Dispatcher
+     */
+    protected $validationDispatcher;
+
     /**
      * List of bindings.
      *
@@ -25,8 +38,8 @@ trait ValidationTrait
     /**
      * Create a scope scenario.
      *
-     * @param  string   $scenario
-     * @param  array    $parameters
+     * @param  string  $scenario
+     * @param  array   $parameters
      * @return $this
      */
     public function onValidationScenario($scenario, array $parameters = [])
@@ -45,7 +58,7 @@ trait ValidationTrait
     /**
      * Add bindings.
      *
-     * @param  array   $bindings
+     * @param  array  $bindings
      * @return $this
      */
     public function bindToValidation(array $bindings)
@@ -58,10 +71,10 @@ trait ValidationTrait
     /**
      * Execute validation service.
      *
-     * @param  array   $input
-     * @param  string|array   $events
-     * @param  array   $phrases
-     * @return \Illuminate\Validation\Validator
+     * @param  array  $input
+     * @param  string|array  $events
+     * @param  array  $phrases
+     * @return \Illuminate\Contracts\Validation\Validator
      */
     public function runValidation(array $input, $events = [], array $phrases = [])
     {
@@ -73,7 +86,7 @@ trait ValidationTrait
 
         list($rules, $phrases) = $this->runValidationEvents($events, $phrases);
 
-        $validationResolver = V::make($input, $rules, $phrases);
+        $validationResolver = $this->validationFactory->make($input, $rules, $phrases);
 
         $this->runQueuedExtend($validationResolver);
 
@@ -113,7 +126,7 @@ trait ValidationTrait
     /**
      * Run queued extend scenario.
      *
-     * @param  \Illuminate\Validation\Validator   $validationResolver
+     * @param  \Illuminate\Contracts\Validation\Validator  $validationResolver
      * @return void
      */
     protected function runQueuedExtend(Validator $validationResolver)
@@ -126,8 +139,8 @@ trait ValidationTrait
     /**
      * Run validation events and return the finalize rules and phrases.
      *
-     * @param  array|string   $events
-     * @param  array   $phrases
+     * @param  array|string  $events
+     * @param  array  $phrases
      * @return array
      */
     protected function runValidationEvents($events, array $phrases)
@@ -143,7 +156,7 @@ trait ValidationTrait
         $phrases = new Fluent(array_merge($this->getValidationPhrases(), $phrases));
 
         foreach ((array) $events as $event) {
-            Event::fire($event, [& $rules, & $phrases]);
+            $this->validationDispatcher->fire($event, [& $rules, & $phrases]);
         }
 
         return [
@@ -185,7 +198,7 @@ trait ValidationTrait
     /**
      * Get validation schemas name.
      *
-     * @param  string   $scenario
+     * @param  string  $scenario
      * @return array
      */
     protected function getValidationSchemasName($scenario)

@@ -1,5 +1,7 @@
 <?php namespace Orchestra\Support;
 
+use Illuminate\Contracts\Events\Dispatcher;
+use Illuminate\Contracts\Validation\Factory;
 use Orchestra\Support\Traits\ValidationTrait;
 
 abstract class Validator
@@ -7,11 +9,23 @@ abstract class Validator
     use ValidationTrait;
 
     /**
+     * Create a new Validator instance.
+     *
+     * @param  \Illuminate\Contracts\Validation\Factory  $factory
+     * @param  \Illuminate\Contracts\Events\Dispatcher  $dispatcher
+     */
+    public function __construct(Factory $factory, Dispatcher $dispatcher)
+    {
+        $this->validationFactory = $factory;
+        $this->validationDispatcher = $dispatcher;
+    }
+
+    /**
      * List of rules.
      *
      * @var array
      */
-    protected $rules = array();
+    protected $rules = [];
 
     /**
      * List of events.
@@ -25,16 +39,16 @@ abstract class Validator
      *
      * @var array
      */
-    protected $phrases = array();
+    protected $phrases = [];
 
     /**
      * Create a scope scenario.
      *
-     * @param  string   $scenario
-     * @param  array    $parameters
+     * @param  string  $scenario
+     * @param  array   $parameters
      * @return Validator
      */
-    public function on($scenario, array $parameters = array())
+    public function on($scenario, array $parameters = [])
     {
         return $this->onValidationScenario($scenario, $parameters);
     }
@@ -42,7 +56,7 @@ abstract class Validator
     /**
      * Add bindings.
      *
-     * @param  array    $bindings
+     * @param  array  $bindings
      * @return Validator
      */
     public function bind(array $bindings)
@@ -53,12 +67,12 @@ abstract class Validator
     /**
      * Execute validation service.
      *
-     * @param  array           $input
-     * @param  string|array    $events
-     * @param  array           $phrases
-     * @return \Illuminate\Validation\Validator
+     * @param  array  $input
+     * @param  string|array  $events
+     * @param  array   $phrases
+     * @return \Illuminate\Contracts\Validation\Validator
      */
-    public function with(array $input, $events = array(), array $phrases = array())
+    public function with(array $input, $events = [], array $phrases = [])
     {
         return $this->runValidation($input, $events, $phrases);
     }
