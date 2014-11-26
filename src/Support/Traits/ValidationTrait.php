@@ -2,7 +2,6 @@
 
 use Orchestra\Support\Str;
 use Illuminate\Support\Fluent;
-use Illuminate\Support\Facades\Event;
 use Illuminate\Contracts\Validation\Validator;
 
 trait ValidationTrait

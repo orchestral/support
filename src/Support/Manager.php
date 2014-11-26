@@ -1,8 +1,9 @@
 <?php namespace Orchestra\Support;
 
 use InvalidArgumentException;
+use Illuminate\Support\Manager as BaseManager;
 
-abstract class Manager extends \Illuminate\Support\Manager
+abstract class Manager extends BaseManager
 {
     /**
      * Define blacklisted character in name.
@@ -14,7 +15,7 @@ abstract class Manager extends \Illuminate\Support\Manager
     /**
      * Create a new instance.
      *
-     * @param  string   $driver
+     * @param  string  $driver
      * @return object
      */
     public function make($driver = null)
@@ -25,7 +26,7 @@ abstract class Manager extends \Illuminate\Support\Manager
     /**
      * Create a new driver instance.
      *
-     * @param  string   $driverName
+     * @param  string  $driverName
      * @return object
      */
     protected function createDriver($driverName)
@@ -50,7 +51,7 @@ abstract class Manager extends \Illuminate\Support\Manager
     /**
      * Call a custom driver creator.
      *
-     * @param  string   $driverName
+     * @param  string  $driverName
      * @return object
      */
     protected function callCustomCreator($driverName)
@@ -63,7 +64,7 @@ abstract class Manager extends \Illuminate\Support\Manager
     /**
      * Get driver name.
      *
-     * @param  string   $driverName
+     * @param  string  $driverName
      * @return array
      */
     protected function getDriverName($driverName)
@@ -82,7 +83,7 @@ abstract class Manager extends \Illuminate\Support\Manager
     /**
      * Check if name is not blacklisted.
      *
-     * @param  string   $name
+     * @param  string  $name
      * @return void
      * @throws \InvalidArgumentException
      */

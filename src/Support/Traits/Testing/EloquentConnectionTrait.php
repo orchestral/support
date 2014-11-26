@@ -6,6 +6,8 @@ trait EloquentConnectionTrait
 {
     /**
      * Set mock connection
+     *
+     * @param  object  $model
      */
     protected function addMockConnection($model)
     {

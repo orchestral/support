@@ -14,7 +14,7 @@ trait ObservableTrait
     /**
      * Register an observer.
      *
-     * @param  object   $class
+     * @param  object  $class
      * @return void
      */
     public static function observe($class)
@@ -33,7 +33,7 @@ trait ObservableTrait
     /**
      * Get the observer key.
      *
-     * @param  string   $event
+     * @param  string  $event
      * @return string
      */
     protected function getObservableKey($event)
@@ -54,8 +54,8 @@ trait ObservableTrait
     /**
      * Register an event with the dispatcher.
      *
-     * @param  string   $event
-     * @param  \Closure|string   $callback
+     * @param  string  $event
+     * @param  \Closure|string  $callback
      * @return void
      */
     protected static function registerObservableEvent($event, $callback)
@@ -74,8 +74,8 @@ trait ObservableTrait
     /**
      * Fire the given event.
      *
-     * @param  string   $event
-     * @param  bool     $halt
+     * @param  string  $event
+     * @param  bool    $halt
      * @return mixed
      */
     protected function fireObservableEvent($event, $halt)
@@ -126,7 +126,7 @@ trait ObservableTrait
     /**
      * Set the event dispatcher instance.
      *
-     * @param  \Illuminate\Contracts\Events\Dispatcher   $dispatcher
+     * @param  \Illuminate\Contracts\Events\Dispatcher  $dispatcher
      * @return void
      */
     public static function setEventDispatcher(Dispatcher $dispatcher)

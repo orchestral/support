@@ -2,8 +2,9 @@
 
 use Illuminate\Support\Arr;
 use Orchestra\Support\Contracts\CsvableInterface;
+use Illuminate\Support\Collection as BaseCollection;
 
-class Collection extends \Illuminate\Support\Collection implements CsvableInterface
+class Collection extends BaseCollection implements CsvableInterface
 {
     /**
      * {@inheritdoc}

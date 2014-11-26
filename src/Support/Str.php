@@ -1,13 +1,14 @@
 <?php namespace Orchestra\Support;
 
 use Illuminate\Support\Arr;
+use Illuminate\Support\Str as BaseStr;
 
-class Str extends \Illuminate\Support\Str
+class Str extends BaseStr
 {
     /**
      * Convert slug type text to human readable text.
      *
-     * @param  string   $text
+     * @param  string  $text
      * @return string
      */
     public static function humanize($text)
@@ -64,9 +65,9 @@ class Str extends \Illuminate\Support\Str
     /**
      * Convert basic string to searchable result.
      *
-     * @param  string   $text
-     * @param  string   $wildcard
-     * @param  string   $replacement
+     * @param  string  $text
+     * @param  string  $wildcard
+     * @param  string  $replacement
      * @return array
      */
     public static function searchable($text, $wildcard = '*', $replacement = '%')
@@ -88,7 +89,7 @@ class Str extends \Illuminate\Support\Str
      * data return from Postgres where blob type schema would actually use
      * BYTEA and convert the string to stream.
      *
-     * @param  mixed    $data
+     * @param  mixed  $data
      * @return string
      */
     public static function streamGetContents($data)
@@ -120,7 +121,7 @@ class Str extends \Illuminate\Support\Str
     /**
      * Convert hex to string.
      *
-     * @param  string   $hex
+     * @param  string  $hex
      * @return string
      */
     protected static function fromHex($hex)

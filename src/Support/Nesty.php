@@ -25,7 +25,7 @@ class Nesty
     /**
      * Construct a new instance.
      *
-     * @param  array   $config
+     * @param  array  $config
      */
     public function __construct(array $config = [])
     {
@@ -51,8 +51,8 @@ class Nesty
     /**
      * Add item before reference $before.
      *
-     * @param  string   $id
-     * @param  string   $before
+     * @param  string  $id
+     * @param  string  $before
      * @return \Illuminate\Support\Fluent
      */
     protected function addBefore($id, $before)
@@ -82,8 +82,8 @@ class Nesty
     /**
      * Add item after reference $after.
      *
-     * @param  string   $id
-     * @param  string   $after
+     * @param  string  $id
+     * @param  string  $after
      * @return \Illuminate\Support\Fluent
      */
     protected function addAfter($id, $after)
@@ -113,8 +113,8 @@ class Nesty
     /**
      * Add item as child of $parent.
      *
-     * @param  string   $id
-     * @param  string   $parent
+     * @param  string  $id
+     * @param  string  $parent
      * @return \Illuminate\Support\Fluent
      */
     protected function addChild($id, $parent)
@@ -139,7 +139,7 @@ class Nesty
     /**
      * Add item as parent.
      *
-     * @param  string   $id
+     * @param  string  $id
      * @return \Illuminate\Support\Fluent
      */
     protected function addParent($id)
@@ -150,8 +150,8 @@ class Nesty
     /**
      * Add a new item, by prepend or append.
      *
-     * @param  string   $id
-     * @param  string   $location
+     * @param  string  $id
+     * @param  string  $location
      * @return \Illuminate\Support\Fluent
      */
     public function add($id, $location = '#')
@@ -168,9 +168,9 @@ class Nesty
     /**
      * Pick traverse from matched expression.
      *
-     * @param  string   $id
-     * @param  string   $key
-     * @param  string   $location
+     * @param  string  $id
+     * @param  string  $key
+     * @param  string  $location
      * @return \Illuminate\Support\Fluent
      */
     protected function pickTraverseFromMatchedExpression($id, $key, $location)
@@ -189,7 +189,7 @@ class Nesty
     /**
      * Retrieve an item by id.
      *
-     * @param  string   $key
+     * @param  string  $key
      * @return \Illuminate\Support\Fluent
      */
     public function is($key)

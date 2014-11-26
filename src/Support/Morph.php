@@ -14,8 +14,8 @@ abstract class Morph
     /**
      * Magic method to call passtru PHP functions.
      *
-     * @param  string   $method
-     * @param  array    $parameters
+     * @param  string  $method
+     * @param  array   $parameters
      * @return mixed
      * @throws \RuntimeException
      */
@@ -31,7 +31,7 @@ abstract class Morph
     /**
      * Determine if method is callable.
      *
-     * @param  string   $method
+     * @param  string  $method
      * @return bool
      */
     public static function isCallable($method)
