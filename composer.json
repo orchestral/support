@@ -17,10 +17,7 @@
 			"Orchestra\\Support\\Ftp\\" : "src/Ftp/",
 			"Orchestra\\Support\\Providers\\" : "src/Providers/",
 			"Orchestra\\Support\\" : "src/Support/"
-		},
-		"files": [
-			"src/Support/helpers.php"
-		]
+		}
 	},
 	"require": {
 		"php": ">=5.4.0",

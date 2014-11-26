@@ -14,10 +14,7 @@
 	"autoload": {
 		"psr-4": {
 			"Orchestra\\Support\\" : ""
-		},
-		"files": [
-			"helpers.php"
-		]
+		}
 	},
 	"require": {
 		"php": ">=5.4.0",
