@@ -29,7 +29,8 @@
 		"illuminate/database": "5.0.*",
 		"illuminate/events": "5.0.*",
 		"illuminate/session": "5.0.*",
-		"illuminate/validation": "5.0.*"
+		"illuminate/validation": "5.0.*",
+		"symfony/http-kernel": "2.6.*"
 	},
 	"replace": {
 		"orchestra/support-core": "self.version",
