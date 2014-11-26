@@ -1,6 +1,5 @@
 <?php namespace Orchestra\Support\Traits;
 
-use Orchestra\Support\Facades\Messages;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
