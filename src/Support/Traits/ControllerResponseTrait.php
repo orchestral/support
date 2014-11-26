@@ -1,7 +1,6 @@
 <?php namespace Orchestra\Support\Traits;
 
 use Orchestra\Support\Facades\Messages;
-use Illuminate\Support\Facades\Redirect;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
@@ -17,21 +16,19 @@ trait ControllerResponseTrait
      */
     public function redirectWithMessage($to, $message = null, $type = 'success')
     {
-        ! is_null($message) && Messages::add($type, $message);
-
-        return $this->redirect($to);
+        return redirect_with_message($to, $message, $type);
     }
 
     /**
-     * Queue notification and redirect.
+     * Redirect with input and errors.
      *
-     * @param  string   $to
-     * @param  mixed    $errors
+     * @param  string  $to
+     * @param  \Illuminate\Support\MessageBag|array  $errors
      * @return mixed
      */
     public function redirectWithErrors($to, $errors)
     {
-        return $this->redirect($to)->withInput()->withErrors($errors);
+        return redirect_with_errors($to, $errors);
     }
 
     /**
@@ -42,7 +39,7 @@ trait ControllerResponseTrait
      */
     public function redirect($to)
     {
-        return Redirect::to($to);
+        return redirect($to);
     }
 
     /**
