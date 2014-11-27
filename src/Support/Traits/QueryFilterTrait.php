@@ -22,13 +22,15 @@ trait QueryFilterTrait
             return in_array($key, ['direction', 'sort']);
         }, ''));
 
+        $columns = $input['columns'];
+
         ! in_array($direction, ['ASC', 'DESC']) && $direction = 'ASC';
 
         if (in_array($orderBy, ['created', 'updated', 'deleted'])) {
             $orderBy = "{$orderBy}_at";
         }
 
-        ! empty($orderBy) && $query->orderBy($orderBy, $direction);
+        ! empty($orderBy)  && in_array($orderBy, $columns) && $query->orderBy($orderBy, $direction);
 
         return $query;
     }
