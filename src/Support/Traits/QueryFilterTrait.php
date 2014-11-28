@@ -22,7 +22,16 @@ trait QueryFilterTrait
             return in_array($key, ['direction', 'sort']);
         }, ''));
 
-        $columns = $input['columns'];
+        $only = Arr::get($input, 'columns.only',[]);
+        $except = Arr::get($input, 'columns.except',[]);
+
+        if(count($only) > 0 && !in_array($orderBy, $only)) {
+            return $query;
+        }
+
+        if(count($except) > 0 && in_array($orderBy, $except)){
+            return $query;
+        }
 
         ! in_array($direction, ['ASC', 'DESC']) && $direction = 'ASC';
 
@@ -30,7 +39,7 @@ trait QueryFilterTrait
             $orderBy = "{$orderBy}_at";
         }
 
-        ! empty($orderBy)  && in_array($orderBy, $columns) && $query->orderBy($orderBy, $direction);
+        ! empty($orderBy)  && $query->orderBy($orderBy, $direction);
 
         return $query;
     }
