@@ -67,8 +67,8 @@ trait QueryFilterTrait
     /**
      * Check if column can be filtered for query.
      *
-     * @param  array   $columns
      * @param  string  $on
+     * @param  array   $columns
      * @return bool
      */
     protected function isColumnExcludedFromFilterable($on, array $columns = [])
