@@ -126,7 +126,11 @@ trait ObservableTrait
     /**
      * Set the event dispatcher instance.
      *
+<<<<<<< HEAD
      * @param  \Illuminate\Contracts\Events\Dispatcher  $dispatcher
+=======
+     * @param  \Illuminate\Events\Dispatcher  $dispatcher
+>>>>>>> 2.2
      * @return void
      */
     public static function setEventDispatcher(Dispatcher $dispatcher)

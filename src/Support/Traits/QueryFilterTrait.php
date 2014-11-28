@@ -28,6 +28,12 @@ trait QueryFilterTrait
             $orderBy = "{$orderBy}_at";
         }
 
+        $columns = Arr::get($input, 'columns');
+
+        if (is_array($columns) && $this->isColumnExcludedFromFilterable($orderBy, $columns)) {
+            return $query;
+        }
+
         ! empty($orderBy) && $query->orderBy($orderBy, $direction);
 
         return $query;
@@ -56,5 +62,21 @@ trait QueryFilterTrait
         }
 
         return $query;
+    }
+
+    /**
+     * Check if column can be filtered for query.
+     *
+     * @param  array   $columns
+     * @param  string  $on
+     * @return bool
+     */
+    protected function isColumnExcludedFromFilterable($on, array $columns = [])
+    {
+        $only = Arr::get($columns, 'only', []);
+        $except = Arr::get($columns, 'except', []);
+
+        return ((! empty($only) && ! in_array($on, (array) $only)) ||
+            (! empty($except) && in_array($on, (array) $except)));
     }
 }
