@@ -22,24 +22,19 @@ trait QueryFilterTrait
             return in_array($key, ['direction', 'sort']);
         }, ''));
 
-        $only = Arr::get($input, 'columns.only',[]);
-        $except = Arr::get($input, 'columns.except',[]);
-
-        if(count($only) > 0 && !in_array($orderBy, $only)) {
-            return $query;
-        }
-
-        if(count($except) > 0 && in_array($orderBy, $except)){
-            return $query;
-        }
-
         ! in_array($direction, ['ASC', 'DESC']) && $direction = 'ASC';
 
         if (in_array($orderBy, ['created', 'updated', 'deleted'])) {
             $orderBy = "{$orderBy}_at";
         }
 
-        ! empty($orderBy)  && $query->orderBy($orderBy, $direction);
+        $columns = Arr::get($input, 'columns');
+
+        if (is_array($columns) && $this->isColumnExcludedFromFilterable($orderBy, $columns)) {
+            return $query;
+        }
+
+        ! empty($orderBy) && $query->orderBy($orderBy, $direction);
 
         return $query;
     }
@@ -67,5 +62,21 @@ trait QueryFilterTrait
         }
 
         return $query;
+    }
+
+    /**
+     * Check if column can be filtered for query.
+     *
+     * @param  array   $columns
+     * @param  string  $on
+     * @return bool
+     */
+    protected function isColumnExcludedFromFilterable($on, array $columns = [])
+    {
+        $only = Arr::get($columns, 'only', []);
+        $except = Arr::get($columns, 'except', []);
+
+        return ((! empty($only) && ! in_array($on, (array) $only)) ||
+            (! empty($except) && in_array($on, (array) $except)));
     }
 }

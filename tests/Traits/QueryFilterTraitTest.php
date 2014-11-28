@@ -25,11 +25,37 @@ class QueryFilterTraitTest extends \PHPUnit_Framework_TestCase
     {
         $query = m::mock('\Illuminate\Database\Query\Builder');
 
-        $query->shouldReceive('orderBy')->once()->with('updated_at', 'DESC')->andReturn($query);
+        $query->shouldReceive('orderBy')->once()->with('updated_at', 'DESC')->andReturn($query)
+            ->shouldReceive('orderBy')->once()->with('created_at', 'DESC')->andReturn($query);
 
         $this->assertEquals($query, $this->setupBasicQueryFilter($query, [
-            'order' => 'updated',
-            'sort'  => 'desc',
+            'order_by'  => 'updated',
+            'direction' => 'desc',
+        ]));
+
+        $this->assertEquals($query, $this->setupBasicQueryFilter($query, [
+            'order_by'  => 'created',
+            'direction' => 'desc',
+            'columns' => ['only' => 'created_at'],
+        ]));
+    }
+
+    /**
+     * Test \Orchestra\Support\Traits\QueryFilterTrait::setupBasicQueryFilter()
+     * method when column should be excluded.
+     *
+     * @test
+     */
+    public function testSetupBasicQueryFilterMethodGivenColumnExcluded()
+    {
+        $query = m::mock('\Illuminate\Database\Query\Builder');
+
+        $query->shouldReceive('orderBy')->never()->with('password', 'DESC')->andReturn($query);
+
+        $this->assertEquals($query, $this->setupBasicQueryFilter($query, [
+            'order_by'  => 'password',
+            'direction' => 'desc',
+            'columns' => ['except' => 'password'],
         ]));
     }
 
