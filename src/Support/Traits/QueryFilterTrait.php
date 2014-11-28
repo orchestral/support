@@ -14,13 +14,9 @@ trait QueryFilterTrait
      */
     protected function setupBasicQueryFilter($query, array $input = array())
     {
-        $orderBy = Arr::first($input, function ($key) {
-            return in_array($key, ['order_by', 'order']);
-        }, '');
+        $orderBy = Arr::get($input, 'order_by', '');
 
-        $direction = Str::upper(Arr::first($input, function ($key) {
-            return in_array($key, ['direction', 'sort']);
-        }, ''));
+        $direction = Str::upper(Arr::get($input, 'direction', ''));
 
         ! in_array($direction, ['ASC', 'DESC']) && $direction = 'ASC';
 
