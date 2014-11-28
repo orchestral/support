@@ -12,7 +12,7 @@ trait MacroableTrait
     /**
      * Register a custom HTML macro.
      *
-     * @param  string    $name
+     * @param  string  $name
      * @param  callable  $macro
      * @return void
      */

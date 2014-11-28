@@ -25,8 +25,8 @@ trait ValidationTrait
     /**
      * Create a scope scenario.
      *
-     * @param  string   $scenario
-     * @param  array    $parameters
+     * @param  string  $scenario
+     * @param  array   $parameters
      * @return $this
      */
     public function onValidationScenario($scenario, array $parameters = [])
@@ -45,7 +45,7 @@ trait ValidationTrait
     /**
      * Add bindings.
      *
-     * @param  array    $bindings
+     * @param  array  $bindings
      * @return $this
      */
     public function bindToValidation(array $bindings)
@@ -58,9 +58,9 @@ trait ValidationTrait
     /**
      * Execute validation service.
      *
-     * @param  array           $input
-     * @param  string|array    $event
-     * @param  array           $phrases
+     * @param  array  $input
+     * @param  string|array  $events
+     * @param  array  $phrases
      * @return \Illuminate\Validation\Validator
      */
     public function runValidation(array $input, $events = [], array $phrases = [])
@@ -113,7 +113,7 @@ trait ValidationTrait
     /**
      * Run queued extend scenario.
      *
-     * @param  \Illuminate\Validation\Validator    $validationResolver
+     * @param  \Illuminate\Validation\Validator  $validationResolver
      * @return void
      */
     protected function runQueuedExtend(Validator $validationResolver)
@@ -126,8 +126,8 @@ trait ValidationTrait
     /**
      * Run validation events and return the finalize rules and phrases.
      *
-     * @param  array|string    $events
-     * @param  array           $phrases
+     * @param  array|string  $events
+     * @param  array  $phrases
      * @return array
      */
     protected function runValidationEvents($events, array $phrases)
@@ -185,7 +185,7 @@ trait ValidationTrait
     /**
      * Get validation schemas name.
      *
-     * @param  string   $scenario
+     * @param  string  $scenario
      * @return array
      */
     protected function getValidationSchemasName($scenario)

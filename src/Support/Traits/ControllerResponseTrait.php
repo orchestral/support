@@ -37,8 +37,6 @@ trait ControllerResponseTrait
      * Redirect.
      *
      * @param  string  $to
-     * @param  string  $message
-     * @param  string  $type
      * @return Response
      */
     public function redirect($to)
@@ -49,7 +47,7 @@ trait ControllerResponseTrait
     /**
      * Halt current request using App::abort().
      *
-     * @param  integer $status
+     * @param  int  $status
      * @return Response
      */
     public function suspend($status)

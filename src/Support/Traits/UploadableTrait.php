@@ -10,7 +10,7 @@ trait UploadableTrait
      * Save uploaded file into directory.
      *
      * @param  \Symfony\Component\HttpFoundation\File\UploadedFile  $file
-     * @param  string                                               $path
+     * @param  string  $path
      * @return string
      */
     protected function saveUploadedFile(UploadedFile $file, $path)
@@ -23,7 +23,7 @@ trait UploadableTrait
     /**
      * Delete uploaded from directory
      *
-     * @param  string $file
+     * @param  string  $file
      * @return bool
      */
     protected function deleteUploadedFile($file)
