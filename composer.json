@@ -38,7 +38,8 @@
 	},
 	"suggest": {
 		"laravel/framework": "Allow using orchestra/support component outside of Orchestra Platform",
-		"orchestra/foundation": "Allow using orchestra/support with Orchestra Platform"
+		"orchestra/foundation": "Allow using orchestra/support with Orchestra Platform",
+		"orchestra/messages": "Allow using Messages component"
 	},
 	"extra": {
 		"branch-alias": {
