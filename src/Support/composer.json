@@ -1,0 +1,34 @@
+{
+	"name": "orchestra/support-core",
+	"description": "Support (Core) Component for Orchestra Platform",
+	"homepage": "http://orchestraplatform.com/docs/latest/components/support/",
+	"keywords": ["orchestra-platform", "orchestral", "laravel", "validator", "utilities"],
+	"license": "MIT",
+	"authors": [
+		{
+			"name": "Mior Muhammad Zaki",
+			"email": "crynobone@gmail.com",
+			"homepage": "https://github.com/crynobone"
+		}
+	],
+	"autoload": {
+		"psr-4": {
+			"Orchestra\\Support\\" : ""
+		}
+	},
+	"require": {
+		"php": ">=5.4.0",
+		"illuminate/support": "~4.2"
+	},
+	"suggest": {
+		"laravel/framework": "Allow using orchestra/support component outside of Orchestra Platform",
+		"orchestra/foundation": "Allow using orchestra/support with Orchestra Platform",
+		"orchestra/messages": "Allow using Messages component"
+	},
+	"extra": {
+		"branch-alias": {
+			"dev-master": "3.0-dev"
+		}
+	},
+	"minimum-stability": "dev"
+}
