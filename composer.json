@@ -1,6 +1,6 @@
 {
 	"name": "orchestra/support",
-	"description": "Support Component for Orchestra Platform 2",
+	"description": "Support Component for Orchestra Platform",
 	"homepage": "http://orchestraplatform.com/docs/latest/components/support/",
 	"keywords": ["orchestra-platform", "orchestral", "laravel", "validator", "utilities"],
 	"license": "MIT",
@@ -30,8 +30,8 @@
 		"orchestra/messages": "2.2.*"
 	},
 	"suggest": {
-		"laravel/framework": "Allow using orchestra/support component outside of Orchestra Platform 2",
-		"orchestra/foundation": "Allow using orchestra/support with Orchestra Platform 2",
+		"laravel/framework": "Allow using orchestra/support component outside of Orchestra Platform",
+		"orchestra/foundation": "Allow using orchestra/support with Orchestra Platform",
 		"orchestra/messages": "Allow using Messages component"
 	},
 	"extra": {
