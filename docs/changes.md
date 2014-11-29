@@ -5,6 +5,10 @@ title: Support Change Log
 
 ## Version 2.2 {#v2-2}
 
+### v2.2.5 {#v2-2-5}
+
+* Add ability to allow (`only`) or exclude (`except`) columns from filterable on `Orchestra\Support\Traits\QueryFilterTrait::setupBasicQueryFilter()`.
+
 ### v2.2.4 {#v2-2-4}
 
 * Convert multi-dimensional array to single level array when using `Orchestra\Support\Str::replace()` method.
