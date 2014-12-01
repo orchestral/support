@@ -9,18 +9,6 @@ abstract class Validator
     use ValidationTrait;
 
     /**
-     * Create a new Validator instance.
-     *
-     * @param  \Illuminate\Contracts\Validation\Factory  $factory
-     * @param  \Illuminate\Contracts\Events\Dispatcher  $dispatcher
-     */
-    public function __construct(Factory $factory, Dispatcher $dispatcher)
-    {
-        $this->validationFactory = $factory;
-        $this->validationDispatcher = $dispatcher;
-    }
-
-    /**
      * List of rules.
      *
      * @var array
@@ -32,7 +20,7 @@ abstract class Validator
      *
      * @var array
      */
-    protected $events = array();
+    protected $events = [];
 
     /**
      * List of phrases.
@@ -40,6 +28,18 @@ abstract class Validator
      * @var array
      */
     protected $phrases = [];
+
+    /**
+     * Create a new Validator instance.
+     *
+     * @param  \Illuminate\Contracts\Validation\Factory  $factory
+     * @param  \Illuminate\Contracts\Events\Dispatcher  $dispatcher
+     */
+    public function __construct(Factory $factory, Dispatcher $dispatcher)
+    {
+        $this->validationFactory = $factory;
+        $this->validationDispatcher = $dispatcher;
+    }
 
     /**
      * Create a scope scenario.
