@@ -3,11 +3,12 @@ Support Component for Orchestra Platform
 
 Support Component is basically a basic set of class required by Orchestra Platform. The idea behind it is similar to what is `Illuminate\Support` to Laravel 5 Framework.
 
-[![Latest Stable Version](https://poser.pugx.org/orchestra/support/v/stable.png)](https://packagist.org/packages/orchestra/support)
-[![Total Downloads](https://poser.pugx.org/orchestra/support/downloads.png)](https://packagist.org/packages/orchestra/support)
-[![Build Status](https://travis-ci.org/orchestral/support.svg?branch=master)](https://travis-ci.org/orchestral/support)
-[![Coverage Status](https://coveralls.io/repos/orchestral/support/badge.png?branch=master)](https://coveralls.io/r/orchestral/support?branch=master)
-[![Scrutinizer Quality Score](https://scrutinizer-ci.com/g/orchestral/support/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/orchestral/support/)
+[![Latest Stable Version](https://img.shields.io/github/release/orchestral/support.svg?style=flat)](https://packagist.org/packages/orchestra/support)
+[![Total Downloads](https://img.shields.io/packagist/dt/orchestra/support.svg?style=flat)](https://packagist.org/packages/orchestra/support)
+[![MIT License](https://img.shields.io/packagist/l/orchestra/support.svg?style=flat)](https://packagist.org/packages/orchestra/support)
+[![Build Status](https://img.shields.io/travis/orchestral/support/master.svg?style=flat)](https://travis-ci.org/orchestral/support)
+[![Coverage Status](https://img.shields.io/coveralls/orchestral/support/master.svg?style=flat)](https://coveralls.io/r/orchestral/support?branch=master)
+[![Scrutinizer Quality Score](https://img.shields.io/scrutinizer/g/orchestral/support/master.svg?style=flat)](https://scrutinizer-ci.com/g/orchestral/support/)
 
 ## Table of Content
 
