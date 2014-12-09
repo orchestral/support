@@ -34,7 +34,8 @@
 	},
 	"replace": {
 		"orchestra/support-core": "self.version",
-		"orchestra/support-facades": "self.version"
+		"orchestra/support-facades": "self.version",
+		"orchestra/support-providers": "self.version"
 	},
 	"suggest": {
 		"laravel/framework": "Allow using orchestra/support component outside of Orchestra Platform",
