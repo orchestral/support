@@ -88,4 +88,43 @@ abstract class ServiceProvider extends \Illuminate\Support\ServiceProvider
 
         $this->addViewComponent($package, $namespace, $path.'/views');
     }
+
+    /**
+     * Guess the package path for the provider.
+     *
+     * @return string
+     */
+    public function guessPackagePath()
+    {
+        $path = (new ReflectionClass($this))->getFileName();
+
+        return realpath(dirname($path).'/../../');
+    }
+
+    /**
+     * Determine the namespace for a package.
+     *
+     * @param  string  $package
+     * @param  string  $namespace
+     * @return string
+     */
+    protected function getPackageNamespace($package, $namespace)
+    {
+        if (is_null($namespace)) {
+            list($vendor, $namespace) = explode('/', $package);
+        }
+
+        return $namespace;
+    }
+
+    /**
+     * Get the application package view path.
+     *
+     * @param  string  $package
+     * @return string
+     */
+    protected function getAppViewPath($package)
+    {
+        return $this->app['path.base']."/resources/views/packages/{$package}";
+    }
 }
