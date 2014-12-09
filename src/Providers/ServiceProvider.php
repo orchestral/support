@@ -42,10 +42,10 @@ abstract class ServiceProvider extends \Illuminate\Support\ServiceProvider
      */
     public function addViewComponent($package, $namespace, $path)
     {
-        $appView = $this->getAppViewPath($package);
-
-        if ($this->app['files']->isDirectory($appView)) {
-            $this->app['view']->addNamespace($namespace, $appView);
+        foreach ($this->getAppViewPaths($package) as $appView) {
+            if ($this->app['files']->isDirectory($appView)) {
+                $this->app['view']->addNamespace($namespace, $appView);
+            }
         }
 
         // Finally we will register the view namespace so that we can access each of
@@ -118,13 +118,15 @@ abstract class ServiceProvider extends \Illuminate\Support\ServiceProvider
     }
 
     /**
-     * Get the application package view path.
+     * Get the application package view paths.
      *
      * @param  string  $package
-     * @return string
+     * @return array
      */
-    protected function getAppViewPath($package)
+    protected function getAppViewPaths($package)
     {
-        return $this->app['path.base']."/resources/views/packages/{$package}";
+        return array_map(function ($path) use ($package) {
+            return "{$path}/packages/{$package}";
+        }, $this->app['config']['view.paths']);
     }
 }
