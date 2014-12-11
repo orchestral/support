@@ -194,7 +194,7 @@ class Nesty
      */
     public function has($key)
     {
-        return ! is_null($this->is($this->items, $key));
+        return ! is_null($this->is($key));
     }
 
     /**
