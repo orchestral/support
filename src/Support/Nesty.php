@@ -187,6 +187,17 @@ class Nesty
     }
 
     /**
+     * Check whether item by id exists.
+     *
+     * @param  string  $key
+     * @return bool
+     */
+    public function has($key)
+    {
+        return ! is_null($this->is($this->items, $key));
+    }
+
+    /**
      * Retrieve an item by id.
      *
      * @param  string  $key
