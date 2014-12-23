@@ -36,7 +36,7 @@ class Client
     /**
      * Make a new FTP instance.
      *
-     * @param  array    $config
+     * @param  array  $config
      * @return self
      */
     public static function make(array $config = array())
@@ -47,8 +47,7 @@ class Client
     /**
      * Make a new FTP instance.
      *
-     * @param  array    $config
-     * @return void
+     * @param  array  $config
      */
     public function __construct(array $config = array())
     {
@@ -60,7 +59,7 @@ class Client
     /**
      * Configure FTP.
      *
-     * @param  array    $config
+     * @param  array  $config
      * @return void
      */
     public function setUp(array $config = array())
@@ -80,7 +79,7 @@ class Client
     /**
      * Change current directory on FTP server.
      *
-     * @param  string   $directory
+     * @param  string  $directory
      * @return bool
      */
     public function changeDirectory($directory)
@@ -101,10 +100,10 @@ class Client
     /**
      * Download file from FTP server.
      *
-     * @param  string   $remoteFile
-     * @param  string   $localFile
-     * @param  integer  $mode
-     * @return boolean
+     * @param  string  $remoteFile
+     * @param  string  $localFile
+     * @param  int  $mode
+     * @return bool
      */
     public function get($remoteFile, $localFile, $mode = FTP_ASCII)
     {
@@ -114,10 +113,10 @@ class Client
     /**
      * Upload file to FTP server.
      *
-     * @param  string   $localFile
-     * @param  string   $remoteFile
-     * @param  integer  $mode
-     * @return boolean
+     * @param  string  $localFile
+     * @param  string  $remoteFile
+     * @param  int  $mode
+     * @return bool
      */
     public function put($localFile, $remoteFile, $mode = FTP_ASCII)
     {
@@ -127,9 +126,9 @@ class Client
     /**
      * Rename file on FTP server.
      *
-     * @param  string   $oldName
-     * @param  string   $newName
-     * @return boolean
+     * @param  string  $oldName
+     * @param  string  $newName
+     * @return bool
      */
     public function rename($oldName, $newName)
     {
@@ -139,8 +138,8 @@ class Client
     /**
      * Delete file on FTP server.
      *
-     * @param  string   $remoteFile
-     * @return boolean
+     * @param  string  $remoteFile
+     * @return bool
      */
     public function delete($remoteFile)
     {
@@ -150,10 +149,10 @@ class Client
     /**
      * Set file permissions.
      *
-     * @param  string   $remoteFile
-     * @param  integer  $permissions    For example: 0644
-     * @return boolean
-     * @throws \RuntimeException        If unable to chmod $remoteFile
+     * @param  string  $remoteFile
+     * @param  int  $permission
+     * @return bool
+     * @throws \RuntimeException  If unable to chmod $remoteFile
      */
     public function permission($remoteFile, $permission = 0644)
     {
@@ -163,7 +162,7 @@ class Client
     /**
      * Get list of files/directories on FTP server.
      *
-     * @param  string   $directory
+     * @param  string  $directory
      * @return array
      */
     public function allFiles($directory)
@@ -176,7 +175,7 @@ class Client
     /**
      * Create directory on FTP server.
      *
-     * @param  string   $directory
+     * @param  string  $directory
      * @return bool
      */
     public function makeDirectory($directory)
@@ -187,7 +186,7 @@ class Client
     /**
      * Remove directory on FTP server.
      *
-     * @param  string   $directory
+     * @param  string  $directory
      * @return bool
      */
     public function removeDirectory($directory)
@@ -199,8 +198,8 @@ class Client
      * Connect to FTP server.
      *
      * @return bool|null
-     * @throws \Orchestra\Support\Ftp\ServerException   If unable to connect/login
-     *                                                  to FTP server.
+     * @throws \Orchestra\Support\Ftp\ServerException  If unable to connect/login
+     *                                                 to FTP server.
      */
     public function connect()
     {
@@ -228,12 +227,12 @@ class Client
     /**
      * Create a FTP connection.
      *
-     * @param  string   $host
-     * @param  integer  $port
-     * @param  integer  $timeout
+     * @param  string  $host
+     * @param  int  $port
+     * @param  int  $timeout
      * @return void
-     * @throws \Orchestra\Support\Ftp\ServerException   If unable to connect to FTP
-     *                                                  server.
+     * @throws \Orchestra\Support\Ftp\ServerException  If unable to connect to FTP
+     *                                                 server.
      */
     protected function createConnection($host, $port = 21, $timeout = 90)
     {
@@ -247,9 +246,9 @@ class Client
     /**
      * Create a secure (SSL) FTP connection.
      *
-     * @param  string   $host
-     * @param  integer  $port
-     * @param  integer  $timeout
+     * @param  string  $host
+     * @param  int  $port
+     * @param  int  $timeout
      * @return void
      * @throws \Orchestra\Support\Ftp\ServerException
      */

@@ -211,7 +211,7 @@ class Nesty
     /**
      * Return all items.
      *
-     * @return array
+     * @return \Orchestra\Support\Collection
      */
     public function items()
     {

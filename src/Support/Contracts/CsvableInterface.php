@@ -5,7 +5,7 @@ interface CsvableInterface
     /**
      * Get the instance as an CSV string.
      *
-     * @return array
+     * @return string
      */
     public function toCsv();
 }
