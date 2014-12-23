@@ -1,5 +1,7 @@
 <?php namespace Orchestra\Support\Providers;
 
+use Orchestra\Contracts\Config\PackageRepository;
+
 abstract class ServiceProvider extends \Illuminate\Support\ServiceProvider
 {
     /**
@@ -12,8 +14,11 @@ abstract class ServiceProvider extends \Illuminate\Support\ServiceProvider
      */
     public function addConfigComponent($package, $namespace, $path)
     {
-        if ($this->app['files']->isDirectory($path)) {
-            $this->app['config']->package($package, $path, $namespace);
+        $config = $this->app['config'];
+        $files  = $this->app['files'];
+
+        if ($files->isDirectory($path) && $config instanceof PackageRepository) {
+            $config->package($package, $path, $namespace);
         }
     }
 
