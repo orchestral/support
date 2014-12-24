@@ -7,8 +7,25 @@ title: Support Change Log
 
 ### v3.0.0@dev {#v3-0-0}
 
-* Add `Orchestra\Support\Facades\HTML` facade.
-* Rename `Orchestra\Support\Facades\Acl` to `Orchestra\Support\Facades\ACL`.
+* Split components to three (3) sub-components; Core, Facades, and Providers.
+* Rename `Orchestra\Support\Ftp` to `Orchestra\Support\Ftp\Client`.
+* Core:
+  - Remove deprecated `Orchestra\Support\Messages` and `Orchestra\Support\MessagesServiceProvider`.
+  - Add `Orchestra\Support\Nesty::has()` to check whether node exists.
+  - Rename `Orchestra\Support\Nesty::getItems()` to `Orchestra\Support\Nesty::items()` for consistency.
+  - Remove `Orchestra\Support\Relic`, duplicate of `Orchestra\Support\Traits\DataContainerTrait`.
+  - Move `Orchestra\Support\Traits\ControllerResponseTrait` to `orchestra/routing` (subsplit of `orchestra/kernel`).
+  - Directly inject validation factory and event dispatcher in `Orchestra\Support\Validator` instead of using Facades.
+* Facades:
+  - Add `Orchestra\Support\Facades\Avatar`.
+  - Add `Orchestra\Support\Facades\HTML`.
+  - Rename `Orchestra\Support\Facades\Acl` to `Orchestra\Support\Facades\ACL`.
+  - Rename `Orchestra\Support\Facades\App` to `Orchestra\Support\Facades\Foundation`.
+  - Rename `Orchestra\Support\Facades\Site` to `Orchestra\Support\Facades\Meta`.
+* Providers:
+  - Add `Orchestra\Support\Providers\ServiceProvider` which support registering packages.
+  - Add `Orchestra\Support\Providers\FilterServiceProvider`.
+  - Add `Orchestra\Support\Providers\Traits\AliasesProviderTrait`.
 
 ## Version 2.2 {#v2-2}
 

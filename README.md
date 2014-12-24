@@ -14,7 +14,7 @@ Support Component is basically a basic set of class required by Orchestra Platfo
 
 * [Version Compatibility](#version-compatibility)
 * [Installation](#installation)
-* [Change Log](http://orchestraplatform.com/docs/latest/components/support/changes#v2-1)
+* [Change Log](http://orchestraplatform.com/docs/latest/components/support/changes#v3-0)
 
 ## Version Compatibility
 
