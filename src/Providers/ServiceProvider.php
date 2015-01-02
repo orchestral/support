@@ -1,8 +1,10 @@
 <?php namespace Orchestra\Support\Providers;
 
+use ReflectionClass;
 use Orchestra\Contracts\Config\PackageRepository;
+use Illuminate\Support\ServiceProvider as BaseServiceProvider;
 
-abstract class ServiceProvider extends \Illuminate\Support\ServiceProvider
+abstract class ServiceProvider extends BaseServiceProvider
 {
     /**
      * Register the package's config component namespaces.
