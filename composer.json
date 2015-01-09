@@ -26,7 +26,6 @@
 	},
 	"require-dev": {
 		"mockery/mockery": "0.9.*",
-		"patchwork/utf8": "1.1.*",
 		"illuminate/database": "5.0.*",
 		"illuminate/events": "5.0.*",
 		"illuminate/session": "5.0.*",
