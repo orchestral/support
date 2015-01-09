@@ -1,6 +1,8 @@
 <?php namespace Orchestra\Support\Ftp;
 
-class Morph extends \Orchestra\Support\Morph
+use Orchestra\Support\Morph as Base;
+
+class Morph extends Base
 {
     /**
      * Define Morph prefix.
