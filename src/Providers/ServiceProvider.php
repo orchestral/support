@@ -93,7 +93,7 @@ abstract class ServiceProvider extends BaseServiceProvider
         // package and namespace. If it does, we'll give that folder precedence on
         // the loader list for the views so the package views can be overridden.
 
-        if ($files->isDirectory($views = $path.'/lang')) {
+        if ($files->isDirectory($views = $path.'/views')) {
             $this->addViewComponent($package, $namespace, $views);
         }
     }
