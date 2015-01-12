@@ -17,9 +17,8 @@ abstract class ServiceProvider extends BaseServiceProvider
     public function addConfigComponent($package, $namespace, $path)
     {
         $config = $this->app['config'];
-        $files  = $this->app['files'];
 
-        if ($files->isDirectory($path) && $config instanceof PackageRepository) {
+        if ($config instanceof PackageRepository) {
             $config->package($package, $path, $namespace);
         }
     }
@@ -34,9 +33,7 @@ abstract class ServiceProvider extends BaseServiceProvider
      */
     public function addLanguageComponent($package, $namespace, $path)
     {
-        if ($this->app['files']->isDirectory($path)) {
-            $this->app['translator']->addNamespace($namespace, $path);
-        }
+        $this->app['translator']->addNamespace($namespace, $path);
     }
 
     /**
@@ -59,9 +56,7 @@ abstract class ServiceProvider extends BaseServiceProvider
         // the views available in this package. We use a standard convention when
         // registering the paths to every package's views and other components.
 
-        if ($this->app['files']->isDirectory($path)) {
-            $this->app['view']->addNamespace($namespace, $path);
-        }
+        $this->app['view']->addNamespace($namespace, $path);
     }
 
     /**
@@ -75,25 +70,32 @@ abstract class ServiceProvider extends BaseServiceProvider
     public function package($package, $namespace = null, $path = null)
     {
         $namespace = $this->getPackageNamespace($package, $namespace);
+        $files = $this->app['files'];
 
         // In this method we will register the configuration package for the package
         // so that the configuration options cleanly cascade into the application
         // folder to make the developers lives much easier in maintaining them.
         $path = $path ?: $this->guessPackagePath();
 
-        $this->addConfigComponent($package, $namespace, $path.'/config');
+        if ($files->isDirectory($config = $path.'/config')) {
+            $this->addConfigComponent($package, $namespace, $config);
+        }
 
         // Next, we will check for any "language" components. If language files exist
         // we will register them with this given package's namespace so that they
         // may be accessed using the translation facilities of the application.
 
-        $this->addLanguageComponent($package, $namespace, $path.'/lang');
+        if ($files->isDirectory($lang = $path.'/lang')) {
+            $this->addLanguageComponent($package, $namespace, $lang);
+        }
 
         // Next, we will see if the application view folder contains a folder for the
         // package and namespace. If it does, we'll give that folder precedence on
         // the loader list for the views so the package views can be overridden.
 
-        $this->addViewComponent($package, $namespace, $path.'/views');
+        if ($files->isDirectory($views = $path.'/lang')) {
+            $this->addViewComponent($package, $namespace, $views);
+        }
     }
 
     /**
