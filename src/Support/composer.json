@@ -31,5 +31,8 @@
 			"dev-master": "3.0-dev"
 		}
 	},
+	"support": {
+		"issues": "https://github.com/orchestral/support/issues"
+	},
 	"minimum-stability": "dev"
 }
