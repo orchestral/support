@@ -1,4 +1,4 @@
-Support (Providers) Component for Orchestra Platform
+Support (Providers) Component for Laravel for Orchestra Platform
 ==============
 
 Support (Providers) Component includes some Service Provider helper classes and traits for Laravel and Orchestra Platform.

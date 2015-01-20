@@ -1,6 +1,6 @@
 {
 	"name": "orchestra/support-providers",
-	"description": "Support (Providers) Component for Orchestra Platform",
+	"description": "Support (Providers) Component for Laravel and Orchestra Platform",
 	"homepage": "http://orchestraplatform.com/docs/latest/components/support/",
 	"keywords": ["orchestra-platform", "orchestral", "laravel"],
 	"license": "MIT",
