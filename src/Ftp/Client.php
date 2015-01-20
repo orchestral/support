@@ -16,7 +16,7 @@ class Client
      *
      * @var array
      */
-    protected $config = array(
+    protected $config = [
         'host'     => null,
         'port'     => 21,
         'user'     => null,
@@ -24,7 +24,7 @@ class Client
         'timeout'  => 90,
         'passive'  => false,
         'ssl'      => false,
-    );
+    ];
 
     /**
      * System type of FTP server.
@@ -39,7 +39,7 @@ class Client
      * @param  array  $config
      * @return self
      */
-    public static function make(array $config = array())
+    public static function make(array $config = [])
     {
         return new static($config);
     }
@@ -49,7 +49,7 @@ class Client
      *
      * @param  array  $config
      */
-    public function __construct(array $config = array())
+    public function __construct(array $config = [])
     {
         if (! empty($config)) {
             $this->setUp($config);
@@ -62,13 +62,13 @@ class Client
      * @param  array  $config
      * @return void
      */
-    public function setUp(array $config = array())
+    public function setUp(array $config = [])
     {
         $this->connection = Arr::pull($config, 'connection', $this->connection);
 
         if (preg_match('/^(ftp|sftp):\/\/([a-zA-Z0-9\.\-_]*):?(\d{1,4})$/', Arr::get($config, 'host'), $matches)) {
             $config['host'] = $matches[2];
-            $config['ssl']  = ($matches[1] === 'sftp' ? true : false);
+            $config['ssl']  = ($matches[1] === 'sftp');
 
             isset($matches[3]) && $config['port'] = $matches[3];
         }
@@ -84,7 +84,7 @@ class Client
      */
     public function changeDirectory($directory)
     {
-        return @Morph::fire('chdir', array($this->connection, $directory));
+        return @Morph::fire('chdir', [$this->connection, $directory]);
     }
 
     /**
@@ -107,7 +107,7 @@ class Client
      */
     public function get($remoteFile, $localFile, $mode = FTP_ASCII)
     {
-        return @Morph::fire('get', array($this->connection, $localFile, $remoteFile, $mode));
+        return @Morph::fire('get', [$this->connection, $localFile, $remoteFile, $mode]);
     }
 
     /**
@@ -120,7 +120,7 @@ class Client
      */
     public function put($localFile, $remoteFile, $mode = FTP_ASCII)
     {
-        return @Morph::fire('put', array($this->connection, $remoteFile, $localFile, $mode));
+        return @Morph::fire('put', [$this->connection, $remoteFile, $localFile, $mode]);
     }
 
     /**
@@ -132,7 +132,7 @@ class Client
      */
     public function rename($oldName, $newName)
     {
-        return @Morph::fire('rename', array($this->connection, $oldName, $newName));
+        return @Morph::fire('rename', [$this->connection, $oldName, $newName]);
     }
 
     /**
@@ -143,7 +143,7 @@ class Client
      */
     public function delete($remoteFile)
     {
-        return @Morph::fire('delete', array($this->connection, $remoteFile));
+        return @Morph::fire('delete', [$this->connection, $remoteFile]);
     }
 
     /**
@@ -156,7 +156,7 @@ class Client
      */
     public function permission($remoteFile, $permission = 0644)
     {
-        return @Morph::fire('chmod', array($this->connection, $permission, $remoteFile));
+        return @Morph::fire('chmod', [$this->connection, $permission, $remoteFile]);
     }
 
     /**
@@ -167,9 +167,9 @@ class Client
      */
     public function allFiles($directory)
     {
-        $list = @Morph::fire('nlist', array($this->connection, $directory));
+        $list = @Morph::fire('nlist', [$this->connection, $directory]);
 
-        return is_array($list) ? $list : array();
+        return is_array($list) ? $list : [];
     }
 
     /**
@@ -180,7 +180,7 @@ class Client
      */
     public function makeDirectory($directory)
     {
-        return @Morph::fire('mkdir', array($this->connection, $directory));
+        return @Morph::fire('mkdir', [$this->connection, $directory]);
     }
 
     /**
@@ -191,7 +191,7 @@ class Client
      */
     public function removeDirectory($directory)
     {
-        return @Morph::fire('rmdir', array($this->connection, $directory));
+        return @Morph::fire('rmdir', [$this->connection, $directory]);
     }
 
     /**
@@ -282,6 +282,6 @@ class Client
      */
     public function connected()
     {
-        return ( ! is_null($this->connection));
+        return (! is_null($this->connection));
     }
 }
