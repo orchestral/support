@@ -1,7 +1,7 @@
 Support Component for Orchestra Platform
 ==============
 
-Support Component is basically a basic set of class required by Orchestra Platform. The idea behind it is similar to what is `Illuminate\Support` to Laravel 5 Framework.
+Support Component includes a basic set of classes required by Orchestra Platform. The idea behind it is similar to what is `Illuminate\Support` to Laravel 5 Framework.
 
 [![Latest Stable Version](https://img.shields.io/github/release/orchestral/support.svg?style=flat)](https://packagist.org/packages/orchestra/support)
 [![Total Downloads](https://img.shields.io/packagist/dt/orchestra/support.svg?style=flat)](https://packagist.org/packages/orchestra/support)
