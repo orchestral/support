@@ -5,7 +5,7 @@ title: Support Change Log
 
 ## Version 3.0 {#v3-0}
 
-### v3.0.0@dev {#v3-0-0}
+### v3.0.0 {#v3-0-0}
 
 * Split components to three (3) sub-components; Core, Facades, and Providers.
 * Rename `Orchestra\Support\Ftp` to `Orchestra\Support\Ftp\Client`.
