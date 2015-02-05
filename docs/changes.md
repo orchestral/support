@@ -7,6 +7,7 @@ title: Support Change Log
 
 ### v3.0.0 {#v3-0-0}
 
+* Update support to Laravel Framework v5.0.
 * Split components to three (3) sub-components; Core, Facades, and Providers.
 * Rename `Orchestra\Support\Ftp` to `Orchestra\Support\Ftp\Client`.
 * Core:
