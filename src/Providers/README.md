@@ -16,7 +16,7 @@ Support (Providers) Component includes some Service Provider helper classes and 
 
 Laravel    | Support (Providers)
 :----------|:----------
- 5.0.x     | 3.0.x@dev
+ 5.0.x     | 3.0.x
 
 ## Installation
 
