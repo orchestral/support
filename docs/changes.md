@@ -5,6 +5,11 @@ title: Support Change Log
 
 ## Version 3.0 {#v3-0}
 
+### v3.0.1 {#v3-0-1}
+
+* Providers:
+  - Move reusable code from `Orchestra\Support\Providers\ServiceProvider` to `Orchestra\Support\Providers\Traits\PackageProviderTrait`.
+
 ### v3.0.0 {#v3-0-0}
 
 * Update support to Laravel Framework v5.0.
