@@ -13,7 +13,7 @@ class Str extends BaseStr
      */
     public static function humanize($text)
     {
-        return static::title(str_replace(array('-', '_'), ' ', $text));
+        return static::title(str_replace(['-', '_'], ' ', $text));
     }
 
     /**
@@ -25,7 +25,7 @@ class Str extends BaseStr
      * @param  string  $suffix
      * @return string
      */
-    public static function replace($text, array $replacements = array(), $prefix = '{', $suffix = '}')
+    public static function replace($text, array $replacements = [], $prefix = '{', $suffix = '}')
     {
         $replacements = static::prepareBinding($replacements, $prefix, $suffix);
 
@@ -50,10 +50,10 @@ class Str extends BaseStr
      * @param  string  $suffix
      * @return array
      */
-    protected static function prepareBinding(array $replacements = array(), $prefix = '{', $suffix = '}')
+    protected static function prepareBinding(array $replacements = [], $prefix = '{', $suffix = '}')
     {
         $replacements = Arr::dot($replacements);
-        $bindings     = array();
+        $bindings     = [];
 
         foreach ($replacements as $key => $value) {
             $bindings["{$prefix}{$key}{$suffix}"] = $value;
@@ -73,15 +73,15 @@ class Str extends BaseStr
     public static function searchable($text, $wildcard = '*', $replacement = '%')
     {
         if (! static::contains($text, $wildcard)) {
-            return array(
+            return [
                 "{$text}",
                 "{$text}{$replacement}",
                 "{$replacement}{$text}",
                 "{$replacement}{$text}{$replacement}",
-            );
+            ];
         }
 
-        return array(str_replace($wildcard, $replacement, $text));
+        return [str_replace($wildcard, $replacement, $text)];
     }
 
     /**

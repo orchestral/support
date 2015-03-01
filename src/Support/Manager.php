@@ -10,7 +10,7 @@ abstract class Manager extends BaseManager
      *
      * @var array
      */
-    protected $blacklisted = array('.');
+    protected $blacklisted = ['.'];
 
     /**
      * Create a new instance.
@@ -42,7 +42,7 @@ abstract class Manager extends BaseManager
         if (isset($this->customCreators[$driver])) {
             return $this->callCustomCreator($driverName);
         } elseif (method_exists($this, $method)) {
-            return call_user_func(array($this, $method), $name);
+            return call_user_func([$this, $method], $name);
         }
 
         throw new InvalidArgumentException("Driver [$driver] not supported.");
@@ -77,7 +77,7 @@ abstract class Manager extends BaseManager
 
         $this->checkNameIsNotBlacklisted($name);
 
-        return array($driver, $name);
+        return [$driver, $name];
     }
 
     /**

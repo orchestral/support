@@ -88,7 +88,7 @@ class Nesty
      */
     protected function addAfter($id, $after)
     {
-        $items    = array();
+        $items    = [];
         $item     = $this->toFluent($id);
         $keys     = array_keys($this->items);
         $position = array_search($after, $keys);
@@ -125,7 +125,7 @@ class Nesty
         // case we should simply ignore this request as child should
         // inherit parent ACL access.
         if (! isset($node)) {
-            return null;
+            return;
         }
 
         $item = $node->get('childs');
@@ -183,7 +183,7 @@ class Nesty
 
         $method = $matching[$key];
 
-        return call_user_func(array($this, $method), $id, $location);
+        return call_user_func([$this, $method], $id, $location);
     }
 
     /**

@@ -12,7 +12,7 @@ trait QueryFilterTrait
      * @param  array  $input
      * @return \Illuminate\Database\Eloquent\Builder|\Illuminate\Database\Query\Builder
      */
-    protected function setupBasicQueryFilter($query, array $input = array())
+    protected function setupBasicQueryFilter($query, array $input = [])
     {
         $orderBy = Arr::get($input, 'order_by', '');
 

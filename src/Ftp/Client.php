@@ -206,7 +206,7 @@ class Client
         $config = $this->config;
 
         if (is_null($config['host'])) {
-            return null;
+            return;
         }
 
         $this->createConnection($config['host'], $config['port'], $config['timeout']);
