@@ -36,6 +36,7 @@ class Nesty
      * Create a new Fluent instance while appending default config.
      *
      * @param  int  $id
+     *
      * @return \Illuminate\Support\Fluent
      */
     protected function toFluent($id)
@@ -53,6 +54,7 @@ class Nesty
      *
      * @param  string  $id
      * @param  string  $before
+     *
      * @return \Illuminate\Support\Fluent
      */
     protected function addBefore($id, $before)
@@ -84,6 +86,7 @@ class Nesty
      *
      * @param  string  $id
      * @param  string  $after
+     *
      * @return \Illuminate\Support\Fluent
      */
     protected function addAfter($id, $after)
@@ -115,6 +118,7 @@ class Nesty
      *
      * @param  string  $id
      * @param  string  $parent
+     *
      * @return \Illuminate\Support\Fluent
      */
     protected function addChild($id, $parent)
@@ -128,7 +132,7 @@ class Nesty
             return;
         }
 
-        $item = $node->get('childs');
+        $item      = $node->get('childs');
         $item[$id] = $this->toFluent($id);
 
         $node->childs($item);
@@ -140,6 +144,7 @@ class Nesty
      * Add item as parent.
      *
      * @param  string  $id
+     *
      * @return \Illuminate\Support\Fluent
      */
     protected function addParent($id)
@@ -152,6 +157,7 @@ class Nesty
      *
      * @param  string  $id
      * @param  string  $location
+     *
      * @return \Illuminate\Support\Fluent
      */
     public function add($id, $location = '#')
@@ -171,6 +177,7 @@ class Nesty
      * @param  string  $id
      * @param  string  $key
      * @param  string  $location
+     *
      * @return \Illuminate\Support\Fluent
      */
     protected function pickTraverseFromMatchedExpression($id, $key, $location)
@@ -190,6 +197,7 @@ class Nesty
      * Check whether item by id exists.
      *
      * @param  string  $key
+     *
      * @return bool
      */
     public function has($key)
@@ -201,6 +209,7 @@ class Nesty
      * Retrieve an item by id.
      *
      * @param  string  $key
+     *
      * @return \Illuminate\Support\Fluent
      */
     public function is($key)

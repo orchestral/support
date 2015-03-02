@@ -14,6 +14,7 @@ trait MacroableTrait
      *
      * @param  string  $name
      * @param  callable  $macro
+     *
      * @return void
      */
     public function macro($name, $macro)
@@ -26,7 +27,9 @@ trait MacroableTrait
      *
      * @param  string  $method
      * @param  array   $parameters
+     *
      * @return mixed
+     *
      * @throws \BadMethodCallException
      */
     public function __call($method, $parameters)

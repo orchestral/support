@@ -11,6 +11,7 @@ trait UploadableTrait
      *
      * @param  \Symfony\Component\HttpFoundation\File\UploadedFile  $file
      * @param  string  $path
+     *
      * @return string
      */
     protected function saveUploadedFile(UploadedFile $file, $path)
@@ -21,9 +22,10 @@ trait UploadableTrait
     }
 
     /**
-     * Delete uploaded from directory
+     * Delete uploaded from directory.
      *
      * @param  string  $file
+     *
      * @return bool
      */
     protected function deleteUploadedFile($file)
@@ -35,6 +37,7 @@ trait UploadableTrait
      * Get uploaded filename.
      *
      * @param  \Symfony\Component\HttpFoundation\File\UploadedFile  $file
+     *
      * @return string
      */
     protected function getUploadedFilename(UploadedFile $file)

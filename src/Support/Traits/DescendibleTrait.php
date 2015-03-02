@@ -7,6 +7,7 @@ trait DescendibleTrait
      *
      * @param  array   $array
      * @param  string  $key
+     *
      * @return \Illuminate\Support\Fluent
      */
     protected function descendants(array $array, $key = null)
@@ -30,6 +31,7 @@ trait DescendibleTrait
      *
      * @param  array  $array
      * @param  array  $keys
+     *
      * @return \Illuminate\Support\Fluent
      */
     protected function resolveLastDecendant($array, $keys)

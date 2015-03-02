@@ -10,6 +10,7 @@ trait QueryFilterTrait
      *
      * @param  \Illuminate\Database\Eloquent\Builder|\Illuminate\Database\Query\Builder  $query
      * @param  array  $input
+     *
      * @return \Illuminate\Database\Eloquent\Builder|\Illuminate\Database\Query\Builder
      */
     protected function setupBasicQueryFilter($query, array $input = [])
@@ -41,6 +42,7 @@ trait QueryFilterTrait
      * @param  \Illuminate\Database\Eloquent\Builder|\Illuminate\Database\Query\Builder  $query
      * @param  mixed  $keyword
      * @param  array  $fields
+     *
      * @return \Illuminate\Database\Eloquent\Builder|\Illuminate\Database\Query\Builder
      */
     protected function setupWildcardQueryFilter($query, $keyword, array $fields)
@@ -65,11 +67,12 @@ trait QueryFilterTrait
      *
      * @param  string  $on
      * @param  array   $columns
+     *
      * @return bool
      */
     protected function isColumnExcludedFromFilterable($on, array $columns = [])
     {
-        $only = Arr::get($columns, 'only', []);
+        $only   = Arr::get($columns, 'only', []);
         $except = Arr::get($columns, 'except', []);
 
         return ((! empty($only) && ! in_array($on, (array) $only)) ||

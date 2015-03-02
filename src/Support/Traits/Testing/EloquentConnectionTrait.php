@@ -5,7 +5,7 @@ use Mockery as m;
 trait EloquentConnectionTrait
 {
     /**
-     * Set mock connection
+     * Set mock connection.
      *
      * @param  object  $model
      */

@@ -16,6 +16,7 @@ abstract class Manager extends BaseManager
      * Create a new instance.
      *
      * @param  string  $driver
+     *
      * @return object
      */
     public function make($driver = null)
@@ -27,6 +28,7 @@ abstract class Manager extends BaseManager
      * Create a new driver instance.
      *
      * @param  string  $driverName
+     *
      * @return object
      */
     protected function createDriver($driverName)
@@ -52,6 +54,7 @@ abstract class Manager extends BaseManager
      * Call a custom driver creator.
      *
      * @param  string  $driverName
+     *
      * @return object
      */
     protected function callCustomCreator($driverName)
@@ -65,6 +68,7 @@ abstract class Manager extends BaseManager
      * Get driver name.
      *
      * @param  string  $driverName
+     *
      * @return array
      */
     protected function getDriverName($driverName)
@@ -84,7 +88,9 @@ abstract class Manager extends BaseManager
      * Check if name is not blacklisted.
      *
      * @param  string  $name
+     *
      * @return void
+     *
      * @throws \InvalidArgumentException
      */
     protected function checkNameIsNotBlacklisted($name)

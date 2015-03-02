@@ -2,7 +2,6 @@
 
 class RuntimeException extends \RuntimeException
 {
-
     /**
      * Parameters.
      *

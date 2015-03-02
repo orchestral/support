@@ -9,6 +9,7 @@ class Str extends BaseStr
      * Convert slug type text to human readable text.
      *
      * @param  string  $text
+     *
      * @return string
      */
     public static function humanize($text)
@@ -23,6 +24,7 @@ class Str extends BaseStr
      * @param  array   $replacements
      * @param  string  $prefix
      * @param  string  $suffix
+     *
      * @return string
      */
     public static function replace($text, array $replacements = [], $prefix = '{', $suffix = '}')
@@ -48,6 +50,7 @@ class Str extends BaseStr
      * @param  array   $replacements
      * @param  string  $prefix
      * @param  string  $suffix
+     *
      * @return array
      */
     protected static function prepareBinding(array $replacements = [], $prefix = '{', $suffix = '}')
@@ -68,6 +71,7 @@ class Str extends BaseStr
      * @param  string  $text
      * @param  string  $wildcard
      * @param  string  $replacement
+     *
      * @return array
      */
     public static function searchable($text, $wildcard = '*', $replacement = '%')
@@ -90,6 +94,7 @@ class Str extends BaseStr
      * BYTEA and convert the string to stream.
      *
      * @param  mixed  $data
+     *
      * @return string
      */
     public static function streamGetContents($data)
@@ -122,6 +127,7 @@ class Str extends BaseStr
      * Convert hex to string.
      *
      * @param  string  $hex
+     *
      * @return string
      */
     protected static function fromHex($hex)
