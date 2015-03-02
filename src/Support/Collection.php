@@ -35,7 +35,7 @@ class Collection extends BaseCollection implements CsvableInterface
      */
     protected function resolveCsvHeader()
     {
-        $header = array();
+        $header = [];
 
         if (! $this->isEmpty()) {
             $single = $this->first();

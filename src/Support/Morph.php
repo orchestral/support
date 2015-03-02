@@ -16,7 +16,9 @@ abstract class Morph
      *
      * @param  string  $method
      * @param  array   $parameters
+     *
      * @return mixed
+     *
      * @throws \RuntimeException
      */
     public static function __callStatic($method, $parameters)
@@ -32,6 +34,7 @@ abstract class Morph
      * Determine if method is callable.
      *
      * @param  string  $method
+     *
      * @return bool
      */
     public static function isCallable($method)

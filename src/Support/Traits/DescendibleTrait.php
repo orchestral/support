@@ -7,6 +7,7 @@ trait DescendibleTrait
      *
      * @param  array   $array
      * @param  string  $key
+     *
      * @return \Illuminate\Support\Fluent
      */
     protected function descendants(array $array, $key = null)
@@ -19,7 +20,7 @@ trait DescendibleTrait
         $first = array_shift($keys);
 
         if (! isset($array[$first])) {
-            return null;
+            return;
         }
 
         return $this->resolveLastDecendant($array[$first], $keys);
@@ -30,12 +31,13 @@ trait DescendibleTrait
      *
      * @param  array  $array
      * @param  array  $keys
+     *
      * @return \Illuminate\Support\Fluent
      */
     protected function resolveLastDecendant($array, $keys)
     {
         $isLastDescendant = function ($array, $segment) {
-            return ( ! is_array($array->childs) || ! isset($array->childs[$segment]));
+            return (! is_array($array->childs) || ! isset($array->childs[$segment]));
         };
 
         // To retrieve the array item using dot syntax, we'll iterate through

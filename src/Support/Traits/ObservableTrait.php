@@ -15,11 +15,12 @@ trait ObservableTrait
      * Register an observer.
      *
      * @param  object  $class
+     *
      * @return void
      */
     public static function observe($class)
     {
-        $instance = new static;
+        $instance = new static();
 
         $className = get_class($class);
 
@@ -34,6 +35,7 @@ trait ObservableTrait
      * Get the observer key.
      *
      * @param  string  $event
+     *
      * @return string
      */
     protected function getObservableKey($event)
@@ -56,6 +58,7 @@ trait ObservableTrait
      *
      * @param  string  $event
      * @param  \Closure|string  $callback
+     *
      * @return void
      */
     protected static function registerObservableEvent($event, $callback)
@@ -66,7 +69,7 @@ trait ObservableTrait
 
         $className = get_called_class();
 
-        $event = with(new static)->getObservableKey($event);
+        $event = with(new static())->getObservableKey($event);
 
         static::$dispatcher->listen("{$event}: {$className}", $callback);
     }
@@ -76,6 +79,7 @@ trait ObservableTrait
      *
      * @param  string  $event
      * @param  bool    $halt
+     *
      * @return mixed
      */
     protected function fireObservableEvent($event, $halt)
@@ -85,7 +89,7 @@ trait ObservableTrait
         }
 
         $className = get_class($this);
-        $event = $this->getObservableKey($event);
+        $event     = $this->getObservableKey($event);
 
         $method = $halt ? 'until' : 'fire';
 
@@ -103,7 +107,7 @@ trait ObservableTrait
             return ;
         }
 
-        $instance  = new static;
+        $instance  = new static();
         $className = get_called_class();
 
         foreach ($instance->getObservableEvents() as $event) {
@@ -127,6 +131,7 @@ trait ObservableTrait
      * Set the event dispatcher instance.
      *
      * @param  \Illuminate\Contracts\Events\Dispatcher  $dispatcher
+     *
      * @return void
      */
     public static function setEventDispatcher(Dispatcher $dispatcher)

@@ -11,6 +11,7 @@ trait PackageProviderTrait
      * @param  string  $package
      * @param  string  $namespace
      * @param  string  $path
+     *
      * @return void
      */
     public function addConfigComponent($package, $namespace, $path)
@@ -28,6 +29,7 @@ trait PackageProviderTrait
      * @param  string  $package
      * @param  string  $namespace
      * @param  string  $path
+     *
      * @return void
      */
     public function addLanguageComponent($package, $namespace, $path)
@@ -41,6 +43,7 @@ trait PackageProviderTrait
      * @param  string  $package
      * @param  string  $namespace
      * @param  string  $path
+     *
      * @return void
      */
     public function addViewComponent($package, $namespace, $path)
@@ -64,12 +67,13 @@ trait PackageProviderTrait
      * @param  string  $package
      * @param  string  $namespace
      * @param  string  $path
+     *
      * @return void
      */
     public function package($package, $namespace = null, $path = null)
     {
         $namespace = $this->getPackageNamespace($package, $namespace);
-        $files = $this->app['files'];
+        $files     = $this->app['files'];
 
         // In this method we will register the configuration package for the package
         // so that the configuration options cleanly cascade into the application
@@ -114,6 +118,7 @@ trait PackageProviderTrait
      *
      * @param  string  $package
      * @param  string  $namespace
+     *
      * @return string
      */
     protected function getPackageNamespace($package, $namespace)
@@ -129,6 +134,7 @@ trait PackageProviderTrait
      * Get the application package view paths.
      *
      * @param  string  $package
+     *
      * @return array
      */
     protected function getAppViewPaths($package)

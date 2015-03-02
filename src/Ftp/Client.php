@@ -37,6 +37,7 @@ class Client
      * Make a new FTP instance.
      *
      * @param  array  $config
+     *
      * @return self
      */
     public static function make(array $config = [])
@@ -60,6 +61,7 @@ class Client
      * Configure FTP.
      *
      * @param  array  $config
+     *
      * @return void
      */
     public function setUp(array $config = [])
@@ -80,6 +82,7 @@ class Client
      * Change current directory on FTP server.
      *
      * @param  string  $directory
+     *
      * @return bool
      */
     public function changeDirectory($directory)
@@ -103,6 +106,7 @@ class Client
      * @param  string  $remoteFile
      * @param  string  $localFile
      * @param  int  $mode
+     *
      * @return bool
      */
     public function get($remoteFile, $localFile, $mode = FTP_ASCII)
@@ -116,6 +120,7 @@ class Client
      * @param  string  $localFile
      * @param  string  $remoteFile
      * @param  int  $mode
+     *
      * @return bool
      */
     public function put($localFile, $remoteFile, $mode = FTP_ASCII)
@@ -128,6 +133,7 @@ class Client
      *
      * @param  string  $oldName
      * @param  string  $newName
+     *
      * @return bool
      */
     public function rename($oldName, $newName)
@@ -139,6 +145,7 @@ class Client
      * Delete file on FTP server.
      *
      * @param  string  $remoteFile
+     *
      * @return bool
      */
     public function delete($remoteFile)
@@ -151,7 +158,9 @@ class Client
      *
      * @param  string  $remoteFile
      * @param  int  $permission
+     *
      * @return bool
+     *
      * @throws \RuntimeException  If unable to chmod $remoteFile
      */
     public function permission($remoteFile, $permission = 0644)
@@ -163,6 +172,7 @@ class Client
      * Get list of files/directories on FTP server.
      *
      * @param  string  $directory
+     *
      * @return array
      */
     public function allFiles($directory)
@@ -176,6 +186,7 @@ class Client
      * Create directory on FTP server.
      *
      * @param  string  $directory
+     *
      * @return bool
      */
     public function makeDirectory($directory)
@@ -187,6 +198,7 @@ class Client
      * Remove directory on FTP server.
      *
      * @param  string  $directory
+     *
      * @return bool
      */
     public function removeDirectory($directory)
@@ -198,6 +210,7 @@ class Client
      * Connect to FTP server.
      *
      * @return bool|null
+     *
      * @throws \Orchestra\Support\Ftp\ServerException  If unable to connect/login
      *                                                 to FTP server.
      */
@@ -206,7 +219,7 @@ class Client
         $config = $this->config;
 
         if (is_null($config['host'])) {
-            return null;
+            return;
         }
 
         $this->createConnection($config['host'], $config['port'], $config['timeout']);
@@ -230,7 +243,9 @@ class Client
      * @param  string  $host
      * @param  int  $port
      * @param  int  $timeout
+     *
      * @return void
+     *
      * @throws \Orchestra\Support\Ftp\ServerException  If unable to connect to FTP
      *                                                 server.
      */
@@ -249,7 +264,9 @@ class Client
      * @param  string  $host
      * @param  int  $port
      * @param  int  $timeout
+     *
      * @return void
+     *
      * @throws \Orchestra\Support\Ftp\ServerException
      */
     protected function createSecureConnection($host, $port = 21, $timeout = 90)
@@ -265,6 +282,7 @@ class Client
      * Close FTP connection.
      *
      * @return void
+     *
      * @throws \RuntimeException If unable to close connection.
      */
     public function close()

@@ -16,7 +16,9 @@ class Morph extends Base
      *
      * @param  string   $method
      * @param  array    $parameters
+     *
      * @return mixed
+     *
      * @throws \RuntimeException
      */
     public static function fire($method, $parameters)

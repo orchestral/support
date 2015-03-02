@@ -37,7 +37,7 @@ abstract class Validator
      */
     public function __construct(Factory $factory, Dispatcher $dispatcher)
     {
-        $this->validationFactory = $factory;
+        $this->validationFactory    = $factory;
         $this->validationDispatcher = $dispatcher;
     }
 
@@ -46,6 +46,7 @@ abstract class Validator
      *
      * @param  string  $scenario
      * @param  array   $parameters
+     *
      * @return Validator
      */
     public function on($scenario, array $parameters = [])
@@ -57,6 +58,7 @@ abstract class Validator
      * Add bindings.
      *
      * @param  array  $bindings
+     *
      * @return Validator
      */
     public function bind(array $bindings)
@@ -70,6 +72,7 @@ abstract class Validator
      * @param  array  $input
      * @param  string|array  $events
      * @param  array   $phrases
+     *
      * @return \Illuminate\Contracts\Validation\Validator
      */
     public function with(array $input, $events = [], array $phrases = [])
