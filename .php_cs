@@ -7,6 +7,7 @@ $finder = Symfony\Component\Finder\Finder::create()
     ->ignoreVCS(true);
 
 return Symfony\CS\Config\Config::create()
+    ->setUsingCache(true)
     ->level(Symfony\CS\FixerInterface::PSR2_LEVEL)
     ->fixers([
         '-psr0',
