@@ -25,20 +25,20 @@ class StrTest extends \PHPUnit_Framework_TestCase
     public function testReplaceMethod()
     {
         $expected = 'Orchestra Platform is awesome';
-        $output   = Str::replace('{name} is awesome', array('name' => 'Orchestra Platform'));
+        $output   = Str::replace('{name} is awesome', ['name' => 'Orchestra Platform']);
 
         $this->assertEquals($expected, $output);
 
-        $expected = array(
+        $expected = [
             'Orchestra Platform is awesome',
             'Orchestra Platform is not a foobar',
-        );
+        ];
 
-        $data     = array(
+        $data     = [
             '{name} is awesome',
             '{name} is not a {foo}',
-        );
-        $output   = Str::replace($data, array('name' => 'Orchestra Platform', 'foo' => 'foobar'));
+        ];
+        $output   = Str::replace($data, ['name' => 'Orchestra Platform', 'foo' => 'foobar']);
 
         $this->assertEquals($expected, $output);
     }
@@ -50,12 +50,12 @@ class StrTest extends \PHPUnit_Framework_TestCase
      */
     public function testSearchableMethod()
     {
-        $expected = array('foobar%');
+        $expected = ['foobar%'];
         $output   = Str::searchable('foobar*');
 
         $this->assertEquals($expected, $output);
 
-        $expected = array('foobar', 'foobar%', '%foobar', '%foobar%');
+        $expected = ['foobar', 'foobar%', '%foobar', '%foobar%'];
         $output   = Str::searchable('foobar');
 
         $this->assertEquals($expected, $output);
@@ -75,13 +75,13 @@ class StrTest extends \PHPUnit_Framework_TestCase
 
         $this->assertEquals($expected, $output);
 
-        $expected = array(
+        $expected = [
             'name'  => 'Orchestra',
-            'theme' => array(
-                'backend' => 'default',
+            'theme' => [
+                'backend'  => 'default',
                 'frontend' => 'default',
-            ),
-        );
+            ],
+        ];
 
         $this->assertEquals($expected, unserialize($output));
 
@@ -91,13 +91,13 @@ class StrTest extends \PHPUnit_Framework_TestCase
 
         $this->assertEquals($expected, $output);
 
-        $expected = array(
+        $expected = [
             'name'  => 'Orchestra',
-            'theme' => array(
+            'theme' => [
                 'backend'  => 'default',
                 'frontend' => 'default',
-            ),
-        );
+            ],
+        ];
 
         $this->assertEquals($expected, unserialize($output));
         $this->assertEquals('foo', Str::streamGetContents('foo'));

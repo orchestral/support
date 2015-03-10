@@ -13,7 +13,7 @@ class UploadedTraitTest extends \PHPUnit_Framework_TestCase
      */
     public function setUp()
     {
-        $app = new Container;
+        $app = new Container();
 
         Facade::clearResolvedInstances();
         Facade::setFacadeApplication($app);
@@ -32,15 +32,15 @@ class UploadedTraitTest extends \PHPUnit_Framework_TestCase
     public function testSaveUploadedFileMethod()
     {
         $path = '/var/www/public/';
-        $file = m::mock('\Symfony\Component\HttpFoundation\File\UploadedFile[getClientOriginalExtension,move]', array(
+        $file = m::mock('\Symfony\Component\HttpFoundation\File\UploadedFile[getClientOriginalExtension,move]', [
             realpath(__DIR__.'/fixtures').'/test.gif',
             'test',
-        ));
+        ]);
 
         $file->shouldReceive('getClientOriginalExtension')->once()->andReturn('jpg')
             ->shouldReceive('move')->once()->with($path, m::type('String'))->andReturnNull();
 
-        $stub = new UploadedStub;
+        $stub = new UploadedStub();
 
         $filename = $stub->save($file, $path);
     }
@@ -54,14 +54,14 @@ class UploadedTraitTest extends \PHPUnit_Framework_TestCase
     public function testSaveUploadedFileMethodWithCustomFilename()
     {
         $path = '/var/www/public/';
-        $file = m::mock('\Symfony\Component\HttpFoundation\File\UploadedFile[move]', array(
+        $file = m::mock('\Symfony\Component\HttpFoundation\File\UploadedFile[move]', [
             realpath(__DIR__.'/fixtures').'/test.gif',
             'test',
-        ));
+        ]);
 
         $file->shouldReceive('move')->once()->with($path, 'foo.jpg')->andReturnNull();
 
-        $stub = new UploadedStubWithReplacement;
+        $stub = new UploadedStubWithReplacement();
 
         $filename = $stub->save($file, $path);
     }
@@ -74,13 +74,13 @@ class UploadedTraitTest extends \PHPUnit_Framework_TestCase
     public function testDeleteMethod()
     {
         $filesystem = m::mock('\Illuminate\Filesystem\Filesystem');
-        $filename = '/var/www/foo.jpg';
+        $filename   = '/var/www/foo.jpg';
 
         $filesystem->shouldReceive('delete')->once()->with($filename)->andReturn(true);
 
         File::swap($filesystem);
 
-        $stub = new UploadedStub;
+        $stub = new UploadedStub();
 
         $this->assertTrue($stub->delete($filename));
     }

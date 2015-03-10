@@ -41,11 +41,11 @@ class ObservableTraitTest extends \PHPUnit_Framework_TestCase
      */
     public function testGetObservableEventsMethod()
     {
-        $stub1 = new ObservableStub;
-        $stub2 = new ObservableStubWithoutEvents;
+        $stub1 = new ObservableStub();
+        $stub2 = new ObservableStubWithoutEvents();
 
-        $this->assertEquals(array('saving', 'saved'), $stub1->getObservableEvents());
-        $this->assertEquals(array(), $stub2->getObservableEvents());
+        $this->assertEquals(['saving', 'saved'], $stub1->getObservableEvents());
+        $this->assertEquals([], $stub2->getObservableEvents());
     }
 
     /**
@@ -58,9 +58,9 @@ class ObservableTraitTest extends \PHPUnit_Framework_TestCase
     {
         ObservableStub::flushEventListeners();
 
-        ObservableStub::observe(new FoobarObserver);
+        ObservableStub::observe(new FoobarObserver());
 
-        $stub = new ObservableStub;
+        $stub = new ObservableStub();
         $stub->save();
 
         $this->assertFalse($stub->saving);
@@ -77,7 +77,7 @@ class ObservableTraitTest extends \PHPUnit_Framework_TestCase
     {
         $dispatcher = m::mock('\Illuminate\Events\Dispatcher');
 
-        $stub = new ObservableStub;
+        $stub = new ObservableStub();
 
         $dispatcher->shouldReceive('listen')->once()
                 ->with('saving: '.__NAMESPACE__.'\\ObservableStub', __NAMESPACE__.'\\FoobarObserver@saving')
@@ -94,7 +94,7 @@ class ObservableTraitTest extends \PHPUnit_Framework_TestCase
 
         ObservableStub::setEventDispatcher($dispatcher);
 
-        ObservableStub::observe(new FoobarObserver);
+        ObservableStub::observe(new FoobarObserver());
 
         $stub->save();
 
@@ -103,7 +103,6 @@ class ObservableTraitTest extends \PHPUnit_Framework_TestCase
 
         ObservableStub::flushEventListeners();
     }
-
 }
 
 class ObservableStub
@@ -122,7 +121,7 @@ class ObservableStub
 
     public function getObservableEvents()
     {
-        return array('saving', 'saved');
+        return ['saving', 'saved'];
     }
 }
 

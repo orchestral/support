@@ -19,11 +19,11 @@ class ClientTest extends \PHPUnit_Framework_TestCase
     {
         Morph::$prefix = '\Orchestra\Support\Ftp\TestCase\mock1_ftp_';
 
-        $this->stub = new Client(array(
+        $this->stub = new Client([
             'host'     => 'sftp://localhost:22',
             'user'     => 'foo',
             'password' => 'foobar',
-        ));
+        ]);
     }
 
     /**
@@ -43,7 +43,7 @@ class ClientTest extends \PHPUnit_Framework_TestCase
     {
         Morph::$prefix = '\Orchestra\Support\Ftp\TestCase\mock1_ftp_';
 
-        $stub = Client::make(array('connection' => new StreamStub));
+        $stub = Client::make(['connection' => new StreamStub()]);
 
         $this->assertInstanceOf('\Orchestra\Support\Ftp\Client', $stub);
 
@@ -78,11 +78,11 @@ class ClientTest extends \PHPUnit_Framework_TestCase
         $this->assertTrue($this->stub->connect());
         $this->assertTrue($this->stub->connected());
 
-        $stub = new Client(array(
+        $stub = new Client([
             'host'     => 'ftp://localhost:21',
             'user'     => 'foo',
             'password' => 'foobar',
-        ));
+        ]);
 
         $this->assertFalse($stub->connected());
         $this->assertTrue($stub->connect());
@@ -98,10 +98,10 @@ class ClientTest extends \PHPUnit_Framework_TestCase
     {
         Morph::$prefix = '\Orchestra\Support\Ftp\TestCase\mock1_ftp_';
 
-        $stub = new Client(array(
+        $stub = new Client([
             'user'     => 'foo',
             'password' => 'foobar',
-        ));
+        ]);
 
         $this->assertNull($stub->connect());
     }
@@ -115,11 +115,11 @@ class ClientTest extends \PHPUnit_Framework_TestCase
     {
         Morph::$prefix = '\Orchestra\Support\Ftp\TestCase\mock2_ftp_';
 
-        $stub = new Client(array(
+        $stub = new Client([
             'host'     => 'sftp://localhost:22',
             'user'     => 'foo',
             'password' => 'foobar',
-        ));
+        ]);
 
         $stub->connect();
     }
@@ -133,11 +133,11 @@ class ClientTest extends \PHPUnit_Framework_TestCase
     {
         Morph::$prefix = '\Orchestra\Support\Ftp\TestCase\mock2_ftp_';
 
-        $stub = new Client(array(
+        $stub = new Client([
             'host'     => 'ftp://localhost:21',
             'user'     => 'foo',
             'password' => 'foobar',
-        ));
+        ]);
 
         $stub->connect();
     }
@@ -151,11 +151,11 @@ class ClientTest extends \PHPUnit_Framework_TestCase
     {
         Morph::$prefix = '\Orchestra\Support\Ftp\TestCase\mock3_ftp_';
 
-        $stub = new Client(array(
+        $stub = new Client([
             'host'     => 'ftp://localhost:21',
             'user'     => 'foo',
             'password' => 'foobar',
-        ));
+        ]);
 
         $stub->connect();
     }
@@ -178,7 +178,7 @@ class ClientTest extends \PHPUnit_Framework_TestCase
         $this->assertTrue($this->stub->rename('/var/www/home.php', '/var/www/dashboard.php'));
         $this->assertTrue($this->stub->delete('/var/www/home.php'));
         $this->assertTrue($this->stub->permission('/var/www/index.php', 755));
-        $this->assertEquals(array('foo.php', 'foobar.php'), $this->stub->allFiles('/var/www/foo/'));
+        $this->assertEquals(['foo.php', 'foobar.php'], $this->stub->allFiles('/var/www/foo/'));
         $this->assertTrue($this->stub->makeDirectory('/var/www/orchestra'));
         $this->assertTrue($this->stub->removeDirectory('/var/www/orchestra'));
     }
@@ -193,27 +193,26 @@ class ClientTest extends \PHPUnit_Framework_TestCase
         Morph::$prefix = '\Orchestra\Support\Ftp\TestCase\mock1_ftp_';
 
         try {
-            Morph::fire('invalid_method', array('foo'));
+            Morph::fire('invalid_method', ['foo']);
         } catch (\Orchestra\Support\Ftp\RuntimeException $e) {
             $this->assertTrue(true, 'Excepted Exception');
-            $this->assertEquals(array('foo'), $e->getParameters());
+            $this->assertEquals(['foo'], $e->getParameters());
         }
     }
 }
 
 class StreamStub
 {
-
 }
 
 function mock1_ftp_ssl_connect()
 {
-    return new StreamStub;
+    return new StreamStub();
 }
 
 function mock1_ftp_connect()
 {
-    return new StreamStub;
+    return new StreamStub();
 }
 
 function mock1_ftp_login()
@@ -273,7 +272,7 @@ function mock1_ftp_chmod()
 
 function mock1_ftp_nlist()
 {
-    return array('foo.php', 'foobar.php');
+    return ['foo.php', 'foobar.php'];
 }
 
 function mock1_ftp_mkdir()
@@ -298,12 +297,12 @@ function mock2_ftp_connect()
 
 function mock3_ftp_ssl_connect()
 {
-    return new StreamStub;
+    return new StreamStub();
 }
 
 function mock3_ftp_connect()
 {
-    return new StreamStub;
+    return new StreamStub();
 }
 
 function mock3_ftp_login()

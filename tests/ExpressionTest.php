@@ -5,7 +5,7 @@ use Orchestra\Support\Expression;
 class ExpressionTest extends \PHPUnit_Framework_TestCase
 {
     /**
-     * Test constructing Orchestra\Support\Expression
+     * Test constructing Orchestra\Support\Expression.
      *
      * @test
      */

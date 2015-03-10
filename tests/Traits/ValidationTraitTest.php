@@ -13,8 +13,8 @@ class ValidationTraitTest extends \PHPUnit_Framework_TestCase
      */
     public function testGetValidationHelpers()
     {
-        $this->assertEquals(array(), $this->getValidationEvents());
-        $this->assertEquals(array(), $this->getValidationPhrases());
-        $this->assertEquals(array(), $this->getValidationRules());
+        $this->assertEquals([], $this->getValidationEvents());
+        $this->assertEquals([], $this->getValidationPhrases());
+        $this->assertEquals([], $this->getValidationRules());
     }
 }
