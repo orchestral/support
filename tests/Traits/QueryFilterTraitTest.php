@@ -36,7 +36,7 @@ class QueryFilterTraitTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals($query, $this->setupBasicQueryFilter($query, [
             'order_by'  => 'created',
             'direction' => 'desc',
-            'columns' => ['only' => 'created_at'],
+            'columns'   => ['only' => 'created_at'],
         ]));
     }
 
@@ -55,7 +55,7 @@ class QueryFilterTraitTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals($query, $this->setupBasicQueryFilter($query, [
             'order_by'  => 'password',
             'direction' => 'desc',
-            'columns' => ['except' => 'password'],
+            'columns'   => ['except' => 'password'],
         ]));
     }
 

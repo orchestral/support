@@ -23,7 +23,7 @@ class ValidatorTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test Orchestra\Support\Validator
+     * Test Orchestra\Support\Validator.
      *
      * @test
      */
@@ -32,17 +32,17 @@ class ValidatorTest extends \PHPUnit_Framework_TestCase
         $event     = m::mock('\Illuminate\Contracts\Events\Dispatcher');
         $validator = m::mock('\Illuminate\Contracts\Validation\Factory');
 
-        $rules   = array('email' => array('email', 'foo:2'), 'name' => 'any');
-        $phrases = array('email.required' => 'Email required');
+        $rules   = ['email' => ['email', 'foo:2'], 'name' => 'any'];
+        $phrases = ['email.required' => 'Email required'];
 
         $event->shouldReceive('fire')->once()->with('foo.event', m::any())->andReturn(null);
-        $validator->shouldReceive('make')->once()->with(array(), $rules, $phrases)
+        $validator->shouldReceive('make')->once()->with([], $rules, $phrases)
             ->andReturn(m::mock('\Illuminate\Validation\Validator'));
 
         $stub = new FooValidator($validator, $event);
-        $stub->on('foo', array('orchestra'))->bind(array('id' => '2'));
+        $stub->on('foo', ['orchestra'])->bind(['id' => '2']);
 
-        $validation = $stub->with(array(), 'foo.event');
+        $validation = $stub->with([], 'foo.event');
 
         $this->assertEquals('orchestra', $_SERVER['validator.onFoo']);
         $this->assertEquals($validation, $_SERVER['validator.extendFoo']);
@@ -59,16 +59,16 @@ class ValidatorTest extends \PHPUnit_Framework_TestCase
         $event     = m::mock('\Illuminate\Contracts\Events\Dispatcher');
         $validator = m::mock('\Illuminate\Contracts\Validation\Factory');
 
-        $rules   = array('email' => array('email', 'foo:2'), 'name' => 'any');
-        $phrases = array('email.required' => 'Email required', 'name' => 'Any name');
+        $rules   = ['email' => ['email', 'foo:2'], 'name' => 'any'];
+        $phrases = ['email.required' => 'Email required', 'name' => 'Any name'];
 
-        $validator->shouldReceive('make')->once()->with(array(), $rules, $phrases)
+        $validator->shouldReceive('make')->once()->with([], $rules, $phrases)
             ->andReturn(m::mock('\Illuminate\Validation\Validator'));
 
         $stub = new FooValidator($validator, $event);
-        $stub->bind(array('id' => '2'));
+        $stub->bind(['id' => '2']);
 
-        $validation = $stub->with(array(), null, array('name' => 'Any name'));
+        $validation = $stub->with([], null, ['name' => 'Any name']);
 
         $this->assertInstanceOf('\Illuminate\Validation\Validator', $validation);
     }
@@ -76,14 +76,14 @@ class ValidatorTest extends \PHPUnit_Framework_TestCase
 
 class FooValidator extends \Orchestra\Support\Validator
 {
-    protected $rules = array(
-        'email' => array('email', 'foo:{id}'),
+    protected $rules = [
+        'email' => ['email', 'foo:{id}'],
         'name'  => 'any',
-    );
+    ];
 
-    protected $phrases = array(
+    protected $phrases = [
         'email.required' => 'Email required',
-    );
+    ];
 
     protected function onFoo($value)
     {

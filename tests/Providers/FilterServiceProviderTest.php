@@ -22,7 +22,7 @@ class FilterServiceProviderTest extends \PHPUnit_Framework_TestCase
      */
     public function testBootMethod()
     {
-        $app = new Container;
+        $app = new Container();
 
         $router = $app['router'] = m::mock('\Illuminate\Routing\Router');
 
@@ -38,5 +38,5 @@ class FilterServiceProviderTest extends \PHPUnit_Framework_TestCase
 class StubFilterProvider extends FilterServiceProvider
 {
     protected $before = ['BeforeFilter'];
-    protected $after = ['AfterFilter'];
+    protected $after  = ['AfterFilter'];
 }

@@ -18,7 +18,7 @@ class NestyTest extends \PHPUnit_Framework_TestCase
      */
     public function setUp()
     {
-        $this->stub = new Nesty(array());
+        $this->stub = new Nesty([]);
     }
 
     /**
@@ -42,7 +42,7 @@ class NestyTest extends \PHPUnit_Framework_TestCase
         $config = $refl->getProperty('config');
         $config->setAccessible(true);
 
-        $this->assertEquals(array(), $config->getValue($this->stub));
+        $this->assertEquals([], $config->getValue($this->stub));
     }
 
     /**
@@ -53,7 +53,7 @@ class NestyTest extends \PHPUnit_Framework_TestCase
      */
     public function testNewInstanceReturnEmptyArray()
     {
-        $this->assertEquals(new Collection(array()), with(new Nesty(array()))->items());
+        $this->assertEquals(new Collection([]), with(new Nesty([]))->items());
     }
 
     /**
@@ -63,53 +63,53 @@ class NestyTest extends \PHPUnit_Framework_TestCase
      */
     public function testAddMethod()
     {
-        $foobar = new Fluent(array(
+        $foobar = new Fluent([
             'id'     => 'foobar',
-            'childs' => array(
-                'hello-foobar' => new Fluent(array(
+            'childs' => [
+                'hello-foobar' => new Fluent([
                     'id'     => 'hello-foobar',
-                    'childs' => array(),
-                )),
-            ),
-        ));
-        $foo = new Fluent(array(
+                    'childs' => [],
+                ]),
+            ],
+        ]);
+        $foo = new Fluent([
             'id'     => 'foo',
-            'childs' => array(
-                'bar' => new Fluent(array(
+            'childs' => [
+                'bar' => new Fluent([
                     'id'     => 'bar',
-                    'childs' => array(),
-                )),
-                'foobar' => $foobar,
-                'foo-bar' => new Fluent(array(
+                    'childs' => [],
+                ]),
+                'foobar'  => $foobar,
+                'foo-bar' => new Fluent([
                     'id'     => 'foo-bar',
-                    'childs' => array(),
-                )),
-                'hello-world-foobar' => new Fluent(array(
+                    'childs' => [],
+                ]),
+                'hello-world-foobar' => new Fluent([
                     'id'     => 'hello-world-foobar',
-                    'childs' => array(),
-                )),
-            )
-        ));
+                    'childs' => [],
+                ]),
+            ],
+        ]);
 
-        $expected = array(
-            'crynobone' => new Fluent(array(
+        $expected = [
+            'crynobone' => new Fluent([
                 'id'     => 'crynobone',
-                'childs' => array(),
-            )),
-            'hello' => new Fluent(array(
+                'childs' => [],
+            ]),
+            'hello' => new Fluent([
                 'id'     => 'hello',
-                'childs' => array(),
-            )),
-            'world' => new Fluent(array(
+                'childs' => [],
+            ]),
+            'world' => new Fluent([
                 'id'     => 'world',
-                'childs' => array(),
-            )),
-            'foo' => $foo,
-            'orchestra' => new Fluent(array(
+                'childs' => [],
+            ]),
+            'foo'       => $foo,
+            'orchestra' => new Fluent([
                 'id'     => 'orchestra',
-                'childs' => array(),
-            )),
-        );
+                'childs' => [],
+            ]),
+        ];
 
         $this->stub->add('foo');
         $this->stub->add('hello', '<:foo');
@@ -134,18 +134,18 @@ class NestyTest extends \PHPUnit_Framework_TestCase
      */
     public function testAddBeforeMethod()
     {
-        $stub = new Nesty(array());
+        $stub = new Nesty([]);
 
-        $expected = array(
-            'foobar' => new Fluent(array(
+        $expected = [
+            'foobar' => new Fluent([
                 'id'     => 'foobar',
-                'childs' => array(),
-            )),
-            'foo' => new Fluent(array(
+                'childs' => [],
+            ]),
+            'foo' => new Fluent([
                 'id'     => 'foo',
-                'childs' => array(),
-            )),
-        );
+                'childs' => [],
+            ]),
+        ];
 
         $stub->add('foo', '<:home');
         $stub->add('foobar', '<:foo');
@@ -158,18 +158,18 @@ class NestyTest extends \PHPUnit_Framework_TestCase
      */
     public function testAddAfterMethod()
     {
-        $stub = new Nesty(array());
+        $stub = new Nesty([]);
 
-        $expected = array(
-            'foobar' => new Fluent(array(
+        $expected = [
+            'foobar' => new Fluent([
                 'id'     => 'foobar',
-                'childs' => array(),
-            )),
-            'foo' => new Fluent(array(
+                'childs' => [],
+            ]),
+            'foo' => new Fluent([
                 'id'     => 'foo',
-                'childs' => array(),
-            )),
-        );
+                'childs' => [],
+            ]),
+        ];
 
         $stub->add('foobar', '>:home');
         $stub->add('foo', '>:foobar');
@@ -185,9 +185,9 @@ class NestyTest extends \PHPUnit_Framework_TestCase
      */
     public function testAddMethodWhenDecendantIsNotPresented()
     {
-        $stub = new Nesty(array());
+        $stub = new Nesty([]);
 
         $stub->add('foo', '^:home');
-        $this->assertEquals(new Collection(array()), $stub->items());
+        $this->assertEquals(new Collection([]), $stub->items());
     }
 }

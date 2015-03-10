@@ -11,10 +11,10 @@ class CollectionTest extends \PHPUnit_Framework_TestCase
      */
     public function testToCsvMethod()
     {
-        $stub = new Collection(array(
-            array('id' => 1, 'name' => 'Mior Muhammad Zaki'),
-            array('id' => 2, 'name' => 'Taylor Otwell'),
-        ));
+        $stub = new Collection([
+            ['id' => 1, 'name' => 'Mior Muhammad Zaki'],
+            ['id' => 2, 'name' => 'Taylor Otwell'],
+        ]);
 
         $expected = <<<EXPECTED
 id,name
