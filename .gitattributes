@@ -1,4 +1,5 @@
 * text=auto
+*.sh linguist-vendored
 
 # Ignore following folder/file.
 /build              export-ignore
