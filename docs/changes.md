@@ -5,6 +5,12 @@ title: Support Change Log
 
 ## Version 3.0 {#v3-0}
 
+### v3.0.2 {#v3-0-2}
+
+* Providers:
+  - Add `Orchestra\Support\Providers\Traits\PackageProviderTrait::bootUsingLaravel()` helper.
+  - Add `Orchestra\Support\Providers\Traits\PackageProviderTrait::hasPackageRepository()` helper.
+
 ### v3.0.1 {#v3-0-1}
 
 * Providers:

@@ -16,10 +16,8 @@ trait PackageProviderTrait
      */
     public function addConfigComponent($package, $namespace, $path)
     {
-        $config = $this->app['config'];
-
-        if ($config instanceof PackageRepository) {
-            $config->package($package, $path, $namespace);
+        if ($this->hasPackageRepository()) {
+            $this->app['config']->package($package, $path, $namespace);
         }
     }
 
@@ -142,5 +140,27 @@ trait PackageProviderTrait
         return array_map(function ($path) use ($package) {
             return "{$path}/packages/{$package}";
         }, $this->app['config']['view.paths']);
+    }
+
+    /**
+     * Has package repository available.
+     *
+     * @return bool
+     */
+    protected function hasPackageRepository()
+    {
+        return ($this->app['config'] instanceof PackageRepository);
+    }
+
+    /**
+     * Boot under Laravel setup.
+     *
+     * @param  string  $path
+     *
+     * @return void
+     */
+    protected function bootUsingLaravel($path)
+    {
+        //
     }
 }
