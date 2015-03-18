@@ -11,6 +11,7 @@ abstract class ServiceProvider extends BaseServiceProvider
      * Boot under Laravel setup.
      *
      * @param  string  $path
+     *
      * @return void
      */
     protected function bootUsingLaravel($path)
