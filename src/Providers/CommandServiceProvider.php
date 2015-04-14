@@ -12,6 +12,13 @@ abstract class CommandServiceProvider extends BaseServiceProvider
     protected $commands = [];
 
     /**
+     * Additional provides.
+     *
+     * @var array
+     */
+    protected $provides = [];
+
+    /**
      * Register the service provider.
      *
      * @return void
