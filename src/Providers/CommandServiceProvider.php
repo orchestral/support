@@ -41,6 +41,6 @@ abstract class CommandServiceProvider extends BaseServiceProvider
      */
     public function provides()
     {
-        return array_values($this->commands);
+        return array_merge(array_values($this->commands), $this->provides);
     }
 }
