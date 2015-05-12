@@ -127,6 +127,11 @@ class NestyTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals($foo, $this->stub->is('foo'));
         $this->assertEquals($foobar, $this->stub->is('foo.foobar'));
         $this->assertNull($this->stub->is('foobar'));
+
+        $this->assertTrue($this->stub->has('foo'));
+        $this->assertTrue($this->stub->has('foo.foobar'));
+        $this->assertFalse($this->stub->has('foo.foo'));
+        $this->assertFalse($this->stub->has('bar'));
     }
 
     /**
