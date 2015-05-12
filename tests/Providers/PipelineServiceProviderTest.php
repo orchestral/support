@@ -1,7 +1,7 @@
 <?php namespace Orchestra\Support\Providers\TestCase; 
 
-use Illuminate\Container\Container;
 use Mockery as m;
+use Illuminate\Container\Container;
 use Orchestra\Support\Providers\PipelineServiceProvider;
 
 class PipelineServiceProviderTest extends \PHPUnit_Framework_TestCase
@@ -15,7 +15,7 @@ class PipelineServiceProviderTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test Orchestra\Foundation\Providers\FilterServiceProvider::register()
+     * Test Orchestra\Foundation\Providers\PipelineServiceProvider::register()
      * method.
      *
      * @test
@@ -28,7 +28,7 @@ class PipelineServiceProviderTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test Orchestra\Foundation\Providers\FilterServiceProvider::boot()
+     * Test Orchestra\Foundation\Providers\PipelineServiceProvider::boot()
      * method.
      *
      * @test
