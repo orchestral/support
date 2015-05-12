@@ -1,10 +1,10 @@
-<?php namespace Orchestra\Support\Providers\TestCase;
+<?php namespace Orchestra\Support\Providers\TestCase; 
 
 use Mockery as m;
 use Illuminate\Container\Container;
-use Orchestra\Support\Providers\FilterServiceProvider;
+use Orchestra\Support\Providers\PipelineServiceProvider;
 
-class FilterServiceProviderTest extends \PHPUnit_Framework_TestCase
+class PipelineServiceProviderTest extends \PHPUnit_Framework_TestCase
 {
     /**
      * Teardown the test environment.
@@ -15,33 +15,36 @@ class FilterServiceProviderTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test Orchestra\Support\Providers\FilterServiceProvider method signature.
+     * Test Orchestra\Support\Providers\PipelineServiceProvider method signature.
      *
      * @test
      */
     public function testInstanceSignature()
     {
-        $stub = new StubFilterProvider(null);
+        $stub = new StubPipelineProvider(null);
 
         $this->assertContains('Orchestra\Support\Providers\Traits\FilterProviderTrait', class_uses_recursive(get_class($stub)));
         $this->assertContains('Orchestra\Support\Providers\Traits\MiddlewareProviderTrait', class_uses_recursive(get_class($stub)));
     }
 
+
     /**
-     * Test Orchestra\Support\Providers\FilterServiceProvider::register()
+     * Test Orchestra\Support\Providers\PipelineServiceProvider::register()
      * method.
      *
      * @test
      */
     public function testRegisterMethod()
     {
-        $stub = new StubFilterProvider(null);
+        $stub = new StubPipelineProvider(null);
+
+        $this->assertContains('Orchestra\Support\Providers\Traits\MiddlewareProviderTrait', class_uses_recursive(get_class($stub)));
 
         $this->assertNull($stub->register());
     }
 
     /**
-     * Test Orchestra\Support\Providers\FilterServiceProvider::boot()
+     * Test Orchestra\Support\Providers\PipelineServiceProvider::boot()
      * method.
      *
      * @test
@@ -55,17 +58,22 @@ class FilterServiceProviderTest extends \PHPUnit_Framework_TestCase
 
         $router->shouldReceive('before')->once()->with('BeforeFilter')->andReturnNull()
             ->shouldReceive('after')->once()->with('AfterFilter')->andReturnNull()
-            ->shouldReceive('filter')->once()->with('foo', 'FooFilter')->andReturnNull();
+            ->shouldReceive('filter')->once()->with('foo', 'FooFilter')->andReturnNull()
+            ->shouldReceive('middleware')->once()->with('foobar', 'FoobarMiddleware')->andReturnNull();
 
-        $stub = new StubFilterProvider($app);
+        $kernel->shouldReceive('pushMiddleware')->once()->with('FooMiddleware')->andReturnNull();
+
+        $stub = new StubPipelineProvider($app);
 
         $this->assertNull($stub->boot($router, $kernel));
     }
 }
 
-class StubFilterProvider extends FilterServiceProvider
+class StubPipelineProvider extends PipelineServiceProvider
 {
     protected $before = ['BeforeFilter'];
     protected $after  = ['AfterFilter'];
     protected $filters = ['foo' => 'FooFilter'];
+    protected $middleware = ['FooMiddleware'];
+    protected $routeMiddleware = ['foobar' => 'FoobarMiddleware'];
 }
