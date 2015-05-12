@@ -38,6 +38,7 @@ class FilterServiceProviderTest extends \PHPUnit_Framework_TestCase
         $app = new Container();
 
         $router = m::mock('\Illuminate\Routing\Router');
+        $kernel = m::mock('\Illuminate\Contracts\Http\Kernel');
 
         $router->shouldReceive('before')->once()->with('BeforeFilter')->andReturnNull()
             ->shouldReceive('after')->once()->with('AfterFilter')->andReturnNull()
@@ -45,7 +46,7 @@ class FilterServiceProviderTest extends \PHPUnit_Framework_TestCase
 
         $stub = new StubFilterProvider($app);
 
-        $this->assertNull($stub->boot($router));
+        $this->assertNull($stub->boot($router, $kernel));
     }
 }
 
