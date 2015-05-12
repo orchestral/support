@@ -15,6 +15,19 @@ class FilterServiceProviderTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
+     * Test Orchestra\Foundation\Providers\FilterServiceProvider::register()
+     * method.
+     *
+     * @test
+     */
+    public function testRegisterMethod()
+    {
+        $stub = new StubFilterProvider(null);
+
+        $this->assertNull($stub->register());
+    }
+
+    /**
      * Test Orchestra\Foundation\Providers\FilterServiceProvider::boot()
      * method.
      *
@@ -24,14 +37,15 @@ class FilterServiceProviderTest extends \PHPUnit_Framework_TestCase
     {
         $app = new Container();
 
-        $router = $app['router'] = m::mock('\Illuminate\Routing\Router');
+        $router = m::mock('\Illuminate\Routing\Router');
 
-        $router->shouldReceive('before')->once()->with('BeforeFilter')->andReturnNull();
-        $router->shouldReceive('after')->once()->with('AfterFilter')->andReturnNull();
+        $router->shouldReceive('before')->once()->with('BeforeFilter')->andReturnNull()
+            ->shouldReceive('after')->once()->with('AfterFilter')->andReturnNull()
+            ->shouldReceive('filter')->once()->with('foo', 'FooFilter')->andReturnNull();
 
         $stub = new StubFilterProvider($app);
 
-        $stub->boot();
+        $this->assertNull($stub->boot($router));
     }
 }
 
@@ -39,4 +53,5 @@ class StubFilterProvider extends FilterServiceProvider
 {
     protected $before = ['BeforeFilter'];
     protected $after  = ['AfterFilter'];
+    protected $filters = ['foo' => 'FooFilter'];
 }
