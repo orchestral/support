@@ -202,7 +202,9 @@ class Nesty
      */
     public function has($key)
     {
-        return ! is_null($this->is($key));
+        $key = implode('.childs.', explode('.', $key));
+
+        return ! is_null(data_get($this->items, $key));
     }
 
     /**
