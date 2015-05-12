@@ -32,7 +32,7 @@ trait FilterProviderTrait
      *
      * @return void
      */
-    public function registerRouteFilters(Router $router)
+    protected function registerRouteFilters(Router $router)
     {
         foreach ($this->before as $before) {
             $router->before($before);
