@@ -15,7 +15,20 @@ class FilterServiceProviderTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test Orchestra\Foundation\Providers\FilterServiceProvider::register()
+     * Test Orchestra\Support\Providers\FilterServiceProvider method signature.
+     *
+     * @test
+     */
+    public function testInstanceSignature()
+    {
+        $stub = new StubFilterProvider(null);
+
+        $this->assertContains('Orchestra\Support\Providers\Traits\FilterProviderTrait', class_uses_recursive(get_class($stub)));
+        $this->assertContains('Orchestra\Support\Providers\Traits\MiddlewareProviderTrait', class_uses_recursive(get_class($stub)));
+    }
+
+    /**
+     * Test Orchestra\Support\Providers\FilterServiceProvider::register()
      * method.
      *
      * @test
@@ -28,7 +41,7 @@ class FilterServiceProviderTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test Orchestra\Foundation\Providers\FilterServiceProvider::boot()
+     * Test Orchestra\Support\Providers\FilterServiceProvider::boot()
      * method.
      *
      * @test

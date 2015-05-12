@@ -15,7 +15,21 @@ class PipelineServiceProviderTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test Orchestra\Foundation\Providers\PipelineServiceProvider::register()
+     * Test Orchestra\Support\Providers\PipelineServiceProvider method signature.
+     *
+     * @test
+     */
+    public function testInstanceSignature()
+    {
+        $stub = new StubPipelineProvider(null);
+
+        $this->assertContains('Orchestra\Support\Providers\Traits\FilterProviderTrait', class_uses_recursive(get_class($stub)));
+        $this->assertContains('Orchestra\Support\Providers\Traits\MiddlewareProviderTrait', class_uses_recursive(get_class($stub)));
+    }
+
+
+    /**
+     * Test Orchestra\Support\Providers\PipelineServiceProvider::register()
      * method.
      *
      * @test
@@ -24,11 +38,13 @@ class PipelineServiceProviderTest extends \PHPUnit_Framework_TestCase
     {
         $stub = new StubPipelineProvider(null);
 
+        $this->assertContains('Orchestra\Support\Providers\Traits\MiddlewareProviderTrait', class_uses_recursive(get_class($stub)));
+
         $this->assertNull($stub->register());
     }
 
     /**
-     * Test Orchestra\Foundation\Providers\PipelineServiceProvider::boot()
+     * Test Orchestra\Support\Providers\PipelineServiceProvider::boot()
      * method.
      *
      * @test
