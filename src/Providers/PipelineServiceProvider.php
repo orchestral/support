@@ -1,22 +1,27 @@
 <?php namespace Orchestra\Support\Providers;
 
 use Illuminate\Routing\Router;
+use Illuminate\Contracts\Http\Kernel;
 use Orchestra\Support\Providers\Traits\FilterProviderTrait;
+use Orchestra\Support\Providers\Traits\MiddlewareProviderTrait;
 
-abstract class FilterServiceProvider extends ServiceProvider
+abstract class PipelineServiceProvider extends ServiceProvider
 {
-    use FilterProviderTrait;
+    use FilterProviderTrait, MiddlewareProviderTrait;
 
     /**
      * Bootstrap the application events.
      *
      * @param  \Illuminate\Routing\Router  $router
+     * @param  \Illuminate\Contracts\Http\Kernel  $kernel
      *
      * @return void
      */
-    public function boot(Router $router)
+    public function boot(Router $router, Kernel $kernel)
     {
         $this->registerRouteFilters($router);
+
+        $this->registerRouteMiddleware($router, $kernel);
     }
 
     /**
