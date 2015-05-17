@@ -22,13 +22,13 @@
 		"orchestra/contracts": "3.0.*"
 	},
 	"suggest": {
-		"laravel/framework": "Allow using orchestra/support component outside of Orchestra Platform",
-		"orchestra/foundation": "Allow using orchestra/support with Orchestra Platform",
-		"orchestra/messages": "Allow using Messages component"
+		"laravel/framework": "Allow using orchestra/support component outside of Orchestra Platform (~5.0).",
+		"orchestra/foundation": "Allow using orchestra/support with Orchestra Platform (~3.0).",
+		"orchestra/messages": "Allow using Messages component (~3.0)."
 	},
 	"extra": {
 		"branch-alias": {
-			"dev-master": "3.0-dev"
+			"dev-master": "3.2-dev"
 		}
 	},
 	"support": {

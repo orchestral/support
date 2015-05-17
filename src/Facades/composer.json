@@ -17,15 +17,16 @@
 		}
 	},
 	"require": {
-		"php": ">=5.4.0"
+		"php": ">=5.4.0",
+		"illuminate/support": "5.0.*"
 	},
 	"suggest": {
-		"laravel/framework": "Allow using orchestra/support component outside of Orchestra Platform",
-		"orchestra/foundation": "Allow using orchestra/support with Orchestra Platform"
+		"laravel/framework": "Allow using orchestra/support component outside of Orchestra Platform (~5.0).",
+		"orchestra/foundation": "Allow using orchestra/support with Orchestra Platform (~3.0)."
 	},
 	"extra": {
 		"branch-alias": {
-			"dev-master": "3.0-dev"
+			"dev-master": "3.2-dev"
 		}
 	},
 	"support": {
