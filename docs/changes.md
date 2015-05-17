@@ -5,6 +5,13 @@ title: Support Change Log
 
 ## Version 3.0 {#v3-0}
 
+### v3.0.3 {#v3-0-3}
+
+* Core:
+  - Fixes a bug with `Orchestra\Support\Nesty::has()` returning `true` on not existent child attributes/item.
+* Providers:
+  - Add `Orchestra\Support\Providers\PipelineServiceProvider` which boot `Orchestra\Support\Providers\Traits\FilterProviderTrait` and `Orchestra\Support\Providers\Traits\MiddlewareProviderTrait`.
+
 ### v3.0.2 {#v3-0-2}
 
 * Providers:
