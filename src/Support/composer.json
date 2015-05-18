@@ -19,7 +19,7 @@
 	"require": {
 		"php": ">=5.4.0",
 		"illuminate/support": "5.1.*",
-		"orchestra/contracts": "3.1.*"
+		"orchestra/contracts": "3.2.*"
 	},
 	"suggest": {
 		"laravel/framework": "Allow using orchestra/support component outside of Orchestra Platform (~5.1).",
