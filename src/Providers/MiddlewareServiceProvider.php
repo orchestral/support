@@ -4,7 +4,7 @@ use Illuminate\Routing\Router;
 use Illuminate\Contracts\Http\Kernel;
 use Orchestra\Support\Providers\Traits\MiddlewareProviderTrait;
 
-abstract class PipelineServiceProvider extends ServiceProvider
+abstract class MiddlewareServiceProvider extends ServiceProvider
 {
     use MiddlewareProviderTrait;
 

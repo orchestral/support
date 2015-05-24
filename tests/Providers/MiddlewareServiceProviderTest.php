@@ -2,9 +2,9 @@
 
 use Mockery as m;
 use Illuminate\Container\Container;
-use Orchestra\Support\Providers\PipelineServiceProvider;
+use Orchestra\Support\Providers\MiddlewareServiceProvider;
 
-class PipelineServiceProviderTest extends \PHPUnit_Framework_TestCase
+class MiddlewareServiceProviderTest extends \PHPUnit_Framework_TestCase
 {
     /**
      * Teardown the test environment.
@@ -21,7 +21,7 @@ class PipelineServiceProviderTest extends \PHPUnit_Framework_TestCase
      */
     public function testInstanceSignature()
     {
-        $stub = new StubPipelineProvider(null);
+        $stub = new StubMiddlewareProvider(null);
 
         $this->assertContains('Orchestra\Support\Providers\Traits\MiddlewareProviderTrait', class_uses_recursive(get_class($stub)));
     }
@@ -35,7 +35,7 @@ class PipelineServiceProviderTest extends \PHPUnit_Framework_TestCase
      */
     public function testRegisterMethod()
     {
-        $stub = new StubPipelineProvider(null);
+        $stub = new StubMiddlewareProvider(null);
 
         $this->assertContains('Orchestra\Support\Providers\Traits\MiddlewareProviderTrait', class_uses_recursive(get_class($stub)));
 
@@ -59,13 +59,13 @@ class PipelineServiceProviderTest extends \PHPUnit_Framework_TestCase
 
         $kernel->shouldReceive('pushMiddleware')->once()->with('FooMiddleware')->andReturnNull();
 
-        $stub = new StubPipelineProvider($app);
+        $stub = new StubMiddlewareProvider($app);
 
         $this->assertNull($stub->boot($router, $kernel));
     }
 }
 
-class StubPipelineProvider extends PipelineServiceProvider
+class StubMiddlewareProvider extends MiddlewareServiceProvider
 {
     protected $middleware = ['FooMiddleware'];
     protected $routeMiddleware = ['foobar' => 'FoobarMiddleware'];
