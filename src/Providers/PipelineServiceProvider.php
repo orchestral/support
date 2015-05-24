@@ -9,6 +9,20 @@ abstract class PipelineServiceProvider extends ServiceProvider
     use MiddlewareProviderTrait;
 
     /**
+     * The application's middleware stack.
+     *
+     * @var array
+     */
+    protected $middleware = [];
+
+    /**
+     * The application's route middleware.
+     *
+     * @var array
+     */
+    protected $routeMiddleware = [];
+
+    /**
      * Bootstrap the application events.
      *
      * @param  \Illuminate\Routing\Router  $router

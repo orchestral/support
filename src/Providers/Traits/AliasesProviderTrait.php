@@ -13,7 +13,7 @@ trait AliasesProviderTrait
     {
         $loader = AliasLoader::getInstance();
 
-        foreach ($this->facades as $facade => $aliases) {
+        foreach ((array) $this->facades as $facade => $aliases) {
             foreach ((array) $aliases as $alias) {
                 $loader->alias($alias, $facade);
             }
@@ -27,7 +27,7 @@ trait AliasesProviderTrait
      */
     protected function registerCoreContainerAliases()
     {
-        foreach ($this->aliases as $key => $aliases) {
+        foreach ((array) $this->aliases as $key => $aliases) {
             foreach ((array) $aliases as $alias) {
                 $this->app->alias($key, $alias);
             }

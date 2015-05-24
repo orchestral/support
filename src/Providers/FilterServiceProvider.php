@@ -9,6 +9,27 @@ abstract class FilterServiceProvider extends PipelineServiceProvider
     use FilterProviderTrait;
 
     /**
+     * The filters that should run before all requests.
+     *
+     * @var array
+     */
+    protected $before = [];
+
+    /**
+     * The filters that should run after all requests.
+     *
+     * @var array
+     */
+    protected $after = [];
+
+    /**
+     * All available route filters.
+     *
+     * @var array
+     */
+    protected $filters = [];
+
+    /**
      * Bootstrap the application events.
      *
      * @param  \Illuminate\Routing\Router  $router
