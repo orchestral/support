@@ -68,4 +68,9 @@ class StubFilterProvider extends FilterServiceProvider
     protected $before = ['BeforeFilter'];
     protected $after  = ['AfterFilter'];
     protected $filters = ['foo' => 'FooFilter'];
+
+    public function register()
+    {
+        //
+    }
 }

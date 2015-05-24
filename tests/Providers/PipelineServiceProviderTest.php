@@ -23,7 +23,6 @@ class PipelineServiceProviderTest extends \PHPUnit_Framework_TestCase
     {
         $stub = new StubPipelineProvider(null);
 
-        $this->assertContains('Orchestra\Support\Providers\Traits\FilterProviderTrait', class_uses_recursive(get_class($stub)));
         $this->assertContains('Orchestra\Support\Providers\Traits\MiddlewareProviderTrait', class_uses_recursive(get_class($stub)));
     }
 
@@ -56,10 +55,7 @@ class PipelineServiceProviderTest extends \PHPUnit_Framework_TestCase
         $router = m::mock('\Illuminate\Routing\Router');
         $kernel = m::mock('\Illuminate\Contracts\Http\Kernel');
 
-        $router->shouldReceive('before')->once()->with('BeforeFilter')->andReturnNull()
-            ->shouldReceive('after')->once()->with('AfterFilter')->andReturnNull()
-            ->shouldReceive('filter')->once()->with('foo', 'FooFilter')->andReturnNull()
-            ->shouldReceive('middleware')->once()->with('foobar', 'FoobarMiddleware')->andReturnNull();
+        $router->shouldReceive('middleware')->once()->with('foobar', 'FoobarMiddleware')->andReturnNull();
 
         $kernel->shouldReceive('pushMiddleware')->once()->with('FooMiddleware')->andReturnNull();
 
@@ -71,9 +67,11 @@ class PipelineServiceProviderTest extends \PHPUnit_Framework_TestCase
 
 class StubPipelineProvider extends PipelineServiceProvider
 {
-    protected $before = ['BeforeFilter'];
-    protected $after  = ['AfterFilter'];
-    protected $filters = ['foo' => 'FooFilter'];
     protected $middleware = ['FooMiddleware'];
     protected $routeMiddleware = ['foobar' => 'FoobarMiddleware'];
+
+    public function register()
+    {
+        //
+    }
 }
