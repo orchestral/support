@@ -19,17 +19,17 @@
 		}
 	},
 	"require": {
-		"php": ">=5.4.0",
-		"illuminate/support": "5.1.*",
+		"php": ">=5.5.0",
+		"illuminate/support": "5.2.*",
 		"orchestra/contracts": "3.2.*"
 	},
 	"require-dev": {
 		"mockery/mockery": "0.9.*",
-		"illuminate/database": "5.1.*",
-		"illuminate/events": "5.1.*",
-		"illuminate/routing": "5.1.*",
-		"illuminate/session": "5.1.*",
-		"illuminate/validation": "5.1.*"
+		"illuminate/database": "5.2.*",
+		"illuminate/events": "5.2.*",
+		"illuminate/routing": "5.2.*",
+		"illuminate/session": "5.2.*",
+		"illuminate/validation": "5.2.*"
 	},
 	"replace": {
 		"orchestra/support-core": "self.version",

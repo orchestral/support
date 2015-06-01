@@ -4,9 +4,23 @@ use Illuminate\Routing\Router;
 use Illuminate\Contracts\Http\Kernel;
 use Orchestra\Support\Providers\Traits\MiddlewareProviderTrait;
 
-abstract class PipelineServiceProvider extends ServiceProvider
+abstract class MiddlewareServiceProvider extends ServiceProvider
 {
     use MiddlewareProviderTrait;
+
+    /**
+     * The application's middleware stack.
+     *
+     * @var array
+     */
+    protected $middleware = [];
+
+    /**
+     * The application's route middleware.
+     *
+     * @var array
+     */
+    protected $routeMiddleware = [];
 
     /**
      * Bootstrap the application events.

@@ -6,20 +6,6 @@ use Illuminate\Contracts\Http\Kernel;
 trait MiddlewareProviderTrait
 {
     /**
-     * The application's middleware stack.
-     *
-     * @var array
-     */
-    protected $middleware = [];
-
-    /**
-     * The application's route middleware.
-     *
-     * @var array
-     */
-    protected $routeMiddleware = [];
-
-    /**
      * Register route middleware.
      *
      * @param  \Illuminate\Routing\Router  $router
@@ -29,11 +15,11 @@ trait MiddlewareProviderTrait
      */
     protected function registerRouteMiddleware(Router $router, Kernel $kernel)
     {
-        foreach ($this->middleware as $middleware) {
+        foreach ((array) $this->middleware as $middleware) {
             $kernel->pushMiddleware($middleware);
         }
 
-        foreach ($this->routeMiddleware as $key => $middleware) {
+        foreach ((array) $this->routeMiddleware as $key => $middleware) {
             $router->middleware($key, $middleware);
         }
     }
