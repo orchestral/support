@@ -3,6 +3,19 @@ title: Support Change Log
 
 ---
 
+## Version 3.1 {#v3-1}
+
+### v3.1.0 {#v3-1-0}
+
+* Update support to Laravel Framework v5.1.
+* Increase minimum PHP requirement to v5.5+.
+* Remove `Orchestra\Support\Ftp` namespace.
+* Providers:
+  - Add `Orchestra\Support\Providers\CommandServiceProvider`.
+  - Move reusable code from `Orchestra\Support\Providers\ServiceProvider` to `Orchestra\Support\Providers\Traits\PackageProviderTrait`.
+  - Add `Orchestra\Support\Providers\Traits\PackageProviderTrait::bootUsingLaravel()` helper.
+  - Add `Orchestra\Support\Providers\Traits\PackageProviderTrait::hasPackageRepository()` helper.
+
 ## Version 3.0 {#v3-0}
 
 ### v3.0.3 {#v3-0-3}

@@ -1,4 +1,4 @@
-<?php namespace Orchestra\Providers;
+<?php namespace Orchestra\Support\Providers;
 
 use Orchestra\Providers\Traits\EventProviderTrait;
 use Illuminate\Support\ServiceProvider as BaseServiceProvider;
