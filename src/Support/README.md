@@ -17,7 +17,7 @@ Support (Core) Component includes a basic set of classes for Laravel and Orchest
 Laravel    | Support (Core)
 :----------|:----------
  5.0.x     | 3.0.x
- 5.1.x     | 3.1.x@dev
+ 5.1.x     | 3.1.x
 
 ## Installation
 
