@@ -1,6 +1,6 @@
 <?php namespace Orchestra\Support\Providers;
 
-use Orchestra\Providers\Traits\EventProviderTrait;
+use Orchestra\Support\Providers\Traits\EventProviderTrait;
 use Illuminate\Support\ServiceProvider as BaseServiceProvider;
 use Illuminate\Contracts\Events\Dispatcher as DispatcherContract;
 
