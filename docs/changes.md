@@ -12,6 +12,8 @@ title: Support Change Log
 * Remove `Orchestra\Support\Ftp` namespace.
 * Providers:
   - Add `Orchestra\Support\Providers\CommandServiceProvider`.
+  - Add `Orchestra\Support\Providers\EventServiceProvider` with `Orchestra\Support\Providers\Traits\EventProviderTrait` trait.
+  - Rename `Orchestra\Support\Providers\PipelineServiceProvider` to `Orchestra\Support\Providers\MiddlewareServiceProvider`.
   - Move reusable code from `Orchestra\Support\Providers\ServiceProvider` to `Orchestra\Support\Providers\Traits\PackageProviderTrait`.
   - Add `Orchestra\Support\Providers\Traits\PackageProviderTrait::bootUsingLaravel()` helper.
   - Add `Orchestra\Support\Providers\Traits\PackageProviderTrait::hasPackageRepository()` helper.
