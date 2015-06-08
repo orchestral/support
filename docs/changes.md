@@ -3,6 +3,13 @@ title: Support Change Log
 
 ---
 
+## Version 3.2 {#v3-2}
+
+### v3.2.0@dev {#v3-2-0}
+
+* Providers:
+  - Remove `Orchestra\Support\Providers\FilterServiceProvider` and `Orchestra\Support\Providers\Traits\FilterProviderTrait`.
+  
 ## Version 3.1 {#v3-1}
 
 ### v3.1.1 {#v3-1-1}
