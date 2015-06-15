@@ -55,7 +55,7 @@ class PackageProviderTraitTest extends \PHPUnit_Framework_TestCase
             ->shouldReceive('isDirectory')->once()->with('/var/www/resources/views/packages/foo/bar')->andReturn(true);
 
         $config->shouldReceive('package')->once()->with('foo/bar', "{$path}/config", 'foo')->andReturnNull()
-            ->shouldReceive('offsetGet')->once()->with('view.paths')->andReturn(['/var/www/resources/views']);
+            ->shouldReceive('get')->once()->with('view.paths', [])->andReturn(['/var/www/resources/views']);
 
         $translator->shouldReceive('addNamespace')->once()->with('foo', "{$path}/lang")->andReturnNull();
 
