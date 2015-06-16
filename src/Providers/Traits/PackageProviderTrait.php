@@ -17,7 +17,7 @@ trait PackageProviderTrait
     public function addConfigComponent($package, $namespace, $path)
     {
         if ($this->hasPackageRepository()) {
-            $this->app['config']->package($package, $path, $namespace);
+            $this->app->make('config')->package($package, $path, $namespace);
         }
     }
 
@@ -32,7 +32,7 @@ trait PackageProviderTrait
      */
     public function addLanguageComponent($package, $namespace, $path)
     {
-        $this->app['translator']->addNamespace($namespace, $path);
+        $this->app->make('translator')->addNamespace($namespace, $path);
     }
 
     /**
@@ -46,9 +46,12 @@ trait PackageProviderTrait
      */
     public function addViewComponent($package, $namespace, $path)
     {
+        $files = $this->app->make('files');
+        $view = $this->app->make('view');
+
         foreach ($this->getAppViewPaths($package) as $appView) {
-            if ($this->app['files']->isDirectory($appView)) {
-                $this->app['view']->addNamespace($namespace, $appView);
+            if ($files->isDirectory($appView)) {
+                $view->addNamespace($namespace, $appView);
             }
         }
 
@@ -56,7 +59,7 @@ trait PackageProviderTrait
         // the views available in this package. We use a standard convention when
         // registering the paths to every package's views and other components.
 
-        $this->app['view']->addNamespace($namespace, $path);
+        $view->addNamespace($namespace, $path);
     }
 
     /**
@@ -71,7 +74,7 @@ trait PackageProviderTrait
     public function package($package, $namespace = null, $path = null)
     {
         $namespace = $this->getPackageNamespace($package, $namespace);
-        $files     = $this->app['files'];
+        $files     = $this->app->make('files');
 
         // In this method we will register the configuration package for the package
         // so that the configuration options cleanly cascade into the application
@@ -139,7 +142,7 @@ trait PackageProviderTrait
     {
         return array_map(function ($path) use ($package) {
             return "{$path}/packages/{$package}";
-        }, $this->app['config']['view.paths']);
+        }, $this->app->make('config')->get('view.paths', []));
     }
 
     /**
@@ -149,7 +152,7 @@ trait PackageProviderTrait
      */
     protected function hasPackageRepository()
     {
-        return ($this->app['config'] instanceof PackageRepository);
+        return ($this->app->make('config') instanceof PackageRepository);
     }
 
     /**
