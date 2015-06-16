@@ -5,6 +5,10 @@ title: Support Change Log
 
 ## Version 3.1 {#v3-1}
 
+### v3.1.2 {#v3-1-2}
+
+* Improved performances by reducing call within `Illuminate\Container\Container`.
+
 ### v3.1.1 {#v3-1-1}
 
 * Fixes `Orchestra\Support\Providers\Traits\EventProviderTrait` import.
