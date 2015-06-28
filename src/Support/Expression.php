@@ -1,6 +1,8 @@
 <?php namespace Orchestra\Support;
 
-class Expression
+use Illuminate\Contracts\Support\Htmlable;
+
+class Expression implements Htmlable
 {
     /**
      * The value of the expression.
@@ -27,6 +29,16 @@ class Expression
     public function get()
     {
         return $this->value;
+    }
+
+    /**
+     * Get content as a string of HTML
+     *
+     * @return string
+     */
+    public function toHtml()
+    {
+        return $this->get();
     }
 
     /**
