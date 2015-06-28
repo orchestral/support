@@ -48,4 +48,3 @@ Above installation can also be simplify by using the following command:
 ## Resources
 
 * [Documentation](http://orchestraplatform.com/docs/latest/components/support)
-* [Change Log](http://orchestraplatform.com/docs/latest/components/support/changes#v3-0)
