@@ -47,7 +47,7 @@ trait PackageProviderTrait
     public function addViewComponent($package, $namespace, $path)
     {
         $files = $this->app->make('files');
-        $view = $this->app->make('view');
+        $view  = $this->app->make('view');
 
         foreach ($this->getAppViewPaths($package) as $appView) {
             if ($files->isDirectory($appView)) {

@@ -26,6 +26,7 @@ abstract class EventServiceProvider extends BaseServiceProvider
      * Register the application's event listeners.
      *
      * @param  \Illuminate\Contracts\Events\Dispatcher  $events
+     *
      * @return void
      */
     public function boot(DispatcherContract $events)

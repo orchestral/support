@@ -32,7 +32,7 @@ class Expression implements Htmlable
     }
 
     /**
-     * Get content as a string of HTML
+     * Get content as a string of HTML.
      *
      * @return string
      */
