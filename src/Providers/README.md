@@ -18,6 +18,7 @@ Laravel    | Support (Providers)
 :----------|:----------
  5.0.x     | 3.0.x
  5.1.x     | 3.1.x
+ 5.2.x     | 3.2.x@dev
 
 ## Installation
 
