@@ -20,7 +20,7 @@ class ObservableTraitTest extends \PHPUnit_Framework_TestCase
      */
     public function testEventDispatcher()
     {
-        $dispatcher = m::mock('\Illuminate\Events\Dispatcher');
+        $dispatcher = m::mock('\Illuminate\Contracts\Events\Dispatcher');
 
         $this->assertNull(ObservableStub::getEventDispatcher());
 
@@ -75,7 +75,7 @@ class ObservableTraitTest extends \PHPUnit_Framework_TestCase
      */
     public function testObserveWithDispatcher()
     {
-        $dispatcher = m::mock('\Illuminate\Events\Dispatcher');
+        $dispatcher = m::mock('\Illuminate\Contracts\Events\Dispatcher');
 
         $stub = new ObservableStub();
 
