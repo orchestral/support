@@ -26,10 +26,8 @@
     "require-dev": {
         "mockery/mockery": "0.9.*",
         "illuminate/database": "~5.2.0",
-        "illuminate/events": "~5.2.0",
         "illuminate/routing": "~5.2.0",
-        "illuminate/session": "~5.2.0",
-        "illuminate/validation": "~5.2.0"
+        "illuminate/session": "~5.2.0"
     },
     "replace": {
         "orchestra/support-core": "self.version",
