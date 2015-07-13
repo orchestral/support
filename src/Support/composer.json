@@ -1,38 +1,38 @@
 {
-	"name": "orchestra/support-core",
-	"description": "Support (Core) Component for Orchestra Platform",
-	"homepage": "http://orchestraplatform.com/docs/latest/components/support/",
-	"keywords": ["orchestra-platform", "orchestral", "laravel", "validator", "utilities"],
-	"license": "MIT",
-	"authors": [
-		{
-			"name": "Mior Muhammad Zaki",
-			"email": "crynobone@gmail.com",
-			"homepage": "https://github.com/crynobone"
-		}
-	],
-	"autoload": {
-		"psr-4": {
-			"Orchestra\\Support\\" : ""
-		}
-	},
-	"require": {
-		"php": ">=5.5.0",
-		"illuminate/support": "~5.2.0",
-		"orchestra/contracts": "~3.2.0"
-	},
-	"suggest": {
-		"laravel/framework": "Allow using orchestra/support component outside of Orchestra Platform (~5.1).",
-		"orchestra/foundation": "Allow using orchestra/support with Orchestra Platform (~3.1).",
-		"orchestra/messages": "Allow using Messages component (~3.1)."
-	},
-	"extra": {
-		"branch-alias": {
-			"dev-master": "3.2-dev"
-		}
-	},
-	"support": {
-		"issues": "https://github.com/orchestral/support/issues"
-	},
-	"minimum-stability": "dev"
+    "name": "orchestra/support-core",
+    "description": "Support (Core) Component for Orchestra Platform",
+    "homepage": "http://orchestraplatform.com/docs/latest/components/support/",
+    "keywords": ["orchestra-platform", "orchestral", "laravel", "validator", "utilities"],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Mior Muhammad Zaki",
+            "email": "crynobone@gmail.com",
+            "homepage": "https://github.com/crynobone"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Orchestra\\Support\\" : ""
+        }
+    },
+    "require": {
+        "php": ">=5.5.0",
+        "illuminate/support": "~5.2.0",
+        "orchestra/contracts": "~3.2.0"
+    },
+    "suggest": {
+        "laravel/framework": "Allow using orchestra/support component outside of Orchestra Platform (~5.1).",
+        "orchestra/foundation": "Allow using orchestra/support with Orchestra Platform (~3.1).",
+        "orchestra/messages": "Allow using Messages component (~3.1)."
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "3.2-dev"
+        }
+    },
+    "support": {
+        "issues": "https://github.com/orchestral/support/issues"
+    },
+    "minimum-stability": "dev"
 }
