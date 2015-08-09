@@ -3,9 +3,9 @@ Support (Core) Component for Laravel for Orchestra Platform
 
 Support (Core) Component includes a basic set of classes for Laravel and Orchestra Platform.
 
-[![Latest Stable Version](https://img.shields.io/packagist/v/orchestra/support-core.svg?style=flat)](https://packagist.org/packages/orchestra/support-core)
-[![Total Downloads](https://img.shields.io/packagist/dt/orchestra/support-core.svg?style=flat)](https://packagist.org/packages/orchestra/support-core)
-[![MIT License](https://img.shields.io/packagist/l/orchestra/support-core.svg?style=flat)](https://packagist.org/packages/orchestra/support-core)
+[![Latest Stable Version](https://img.shields.io/packagist/v/orchestra/support-core.svg?style=flat-square)](https://packagist.org/packages/orchestra/support-core)
+[![Total Downloads](https://img.shields.io/packagist/dt/orchestra/support-core.svg?style=flat-square)](https://packagist.org/packages/orchestra/support-core)
+[![MIT License](https://img.shields.io/packagist/l/orchestra/support-core.svg?style=flat-square)](https://packagist.org/packages/orchestra/support-core)
 
 ## Table of Content
 
