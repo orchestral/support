@@ -8,6 +8,7 @@ title: Support Change Log
 ### v3.1.3@dev {#v3-1-3}
 
 * Add `Orchestra\Support\Keyword`.
+* Use available `Stringy::humanize()` method on `Orchestra\Support\Str::humanize()`.
 
 ### v3.1.2 {#v3-1-2}
 
