@@ -1,5 +1,6 @@
 <?php namespace Orchestra\Support;
 
+use Stringy\Stringy;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str as BaseStr;
 
@@ -14,7 +15,9 @@ class Str extends BaseStr
      */
     public static function humanize($text)
     {
-        return static::title(str_replace(['-', '_'], ' ', $text));
+        $text = str_replace(['-', '_'], ' ', $text);
+
+        return Stringy::create($text)->humanize()->titleize();
     }
 
     /**

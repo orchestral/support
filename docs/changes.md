@@ -12,6 +12,11 @@ title: Support Change Log
   
 ## Version 3.1 {#v3-1}
 
+### v3.1.3 {#v3-1-3}
+
+* Add `Orchestra\Support\Keyword`.
+* Use available `Stringy::humanize()` method on `Orchestra\Support\Str::humanize()`.
+
 ### v3.1.2 {#v3-1-2}
 
 * Improved performances by reducing call within `Illuminate\Container\Container`.
