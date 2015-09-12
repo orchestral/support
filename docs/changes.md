@@ -5,6 +5,10 @@ title: Support Change Log
 
 ## Version 3.1 {#v3-1}
 
+### v3.1.4@dev {#v3-1-4}
+
+* Allow to swap fluent class used when building nested data with `Orchestra\Support\Nesty`.
+
 ### v3.1.3 {#v3-1-3}
 
 * Add `Orchestra\Support\Keyword`.

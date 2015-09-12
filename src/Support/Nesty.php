@@ -42,8 +42,9 @@ class Nesty
     protected function toFluent($id)
     {
         $defaults = Arr::get($this->config, 'defaults', []);
+        $class    = Arr::get($this->config, 'fluent', Fluent::class);
 
-        return new Fluent(array_merge($defaults, [
+        return new $class(array_merge($defaults, [
             'id'     => $id,
             'childs' => [],
         ]));
