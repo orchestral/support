@@ -1,6 +1,5 @@
 <?php namespace Orchestra\Support;
 
-use Illuminate\Support\Arr;
 use Illuminate\Support\Fluent;
 use Orchestra\Support\Traits\DescendibleTrait;
 

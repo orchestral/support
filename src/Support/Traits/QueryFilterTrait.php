@@ -1,7 +1,6 @@
 <?php namespace Orchestra\Support\Traits;
 
 use Orchestra\Support\Str;
-use Illuminate\Support\Arr;
 
 trait QueryFilterTrait
 {
