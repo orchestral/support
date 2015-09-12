@@ -5,7 +5,7 @@ title: Support Change Log
 
 ## Version 3.1 {#v3-1}
 
-### v3.1.4@dev {#v3-1-4}
+### v3.1.4 {#v3-1-4}
 
 * Allow to swap fluent class used when building nested data with `Orchestra\Support\Nesty`.
 * Reduce internal request by removing `Illuminate\Support\Arr` usages on predictable array keys.
