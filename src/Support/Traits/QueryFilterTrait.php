@@ -15,9 +15,9 @@ trait QueryFilterTrait
      */
     protected function setupBasicQueryFilter($query, array $input = [])
     {
-        $orderBy = Arr::get($input, 'order_by', '');
+        $orderBy = isset($input['order_by']) ? $input['order_by'] : '';
 
-        $direction = Str::upper(Arr::get($input, 'direction', ''));
+        $direction = Str::upper(isset($input['direction']) ? $input['direction'] : '');
 
         ! in_array($direction, ['ASC', 'DESC']) && $direction = 'ASC';
 
@@ -25,7 +25,7 @@ trait QueryFilterTrait
             $orderBy = "{$orderBy}_at";
         }
 
-        $columns = Arr::get($input, 'columns');
+        $columns = isset($input['columns']) ? $input['columns'] : null;
 
         if (is_array($columns) && $this->isColumnExcludedFromFilterable($orderBy, $columns)) {
             return $query;
@@ -72,8 +72,8 @@ trait QueryFilterTrait
      */
     protected function isColumnExcludedFromFilterable($on, array $columns = [])
     {
-        $only   = Arr::get($columns, 'only', []);
-        $except = Arr::get($columns, 'except', []);
+        $only   = isset($columns['only']) ? $columns['only'] : '';
+        $except = isset($columns['except']) ? $columns['except'] : '';
 
         return ((! empty($only) && ! in_array($on, (array) $only)) ||
             (! empty($except) && in_array($on, (array) $except)));
