@@ -1,4 +1,4 @@
-<?php namespace Orchestra\Support\Providers\TestCase; 
+<?php namespace Orchestra\Support\Providers\TestCase;
 
 use Mockery as m;
 use Illuminate\Container\Container;
@@ -25,7 +25,6 @@ class MiddlewareServiceProviderTest extends \PHPUnit_Framework_TestCase
 
         $this->assertContains('Orchestra\Support\Providers\Traits\MiddlewareProviderTrait', class_uses_recursive(get_class($stub)));
     }
-
 
     /**
      * Test Orchestra\Support\Providers\PipelineServiceProvider::register()

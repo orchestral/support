@@ -33,7 +33,6 @@ class PackageProviderTraitTest extends \PHPUnit_Framework_TestCase
         m::close();
     }
 
-
     /**
      * Test Orchestra\Support\Providers\Traits\PackageProviderTrait::package()
      * method.

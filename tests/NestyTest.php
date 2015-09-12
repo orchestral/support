@@ -38,7 +38,7 @@ class NestyTest extends \PHPUnit_Framework_TestCase
     {
         $this->assertInstanceOf('\Orchestra\Support\Nesty', $this->stub);
 
-        $refl   = new \ReflectionObject($this->stub);
+        $refl = new \ReflectionObject($this->stub);
         $config = $refl->getProperty('config');
         $config->setAccessible(true);
 
@@ -64,28 +64,28 @@ class NestyTest extends \PHPUnit_Framework_TestCase
     public function testAddMethod()
     {
         $foobar = new Fluent([
-            'id'     => 'foobar',
+            'id' => 'foobar',
             'childs' => [
                 'hello-foobar' => new Fluent([
-                    'id'     => 'hello-foobar',
+                    'id' => 'hello-foobar',
                     'childs' => [],
                 ]),
             ],
         ]);
         $foo = new Fluent([
-            'id'     => 'foo',
+            'id' => 'foo',
             'childs' => [
                 'bar' => new Fluent([
-                    'id'     => 'bar',
+                    'id' => 'bar',
                     'childs' => [],
                 ]),
-                'foobar'  => $foobar,
+                'foobar' => $foobar,
                 'foo-bar' => new Fluent([
-                    'id'     => 'foo-bar',
+                    'id' => 'foo-bar',
                     'childs' => [],
                 ]),
                 'hello-world-foobar' => new Fluent([
-                    'id'     => 'hello-world-foobar',
+                    'id' => 'hello-world-foobar',
                     'childs' => [],
                 ]),
             ],
@@ -93,20 +93,20 @@ class NestyTest extends \PHPUnit_Framework_TestCase
 
         $expected = [
             'crynobone' => new Fluent([
-                'id'     => 'crynobone',
+                'id' => 'crynobone',
                 'childs' => [],
             ]),
             'hello' => new Fluent([
-                'id'     => 'hello',
+                'id' => 'hello',
                 'childs' => [],
             ]),
             'world' => new Fluent([
-                'id'     => 'world',
+                'id' => 'world',
                 'childs' => [],
             ]),
-            'foo'       => $foo,
+            'foo' => $foo,
             'orchestra' => new Fluent([
-                'id'     => 'orchestra',
+                'id' => 'orchestra',
                 'childs' => [],
             ]),
         ];
@@ -143,11 +143,11 @@ class NestyTest extends \PHPUnit_Framework_TestCase
 
         $expected = [
             'foobar' => new Fluent([
-                'id'     => 'foobar',
+                'id' => 'foobar',
                 'childs' => [],
             ]),
             'foo' => new Fluent([
-                'id'     => 'foo',
+                'id' => 'foo',
                 'childs' => [],
             ]),
         ];
@@ -167,11 +167,11 @@ class NestyTest extends \PHPUnit_Framework_TestCase
 
         $expected = [
             'foobar' => new Fluent([
-                'id'     => 'foobar',
+                'id' => 'foobar',
                 'childs' => [],
             ]),
             'foo' => new Fluent([
-                'id'     => 'foo',
+                'id' => 'foo',
                 'childs' => [],
             ]),
         ];

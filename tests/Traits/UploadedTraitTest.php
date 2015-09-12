@@ -74,7 +74,7 @@ class UploadedTraitTest extends \PHPUnit_Framework_TestCase
     public function testDeleteMethod()
     {
         $filesystem = m::mock('\Illuminate\Filesystem\Filesystem');
-        $filename   = '/var/www/foo.jpg';
+        $filename = '/var/www/foo.jpg';
 
         $filesystem->shouldReceive('delete')->once()->with($filename)->andReturn(true);
 

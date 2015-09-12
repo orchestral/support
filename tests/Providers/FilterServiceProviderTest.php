@@ -66,7 +66,7 @@ class FilterServiceProviderTest extends \PHPUnit_Framework_TestCase
 class StubFilterProvider extends FilterServiceProvider
 {
     protected $before = ['BeforeFilter'];
-    protected $after  = ['AfterFilter'];
+    protected $after = ['AfterFilter'];
     protected $filters = ['foo' => 'FooFilter'];
 
     public function register()
