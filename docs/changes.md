@@ -5,6 +5,14 @@ title: Support Change Log
 
 ## Version 3.1 {#v3-1}
 
+### v3.1.5 {#v3-1-5}
+
+* Core:
+  - Refactor `Orchestra\Support\Traits\QueryFilterTrait`.
+* Facades:
+  - Add `Orchestra\Support\Facades\Tenanti`.
+  - Remove `Orchestra\Support\Facades\Warden`.
+
 ### v3.1.4 {#v3-1-4}
 
 * Core:
