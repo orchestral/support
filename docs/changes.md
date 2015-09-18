@@ -12,15 +12,25 @@ title: Support Change Log
   
 ## Version 3.1 {#v3-1}
 
+### v3.1.5 {#v3-1-5}
+
+* Core:
+  - Refactor `Orchestra\Support\Traits\QueryFilterTrait`.
+* Facades:
+  - Add `Orchestra\Support\Facades\Tenanti`.
+  - Remove `Orchestra\Support\Facades\Warden`.
+
 ### v3.1.4 {#v3-1-4}
 
-* Allow to swap fluent class used when building nested data with `Orchestra\Support\Nesty`.
-* Reduce internal request by removing `Illuminate\Support\Arr` usages on predictable array keys.
+* Core:
+  - Allow to swap fluent class used when building nested data with `Orchestra\Support\Nesty`.
+  - Reduce internal request by removing `Illuminate\Support\Arr` usages on predictable array keys.
 
 ### v3.1.3 {#v3-1-3}
 
-* Add `Orchestra\Support\Keyword`.
-* Use available `Stringy::humanize()` method on `Orchestra\Support\Str::humanize()`.
+* Core:
+  - Add `Orchestra\Support\Keyword`.
+  - Use available `Stringy::humanize()` method on `Orchestra\Support\Str::humanize()`.
 
 ### v3.1.2 {#v3-1-2}
 
@@ -28,7 +38,8 @@ title: Support Change Log
 
 ### v3.1.1 {#v3-1-1}
 
-* Fixes `Orchestra\Support\Providers\Traits\EventProviderTrait` import.
+* Providers:
+  - Fixes `Orchestra\Support\Providers\Traits\EventProviderTrait` import.
 
 ### v3.1.0 {#v3-1-0}
 

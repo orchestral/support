@@ -29,10 +29,10 @@ class ValidatorTest extends \PHPUnit_Framework_TestCase
      */
     public function testValidation()
     {
-        $event     = m::mock('\Illuminate\Contracts\Events\Dispatcher');
+        $event = m::mock('\Illuminate\Contracts\Events\Dispatcher');
         $validator = m::mock('\Illuminate\Contracts\Validation\Factory');
 
-        $rules   = ['email' => ['email', 'foo:2'], 'name' => 'any'];
+        $rules = ['email' => ['email', 'foo:2'], 'name' => 'any'];
         $phrases = ['email.required' => 'Email required'];
 
         $event->shouldReceive('fire')->once()->with('foo.event', m::any())->andReturn(null);
@@ -56,10 +56,10 @@ class ValidatorTest extends \PHPUnit_Framework_TestCase
      */
     public function testValidationWithoutAScope()
     {
-        $event     = m::mock('\Illuminate\Contracts\Events\Dispatcher');
+        $event = m::mock('\Illuminate\Contracts\Events\Dispatcher');
         $validator = m::mock('\Illuminate\Contracts\Validation\Factory');
 
-        $rules   = ['email' => ['email', 'foo:2'], 'name' => 'any'];
+        $rules = ['email' => ['email', 'foo:2'], 'name' => 'any'];
         $phrases = ['email.required' => 'Email required', 'name' => 'Any name'];
 
         $validator->shouldReceive('make')->once()->with([], $rules, $phrases)
@@ -78,7 +78,7 @@ class FooValidator extends \Orchestra\Support\Validator
 {
     protected $rules = [
         'email' => ['email', 'foo:{id}'],
-        'name'  => 'any',
+        'name' => 'any',
     ];
 
     protected $phrases = [

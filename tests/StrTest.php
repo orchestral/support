@@ -12,7 +12,7 @@ class StrTest extends \PHPUnit_Framework_TestCase
     public function testHumanizeMethod()
     {
         $expected = 'Foobar Is Awesome';
-        $output   = Str::humanize('foobar-is-awesome');
+        $output = Str::humanize('foobar-is-awesome');
 
         $this->assertEquals($expected, $output);
     }
@@ -25,7 +25,7 @@ class StrTest extends \PHPUnit_Framework_TestCase
     public function testReplaceMethod()
     {
         $expected = 'Orchestra Platform is awesome';
-        $output   = Str::replace('{name} is awesome', ['name' => 'Orchestra Platform']);
+        $output = Str::replace('{name} is awesome', ['name' => 'Orchestra Platform']);
 
         $this->assertEquals($expected, $output);
 
@@ -34,11 +34,11 @@ class StrTest extends \PHPUnit_Framework_TestCase
             'Orchestra Platform is not a foobar',
         ];
 
-        $data     = [
+        $data = [
             '{name} is awesome',
             '{name} is not a {foo}',
         ];
-        $output   = Str::replace($data, ['name' => 'Orchestra Platform', 'foo' => 'foobar']);
+        $output = Str::replace($data, ['name' => 'Orchestra Platform', 'foo' => 'foobar']);
 
         $this->assertEquals($expected, $output);
     }
@@ -51,12 +51,12 @@ class StrTest extends \PHPUnit_Framework_TestCase
     public function testSearchableMethod()
     {
         $expected = ['foobar%'];
-        $output   = Str::searchable('foobar*');
+        $output = Str::searchable('foobar*');
 
         $this->assertEquals($expected, $output);
 
         $expected = ['foobar', 'foobar%', '%foobar', '%foobar%'];
-        $output   = Str::searchable('foobar');
+        $output = Str::searchable('foobar');
 
         $this->assertEquals($expected, $output);
     }
@@ -69,16 +69,16 @@ class StrTest extends \PHPUnit_Framework_TestCase
     public function testStreamGetContentsMethod()
     {
         $base_path = __DIR__.'/stub/';
-        $expected  = 'a:2:{s:4:"name";s:9:"Orchestra";s:5:"theme";a:2:{s:7:"backend";s:7:"default";s:8:"frontend";s:7:"default";}}';
-        $stream    = fopen($base_path.'driver1.stub.php', 'r');
-        $output    = Str::streamGetContents($stream);
+        $expected = 'a:2:{s:4:"name";s:9:"Orchestra";s:5:"theme";a:2:{s:7:"backend";s:7:"default";s:8:"frontend";s:7:"default";}}';
+        $stream = fopen($base_path.'driver1.stub.php', 'r');
+        $output = Str::streamGetContents($stream);
 
         $this->assertEquals($expected, $output);
 
         $expected = [
-            'name'  => 'Orchestra',
+            'name' => 'Orchestra',
             'theme' => [
-                'backend'  => 'default',
+                'backend' => 'default',
                 'frontend' => 'default',
             ],
         ];
@@ -86,15 +86,15 @@ class StrTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals($expected, unserialize($output));
 
         $expected = 'a:2:{s:4:"name";s:9:"Orchestra";s:5:"theme";a:2:{s:7:"backend";s:7:"default";s:8:"frontend";s:7:"default";}}'."\n";
-        $stream   = fopen($base_path.'driver2.stub.php', 'r');
-        $output   = Str::streamGetContents($stream);
+        $stream = fopen($base_path.'driver2.stub.php', 'r');
+        $output = Str::streamGetContents($stream);
 
         $this->assertEquals($expected, $output);
 
         $expected = [
-            'name'  => 'Orchestra',
+            'name' => 'Orchestra',
             'theme' => [
-                'backend'  => 'default',
+                'backend' => 'default',
                 'frontend' => 'default',
             ],
         ];

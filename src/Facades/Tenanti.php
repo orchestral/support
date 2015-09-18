@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Facade;
 
-class Warden extends Facade
+class Tenanti extends Facade
 {
     /**
      * Get the registered name of the component.
@@ -11,6 +11,6 @@ class Warden extends Facade
      */
     protected static function getFacadeAccessor()
     {
-        return 'orchestra.warden';
+        return 'orchestra.tenanti';
     }
 }

@@ -29,14 +29,14 @@ class QueryFilterTraitTest extends \PHPUnit_Framework_TestCase
             ->shouldReceive('orderBy')->once()->with('created_at', 'DESC')->andReturn($query);
 
         $this->assertEquals($query, $this->setupBasicQueryFilter($query, [
-            'order_by'  => 'updated',
+            'order_by' => 'updated',
             'direction' => 'desc',
         ]));
 
         $this->assertEquals($query, $this->setupBasicQueryFilter($query, [
-            'order_by'  => 'created',
+            'order_by' => 'created',
             'direction' => 'desc',
-            'columns'   => ['only' => 'created_at'],
+            'columns' => ['only' => 'created_at'],
         ]));
     }
 
@@ -53,9 +53,9 @@ class QueryFilterTraitTest extends \PHPUnit_Framework_TestCase
         $query->shouldReceive('orderBy')->never()->with('password', 'DESC')->andReturn($query);
 
         $this->assertEquals($query, $this->setupBasicQueryFilter($query, [
-            'order_by'  => 'password',
+            'order_by' => 'password',
             'direction' => 'desc',
-            'columns'   => ['except' => 'password'],
+            'columns' => ['except' => 'password'],
         ]));
     }
 
