@@ -42,21 +42,19 @@ trait QueryFilterTrait
     protected function setupWildcardQueryFilter($query, $keyword, array $fields)
     {
         if (! empty($keyword)) {
-            $query->where(function ($query) use ($keyword, $fields) {
-                $keyword = Str::searchable($keyword);
+            $keyword = Str::searchable($keyword);
 
-                foreach ($fields as $field) {
-                    if (Str::contains($field, '.') && $query instanceof Builder) {
-                        list($relation, $field) = explode('.', $field, 2);
+            foreach ($fields as $field) {
+                if (Str::contains($field, '.') && $query instanceof Builder) {
+                    list($relation, $field) = explode('.', $field, 2);
 
-                        $query->orWhereHas($relation, function ($query) use ($field, $keyword) {
-                            $this->buildWildcardQueryFilterByKeyword($query, $field, $keyword);
-                        });
-                    } else {
+                    $query->orWhereHas($relation, function ($query) use ($field, $keyword) {
                         $this->buildWildcardQueryFilterByKeyword($query, $field, $keyword);
-                    }
+                    });
+                } else {
+                    $this->buildWildcardQueryFilterByKeyword($query, $field, $keyword);
                 }
-            });
+            }
         }
 
         return $query;
