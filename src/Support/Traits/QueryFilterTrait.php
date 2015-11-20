@@ -1,6 +1,7 @@
 <?php namespace Orchestra\Support\Traits;
 
 use Orchestra\Support\Str;
+use Illuminate\Database\Eloquent\Builder;
 
 trait QueryFilterTrait
 {
@@ -41,15 +42,19 @@ trait QueryFilterTrait
     protected function setupWildcardQueryFilter($query, $keyword, array $fields)
     {
         if (! empty($keyword)) {
-            $query->where(function ($query) use ($keyword, $fields) {
-                $keyword = Str::searchable($keyword);
+            $keyword = Str::searchable($keyword);
 
-                foreach ($keyword as $key) {
-                    foreach ($fields as $field) {
-                        $query->orWhere($field, 'LIKE', $key);
-                    }
+            foreach ($fields as $field) {
+                if (Str::contains($field, '.') && $query instanceof Builder) {
+                    list($relation, $field) = explode('.', $field, 2);
+
+                    $query->orWhereHas($relation, function ($query) use ($field, $keyword) {
+                        $this->buildWildcardQueryFilterByKeyword($query, $field, $keyword);
+                    });
+                } else {
+                    $this->buildWildcardQueryFilterByKeyword($query, $field, $keyword);
                 }
-            });
+            }
         }
 
         return $query;
@@ -106,5 +111,23 @@ trait QueryFilterTrait
         }
 
         return $orderBy;
+    }
+
+    /**
+     * Build wildcard query filter by keyword,.
+     *
+     * @param  \Illuminate\Database\Eloquent\Builder|\Illuminate\Database\Query\Builder  $query
+     * @param  string  $field
+     * @param  array  $keyword
+     *
+     * @return void
+     */
+    protected function buildWildcardQueryFilterByKeyword($query, $field, array $keyword = [])
+    {
+        $query->where(function ($query) use ($field, $keyword) {
+             foreach ($keyword as $key) {
+                 $query->orWhere($field, 'LIKE', $key);
+             }
+        });
     }
 }

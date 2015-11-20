@@ -12,6 +12,11 @@ title: Support Change Log
   
 ## Version 3.1 {#v3-1}
 
+### v3.1.6 {#v3-1-6}
+
+* Core:
+  - Allow `Orchestra\Support\Traits\QueryFilterTrait::setupWildcardQueryFilter()` to handle relationship fields.
+
 ### v3.1.5 {#v3-1-5}
 
 * Core:
