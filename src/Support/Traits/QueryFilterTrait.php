@@ -124,7 +124,7 @@ trait QueryFilterTrait
      */
     protected function buildWildcardQueryFilterByKeyword($query, $field, array $keyword = [])
     {
-        $query->where(function ($query) use ($field, $keyword) {
+        $query->orWhere(function ($query) use ($field, $keyword) {
              foreach ($keyword as $key) {
                  $query->orWhere($field, 'LIKE', $key);
              }
