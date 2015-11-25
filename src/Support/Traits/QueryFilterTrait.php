@@ -129,7 +129,7 @@ trait QueryFilterTrait
     }
 
     /**
-     * Build wildcard query filter by keyword,.
+     * Build wildcard query filter by keyword.
      *
      * @param  \Illuminate\Database\Eloquent\Builder|\Illuminate\Database\Query\Builder  $query
      * @param  string  $field
