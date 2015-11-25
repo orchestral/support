@@ -73,6 +73,10 @@ class QueryFilterTraitTest extends \PHPUnit_Framework_TestCase
                 ->andReturnUsing(function ($c) use ($query) {
                     $c($query);
                 })
+            ->shouldReceive('orWhere')->once()->with(m::type('Closure'))
+                ->andReturnUsing(function ($c) use ($query) {
+                    $c($query);
+                })
             ->shouldReceive('orWhere')->once()->with('name', 'LIKE', 'hello')
             ->shouldReceive('orWhere')->once()->with('name', 'LIKE', 'hello%')
             ->shouldReceive('orWhere')->once()->with('name', 'LIKE', '%hello')
