@@ -49,10 +49,10 @@ trait QueryFilterTrait
                     list($relation, $field) = explode('.', $field, 2);
 
                     $query->orWhereHas($relation, function ($query) use ($field, $keyword) {
-                        $this->buildWildcardQueryFilterByKeyword($query, $field, $keyword);
+                        $this->buildWildcardQueryFilterByKeyword($query, $field, $keyword, 'where');
                     });
                 } else {
-                    $this->buildWildcardQueryFilterByKeyword($query, $field, $keyword);
+                    $this->buildWildcardQueryFilterByKeyword($query, $field, $keyword, 'orWhere');
                 }
             }
         }
@@ -119,15 +119,18 @@ trait QueryFilterTrait
      * @param  \Illuminate\Database\Eloquent\Builder|\Illuminate\Database\Query\Builder  $query
      * @param  string  $field
      * @param  array  $keyword
+     * @param  string  $group
      *
      * @return void
      */
-    protected function buildWildcardQueryFilterByKeyword($query, $field, array $keyword = [])
+    protected function buildWildcardQueryFilterByKeyword($query, $field, array $keyword = [], $group = 'where')
     {
-        $query->orWhere(function ($query) use ($field, $keyword) {
+        $callback = function ($query) use ($field, $keyword) {
              foreach ($keyword as $key) {
                  $query->orWhere($field, 'LIKE', $key);
              }
-        });
+        };
+
+        $query->{$group}($callback);
     }
 }
