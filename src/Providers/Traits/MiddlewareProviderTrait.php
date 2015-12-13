@@ -19,6 +19,10 @@ trait MiddlewareProviderTrait
             $kernel->pushMiddleware($middleware);
         }
 
+        foreach ((array) $this->middlewareGroups as $key => $middleware) {
+            $router->middlewareGroup($key, $middleware);
+        }
+
         foreach ((array) $this->routeMiddleware as $key => $middleware) {
             $router->middleware($key, $middleware);
         }
