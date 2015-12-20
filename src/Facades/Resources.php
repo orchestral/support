@@ -2,6 +2,9 @@
 
 use Illuminate\Support\Facades\Facade;
 
+/**
+ * @deprecated since 3.2.x
+ */
 class Resources extends Facade
 {
     /**
