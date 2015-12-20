@@ -5,8 +5,20 @@ title: Support Change Log
 
 ## Version 3.2 {#v3-2}
 
-### v3.2.0@dev {#v3-2-0}
+### v3.2.0 {#v3-2-0}
 
+* Update support to Laravel Framework v5.2.
+* Improved performances by reducing call within `Illuminate\Container\Container`.
+* Core:
+  - Allow `Orchestra\Support\Traits\QueryFilterTrait::setupWildcardQueryFilter()` to handle relationship fields.
+  - Refactor `Orchestra\Support\Traits\QueryFilterTrait`.
+  - Allow to swap fluent class used when building nested data with `Orchestra\Support\Nesty`.
+  - Reduce internal request by removing `Illuminate\Support\Arr` usages on predictable array keys.
+   - Add `Orchestra\Support\Keyword`.
+  - Use available `Stringy::humanize()` method on `Orchestra\Support\Str::humanize()`.
+* Facades:
+  - Add `Orchestra\Support\Facades\Tenanti`.
+  - Remove `Orchestra\Support\Facades\Warden`.
 * Providers:
   - Remove `Orchestra\Support\Providers\FilterServiceProvider` and `Orchestra\Support\Providers\Traits\FilterProviderTrait`.
   
