@@ -1,51 +1,52 @@
 {
-	"name": "orchestra/support",
-	"description": "Support Component for Orchestra Platform",
-	"homepage": "http://orchestraplatform.com/docs/latest/components/support/",
-	"keywords": ["orchestra-platform", "orchestral", "laravel", "validator", "utilities"],
-	"license": "MIT",
-	"authors": [
-		{
-			"name": "Mior Muhammad Zaki",
-			"email": "crynobone@gmail.com",
-			"homepage": "https://github.com/crynobone"
-		}
-	],
-	"autoload": {
-		"psr-4": {
-			"Orchestra\\Support\\Facades\\" : "src/Facades/",
-			"Orchestra\\Support\\Ftp\\" : "src/Ftp/",
-			"Orchestra\\Support\\Providers\\" : "src/Providers/",
-			"Orchestra\\Support\\" : "src/Support/"
-		}
-	},
-	"require": {
-		"php": ">=5.4.0",
-		"illuminate/support": "5.0.*",
-		"orchestra/contracts": "3.0.*"
-	},
-	"require-dev": {
-		"mockery/mockery": "0.9.*",
-		"illuminate/database": "5.0.*",
-		"illuminate/events": "5.0.*",
-		"illuminate/routing": "5.0.*",
-		"illuminate/session": "5.0.*",
-		"illuminate/validation": "5.0.*"
-	},
-	"replace": {
-		"orchestra/support-core": "self.version",
-		"orchestra/support-facades": "self.version",
-		"orchestra/support-providers": "self.version"
-	},
-	"suggest": {
-		"laravel/framework": "Allow using orchestra/support component outside of Orchestra Platform (~5.0).",
-		"orchestra/foundation": "Allow using orchestra/support with Orchestra Platform (~3.0).",
-		"orchestra/messages": "Allow using Messages component (~3.0)."
-	},
-	"extra": {
-		"branch-alias": {
-			"dev-master": "3.2-dev"
-		}
-	},
-	"minimum-stability": "dev"
+    "name": "orchestra/support",
+    "description": "Support Component for Orchestra Platform",
+    "homepage": "http://orchestraplatform.com/docs/latest/components/support/",
+    "keywords": ["orchestra-platform", "orchestral", "laravel", "validator", "utilities"],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Mior Muhammad Zaki",
+            "email": "crynobone@gmail.com",
+            "homepage": "https://github.com/crynobone"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Orchestra\\Support\\Facades\\" : "src/Facades/",
+            "Orchestra\\Support\\Ftp\\" : "src/Ftp/",
+            "Orchestra\\Support\\Providers\\" : "src/Providers/",
+            "Orchestra\\Support\\" : "src/Support/"
+        }
+    },
+    "require": {
+        "php": ">=5.4.0",
+        "illuminate/encryption": "5.0.*",
+        "illuminate/support": "5.0.*",
+        "orchestra/contracts": "3.0.*"
+    },
+    "require-dev": {
+        "mockery/mockery": "0.9.*",
+        "illuminate/database": "5.0.*",
+        "illuminate/events": "5.0.*",
+        "illuminate/routing": "5.0.*",
+        "illuminate/session": "5.0.*",
+        "illuminate/validation": "5.0.*"
+    },
+    "replace": {
+        "orchestra/support-core": "self.version",
+        "orchestra/support-facades": "self.version",
+        "orchestra/support-providers": "self.version"
+    },
+    "suggest": {
+        "laravel/framework": "Allow using orchestra/support component outside of Orchestra Platform (~5.0).",
+        "orchestra/foundation": "Allow using orchestra/support with Orchestra Platform (~3.0).",
+        "orchestra/messages": "Allow using Messages component (~3.0)."
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "3.2-dev"
+        }
+    },
+    "minimum-stability": "dev"
 }
