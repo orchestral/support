@@ -1,6 +1,7 @@
 <?php namespace Orchestra\Support\Traits;
 
 use Illuminate\Support\Arr;
+use Illuminate\Contracts\Encryption\Encrypter;
 use Illuminate\Contracts\Encryption\DecryptException;
 
 trait DataContainerTrait
@@ -50,11 +51,15 @@ trait DataContainerTrait
     {
         $value = $this->get($key, $default);
 
-        try {
-            return $this->encrypter->decrypt($value);
-        } catch (DecryptException $e) {
-            return $value;
+        if ($this->encrypter instanceof Encrypter) {
+            try {
+                return $this->encrypter->decrypt($value);
+            } catch (DecryptException $e) {
+                //
+            }
         }
+
+        return $value;
     }
 
     /**
