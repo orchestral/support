@@ -1,9 +1,17 @@
 <?php namespace Orchestra\Support\Traits;
 
 use Illuminate\Support\Arr;
+use Illuminate\Contracts\Encryption\DecryptException;
 
 trait DataContainerTrait
 {
+    /**
+     * The encrypter implementation.
+     *
+     * @var \Illuminate\Contracts\Encryption\Encrypter
+     */
+    protected $encrypter;
+
     /**
      * Item or collection.
      *
@@ -31,6 +39,25 @@ trait DataContainerTrait
     }
 
     /**
+     * Get an encrypted item value.
+     *
+     * @param  string  $key
+     * @param  mixed   $default
+     *
+     * @return mixed
+     */
+    public function secureGet($key, $default = null)
+    {
+        $value = $this->get($key, $default);
+
+        try {
+            return $this->encrypter->decrypt($value);
+        } catch (DecryptException $e) {
+            return $value;
+        }
+    }
+
+    /**
      * Set a item value.
      *
      * @param  string  $key
@@ -41,6 +68,25 @@ trait DataContainerTrait
     public function set($key, $value = null)
     {
         return Arr::set($this->items, $key, value($value));
+    }
+
+    /**
+     * Set an ecrypted item value.
+     *
+     * @param  string  $key
+     * @param  mixed   $value
+     *
+     * @return mixed
+     *
+     * @throws \Illuminate\Contracts\Encryption\EncryptException
+     */
+    public function secureSet($key, $value = null)
+    {
+        if (is_string($value)) {
+            $value = $this->encrypter->encrypt($value);
+        }
+
+        return $this->set($key, $value);
     }
 
     /**
