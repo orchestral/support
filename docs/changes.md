@@ -5,6 +5,13 @@ title: Support Change Log
 
 ## Version 3.2 {#v3-2}
 
+### v3.2.1 {#v3-2-1}
+
+* Core:
+  - Add `Orchestra\Support\Traits\DataContainerTrait::secureGet()` and `Orchestra\Support\Traits\DataContainerTrait::secureSet()`.
+* Facades:
+  - Mark `Orchestra\Support\Facades\Resources` as deprecated.
+
 ### v3.2.0 {#v3-2-0}
 
 * Update support to Laravel Framework v5.2.
@@ -23,6 +30,11 @@ title: Support Change Log
   - Remove `Orchestra\Support\Providers\FilterServiceProvider` and `Orchestra\Support\Providers\Traits\FilterProviderTrait`.
   
 ## Version 3.1 {#v3-1}
+
+### v3.1.8 {#v3-1-8}
+
+* Core:
+  - Add `Orchestra\Support\Traits\DataContainerTrait::secureGet()` and `Orchestra\Support\Traits\DataContainerTrait::secureSet()`.
 
 ### v3.1.7 {#v3-1-7}
 
@@ -77,6 +89,11 @@ title: Support Change Log
   - Add `Orchestra\Support\Providers\Traits\PackageProviderTrait::hasPackageRepository()` helper.
 
 ## Version 3.0 {#v3-0}
+
+### v3.0.4 {#v3-0-4}
+
+* Core:
+  - Add `Orchestra\Support\Traits\DataContainerTrait::secureGet()` and `Orchestra\Support\Traits\DataContainerTrait::secureSet()`.
 
 ### v3.0.3 {#v3-0-3}
 
