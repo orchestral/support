@@ -3,6 +3,7 @@
 use Illuminate\Support\Arr;
 use Illuminate\Contracts\Encryption\Encrypter;
 use Illuminate\Contracts\Encryption\DecryptException;
+use Illuminate\Contracts\Encryption\EncryptException;
 
 trait DataContainerTrait
 {
@@ -87,8 +88,12 @@ trait DataContainerTrait
      */
     public function secureSet($key, $value = null)
     {
-        if (is_string($value)) {
-            $value = $this->encrypter->encrypt($value);
+        try {
+            if ($this->encrypter instanceof Encrypter) {
+                $value = $this->encrypter->encrypt($value);
+            }
+        } catch (EncryptException $e) {
+            //
         }
 
         return $this->set($key, $value);
