@@ -10,7 +10,7 @@ trait DataContainerTrait
     /**
      * The encrypter implementation.
      *
-     * @var \Illuminate\Contracts\Encryption\Encrypter
+     * @var \Illuminate\Contracts\Encryption\Encrypter|null
      */
     protected $encrypter;
 
@@ -83,8 +83,6 @@ trait DataContainerTrait
      * @param  mixed   $value
      *
      * @return mixed
-     *
-     * @throws \Illuminate\Contracts\Encryption\EncryptException
      */
     public function secureSet($key, $value = null)
     {
