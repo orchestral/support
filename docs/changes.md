@@ -5,6 +5,11 @@ title: Support Change Log
 
 ## Version 3.1 {#v3-1}
 
+### v3.1.8 {#v3-1-8}
+
+* Core:
+  - Add `Orchestra\Support\Traits\DataContainerTrait::secureGet()` and `Orchestra\Support\Traits\DataContainerTrait::secureSet()`.
+
 ### v3.1.7 {#v3-1-7}
 
 * Core:
