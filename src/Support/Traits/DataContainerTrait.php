@@ -118,7 +118,11 @@ trait DataContainerTrait
      */
     public function forget($key)
     {
-        Arr::forget($this->items, $key);
+        $items = $this->items;
+
+        Arr::forget($items, $key);
+
+        $this->items = $items;
     }
 
     /**
