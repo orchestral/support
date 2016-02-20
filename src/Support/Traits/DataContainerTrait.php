@@ -22,6 +22,13 @@ trait DataContainerTrait
     protected $items = [];
 
     /**
+     * Removed item or collection.
+     *
+     * @var array
+     */
+    protected $removedItems = [];
+
+    /**
      * Get a item value.
      *
      * @param  string  $key
@@ -120,6 +127,7 @@ trait DataContainerTrait
     {
         $items = $this->items;
 
+        array_push($this->removedItems, $key);
         Arr::forget($items, $key);
 
         $this->items = $items;
@@ -133,5 +141,21 @@ trait DataContainerTrait
     public function all()
     {
         return $this->items;
+    }
+
+    /**
+     * Get all available items including deleted.
+     *
+     * @return array
+     */
+    public function allWithRemoved()
+    {
+        $items = $this->all();
+
+        foreach ($this->removedItems as $deleted) {
+            $items[$deleted] = null;
+        }
+
+        return $items;
     }
 }
