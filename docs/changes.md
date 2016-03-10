@@ -5,6 +5,12 @@ title: Support Change Log
 
 ## Version 3.2 {#v3-2}
 
+### v3.2.2 {#v3-2-2}
+
+* Core:
+  - Tweak how attributes are removed via `Orchestra\Support\Traits\DataContainerTrait::forget()` method. ([@stevebauman](https://github.com/stevebauman))
+  - Add `Orchestra\Support\Traits\DataContainerTrait::allWithRemoved()`.
+
 ### v3.2.1 {#v3-2-1}
 
 * Core:
