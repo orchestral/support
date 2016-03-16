@@ -1,11 +1,10 @@
 <?php namespace Orchestra\Support;
 
 use Illuminate\Support\Fluent;
-use Orchestra\Support\Traits\DescendibleTrait;
 
 class Nesty
 {
-    use DescendibleTrait;
+    use Traits\Descendible;
 
     /**
      * List of items.

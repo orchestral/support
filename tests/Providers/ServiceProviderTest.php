@@ -13,7 +13,7 @@ class ServiceProviderTest extends \PHPUnit_Framework_TestCase
     {
         $stub = new StubBasicProvider(null);
 
-        $this->assertContains('Orchestra\Support\Providers\Traits\PackageProviderTrait', class_uses_recursive(get_class($stub)));
+        $this->assertContains('Orchestra\Support\Providers\Traits\PackageProvider', class_uses_recursive(get_class($stub)));
     }
 }
 

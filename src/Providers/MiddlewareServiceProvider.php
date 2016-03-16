@@ -2,11 +2,10 @@
 
 use Illuminate\Routing\Router;
 use Illuminate\Contracts\Http\Kernel;
-use Orchestra\Support\Providers\Traits\MiddlewareProviderTrait;
 
 abstract class MiddlewareServiceProvider extends ServiceProvider
 {
-    use MiddlewareProviderTrait;
+    use Traits\MiddlewareProvider;
 
     /**
      * The application's middleware stack.

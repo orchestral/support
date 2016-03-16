@@ -23,7 +23,7 @@ class MiddlewareServiceProviderTest extends \PHPUnit_Framework_TestCase
     {
         $stub = new StubMiddlewareProvider(null);
 
-        $this->assertContains('Orchestra\Support\Providers\Traits\MiddlewareProviderTrait', class_uses_recursive(get_class($stub)));
+        $this->assertContains('Orchestra\Support\Providers\Traits\MiddlewareProvider', class_uses_recursive(get_class($stub)));
     }
 
     /**
@@ -36,7 +36,7 @@ class MiddlewareServiceProviderTest extends \PHPUnit_Framework_TestCase
     {
         $stub = new StubMiddlewareProvider(null);
 
-        $this->assertContains('Orchestra\Support\Providers\Traits\MiddlewareProviderTrait', class_uses_recursive(get_class($stub)));
+        $this->assertContains('Orchestra\Support\Providers\Traits\MiddlewareProvider', class_uses_recursive(get_class($stub)));
 
         $this->assertNull($stub->register());
     }

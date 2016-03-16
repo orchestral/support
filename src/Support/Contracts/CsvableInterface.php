@@ -1,11 +1,9 @@
 <?php namespace Orchestra\Support\Contracts;
 
-interface CsvableInterface
+/**
+ * @deprecated v3.2.x
+ */
+interface CsvableInterface extends Csvable
 {
-    /**
-     * Get the instance as an CSV string.
-     *
-     * @return string
-     */
-    public function toCsv();
+    //
 }
