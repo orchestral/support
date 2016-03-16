@@ -1,10 +1,10 @@
 <?php namespace Orchestra\Support;
 
 use Illuminate\Support\Arr;
-use Orchestra\Support\Contracts\CsvableInterface;
+use Orchestra\Support\Contracts\Csvable;
 use Illuminate\Support\Collection as BaseCollection;
 
-class Collection extends BaseCollection implements CsvableInterface
+class Collection extends BaseCollection implements Csvable
 {
     /**
      * {@inheritdoc}
