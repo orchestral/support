@@ -44,7 +44,7 @@ abstract class Manager extends BaseManager
         if (isset($this->customCreators[$driver])) {
             return $this->callCustomCreator($driverName);
         } elseif (method_exists($this, $method)) {
-            return call_user_func([$this, $method], $name);
+            return $this->{$method}($name);
         }
 
         throw new InvalidArgumentException("Driver [$driver] not supported.");
@@ -61,7 +61,7 @@ abstract class Manager extends BaseManager
     {
         list($driver, $name) = $this->getDriverName($driverName);
 
-        return call_user_func($this->customCreators[$driver], $this->app, $name);
+        return $this->customCreators[$driver]($this->app, $name);
     }
 
     /**

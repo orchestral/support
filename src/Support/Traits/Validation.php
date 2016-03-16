@@ -121,7 +121,7 @@ trait Validation
     protected function runQueuedOn()
     {
         if (! is_null($method = $this->validationScenarios['on'])) {
-            call_user_func_array([$this, $method], $this->validationScenarios['parameters']);
+            $this->{$method}(...$this->validationScenarios['parameters']);
         }
     }
 

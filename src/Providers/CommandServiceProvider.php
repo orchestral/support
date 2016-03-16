@@ -35,7 +35,7 @@ abstract class CommandServiceProvider extends BaseServiceProvider
         foreach (array_keys($this->commands) as $command) {
             $method = "register{$command}Command";
 
-            call_user_func_array([$this, $method], []);
+            $this->{$method}();
         }
 
         $this->commands(array_values($this->commands));

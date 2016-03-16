@@ -189,7 +189,7 @@ class Nesty
 
         $method = $matching[$key];
 
-        return call_user_func([$this, $method], $id, $location);
+        return $this->{$method}($id, $location);
     }
 
     /**

@@ -27,7 +27,9 @@ abstract class Morph
             throw new RuntimeException("Unable to call [{$method}].");
         }
 
-        return call_user_func_array(static::$prefix.snake_case($method), $parameters);
+        $callback = static::$prefix.snake_case($method);
+
+        return $callback(...$parameters);
     }
 
     /**

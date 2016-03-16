@@ -35,7 +35,7 @@ trait Macroable
     public function __call($method, $parameters)
     {
         if (isset($this->macros[$method])) {
-            return call_user_func_array($this->macros[$method], $parameters);
+            return $this->macros[$method](...$parameters);
         }
 
         throw new \BadMethodCallException("Method {$method} does not exist.");
