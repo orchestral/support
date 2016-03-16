@@ -2,11 +2,10 @@
 
 use Illuminate\Contracts\Events\Dispatcher;
 use Illuminate\Contracts\Validation\Factory;
-use Orchestra\Support\Traits\ValidationTrait;
 
 abstract class Validator
 {
-    use ValidationTrait;
+    use Traits\Validation;
 
     /**
      * List of rules.
