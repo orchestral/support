@@ -5,6 +5,15 @@ title: Support Change Log
 
 ## Version 3.2 {#v3-2}
 
+### v3.2.3 {#v3-2-3}
+
+* Core:
+  - Remove `Trait` prefix and deprecate old traits.
+  - Call method directly instead of using `call_user_func()`.
+* Providers:
+  - Remove `Trait` prefix and deprecate old traits.
+  - Call method directly instead of using `call_user_func()`. 
+
 ### v3.2.2 {#v3-2-2}
 
 * Core:
