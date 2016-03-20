@@ -1,4 +1,6 @@
-<?php namespace Orchestra\Support\Providers;
+<?php
+
+namespace Orchestra\Support\Providers;
 
 use Illuminate\Support\ServiceProvider as BaseServiceProvider;
 use Illuminate\Contracts\Events\Dispatcher as DispatcherContract;

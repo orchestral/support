@@ -1,4 +1,6 @@
-<?php namespace Orchestra\Support;
+<?php
+
+namespace Orchestra\Support;
 
 use Stringy\Stringy;
 use Illuminate\Support\Arr;

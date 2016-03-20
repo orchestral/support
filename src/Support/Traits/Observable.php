@@ -1,4 +1,6 @@
-<?php namespace Orchestra\Support\Traits;
+<?php
+
+namespace Orchestra\Support\Traits;
 
 use Illuminate\Contracts\Events\Dispatcher;
 

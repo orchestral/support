@@ -1,4 +1,6 @@
-<?php namespace Orchestra\Support;
+<?php
+
+namespace Orchestra\Support;
 
 use InvalidArgumentException;
 use Illuminate\Support\Manager as BaseManager;

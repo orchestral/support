@@ -1,4 +1,6 @@
-<?php namespace Orchestra\Support\Contracts;
+<?php
+
+namespace Orchestra\Support\Contracts;
 
 /**
  * @deprecated v3.2.x

@@ -1,4 +1,6 @@
-<?php namespace Orchestra\Support\Traits;
+<?php
+
+namespace Orchestra\Support\Traits;
 
 use Illuminate\Support\Arr;
 use Illuminate\Contracts\Encryption\Encrypter;

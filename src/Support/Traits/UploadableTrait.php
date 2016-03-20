@@ -1,4 +1,6 @@
-<?php namespace Orchestra\Support\Traits;
+<?php
+
+namespace Orchestra\Support\Traits;
 
 /**
  * @deprecated v3.2.x

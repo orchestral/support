@@ -1,4 +1,6 @@
-<?php namespace Orchestra\Support;
+<?php
+
+namespace Orchestra\Support;
 
 use Illuminate\Contracts\Events\Dispatcher;
 use Illuminate\Contracts\Validation\Factory;

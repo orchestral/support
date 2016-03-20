@@ -1,4 +1,6 @@
-<?php namespace Orchestra\Support\Providers\Traits;
+<?php
+
+namespace Orchestra\Support\Providers\Traits;
 
 use Illuminate\Routing\Router;
 use Illuminate\Contracts\Http\Kernel;

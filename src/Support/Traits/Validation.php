@@ -1,4 +1,6 @@
-<?php namespace Orchestra\Support\Traits;
+<?php
+
+namespace Orchestra\Support\Traits;
 
 use Orchestra\Support\Str;
 use Illuminate\Support\Fluent;

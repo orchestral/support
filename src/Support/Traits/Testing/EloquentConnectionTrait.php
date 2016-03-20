@@ -1,4 +1,6 @@
-<?php namespace Orchestra\Support\Traits\Testing;
+<?php
+
+namespace Orchestra\Support\Traits\Testing;
 
 /**
  * @deprecated v3.2.x

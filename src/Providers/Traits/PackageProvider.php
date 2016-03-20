@@ -1,4 +1,6 @@
-<?php namespace Orchestra\Support\Providers\Traits;
+<?php
+
+namespace Orchestra\Support\Providers\Traits;
 
 use ReflectionClass;
 use Orchestra\Contracts\Config\PackageRepository;
