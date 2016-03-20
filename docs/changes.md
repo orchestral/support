@@ -8,10 +8,10 @@ title: Support Change Log
 ### v3.2.3 {#v3-2-3}
 
 * Core:
-  - Remove `Trait` prefix and deprecate old traits.
+  - Remove `Trait` suffix and deprecate old traits.
   - Call method directly instead of using `call_user_func()`.
 * Providers:
-  - Remove `Trait` prefix and deprecate old traits.
+  - Remove `Trait` suffix and deprecate old traits.
   - Call method directly instead of using `call_user_func()`. 
 
 ### v3.2.2 {#v3-2-2}
