@@ -62,7 +62,9 @@ class Str extends BaseStr
         $bindings     = [];
 
         foreach ($replacements as $key => $value) {
-            $bindings["{$prefix}{$key}{$suffix}"] = $value;
+            if (is_scalar($value)) {
+                $bindings["{$prefix}{$key}{$suffix}"] = $value;
+            }
         }
 
         return $bindings;
