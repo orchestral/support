@@ -25,7 +25,7 @@
         "danielstjules/stringy": "~2.1"
     },
     "require-dev": {
-        "mockery/mockery": "0.9.*",
+        "mockery/mockery": "^0.9.4",
         "illuminate/database": "~5.3.0",
         "illuminate/encryption": "~5.3.0",
         "illuminate/routing": "~5.3.0",
