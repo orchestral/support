@@ -5,6 +5,11 @@ title: Support Change Log
 
 ## Version 3.2 {#v3-2}
 
+### v3.2.4 {#v3-2-4}
+
+* Core:
+  - `Orchestra\Support\Str::prepareBindings()` should only convert scalar values such as `integer`, `float`, `string` or `boolean`.
+
 ### v3.2.3 {#v3-2-3}
 
 * Core:
