@@ -6,9 +6,9 @@ Support Component includes a basic set of classes required by Orchestra Platform
 [![Latest Stable Version](https://img.shields.io/github/release/orchestral/support.svg?style=flat-square)](https://packagist.org/packages/orchestra/support)
 [![Total Downloads](https://img.shields.io/packagist/dt/orchestra/support.svg?style=flat-square)](https://packagist.org/packages/orchestra/support)
 [![MIT License](https://img.shields.io/packagist/l/orchestra/support.svg?style=flat-square)](https://packagist.org/packages/orchestra/support)
-[![Build Status](https://img.shields.io/travis/orchestral/support/master.svg?style=flat-square)](https://travis-ci.org/orchestral/support)
-[![Coverage Status](https://img.shields.io/coveralls/orchestral/support/master.svg?style=flat-square)](https://coveralls.io/r/orchestral/support?branch=master)
-[![Scrutinizer Quality Score](https://img.shields.io/scrutinizer/g/orchestral/support/master.svg?style=flat-square)](https://scrutinizer-ci.com/g/orchestral/support/)
+[![Build Status](https://img.shields.io/travis/orchestral/support/3.3.svg?style=flat-square)](https://travis-ci.org/orchestral/support)
+[![Coverage Status](https://img.shields.io/coveralls/orchestral/support/3.3.svg?style=flat-square)](https://coveralls.io/r/orchestral/support?branch=3.3)
+[![Scrutinizer Quality Score](https://img.shields.io/scrutinizer/g/orchestral/support/3.3.svg?style=flat-square)](https://scrutinizer-ci.com/g/orchestral/support/)
 
 ## Table of Content
 
