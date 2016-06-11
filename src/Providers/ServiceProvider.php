@@ -8,10 +8,11 @@ abstract class ServiceProvider extends BaseServiceProvider
 {
     use Traits\PackageProvider;
 
-     /**
+    /**
      * Register a database migration path.
      *
      * @param  array|string  $paths
+     *
      * @return void
      */
     protected function loadMigrationsFrom($paths)
