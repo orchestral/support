@@ -1,4 +1,6 @@
-<?php namespace Orchestra\Support\TestCase;
+<?php
+
+namespace Orchestra\Support\TestCase;
 
 use Illuminate\Support\Fluent;
 use Orchestra\Support\Collection;

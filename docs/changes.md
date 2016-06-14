@@ -3,6 +3,24 @@ title: Support Change Log
 
 ---
 
+## Version 3.3 {#v3-3}
+
+### v3.3.0 {#v3-3-0}
+
+* Update support to Laravel Framework v5.3.
+* Core:
+  - Add `Orchestra\Support\Traits\DataContainerTrait::secureGet()` and `Orchestra\Support\Traits\DataContainerTrait::secureSet()`.
+  - Tweak how attributes are removed via `Orchestra\Support\Traits\DataContainerTrait::forget()` method. ([@stevebauman](https://github.com/stevebauman))
+  - Add `Orchestra\Support\Traits\DataContainerTrait::allWithRemoved()`.
+  - Remove `Trait` suffix and deprecate old traits.
+  - Call method directly instead of using `call_user_func()`.
+  - `Orchestra\Support\Str::prepareBindings()` should only convert scalar values such as `integer`, `float`, `string` or `boolean`.
+* Facades:
+  - Remove `Orchestra\Support\Facades\Resources`.
+* Providers:
+  - Remove `Trait` suffix and deprecate old traits.
+  - Call method directly instead of using `call_user_func()`. 
+
 ## Version 3.2 {#v3-2}
 
 ### v3.2.4 {#v3-2-4}

@@ -1,4 +1,6 @@
-<?php namespace Orchestra\Support\Traits\TestCase;
+<?php
+
+namespace Orchestra\Support\TestCase\Traits;
 
 use Mockery as m;
 use Orchestra\Support\Traits\QueryFilterTrait;
