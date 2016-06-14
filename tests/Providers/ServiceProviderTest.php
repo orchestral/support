@@ -1,4 +1,6 @@
-<?php namespace Orchestra\Support\Providers\TestCase;
+<?php
+
+namespace Orchestra\Support\TestCase\Providers;
 
 use Orchestra\Support\Providers\ServiceProvider;
 
