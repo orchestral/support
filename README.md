@@ -14,7 +14,7 @@ Support Component includes a basic set of classes required by Orchestra Platform
 
 * [Version Compatibility](#version-compatibility)
 * [Installation](#installation)
-* [Change Log](http://orchestraplatform.com/docs/latest/components/support/changes#v3-3)
+* [Change Log](http://orchestraplatform.com/docs/latest/components/support/changes#v3-4)
 
 ## Version Compatibility
 
@@ -27,6 +27,7 @@ Laravel    | Support
  5.1.x     | 3.1.x
  5.2.x     | 3.2.x
  5.3.x     | 3.3.x
+ 5.4.x     | 3.4.x@dev
 
 ## Installation
 

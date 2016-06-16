@@ -20,16 +20,16 @@
     },
     "require": {
         "php": ">=5.6.0",
-        "illuminate/support": "~5.3.0",
+        "illuminate/support": "~5.4.0",
         "orchestra/contracts": "~3.4.0",
         "danielstjules/stringy": "~2.1"
     },
     "require-dev": {
         "mockery/mockery": "^0.9.4",
-        "illuminate/database": "~5.3.0",
-        "illuminate/encryption": "~5.3.0",
-        "illuminate/routing": "~5.3.0",
-        "illuminate/session": "~5.3.0",
+        "illuminate/database": "~5.4.0",
+        "illuminate/encryption": "~5.4.0",
+        "illuminate/routing": "~5.4.0",
+        "illuminate/session": "~5.4.0",
         "paragonie/random_compat": "~1.1"
     },
     "replace": {
