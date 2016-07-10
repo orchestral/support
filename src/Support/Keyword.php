@@ -41,7 +41,7 @@ class Keyword
      */
     public static function make($value)
     {
-        if ($value instanceof Keyword) {
+        if ($value instanceof self) {
             return $value;
         }
 

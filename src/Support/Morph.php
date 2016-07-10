@@ -19,9 +19,9 @@ abstract class Morph
      * @param  string  $method
      * @param  array   $parameters
      *
-     * @return mixed
-     *
      * @throws \RuntimeException
+     *
+     * @return mixed
      */
     public static function __callStatic($method, $parameters)
     {
