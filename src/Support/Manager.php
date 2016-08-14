@@ -91,9 +91,9 @@ abstract class Manager extends BaseManager
      *
      * @param  string  $name
      *
-     * @return void
-     *
      * @throws \InvalidArgumentException
+     *
+     * @return void
      */
     protected function checkNameIsNotBlacklisted($name)
     {

@@ -4,11 +4,11 @@ namespace Orchestra\Support\TestCase\Providers\Traits;
 
 use Mockery as m;
 use Illuminate\Container\Container;
-use Orchestra\Support\Providers\Traits\PackageProviderTrait;
+use Orchestra\Support\Providers\Traits\PackageProvider;
 
-class PackageProviderTraitTest extends \PHPUnit_Framework_TestCase
+class PackageProviderTest extends \PHPUnit_Framework_TestCase
 {
-    use PackageProviderTrait;
+    use PackageProvider;
 
     /**
      * The application implementation.
@@ -64,6 +64,8 @@ class PackageProviderTraitTest extends \PHPUnit_Framework_TestCase
             ->shouldReceive('addNamespace')->once()->with('foo', "{$path}/views")->andReturnNull();
 
         $this->assertNull($this->package('foo/bar', 'foo', $path));
+
+        $this->app->make('translator');
     }
 
     /**
