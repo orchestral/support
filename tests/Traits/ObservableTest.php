@@ -3,9 +3,9 @@
 namespace Orchestra\Support\TestCase\Traits;
 
 use Mockery as m;
-use Orchestra\Support\Traits\ObservableTrait;
+use Orchestra\Support\Traits\Observable;
 
-class ObservableTraitTest extends \PHPUnit_Framework_TestCase
+class ObservableTest extends \PHPUnit_Framework_TestCase
 {
     /**
      * Teardown the test environment.
@@ -16,7 +16,7 @@ class ObservableTraitTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test Orchestra\Support\Traits\ObservableTrait::$dispatcher.
+     * Test Orchestra\Support\Traits\Observable::$dispatcher.
      *
      * @test
      */
@@ -36,7 +36,7 @@ class ObservableTraitTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test Orchestra\Support\Traits\ObservableTrait::getObservableEvents()
+     * Test Orchestra\Support\Traits\Observable::getObservableEvents()
      * method.
      *
      * @test
@@ -51,7 +51,7 @@ class ObservableTraitTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test Orchestra\Support\Traits\ObservableTrait::observe()
+     * Test Orchestra\Support\Traits\Observable::observe()
      * method without event dispatcher.
      *
      * @test
@@ -70,7 +70,7 @@ class ObservableTraitTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test Orchestra\Support\Traits\ObservableTrait::observe()
+     * Test Orchestra\Support\Traits\Observable::observe()
      * method with event dispatcher.
      *
      * @test
@@ -109,7 +109,7 @@ class ObservableTraitTest extends \PHPUnit_Framework_TestCase
 
 class ObservableStub
 {
-    use ObservableTrait;
+    use Observable;
 
     public $saving = false;
 
@@ -129,7 +129,7 @@ class ObservableStub
 
 class ObservableStubWithoutEvents
 {
-    use ObservableTrait;
+    use Observable;
 }
 
 class FoobarObserver

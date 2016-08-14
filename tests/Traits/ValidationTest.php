@@ -2,14 +2,14 @@
 
 namespace Orchestra\Support\TestCase\Traits;
 
-use Orchestra\Support\Traits\ValidationTrait;
+use Orchestra\Support\Traits\Validation;
 
-class ValidationTraitTest extends \PHPUnit_Framework_TestCase
+class ValidationTest extends \PHPUnit_Framework_TestCase
 {
-    use ValidationTrait;
+    use Validation;
 
     /**
-     * Test Orchestra\Support\Traits\ValidationTrait.
+     * Test Orchestra\Support\Traits\Validation.
      *
      * @test
      */

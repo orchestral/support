@@ -2,12 +2,12 @@
 
 namespace Orchestra\Support\TestCase\Traits;
 
-use Orchestra\Support\Traits\MacroableTrait;
+use Orchestra\Support\Traits\Macroable;
 
-class MacroableTraitTest extends \PHPUnit_Framework_TestCase
+class MacroableTest extends \PHPUnit_Framework_TestCase
 {
     /**
-     * Test \Orchestra\Support\Traits\MacroableTrait is executable.
+     * Test \Orchestra\Support\Traits\Macroable is executable.
      *
      * @test
      */
@@ -23,7 +23,7 @@ class MacroableTraitTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test \Orchestra\Support\Traits\MacroableTrait throws an exception
+     * Test \Orchestra\Support\Traits\Macroable throws an exception
      * when macro is not executable.
      *
      * @expectedException \BadMethodCallException
@@ -37,5 +37,5 @@ class MacroableTraitTest extends \PHPUnit_Framework_TestCase
 
 class MacroableStub
 {
-    use MacroableTrait;
+    use Macroable;
 }

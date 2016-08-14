@@ -2,13 +2,14 @@
 
 namespace Orchestra\Support\TestCase\Traits;
 
-use Illuminate\Support\Facades\File;
 use Mockery as m;
 use Illuminate\Container\Container;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Facade;
+use Orchestra\Support\Traits\Uploadable;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
-class UploadedTraitTest extends \PHPUnit_Framework_TestCase
+class UploadableTest extends \PHPUnit_Framework_TestCase
 {
     /**
      * Setup the test environment.
@@ -27,7 +28,7 @@ class UploadedTraitTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test Orchestra\Support\Traits\UploadableTrait::saveUploadedFile() method.
+     * Test Orchestra\Support\Traits\Uploadable::saveUploadedFile() method.
      *
      * @test
      */
@@ -48,7 +49,7 @@ class UploadedTraitTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test Orchestra\Support\Traits\UploadableTrait::saveUploadedFile() method
+     * Test Orchestra\Support\Traits\Uploadable::saveUploadedFile() method
      * when custom getUploadedFilename() are available.
      *
      * @test
@@ -69,7 +70,7 @@ class UploadedTraitTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test Orchestra\Support\Traits\UploadableTrait::deleteUploadedFile() method.
+     * Test Orchestra\Support\Traits\Uploadable::deleteUploadedFile() method.
      *
      * @test
      */
@@ -90,7 +91,7 @@ class UploadedTraitTest extends \PHPUnit_Framework_TestCase
 
 class UploadedStub
 {
-    use \Orchestra\Support\Traits\UploadableTrait;
+    use Uploadable;
 
     public function save(UploadedFile $file, $path)
     {
@@ -105,7 +106,7 @@ class UploadedStub
 
 class UploadedStubWithReplacement
 {
-    use \Orchestra\Support\Traits\UploadableTrait;
+    use \Orchestra\Support\Traits\Uploadable;
 
     public function save(UploadedFile $file, $path)
     {

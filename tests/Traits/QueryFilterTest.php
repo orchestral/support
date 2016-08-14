@@ -3,11 +3,11 @@
 namespace Orchestra\Support\TestCase\Traits;
 
 use Mockery as m;
-use Orchestra\Support\Traits\QueryFilterTrait;
+use Orchestra\Support\Traits\QueryFilter;
 
-class QueryFilterTraitTest extends \PHPUnit_Framework_TestCase
+class QueryFilterTest extends \PHPUnit_Framework_TestCase
 {
-    use QueryFilterTrait;
+    use QueryFilter;
 
     /**
      * Teardown the test environment.
@@ -18,7 +18,7 @@ class QueryFilterTraitTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test \Orchestra\Support\Traits\QueryFilterTrait::setupBasicQueryFilter()
+     * Test \Orchestra\Support\Traits\QueryFilter::setupBasicQueryFilter()
      * method.
      *
      * @test
@@ -43,7 +43,7 @@ class QueryFilterTraitTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test \Orchestra\Support\Traits\QueryFilterTrait::setupBasicQueryFilter()
+     * Test \Orchestra\Support\Traits\QueryFilter::setupBasicQueryFilter()
      * method when column should be excluded.
      *
      * @test
@@ -62,7 +62,7 @@ class QueryFilterTraitTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test \Orchestra\Support\Traits\QueryFilterTrait::setupWildcardQueryFilter()
+     * Test \Orchestra\Support\Traits\QueryFilter::setupWildcardQueryFilter()
      * method.
      *
      * @test
