@@ -5,6 +5,13 @@ title: Support Change Log
 
 ## Version 3.3 {#v3-3}
 
+### v3.3.1 {#v3-3-1}
+
+* Core:
+  - Add `Orchestra\Support\Fluent`.
+* Provider:
+  - Remove overloading `Orchestra\Support\Providers\ServiceProvider::loadMigrationsFrom()`.
+
 ### v3.3.0 {#v3-3-0}
 
 * Update support to Laravel Framework v5.3.
