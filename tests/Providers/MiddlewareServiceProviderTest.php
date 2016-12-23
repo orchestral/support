@@ -56,7 +56,7 @@ class MiddlewareServiceProviderTest extends \PHPUnit_Framework_TestCase
         $router = m::mock('\Illuminate\Routing\Router');
         $kernel = m::mock('\Illuminate\Contracts\Http\Kernel');
 
-        $router->shouldReceive('middleware')->once()->with('foobar', 'FoobarMiddleware')->andReturnNull();
+        $router->shouldReceive('aliasMiddleware')->once()->with('foobar', 'FoobarMiddleware')->andReturnNull();
 
         $kernel->shouldReceive('pushMiddleware')->once()->with('FooMiddleware')->andReturnNull();
 
