@@ -29,6 +29,9 @@
             "dev-master": "3.3-dev"
         }
     },
+    "config": {
+        "sort-packages": true
+    },
     "support": {
         "issues": "https://github.com/orchestral/support/issues"
     },
