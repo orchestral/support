@@ -19,16 +19,16 @@
         }
     },
     "require": {
-        "php": ">=5.6.0",
+        "php": ">=7.0",
         "danielstjules/stringy": "~2.1",
-        "illuminate/support": "~5.4.0",
-        "orchestra/contracts": "~3.4.0"
+        "illuminate/support": "~5.5.0",
+        "orchestra/contracts": "~3.5.0"
     },
     "require-dev": {
-        "illuminate/database": "~5.4.0",
-        "illuminate/encryption": "~5.4.0",
-        "illuminate/routing": "~5.4.0",
-        "illuminate/session": "~5.4.0",
+        "illuminate/database": "~5.5.0",
+        "illuminate/encryption": "~5.5.0",
+        "illuminate/routing": "~5.5.0",
+        "illuminate/session": "~5.5.0",
         "mockery/mockery": "^0.9.4",
         "paragonie/random_compat": "~1.1"
     },
@@ -38,13 +38,13 @@
         "orchestra/support-providers": "self.version"
     },
     "suggest": {
-        "laravel/framework": "Allow using orchestra/support component outside of Orchestra Platform (~5.4).",
-        "orchestra/foundation": "Allow using orchestra/support with Orchestra Platform (~3.4).",
-        "orchestra/messages": "Allow using Messages component (~3.4)."
+        "laravel/framework": "Allow using orchestra/support component outside of Orchestra Platform (~5.5).",
+        "orchestra/foundation": "Allow using orchestra/support with Orchestra Platform (~3.5).",
+        "orchestra/messages": "Allow using Messages component (~3.5)."
     },
     "extra": {
         "branch-alias": {
-            "dev-master": "3.4-dev"
+            "dev-master": "3.5-dev"
         }
     },
     "config": {
