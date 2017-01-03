@@ -26,7 +26,7 @@ trait MiddlewareProvider
         }
 
         foreach ((array) $this->routeMiddleware as $key => $middleware) {
-            $router->middleware($key, $middleware);
+            $router->aliasMiddleware($key, $middleware);
         }
     }
 }
