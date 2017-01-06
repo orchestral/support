@@ -3,8 +3,8 @@
 namespace Orchestra\Support;
 
 use InvalidArgumentException;
-use Orchestra\Contracts\Support\Tranformable;
 use Illuminate\Contracts\Pagination\Paginator;
+use Orchestra\Contracts\Support\Transformable;
 use Illuminate\Support\Collection as BaseCollection;
 
 abstract class Transformer
@@ -28,8 +28,9 @@ abstract class Transformer
     /**
      * Invoke the transformation.
      *
-     * @param  mixed $instance
+     * @param  mixed  $instance
      * @param  array  $parameters
+     *
      * @return mixed
      */
     public static function with($instance, array $parameters)
@@ -48,7 +49,7 @@ abstract class Transformer
     /**
      * Invoke the transformer.
      *
-     * @param mixed $parameters
+     * @param  mixed  $parameters
      *
      * @return mixed
      */
