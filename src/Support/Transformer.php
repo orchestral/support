@@ -57,7 +57,7 @@ abstract class Transformer
     {
         $transformed = $this->transform(...$parameters);
 
-        return $this->resolveIncludes($transformed);
+        return $this->transformByGroup('exclude', $this->transformByGroup('include', $transformed));
     }
 
     /**
@@ -67,18 +67,18 @@ abstract class Transformer
      *
      * @return array
      */
-    protected function resolveIncludes(array $transformed)
+    protected function transformByGroup($group, array $transformed)
     {
-        $includes = $this->options['includes'];
+        $types = $this->options["{$group}s"];
 
-        if (empty($this->options['includes'])) {
+        if (empty($this->options["{$group}s"])) {
             return $transformed;
         }
 
-        $includes = is_array($includes) ? $includes : explode(',', $includes);
+        $types = is_array($types) ? $types : explode(',', $types);
 
-        foreach ($includes as $include) {
-            $method = 'include'.Str::studly($include);
+        foreach ($types as $type) {
+            $method = $group.Str::studly($type);
 
             if (method_exists($this, $method)) {
                 $transformed = $this->{$method}($transformed);
