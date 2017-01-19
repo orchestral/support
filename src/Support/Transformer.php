@@ -55,9 +55,7 @@ abstract class Transformer
      */
     public function __invoke(...$parameters)
     {
-        $transformed = $this->transform(...$parameters);
-
-        return $this->transformByGroup('exclude', $this->transformByGroup('include', $transformed));
+        return $this->transformByGroup('exclude', $this->transformByGroup('include', $this->transform(...$parameters)));
     }
 
     /**
@@ -67,15 +65,17 @@ abstract class Transformer
      *
      * @return array
      */
-    protected function transformByGroup($group, array $transformed)
+    protected function transformByGroup($group, array $transformed = [])
     {
-        $types = $this->options["{$group}s"];
-
-        if (empty($this->options["{$group}s"])) {
+        if (! isset($this->options["{$group}s"]) || empty($this->options["{$group}s"])) {
             return $transformed;
         }
 
-        $types = is_array($types) ? $types : explode(',', $types);
+        $types = $this->options["{$group}s"];
+
+        if (is_string($types)) {
+            $types = explode(',', $types);
+        }
 
         foreach ($types as $type) {
             $method = $group.Str::studly($type);
