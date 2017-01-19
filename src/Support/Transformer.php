@@ -55,6 +55,36 @@ abstract class Transformer
      */
     public function __invoke(...$parameters)
     {
-        return $this->transform(...$parameters);
+        $transformed = $this->transform(...$parameters);
+
+        return $this->resolveIncludes($transformed);
+    }
+
+    /**
+     * Resolve includes for transformer.
+     *
+     * @param  array  $transformed
+     *
+     * @return array
+     */
+    protected function resolveIncludes(array $transformed)
+    {
+        $includes = $this->options['includes'];
+
+        if (empty($this->options['includes'])) {
+            return $transformed;
+        }
+
+        $includes = is_array($includes) ? $includes : explode(',', $includes);
+
+        foreach ($includes as $include) {
+            $method = 'include'.Str::studly($include);
+
+            if (method_exists($this, $method)) {
+                $transformed = $this->{$method}($transformed);
+            }
+        }
+
+        return $transformed;
     }
 }
