@@ -28,7 +28,7 @@ abstract class Transformer
     /**
      * Construct a new transformer.
      *
-     * @param array $options
+     * @param \Illuminate\Http\Request $request
      */
     public function __construct(Request $request)
     {
@@ -73,14 +73,14 @@ abstract class Transformer
      * Invoke the transformation.
      *
      * @param  mixed  $instance
-     * @param  array  $parameters
+     * @param  array  $options
      *
      * @return mixed
      */
-    public static function with($instance, array $parameters)
+    public static function with($instance, array $options)
     {
         return (new static(app('request')))
-                    ->withOptions(...$parameters)
+                    ->withOptions($options)
                     ->handle($instance);
     }
 
