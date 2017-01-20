@@ -36,6 +36,26 @@ abstract class Transformer
     }
 
     /**
+     * Handle transformation.
+     *
+     * @param  mixed  $instance
+     *
+     * @return mixed
+     */
+    public function handle($instance)
+    {
+        if ($instance instanceof Paginator) {
+            $transformable = $instance->getCollection();
+        } elseif ($transformable instanceof Transformable || $transformable instanceof BaseCollection) {
+            $transformable = $instance;
+        } else {
+            throw new InvalidArgumentException("Unable to transform {get_class($instance)}.");
+        }
+
+        return $transformable->transform($this);
+    }
+
+    /**
      * Add options.
      *
      * @param  array  $options
@@ -59,17 +79,9 @@ abstract class Transformer
      */
     public static function with($instance, array $parameters)
     {
-        if ($instance instanceof Paginator) {
-            $transformable = $instance->getCollection();
-        } elseif ($transformable instanceof Transformable || $transformable instanceof BaseCollection) {
-            $transformable = $instance;
-        } else {
-            throw new InvalidArgumentException("Unable to transform {get_class($instance)}.");
-        }
-
-        $transformer = new static(app('request'));
-
-        return $transformable->transform($transformer->withOptions(...$parameters));
+        return (new static(app('request')))
+                    ->withOptions(...$parameters)
+                    ->handle($instance);
     }
 
     /**
