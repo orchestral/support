@@ -2,6 +2,8 @@
 
 namespace Orchestra\Support;
 
+use Illuminate\Support\Arr;
+use Illuminate\Http\Request;
 use InvalidArgumentException;
 use Illuminate\Contracts\Pagination\Paginator;
 use Orchestra\Contracts\Support\Transformable;
@@ -15,14 +17,36 @@ abstract class Transformer
      * @var array
      */
     protected $options = [];
+
+    /**
+     * The request implementation.
+     *
+     * @var \Illuminate\Http\Request
+     */
+    protected $request;
+
     /**
      * Construct a new transformer.
      *
      * @param array $options
      */
-    public function __construct(array $options = [])
+    public function __construct(Request $request)
+    {
+        $this->request = $request;
+    }
+
+    /**
+     * Add options.
+     *
+     * @param  array  $options
+     *
+     * @return $this
+     */
+    public function withOptions(array $options = [])
     {
         $this->options = $options;
+
+        return $this;
     }
 
     /**
@@ -43,7 +67,9 @@ abstract class Transformer
             throw new InvalidArgumentException("Unable to transform {get_class($instance)}.");
         }
 
-        return $transformable->transform(new static(...$parameters));
+        $transformer = new static(app('request'));
+
+        return $transformable->transform($transformer->withOptions(...$parameters));
     }
 
     /**
@@ -67,14 +93,10 @@ abstract class Transformer
      */
     protected function transformByGroup($group, array $transformed = [])
     {
-        if (! isset($this->options["{$group}s"]) || empty($this->options["{$group}s"])) {
+        $types = $this->getOptionByGroup("{$group}s");
+
+        if (empty($types)) {
             return $transformed;
-        }
-
-        $types = $this->options["{$group}s"];
-
-        if (is_string($types)) {
-            $types = explode(',', $types);
         }
 
         foreach ($types as $type) {
@@ -86,5 +108,23 @@ abstract class Transformer
         }
 
         return $transformed;
+    }
+
+    /**
+     * Get option by group.
+     *
+     * @param  string  $group
+     *
+     * @return array|null
+     */
+    protected function getOptionByGroup($group)
+    {
+        $types = Arr::get($this->options, $group, $this->request->input($group));
+
+        if (! is_string($types)) {
+            return $types;
+        }
+
+        return explode(',', $types);
     }
 }
