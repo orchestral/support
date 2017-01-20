@@ -5,6 +5,7 @@ namespace Orchestra\Support;
 use Illuminate\Support\Arr;
 use Illuminate\Http\Request;
 use InvalidArgumentException;
+use Illuminate\Support\Fluent as BaseFluent;
 use Illuminate\Contracts\Pagination\Paginator;
 use Orchestra\Contracts\Support\Transformable;
 use Illuminate\Support\Collection as BaseCollection;
@@ -46,7 +47,9 @@ abstract class Transformer
     {
         if ($instance instanceof Paginator) {
             $transformable = $instance->getCollection();
-        } elseif ($instance instanceof Transformable || $instance instanceof BaseCollection) {
+        } elseif ($instance instanceof Transformable
+            || $instance instanceof BaseCollection
+            || $instance instanceof BaseFluent) {
             $transformable = $instance;
         } else {
             throw new InvalidArgumentException("Unable to transform {get_class($instance)}.");
