@@ -46,7 +46,7 @@ abstract class Transformer
     {
         if ($instance instanceof Paginator) {
             $transformable = $instance->getCollection();
-        } elseif ($transformable instanceof Transformable || $transformable instanceof BaseCollection) {
+        } elseif ($instance instanceof Transformable || $instance instanceof BaseCollection) {
             $transformable = $instance;
         } else {
             throw new InvalidArgumentException("Unable to transform {get_class($instance)}.");
