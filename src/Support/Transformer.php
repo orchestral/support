@@ -93,33 +93,43 @@ abstract class Transformer
      */
     public function __invoke(...$parameters)
     {
-        return $this->transformByGroup('exclude', $this->transformByGroup('include', $this->transform(...$parameters)));
+        return $this->transformByGroup(
+            'exclude',
+            $this->transformByGroup(
+                'include',
+                $this->transform(...$parameters),
+                ...$parameters
+            ),
+            ...$parameters
+        );
     }
 
     /**
      * Resolve includes for transformer.
      *
-     * @param  array  $transformed
+     * @param  string  $group
+     * @param  array  $data
+     * @param  mixed  $parameters
      *
      * @return array
      */
-    protected function transformByGroup($group, array $transformed = [])
+    protected function transformByGroup($group, $data, ...$parameters)
     {
         $types = $this->getOptionByGroup("{$group}s");
 
         if (empty($types)) {
-            return $transformed;
+            return $data;
         }
 
         foreach ($types as $type) {
             $method = $group.Str::studly($type);
 
             if (method_exists($this, $method)) {
-                $transformed = $this->{$method}($transformed);
+                $data = $this->{$method}($data, ...$parameters);
             }
         }
 
-        return $transformed;
+        return $data;
     }
 
     /**
