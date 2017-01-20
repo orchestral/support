@@ -77,7 +77,7 @@ abstract class Transformer
      *
      * @return mixed
      */
-    public static function with($instance, array $options)
+    public static function with($instance, array $options = [])
     {
         return (new static(app('request')))
                     ->withOptions($options)
