@@ -128,7 +128,7 @@ abstract class Transformer
      */
     protected function transformByMeta($meta, $data, ...$parameters)
     {
-        $name  = Str::studly(Str::singular($meta));
+        $name  = Str::singular($meta);
         $types = $this->options[$meta];
 
         if (empty($types)) {
@@ -136,7 +136,7 @@ abstract class Transformer
         }
 
         foreach ($types as $type) {
-            $method = $group.$name;
+            $method = $name.Str::studly($type);
 
             if (method_exists($this, $method)) {
                 $data = $this->{$method}($data, ...$parameters);
