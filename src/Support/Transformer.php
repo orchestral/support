@@ -19,6 +19,13 @@ abstract class Transformer
     protected $options = [];
 
     /**
+     * Meta types.
+     *
+     * @var array
+     */
+    protected $meta = ['includes', 'excludes'];
+
+    /**
      * The request implementation.
      *
      * @var \Illuminate\Http\Request
@@ -68,6 +75,10 @@ abstract class Transformer
     {
         $this->options = $options;
 
+        foreach ($this->meta as $name) {
+            $this->filterMetaType($name);
+        }
+
         return $this;
     }
 
@@ -95,9 +106,9 @@ abstract class Transformer
      */
     public function __invoke(...$parameters)
     {
-        return $this->transformByGroup(
+        return $this->transformByMeta(
             'exclude',
-            $this->transformByGroup(
+            $this->transformByMeta(
                 'include',
                 $this->transform(...$parameters),
                 ...$parameters
@@ -115,16 +126,17 @@ abstract class Transformer
      *
      * @return array
      */
-    protected function transformByGroup($group, $data, ...$parameters)
+    protected function transformByMeta($meta, $data, ...$parameters)
     {
-        $types = $this->getOptionByGroup("{$group}s");
+        $name  = Str::studly(Str::singular($meta));
+        $types = $this->options[$meta];
 
         if (empty($types)) {
             return $data;
         }
 
         foreach ($types as $type) {
-            $method = $group.Str::studly($type);
+            $method = $group.$name;
 
             if (method_exists($this, $method)) {
                 $data = $this->{$method}($data, ...$parameters);
@@ -134,21 +146,51 @@ abstract class Transformer
         return $data;
     }
 
+
+
+    /**
+     * Merge meta options.
+     *
+     * @param string|array $meta
+     * @param array        $options
+     *
+     * @return array
+     */
+    protected function merge($meta, array $options = [])
+    {
+        if (is_array($meta) && empty($options)) {
+            $options = $meta;
+            $meta    = null;
+        }
+
+        $options = array_merge(['includes' => null, 'excludes' => null], $options);
+
+        foreach ($options as $key => $value) {
+            $data = Arr::get($this->options, is_null($meta) ? $key : "{$key}.{$meta}", []);
+
+            if (is_array($data)) {
+                $options[$key] = array_merge($data, (array) $value);
+            }
+        }
+
+        return $options;
+    }
+
     /**
      * Get option by group.
      *
-     * @param  string  $group
+     * @param  string  $name
      *
      * @return array|null
      */
-    protected function getOptionByGroup($group)
+    protected function filterMetaType($name)
     {
-        $types = Arr::get($this->options, $group, $this->request->input($group));
+        $types = Arr::get($this->options, $name, $this->request->input($name));
 
-        if (! is_string($types)) {
-            return $types;
+        if (is_string($types)) {
+            $types = explode(',', $types);
         }
 
-        return explode(',', $types);
+        $this->options[$name] = $types;
     }
 }
