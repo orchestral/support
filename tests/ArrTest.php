@@ -20,6 +20,7 @@ class ArrTest extends \PHPUnit_Framework_TestCase
         $array = Arr::expand(['foo.bar' => 'baz', 'foo.bar1' => 'baz1', 'foo2' => 'bar2']);
         $this->assertEquals(['foo' => ['bar' => 'baz', 'bar1' => 'baz1'], 'foo2' => 'bar2'], $array);
     }
+
     public function testExpandWithDepth()
     {
         // Without specifying depth it expands recursively.
