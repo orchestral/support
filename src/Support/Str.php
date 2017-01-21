@@ -3,7 +3,6 @@
 namespace Orchestra\Support;
 
 use Stringy\Stringy;
-use Illuminate\Support\Arr;
 use Illuminate\Support\Str as BaseStr;
 
 class Str extends BaseStr

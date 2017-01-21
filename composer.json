@@ -27,6 +27,7 @@
     "require-dev": {
         "illuminate/database": "~5.4.0",
         "illuminate/encryption": "~5.4.0",
+        "illuminate/http": "~5.4.0",
         "illuminate/routing": "~5.4.0",
         "illuminate/session": "~5.4.0",
         "mockery/mockery": "^0.9.4",
