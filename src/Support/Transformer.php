@@ -107,9 +107,9 @@ abstract class Transformer
     public function __invoke(...$parameters)
     {
         return $this->transformByMeta(
-            'exclude',
+            'excludes',
             $this->transformByMeta(
-                'include',
+                'includes',
                 $this->transform(...$parameters),
                 ...$parameters
             ),
