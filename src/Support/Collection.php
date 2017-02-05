@@ -2,11 +2,11 @@
 
 namespace Orchestra\Support;
 
-use Illuminate\Support\Arr;
 use Orchestra\Support\Contracts\Csvable;
+use Orchestra\Contracts\Support\Transformable;
 use Illuminate\Support\Collection as BaseCollection;
 
-class Collection extends BaseCollection implements Csvable
+class Collection extends BaseCollection implements Csvable, Transformable
 {
     /**
      * {@inheritdoc}
