@@ -3,10 +3,11 @@
 namespace Orchestra\Support\TestCase\Providers\Traits;
 
 use Mockery as m;
+use PHPUnit\Framework\TestCase;
 use Illuminate\Container\Container;
 use Orchestra\Support\Providers\Traits\PackageProvider;
 
-class PackageProviderTest extends \PHPUnit_Framework_TestCase
+class PackageProviderTest extends TestCase
 {
     use PackageProvider;
 
@@ -20,7 +21,7 @@ class PackageProviderTest extends \PHPUnit_Framework_TestCase
     /**
      * Setup the test environment.
      */
-    public function setUp()
+    protected function setUp()
     {
         $this->app = new Container();
     }
@@ -28,7 +29,7 @@ class PackageProviderTest extends \PHPUnit_Framework_TestCase
     /**
      * Teardown the test environment.
      */
-    public function tearDown()
+    protected function tearDown()
     {
         $this->app = null;
 

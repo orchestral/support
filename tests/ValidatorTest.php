@@ -3,13 +3,14 @@
 namespace Orchestra\Support\TestCase;
 
 use Mockery as m;
+use PHPUnit\Framework\TestCase;
 
-class ValidatorTest extends \PHPUnit_Framework_TestCase
+class ValidatorTest extends TestCase
 {
     /**
      * Setup the test environment.
      */
-    public function setUp()
+    protected function setUp()
     {
         $_SERVER['validator.onFoo'] = null;
         $_SERVER['validator.onFoo'] = null;
@@ -17,7 +18,7 @@ class ValidatorTest extends \PHPUnit_Framework_TestCase
     /**
      * Teardown the test environment.
      */
-    public function tearDown()
+    protected function tearDown()
     {
         unset($_SERVER['validator.onFoo']);
         unset($_SERVER['validator.extendFoo']);

@@ -2,9 +2,10 @@
 
 namespace Orchestra\Support\TestCase\Providers;
 
+use PHPUnit\Framework\TestCase;
 use Orchestra\Support\Providers\ServiceProvider;
 
-class ServiceProviderTest extends \PHPUnit_Framework_TestCase
+class ServiceProviderTest extends TestCase
 {
     /**
      * Test Orchestra\Support\Providers\PipelineServiceProvider method signature.

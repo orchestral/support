@@ -2,7 +2,10 @@
 
 namespace Orchestra\Support\TestCase;
 
-class MorphTest extends \PHPUnit_Framework_TestCase
+use Orchestra\Support\Morph;
+use PHPUnit\Framework\TestCase;
+
+class MorphTest extends TestCase
 {
     /**
      * Test MorphStub::connect() return foo_connect().
@@ -30,7 +33,7 @@ function foo_connect()
     return true;
 }
 
-class MorphStub extends \Orchestra\Support\Morph
+class MorphStub extends Morph
 {
     public static $prefix = '\Orchestra\Support\TestCase\foo_';
 }
