@@ -191,6 +191,6 @@ abstract class Transformer
             $types = explode(',', $types);
         }
 
-        $this->options[$name] = $types;
+        $this->options[$name] = Arr::expand($types);
     }
 }
