@@ -3,8 +3,9 @@
 namespace Orchestra\Support\TestCase;
 
 use Orchestra\Support\Keyword;
+use PHPUnit\Framework\TestCase;
 
-class KeywordTest extends \PHPUnit_Framework_TestCase
+class KeywordTest extends TestCase
 {
     /**
      * Test Orchestra\Support\Keyword signature.

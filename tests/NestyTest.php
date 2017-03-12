@@ -2,11 +2,12 @@
 
 namespace Orchestra\Support\TestCase;
 
-use Illuminate\Support\Fluent;
-use Orchestra\Support\Collection;
 use Orchestra\Support\Nesty;
+use Illuminate\Support\Fluent;
+use PHPUnit\Framework\TestCase;
+use Orchestra\Support\Collection;
 
-class NestyTest extends \PHPUnit_Framework_TestCase
+class NestyTest extends TestCase
 {
     /**
      * Stub instance.
@@ -18,7 +19,7 @@ class NestyTest extends \PHPUnit_Framework_TestCase
     /**
      * Setup the test environment.
      */
-    public function setUp()
+    protected function setUp()
     {
         $this->stub = new Nesty([]);
     }
@@ -26,7 +27,7 @@ class NestyTest extends \PHPUnit_Framework_TestCase
     /**
      * Teardown the test environment.
      */
-    public function tearDown()
+    protected function tearDown()
     {
         unset($this->stub);
     }

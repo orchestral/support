@@ -3,18 +3,19 @@
 namespace Orchestra\Support\TestCase\Traits;
 
 use Mockery as m;
+use PHPUnit\Framework\TestCase;
 use Illuminate\Container\Container;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Facade;
 use Orchestra\Support\Traits\Uploadable;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
-class UploadableTest extends \PHPUnit_Framework_TestCase
+class UploadableTest extends TestCase
 {
     /**
      * Setup the test environment.
      */
-    public function setUp()
+    protected function setUp()
     {
         $app = new Container();
 
@@ -22,7 +23,10 @@ class UploadableTest extends \PHPUnit_Framework_TestCase
         Facade::setFacadeApplication($app);
     }
 
-    public function tearDown()
+    /**
+     * Teardown the test environment.
+     */
+    protected function tearDown()
     {
         m::close();
     }

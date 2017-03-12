@@ -3,16 +3,17 @@
 namespace Orchestra\Support\TestCase\Traits;
 
 use Mockery as m;
+use PHPUnit\Framework\TestCase;
 use Orchestra\Support\Traits\QueryFilter;
 
-class QueryFilterTest extends \PHPUnit_Framework_TestCase
+class QueryFilterTest extends TestCase
 {
     use QueryFilter;
 
     /**
      * Teardown the test environment.
      */
-    public function tearDown()
+    protected function tearDown()
     {
         m::close();
     }

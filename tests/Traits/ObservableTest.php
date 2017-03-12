@@ -3,14 +3,15 @@
 namespace Orchestra\Support\TestCase\Traits;
 
 use Mockery as m;
+use PHPUnit\Framework\TestCase;
 use Orchestra\Support\Traits\Observable;
 
-class ObservableTest extends \PHPUnit_Framework_TestCase
+class ObservableTest extends TestCase
 {
     /**
      * Teardown the test environment.
      */
-    public function tearDown()
+    protected function tearDown()
     {
         m::close();
     }
