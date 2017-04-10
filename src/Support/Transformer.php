@@ -131,7 +131,7 @@ abstract class Transformer
     protected function transformByMeta($meta, $data, ...$parameters)
     {
         $name  = Str::singular($meta);
-        $types = $this->options[$meta];
+        $types = isset($this->options[$meta]) ? $this->options[$meta] : null;
 
         if (empty($types)) {
             return $data;
