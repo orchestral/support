@@ -7,9 +7,10 @@ title: Support Change Log
 
 ### v3.3.2 {#v3-3-2}
 
-* Add `Orchestra\Support\Arr::expand()` method. ([@mustafaaloko](https://github.com/mustafaaloko))
-* Add `Orchestra\Support\Serializer`.
-* Add `Orchestra\Support\Transformer`.
+* Core:
+  - Add `Orchestra\Support\Arr::expand()` method. ([@mustafaaloko](https://github.com/mustafaaloko))
+  - Add `Orchestra\Support\Serializer`.
+  - Add `Orchestra\Support\Transformer`.
 
 ### v3.3.1 {#v3-3-1}
 
