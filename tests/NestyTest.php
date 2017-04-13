@@ -2,11 +2,12 @@
 
 namespace Orchestra\Support\TestCase;
 
-use Illuminate\Support\Fluent;
-use Orchestra\Support\Collection;
 use Orchestra\Support\Nesty;
+use Illuminate\Support\Fluent;
+use PHPUnit\Framework\TestCase;
+use Orchestra\Support\Collection;
 
-class NestyTest extends \PHPUnit_Framework_TestCase
+class NestyTest extends TestCase
 {
     /**
      * Stub instance.

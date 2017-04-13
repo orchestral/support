@@ -2,9 +2,10 @@
 
 namespace Orchestra\Support\TestCase;
 
+use PHPUnit\Framework\TestCase;
 use Orchestra\Support\Collection;
 
-class CollectionTest extends \PHPUnit_Framework_TestCase
+class CollectionTest extends TestCase
 {
     /**
      * Test Orchestra\Support\Collection::toCsv() method.

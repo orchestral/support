@@ -3,8 +3,9 @@
 namespace Orchestra\Support\TestCase;
 
 use Orchestra\Support\Str;
+use PHPUnit\Framework\TestCase;
 
-class StrTest extends \PHPUnit_Framework_TestCase
+class StrTest extends TestCase
 {
     /**
      * Test Authorize\Str::humanize() method.

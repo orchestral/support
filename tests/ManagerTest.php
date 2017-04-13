@@ -3,8 +3,9 @@
 namespace Orchestra\Support\TestCase;
 
 use Mockery as m;
+use PHPUnit\Framework\TestCase;
 
-class ManagerTest extends \PHPUnit_Framework_TestCase
+class ManagerTest extends TestCase
 {
     /**
      * Teardown the test environment.

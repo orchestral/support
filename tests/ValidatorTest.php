@@ -3,8 +3,9 @@
 namespace Orchestra\Support\TestCase;
 
 use Mockery as m;
+use PHPUnit\Framework\TestCase;
 
-class ValidatorTest extends \PHPUnit_Framework_TestCase
+class ValidatorTest extends TestCase
 {
     /**
      * Setup the test environment.

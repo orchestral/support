@@ -3,9 +3,10 @@
 namespace Orchestra\Support\TestCase\Traits;
 
 use Mockery as m;
+use PHPUnit\Framework\TestCase;
 use Orchestra\Support\Traits\QueryFilterTrait;
 
-class QueryFilterTraitTest extends \PHPUnit_Framework_TestCase
+class QueryFilterTraitTest extends TestCase
 {
     use QueryFilterTrait;
 

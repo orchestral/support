@@ -2,7 +2,9 @@
 
 namespace Orchestra\Support\TestCase;
 
-class MorphTest extends \PHPUnit_Framework_TestCase
+use PHPUnit\Framework\TestCase;
+
+class MorphTest extends TestCase
 {
     /**
      * Test MorphStub::connect() return foo_connect().

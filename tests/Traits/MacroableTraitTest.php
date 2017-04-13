@@ -2,9 +2,10 @@
 
 namespace Orchestra\Support\TestCase\Traits;
 
+use PHPUnit\Framework\TestCase;
 use Orchestra\Support\Traits\MacroableTrait;
 
-class MacroableTraitTest extends \PHPUnit_Framework_TestCase
+class MacroableTraitTest extends TestCase
 {
     /**
      * Test \Orchestra\Support\Traits\MacroableTrait is executable.

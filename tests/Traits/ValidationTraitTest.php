@@ -2,9 +2,10 @@
 
 namespace Orchestra\Support\TestCase\Traits;
 
+use PHPUnit\Framework\TestCase;
 use Orchestra\Support\Traits\ValidationTrait;
 
-class ValidationTraitTest extends \PHPUnit_Framework_TestCase
+class ValidationTraitTest extends TestCase
 {
     use ValidationTrait;
 

@@ -3,8 +3,9 @@
 namespace Orchestra\Support\TestCase;
 
 use Orchestra\Support\Arr;
+use PHPUnit\Framework\TestCase;
 
-class ArrTest extends \PHPUnit_Framework_TestCase
+class ArrTest extends TestCase
 {
     public function testExpand()
     {

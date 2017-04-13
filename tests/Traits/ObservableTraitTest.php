@@ -3,9 +3,10 @@
 namespace Orchestra\Support\TestCase\Traits;
 
 use Mockery as m;
+use PHPUnit\Framework\TestCase;
 use Orchestra\Support\Traits\ObservableTrait;
 
-class ObservableTraitTest extends \PHPUnit_Framework_TestCase
+class ObservableTraitTest extends TestCase
 {
     /**
      * Teardown the test environment.

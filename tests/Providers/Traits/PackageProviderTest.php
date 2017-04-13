@@ -3,10 +3,11 @@
 namespace Orchestra\Support\TestCase\Providers\Traits;
 
 use Mockery as m;
+use PHPUnit\Framework\TestCase;
 use Illuminate\Container\Container;
 use Orchestra\Support\Providers\Traits\PackageProvider;
 
-class PackageProviderTest extends \PHPUnit_Framework_TestCase
+class PackageProviderTest extends TestCase
 {
     use PackageProvider;
 
