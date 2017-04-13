@@ -193,6 +193,6 @@ abstract class Transformer
             $types = explode(',', $types);
         }
 
-        $this->options[$name] = Arr::expand($types);
+        $this->options[$name] = is_array($types) ? Arr::expand($types) : null;
     }
 }
