@@ -73,7 +73,9 @@ abstract class Transformer
      */
     public function withOptions(array $options = [])
     {
-        $this->options = $options;
+        $defaults = ['includes' => [], 'excludes' => []];
+
+        $this->options = array_merge($defaults, $options);
 
         foreach ($this->meta as $name) {
             $this->filterMetaType($name);
@@ -129,7 +131,7 @@ abstract class Transformer
     protected function transformByMeta($meta, $data, ...$parameters)
     {
         $name  = Str::singular($meta);
-        $types = $this->options[$meta];
+        $types = isset($this->options[$meta]) ? $this->options[$meta] : null;
 
         if (empty($types)) {
             return $data;
