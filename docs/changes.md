@@ -5,6 +5,12 @@ title: Support Change Log
 
 ## Version 3.3 {#v3-3}
 
+### v3.3.3 {#v3-3-3}
+
+* Core:
+  - Simplify `Orchestra\Support\Arr::expand()`.
+  - Fixes `Orchestra\Support\Transformer` implementations.
+
 ### v3.3.2 {#v3-3-2}
 
 * Core:
