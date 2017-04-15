@@ -5,6 +5,11 @@ title: Support Change Log
 
 ## Version 3.3 {#v3-3}
 
+### v3.3.5 {#v3-3-5}
+
+* Core:
+  - Remove assigning default values for `Orchestra\Support\Transformer::$options`.
+
 ### v3.3.4 {#v3-3-4}
 
 * Core:
