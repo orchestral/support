@@ -2,6 +2,14 @@
 
 This changelog references the relevant changes (bug and security fixes) done to `orchestra/support`.
 
+## 3.4.1
+
+Released: 2017-04-15
+
+### Fixes
+
+* Fixes `Orchestra\Support\Transformer` implementations.
+
 ## 3.4.0
 
 Released: 2017-03-12
