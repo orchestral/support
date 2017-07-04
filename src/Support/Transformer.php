@@ -185,7 +185,7 @@ abstract class Transformer
      */
     protected function filterMetaType($name)
     {
-        $types = $this->options[$name] ?? $this->request->input($name));
+        $types = $this->options[$name] ?? $this->request->input($name);
 
         if (is_string($types)) {
             $types = explode(',', $types);
