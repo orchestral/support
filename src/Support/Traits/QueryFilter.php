@@ -21,7 +21,7 @@ trait QueryFilter
 
         $direction = $this->getBasicQueryDirection($input);
 
-        $columns = isset($input['columns']) ? $input['columns'] : null;
+        $columns = $input['columns'] ?? null;
 
         if (is_array($columns) && $this->isColumnExcludedFromFilterable($orderBy, $columns)) {
             return $query;
@@ -62,8 +62,8 @@ trait QueryFilter
      */
     protected function isColumnExcludedFromFilterable($on, array $columns = [])
     {
-        $only   = isset($columns['only']) ? $columns['only'] : '';
-        $except = isset($columns['except']) ? $columns['except'] : '';
+        $only   = $columns['only'] ?? '';
+        $except = $columns['except'] ?? '';
 
         return ((! empty($only) && ! in_array($on, (array) $only)) ||
             (! empty($except) && in_array($on, (array) $except)));
@@ -78,7 +78,7 @@ trait QueryFilter
      */
     protected function getBasicQueryDirection(array $input)
     {
-        $direction = Str::upper(isset($input['direction']) ? $input['direction'] : '');
+        $direction = Str::upper($input['direction'] ?? '');
 
         if (in_array($direction, ['ASC', 'DESC'])) {
             return $direction;
@@ -96,7 +96,7 @@ trait QueryFilter
      */
     protected function getBasicQueryOrderBy(array $input)
     {
-        $orderBy = isset($input['order_by']) ? $input['order_by'] : '';
+        $orderBy = $input['order_by'] ?? '';
 
         if (in_array($orderBy, ['created', 'updated', 'deleted'])) {
             $orderBy = "{$orderBy}_at";
