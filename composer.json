@@ -31,17 +31,12 @@
         "illuminate/routing": "~5.5.0",
         "illuminate/session": "~5.5.0",
         "mockery/mockery": "^0.9.4",
-        "phpunit/phpunit": "~5.7"
+        "phpunit/phpunit": "~6.0"
     },
     "replace": {
         "orchestra/support-core": "self.version",
         "orchestra/support-facades": "self.version",
         "orchestra/support-providers": "self.version"
-    },
-    "suggest": {
-        "laravel/framework": "Allow using orchestra/support component outside of Orchestra Platform (~5.5).",
-        "orchestra/foundation": "Allow using orchestra/support with Orchestra Platform (~3.5).",
-        "orchestra/messages": "Allow using Messages component (~3.5)."
     },
     "extra": {
         "branch-alias": {

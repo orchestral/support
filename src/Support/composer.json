@@ -22,11 +22,6 @@
         "illuminate/support": "~5.5.0",
         "orchestra/contracts": "~3.5.0"
     },
-    "suggest": {
-        "laravel/framework": "Allow using orchestra/support component outside of Orchestra Platform (~5.5).",
-        "orchestra/foundation": "Allow using orchestra/support with Orchestra Platform (~3.5).",
-        "orchestra/messages": "Allow using Messages component (~3.5)."
-    },
     "extra": {
         "branch-alias": {
             "dev-master": "3.5-dev"
