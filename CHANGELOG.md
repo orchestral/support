@@ -2,6 +2,14 @@
 
 This changelog references the relevant changes (bug and security fixes) done to `orchestra/support`.
 
+## 3.4.2
+
+Released: 2017-07-11
+
+### Changes
+
+* Add support to require `danielstjules/stringy` `~3.0`.
+
 ## 3.4.1
 
 Released: 2017-04-15
