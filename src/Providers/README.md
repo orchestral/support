@@ -3,9 +3,10 @@ Support (Providers) Component for Laravel for Orchestra Platform
 
 Support (Providers) Component includes some Service Provider helper classes and traits for Laravel and Orchestra Platform.
 
-[![Latest Stable Version](https://img.shields.io/packagist/v/orchestra/support-providers.svg?style=flat-square)](https://packagist.org/packages/orchestra/support-providers)
-[![Total Downloads](https://img.shields.io/packagist/dt/orchestra/support-providers.svg?style=flat-square)](https://packagist.org/packages/orchestra/support-providers)
-[![MIT License](https://img.shields.io/packagist/l/orchestra/support-providers.svg?style=flat-square)](https://packagist.org/packages/orchestra/support-providers)
+[![Latest Stable Version](https://poser.pugx.org/orchestra/support-providers/version)](https://packagist.org/packages/orchestra/support-providers)
+[![Total Downloads](https://poser.pugx.org/orchestra/support-providers/downloads)](https://packagist.org/packages/orchestra/support-providers)
+[![Latest Unstable Version](https://poser.pugx.org/orchestra/support-providers/v/unstable)](//packagist.org/packages/orchestra/support-providers)
+[![License](https://poser.pugx.org/orchestra/support-providers/license)](https://packagist.org/packages/orchestra/support-providers)
 
 ## Table of Content
 
@@ -20,7 +21,8 @@ Laravel    | Support (Providers)
  5.1.x     | 3.1.x
  5.2.x     | 3.2.x
  5.3.x     | 3.3.x
- 5.4.x     | 3.4.x@dev
+ 5.4.x     | 3.4.x
+ 5.5.x     | 3.5.x@dev
 
 ## Installation
 

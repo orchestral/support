@@ -3,18 +3,17 @@ Support Component for Orchestra Platform
 
 Support Component includes a basic set of classes required by Orchestra Platform. The idea behind it is similar to what is `Illuminate\Support` to Laravel 5 Framework.
 
-[![Latest Stable Version](https://img.shields.io/github/release/orchestral/support.svg?style=flat-square)](https://packagist.org/packages/orchestra/support)
-[![Total Downloads](https://img.shields.io/packagist/dt/orchestra/support.svg?style=flat-square)](https://packagist.org/packages/orchestra/support)
-[![MIT License](https://img.shields.io/packagist/l/orchestra/support.svg?style=flat-square)](https://packagist.org/packages/orchestra/support)
-[![Build Status](https://img.shields.io/travis/orchestral/support/master.svg?style=flat-square)](https://travis-ci.org/orchestral/support)
-[![Coverage Status](https://img.shields.io/coveralls/orchestral/support/master.svg?style=flat-square)](https://coveralls.io/r/orchestral/support?branch=master)
-[![Scrutinizer Quality Score](https://img.shields.io/scrutinizer/g/orchestral/support/master.svg?style=flat-square)](https://scrutinizer-ci.com/g/orchestral/support/)
+[![Build Status](https://travis-ci.org/orchestral/support.svg?branch=3.5)](https://travis-ci.org/orchestral/support)
+[![Latest Stable Version](https://poser.pugx.org/orchestra/support/version)](https://packagist.org/packages/orchestra/support)
+[![Total Downloads](https://poser.pugx.org/orchestra/support/downloads)](https://packagist.org/packages/orchestra/support)
+[![Latest Unstable Version](https://poser.pugx.org/orchestra/support/v/unstable)](//packagist.org/packages/orchestra/support)
+[![License](https://poser.pugx.org/orchestra/support/license)](https://packagist.org/packages/orchestra/support)
 
 ## Table of Content
 
 * [Version Compatibility](#version-compatibility)
 * [Installation](#installation)
-* [Change Log](http://orchestraplatform.com/docs/latest/components/support/changes#v3-4)
+* [Changelog](https://github.com/orchestral/support/releases)
 
 ## Version Compatibility
 
@@ -28,6 +27,7 @@ Laravel    | Support
  5.2.x     | 3.2.x
  5.3.x     | 3.3.x
  5.4.x     | 3.4.x
+ 5.5.x     | 3.5.x@dev
 
 ## Installation
 
