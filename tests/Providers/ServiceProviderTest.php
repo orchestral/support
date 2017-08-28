@@ -4,6 +4,7 @@ namespace Orchestra\Support\TestCase\Providers;
 
 use PHPUnit\Framework\TestCase;
 use Orchestra\Support\Providers\ServiceProvider;
+use Orchestra\Support\Providers\Traits\PackageProvider;
 
 class ServiceProviderTest extends TestCase
 {
@@ -16,7 +17,7 @@ class ServiceProviderTest extends TestCase
     {
         $stub = new StubBasicProvider(null);
 
-        $this->assertContains('Orchestra\Support\Providers\Traits\PackageProvider', class_uses_recursive(get_class($stub)));
+        $this->assertContains(PackageProvider::class, class_uses_recursive(get_class($stub)));
     }
 }
 

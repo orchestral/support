@@ -15,14 +15,11 @@ class ManagerTest extends TestCase
         m::close();
     }
 
-    /**
-     * Test Orchestra\Support\Manager::driver() method.
-     *
-     * @test
-     */
-    public function testDriverMethod()
+    /** @test */
+    public function manager_can_be_extended()
     {
         $stub = new ManagerStub(m::mock('\Illuminate\Foundation\Application'));
+
         $stub->extend('awesome', function ($app, $name) {
             return new ManagerAwesomeFoobar($app, $name);
         });
@@ -45,24 +42,21 @@ class ManagerTest extends TestCase
     }
 
     /**
-     * Test Orchestra\Support\Manager::driver() throws exception.
-     *
+     * @test
      * @expectedException \InvalidArgumentException
      */
-    public function testDriverMethodThrowsException()
+    public function invalid_driver_should_throw_exception()
     {
-        with(new ManagerStub(m::mock('\Illuminate\Foundation\Application')))->driver('invalidDriver');
+        (new ManagerStub(m::mock('\Illuminate\Foundation\Application')))->driver('invalidDriver');
     }
 
     /**
-     * Test Orchestra\Support\Manager::driver() throws exception when name
-     * contain dotted.
-     *
+     * @test
      * @expectedException \InvalidArgumentException
      */
-    public function testDriverMethodGivenNameWithDottedThrowsException()
+    public function invalid_driver_with_dotted_should_throw_exception()
     {
-        with(new ManagerStub(m::mock('\Illuminate\Foundation\Application')))
+        (new ManagerStub(m::mock('\Illuminate\Foundation\Application')))
             ->driver('foo.bar.hello');
     }
 }

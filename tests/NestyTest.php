@@ -3,7 +3,7 @@
 namespace Orchestra\Support\TestCase;
 
 use Orchestra\Support\Nesty;
-use Illuminate\Support\Fluent;
+use Orchestra\Support\Fluent;
 use PHPUnit\Framework\TestCase;
 use Orchestra\Support\Collection;
 

@@ -12,7 +12,7 @@ class KeywordTest extends TestCase
      *
      * @test
      */
-    public function testInstanceSignature()
+    public function keyword_can_be_built()
     {
         $stub1 = Keyword::make('Hello World');
 
@@ -30,13 +30,8 @@ class KeywordTest extends TestCase
         $this->assertEquals(4, $stub2->searchIn(['hello', 'world', 'foo', 'bar', 5, 'foobar']));
     }
 
-    /**
-     * Test Orchestra\Support\Keyword should return self
-     * when given it's own instance.
-     *
-     * @test
-     */
-    public function testInstanceReturnSelfWhenGivenKeyword()
+    /** @test */
+    public function keyword_return_self_when_given_same_type()
     {
         $keyword = new Keyword('hello');
 

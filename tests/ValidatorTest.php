@@ -52,12 +52,8 @@ class ValidatorTest extends TestCase
         $this->assertInstanceOf('\Illuminate\Contracts\Validation\Validator', $validation);
     }
 
-    /**
-     * Test Orchestra\Support\Validator without any scope.
-     *
-     * @test
-     */
-    public function testValidationWithoutAScope()
+    /** @test */
+    public function validation_without_scope()
     {
         $event = m::mock('\Illuminate\Contracts\Events\Dispatcher');
         $validator = m::mock('\Illuminate\Contracts\Validation\Factory');

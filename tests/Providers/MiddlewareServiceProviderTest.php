@@ -6,6 +6,7 @@ use Mockery as m;
 use PHPUnit\Framework\TestCase;
 use Illuminate\Container\Container;
 use Orchestra\Support\Providers\MiddlewareServiceProvider;
+use Orchestra\Support\Providers\Traits\MiddlewareProvider;
 
 class MiddlewareServiceProviderTest extends TestCase
 {
@@ -26,7 +27,7 @@ class MiddlewareServiceProviderTest extends TestCase
     {
         $stub = new StubMiddlewareProvider(null);
 
-        $this->assertContains('Orchestra\Support\Providers\Traits\MiddlewareProvider', class_uses_recursive(get_class($stub)));
+        $this->assertContains(MiddlewareProvider::class, class_uses_recursive(get_class($stub)));
     }
 
     /**

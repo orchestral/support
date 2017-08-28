@@ -2,8 +2,6 @@
 
 namespace Orchestra\Support;
 
-use Illuminate\Support\Fluent;
-
 class Nesty
 {
     use Traits\Descendible;
