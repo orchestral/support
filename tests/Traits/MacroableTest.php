@@ -7,32 +7,26 @@ use Orchestra\Support\Traits\Macroable;
 
 class MacroableTest extends TestCase
 {
-    /**
-     * Test \Orchestra\Support\Traits\Macroable is executable.
-     *
-     * @test
-     */
-    public function testMacroIsExecutable()
+    /** @test */
+    function it_can_be_executed()
     {
-        $stub = new MacroableStub();
-
-        $stub->macro('foo', function () {
-            return 'foobar';
+        $stub = tap(new MacroableStub(), function ($stub) {
+            $stub->macro('foo', function () {
+                return 'foobar';
+            });
         });
 
         $this->assertEquals('foobar', $stub->foo());
     }
 
     /**
-     * Test \Orchestra\Support\Traits\Macroable throws an exception
-     * when macro is not executable.
-     *
+     * @test
      * @expectedException \BadMethodCallException
      * @expectedExceptionMessage Method foo does not exist.
      */
-    public function testMacroThrowsExceptionWhenMacroIsntExecutable()
+    function it_cant_be_executed_should_throw_exception()
     {
-        with(new MacroableStub())->foo();
+        (new MacroableStub())->foo();
     }
 }
 

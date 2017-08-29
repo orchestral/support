@@ -8,7 +8,7 @@ use Orchestra\Support\Expression;
 class ExpressionTest extends TestCase
 {
     /** @test */
-    public function expression_can_be_built()
+    function it_can_be_used()
     {
         $expected = "foobar";
         $actual = new Expression($expected);

@@ -8,7 +8,7 @@ use PHPUnit\Framework\TestCase;
 class ArrTest extends TestCase
 {
     /** @test */
-    public function array_can_be_expand()
+    function it_can_be_expanded()
     {
         $array = Arr::expand(['foo.bar' => 'baz']);
         $this->assertEquals(['foo' => ['bar' => 'baz']], $array);

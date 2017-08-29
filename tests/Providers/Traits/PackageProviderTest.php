@@ -16,7 +16,7 @@ class PackageProviderTest extends TestCase
      *
      * @var \Illuminate\Contracts\Container\Container
      */
-    protected $app;
+    private $app;
 
     /**
      * Setup the test environment.
@@ -36,13 +36,8 @@ class PackageProviderTest extends TestCase
         m::close();
     }
 
-    /**
-     * Test Orchestra\Support\Providers\Traits\PackageProviderTrait::package()
-     * method.
-     *
-     * @test
-     */
-    public function testPackageMethod()
+    /** @test */
+    function it_can_use_package()
     {
         $this->app['config'] = $config = m::mock('\Orchestra\Contracts\Config\PackageRepository, \ArrayAccess');
         $this->app['files'] = $files = m::mock('\Illuminate\Filesystem\Filesystem');
@@ -51,46 +46,49 @@ class PackageProviderTest extends TestCase
 
         $path = '/var/www/vendor/foo/bar';
 
-        $files->shouldReceive('isDirectory')->once()->with("{$path}/config")->andReturn(true)
-            ->shouldReceive('isDirectory')->once()->with("{$path}/lang")->andReturn(true)
-            ->shouldReceive('isDirectory')->once()->with("{$path}/views")->andReturn(true)
-            ->shouldReceive('isDirectory')->once()->with('/var/www/resources/views/packages/foo/bar')->andReturn(true);
+        $files->shouldReceive('isDirectory')->once()
+                ->with("{$path}/config")->andReturn(true)
+            ->shouldReceive('isDirectory')->once()
+                ->with("{$path}/lang")->andReturn(true)
+            ->shouldReceive('isDirectory')->once()
+                ->with("{$path}/views")->andReturn(true)
+            ->shouldReceive('isDirectory')->once()
+                ->with('/var/www/resources/views/packages/foo/bar')->andReturn(true);
 
-        $config->shouldReceive('package')->once()->with('foo/bar', "{$path}/config", 'foo')->andReturnNull()
-            ->shouldReceive('get')->once()->with('view.paths', [])->andReturn(['/var/www/resources/views']);
+        $config->shouldReceive('package')->once()
+                ->with('foo/bar', "{$path}/config", 'foo')->andReturnNull()
+            ->shouldReceive('get')->once()
+                ->with('view.paths', [])->andReturn(['/var/www/resources/views']);
 
-        $translator->shouldReceive('addNamespace')->once()->with('foo', "{$path}/lang")->andReturnNull();
+        $translator->shouldReceive('addNamespace')->once()
+            ->with('foo', "{$path}/lang")->andReturnNull();
 
-        $view->shouldReceive('addNamespace')->once()->with('foo', '/var/www/resources/views/packages/foo/bar')->andReturnNull()
-            ->shouldReceive('addNamespace')->once()->with('foo', "{$path}/views")->andReturnNull();
+        $view->shouldReceive('addNamespace')->once()
+                ->with('foo', '/var/www/resources/views/packages/foo/bar')->andReturnNull()
+            ->shouldReceive('addNamespace')->once()
+                ->with('foo', "{$path}/views")->andReturnNull();
 
         $this->assertNull($this->package('foo/bar', 'foo', $path));
 
         $this->app->make('translator');
     }
 
-    /**
-     * Test Orchestra\Support\Providers\Traits\PackageProviderTrait::hasPackageRepository()
-     * method.
-     *
-     * @test
-     */
-    public function testHasPackageRepositoryMethod()
+    /** @test */
+    function it_cant_use_package_when_laravel_installed()
     {
         $this->app['config'] = m::mock('\Illuminate\Contracts\Config\Repository');
         $this->assertFalse($this->hasPackageRepository());
+    }
 
+    /** @test */
+    function it_can_use_package_when_orchestra_installed()
+    {
         $this->app['config'] = m::mock('\Orchestra\Contracts\Config\PackageRepository');
         $this->assertTrue($this->hasPackageRepository());
     }
 
-    /**
-     * Test Orchestra\Support\Providers\Traits\PackageProviderTrait::bootUsingLaravel()
-     * method.
-     *
-     * @test
-     */
-    public function testBootUsingLaravelMethod()
+    /** @test */
+    function it_can_boot_using_laravel()
     {
         $this->assertNull($this->bootUsingLaravel('foo'));
     }

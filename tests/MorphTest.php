@@ -8,7 +8,7 @@ use PHPUnit\Framework\TestCase;
 class MorphTest extends TestCase
 {
     /** @test */
-    public function morph_can_be_called()
+    function it_can_be_called()
     {
         $this->assertTrue(MorphStub::connect());
     }
@@ -17,7 +17,7 @@ class MorphTest extends TestCase
      * @test
      * @expectedException \RuntimeException
      */
-    public function invalid_morph_method_should_throw_exception()
+    function invalid_morph_should_throw_exception()
     {
         MorphStub::invalid();
     }

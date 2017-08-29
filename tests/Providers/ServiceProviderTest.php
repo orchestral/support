@@ -8,12 +8,8 @@ use Orchestra\Support\Providers\Traits\PackageProvider;
 
 class ServiceProviderTest extends TestCase
 {
-    /**
-     * Test Orchestra\Support\Providers\PipelineServiceProvider method signature.
-     *
-     * @test
-     */
-    public function testInstanceSignature()
+    /** @test */
+    function instance_has_proper_signature()
     {
         $stub = new StubBasicProvider(null);
 

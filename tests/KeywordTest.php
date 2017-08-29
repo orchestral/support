@@ -7,12 +7,8 @@ use PHPUnit\Framework\TestCase;
 
 class KeywordTest extends TestCase
 {
-    /**
-     * Test Orchestra\Support\Keyword signature.
-     *
-     * @test
-     */
-    public function keyword_can_be_built()
+    /** @test */
+    function it_can_be_used()
     {
         $stub1 = Keyword::make('Hello World');
 
@@ -31,7 +27,7 @@ class KeywordTest extends TestCase
     }
 
     /** @test */
-    public function keyword_return_self_when_given_same_type()
+    function it_can_return_self_when_given_same_type()
     {
         $keyword = new Keyword('hello');
 

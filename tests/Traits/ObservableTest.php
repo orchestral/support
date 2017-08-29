@@ -16,12 +16,8 @@ class ObservableTest extends TestCase
         m::close();
     }
 
-    /**
-     * Test Orchestra\Support\Traits\Observable::$dispatcher.
-     *
-     * @test
-     */
-    public function testEventDispatcher()
+    /** @test */
+    function it_can_use_event_dispatcher()
     {
         $dispatcher = m::mock('\Illuminate\Contracts\Events\Dispatcher');
 
@@ -36,13 +32,8 @@ class ObservableTest extends TestCase
         $this->assertNull(ObservableStub::getEventDispatcher());
     }
 
-    /**
-     * Test Orchestra\Support\Traits\Observable::getObservableEvents()
-     * method.
-     *
-     * @test
-     */
-    public function testGetObservableEventsMethod()
+    /** test */
+    function it_can_be_observed()
     {
         $stub1 = new ObservableStub();
         $stub2 = new ObservableStubWithoutEvents();
@@ -51,13 +42,8 @@ class ObservableTest extends TestCase
         $this->assertEquals([], $stub2->getObservableEvents());
     }
 
-    /**
-     * Test Orchestra\Support\Traits\Observable::observe()
-     * method without event dispatcher.
-     *
-     * @test
-     */
-    public function testObserveWithoutDispatcher()
+    /** @test */
+    function it_can_be_observed_without_event_dispatcher()
     {
         ObservableStub::flushEventListeners();
 
@@ -70,13 +56,9 @@ class ObservableTest extends TestCase
         $this->assertFalse($stub->saved);
     }
 
-    /**
-     * Test Orchestra\Support\Traits\Observable::observe()
-     * method with event dispatcher.
-     *
-     * @test
-     */
-    public function testObserveWithDispatcher()
+
+    /** @test */
+    function it_can_be_observed_with_event_dispatcher()
     {
         $dispatcher = m::mock('\Illuminate\Contracts\Events\Dispatcher');
 

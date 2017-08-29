@@ -18,40 +18,26 @@ class MiddlewareServiceProviderTest extends TestCase
         m::close();
     }
 
-    /**
-     * Test Orchestra\Support\Providers\PipelineServiceProvider method signature.
-     *
-     * @test
-     */
-    public function testInstanceSignature()
+    /** @test */
+    function instance_has_proper_signature()
     {
         $stub = new StubMiddlewareProvider(null);
 
         $this->assertContains(MiddlewareProvider::class, class_uses_recursive(get_class($stub)));
     }
 
-    /**
-     * Test Orchestra\Support\Providers\PipelineServiceProvider::register()
-     * method.
-     *
-     * @test
-     */
-    public function testRegisterMethod()
+    /** @test */
+    function it_can_be_registered()
     {
         $stub = new StubMiddlewareProvider(null);
 
-        $this->assertContains('Orchestra\Support\Providers\Traits\MiddlewareProvider', class_uses_recursive(get_class($stub)));
+        $this->assertContains(MiddlewareProvider::class, class_uses_recursive(get_class($stub)));
 
         $this->assertNull($stub->register());
     }
 
-    /**
-     * Test Orchestra\Support\Providers\PipelineServiceProvider::boot()
-     * method.
-     *
-     * @test
-     */
-    public function testBootMethod()
+    /** @test */
+    function it_can_be_booted()
     {
         $app = new Container();
 

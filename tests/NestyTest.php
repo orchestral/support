@@ -32,12 +32,8 @@ class NestyTest extends TestCase
         unset($this->stub);
     }
 
-    /**
-     * Test instanceof stub.
-     *
-     * @test
-     */
-    public function testInstanceOfNesty()
+    /** @test */
+    function instance_has_proper_signature()
     {
         $this->assertInstanceOf('\Orchestra\Support\Nesty', $this->stub);
 
@@ -48,23 +44,14 @@ class NestyTest extends TestCase
         $this->assertEquals([], $config->getValue($this->stub));
     }
 
-    /**
-     * Get newly instantiated Orchestra\Support\Nesty::get() return empty
-     * string.
-     *
-     * @test
-     */
-    public function testNewInstanceReturnEmptyArray()
+    /** @test */
+    function it_can_return_new_instance_with_empty_array()
     {
-        $this->assertEquals(new Collection([]), with(new Nesty([]))->items());
+        $this->assertEquals(new Collection([]), (new Nesty([]))->items());
     }
 
-    /**
-     * Test adding an item to Orchestra\Support\Nesty.
-     *
-     * @test
-     */
-    public function testAddMethod()
+    /** @test */
+    function it_can_add_childs()
     {
         $foobar = new Fluent([
             'id' => 'foobar',
@@ -75,6 +62,7 @@ class NestyTest extends TestCase
                 ]),
             ],
         ]);
+
         $foo = new Fluent([
             'id' => 'foo',
             'childs' => [
@@ -137,10 +125,8 @@ class NestyTest extends TestCase
         $this->assertFalse($this->stub->has('bar'));
     }
 
-    /**
-     * Test Orchestra\Support\Nesty::addBefore() method.
-     */
-    public function testAddBeforeMethod()
+    /** @test */
+    function it_can_add_child_before_selected_node()
     {
         $stub = new Nesty([]);
 
@@ -161,10 +147,8 @@ class NestyTest extends TestCase
         $this->assertEquals(new Collection($expected), $stub->items());
     }
 
-    /**
-     * Test Orchestra\Support\Nesty::addAfter() method.
-     */
-    public function testAddAfterMethod()
+    /** @test */
+    function it_can_add_child_after_selected_node()
     {
         $stub = new Nesty([]);
 
@@ -185,17 +169,13 @@ class NestyTest extends TestCase
         $this->assertEquals(new Collection($expected), $stub->items());
     }
 
-    /**
-     * Test adding an item to Orchestra\Support\Nesty when decendant is not
-     * presented.
-     *
-     * @test
-     */
-    public function testAddMethodWhenDecendantIsNotPresented()
+    /** @test */
+    function it_can_add_child_when_decendant_is_not_available()
     {
         $stub = new Nesty([]);
 
         $stub->add('foo', '^:home');
+
         $this->assertEquals(new Collection([]), $stub->items());
     }
 }
