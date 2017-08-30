@@ -25,12 +25,8 @@ class ValidatorTest extends TestCase
         m::close();
     }
 
-    /**
-     * Test Orchestra\Support\Validator.
-     *
-     * @test
-     */
-    public function testValidation()
+    /** @test */
+    function it_can_validate()
     {
         $event = m::mock('\Illuminate\Contracts\Events\Dispatcher');
         $validator = m::mock('\Illuminate\Contracts\Validation\Factory');
@@ -52,12 +48,8 @@ class ValidatorTest extends TestCase
         $this->assertInstanceOf('\Illuminate\Contracts\Validation\Validator', $validation);
     }
 
-    /**
-     * Test Orchestra\Support\Validator without any scope.
-     *
-     * @test
-     */
-    public function testValidationWithoutAScope()
+    /** @test */
+    function it_can_validate_without_scope()
     {
         $event = m::mock('\Illuminate\Contracts\Events\Dispatcher');
         $validator = m::mock('\Illuminate\Contracts\Validation\Factory');

@@ -7,12 +7,8 @@ use PHPUnit\Framework\TestCase;
 
 class StrTest extends TestCase
 {
-    /**
-     * Test Authorize\Str::humanize() method.
-     *
-     * @test
-     */
-    public function testHumanizeMethod()
+    /** @test */
+    function it_can_humanize_string()
     {
         $expected = 'Foobar Is Awesome';
         $output = Str::humanize('foobar-is-awesome');
@@ -20,12 +16,8 @@ class StrTest extends TestCase
         $this->assertEquals($expected, $output);
     }
 
-    /**
-     * Test Authorize\Str::replace() method.
-     *
-     * @test
-     */
-    public function testReplaceMethod()
+    /** @test */
+    function it_can_replace_string()
     {
         $expected = 'Orchestra Platform is awesome';
         $output = Str::replace('{name} is awesome', ['name' => 'Orchestra Platform']);
@@ -46,12 +38,8 @@ class StrTest extends TestCase
         $this->assertEquals($expected, $output);
     }
 
-    /**
-     * Test Authorize\Str::searchable() method.
-     *
-     * @test
-     */
-    public function testSearchableMethod()
+    /** @test */
+    function it_can_convert_to_searchable_string()
     {
         $expected = ['foobar%'];
         $output = Str::searchable('foobar*');
@@ -64,12 +52,8 @@ class StrTest extends TestCase
         $this->assertEquals($expected, $output);
     }
 
-    /**
-     * Test Orchestra\Support\Str::streamGetContents() method.
-     *
-     * @test
-     */
-    public function testStreamGetContentsMethod()
+    /** @test */
+    function it_can_convert_stream_get_contents_string()
     {
         $base_path = __DIR__.'/stub/';
         $expected = 'a:2:{s:4:"name";s:9:"Orchestra";s:5:"theme";a:2:{s:7:"backend";s:7:"default";s:8:"frontend";s:7:"default";}}';
@@ -106,12 +90,8 @@ class StrTest extends TestCase
         $this->assertEquals('foo', Str::streamGetContents('foo'));
     }
 
-    /**
-     * Test the Orchestra\Support\Str::title method.
-     *
-     * @test
-     */
-    public function testStringCanBeConvertedToTitleCase()
+    /** @test */
+    function it_can_convert_utf8_string_to_title_case()
     {
         $this->assertEquals('Taylor', Str::title('taylor'));
         $this->assertEquals('Άχιστη', Str::title('άχιστη'));

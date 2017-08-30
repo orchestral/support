@@ -18,13 +18,8 @@ class QueryFilterTest extends TestCase
         m::close();
     }
 
-    /**
-     * Test \Orchestra\Support\Traits\QueryFilter::setupBasicQueryFilter()
-     * method.
-     *
-     * @test
-     */
-    public function testSetupBasicQueryFilterMethod()
+    /** @test */
+    function it_can_build_basic_query_filter()
     {
         $query = m::mock('\Illuminate\Database\Query\Builder');
 
@@ -43,13 +38,8 @@ class QueryFilterTest extends TestCase
         ]));
     }
 
-    /**
-     * Test \Orchestra\Support\Traits\QueryFilter::setupBasicQueryFilter()
-     * method when column should be excluded.
-     *
-     * @test
-     */
-    public function testSetupBasicQueryFilterMethodGivenColumnExcluded()
+    /** @test */
+    function it_can_build_basic_query_filter_given_column_excluded()
     {
         $query = m::mock('\Illuminate\Database\Query\Builder');
 
@@ -62,13 +52,8 @@ class QueryFilterTest extends TestCase
         ]));
     }
 
-    /**
-     * Test \Orchestra\Support\Traits\QueryFilter::setupWildcardQueryFilter()
-     * method.
-     *
-     * @test
-     */
-    public function testSetupWildcardQueryFilterMethod()
+    /** @test */
+    function it_can_build_wildcard_query_filter_given_column_excluded()
     {
         $query = m::mock('\Illuminate\Database\Query\Builder');
 

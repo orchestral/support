@@ -146,8 +146,6 @@ abstract class Transformer
         return $data;
     }
 
-
-
     /**
      * Merge meta options.
      *

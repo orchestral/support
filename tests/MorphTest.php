@@ -7,22 +7,17 @@ use PHPUnit\Framework\TestCase;
 
 class MorphTest extends TestCase
 {
-    /**
-     * Test MorphStub::connect() return foo_connect().
-     *
-     * @test
-     */
-    public function testStubFooConnect()
+    /** @test */
+    function it_can_be_called()
     {
         $this->assertTrue(MorphStub::connect());
     }
 
     /**
-     * Test MorphStub::invalid() throws an Exception.
-     *
+     * @test
      * @expectedException \RuntimeException
      */
-    public function testStubFooInvalidThrowsException()
+    function invalid_morph_should_throw_exception()
     {
         MorphStub::invalid();
     }

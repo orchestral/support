@@ -7,18 +7,14 @@ use Orchestra\Support\Expression;
 
 class ExpressionTest extends TestCase
 {
-    /**
-     * Test constructing Orchestra\Support\Expression.
-     *
-     * @test
-     */
-    public function testConstructMethod()
+    /** @test */
+    function it_can_be_used()
     {
         $expected = "foobar";
         $actual = new Expression($expected);
 
-        $this->assertInstanceOf('\Orchestra\Support\Expression', $actual);
+        $this->assertInstanceOf(Expression::class, $actual);
         $this->assertEquals($expected, $actual);
-        $this->assertEquals($expected, $actual->get());
+        $this->assertSame($expected, $actual->get());
     }
 }

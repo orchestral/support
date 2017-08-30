@@ -9,12 +9,8 @@ class ValidationTest extends TestCase
 {
     use Validation;
 
-    /**
-     * Test Orchestra\Support\Traits\Validation.
-     *
-     * @test
-     */
-    public function testGetValidationHelpers()
+    /** @test */
+    function it_can_access_validation_helpers()
     {
         $this->assertEquals([], $this->getValidationEvents());
         $this->assertEquals([], $this->getValidationPhrases());

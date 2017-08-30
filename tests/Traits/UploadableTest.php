@@ -17,10 +17,8 @@ class UploadableTest extends TestCase
      */
     protected function setUp()
     {
-        $app = new Container();
-
         Facade::clearResolvedInstances();
-        Facade::setFacadeApplication($app);
+        Facade::setFacadeApplication(new Container());
     }
 
     /**
@@ -31,12 +29,8 @@ class UploadableTest extends TestCase
         m::close();
     }
 
-    /**
-     * Test Orchestra\Support\Traits\Uploadable::saveUploadedFile() method.
-     *
-     * @test
-     */
-    public function testSaveUploadedFileMethod()
+    /** @test */
+    function it_can_save_uploaded_file()
     {
         $path = '/var/www/public/';
         $file = m::mock('\Symfony\Component\HttpFoundation\File\UploadedFile[getClientOriginalExtension,move]', [
@@ -47,18 +41,11 @@ class UploadableTest extends TestCase
         $file->shouldReceive('getClientOriginalExtension')->once()->andReturn('jpg')
             ->shouldReceive('move')->once()->with($path, m::type('String'))->andReturnNull();
 
-        $stub = new UploadedStub();
-
-        $filename = $stub->save($file, $path);
+        $filename = (new UploadedStub())->save($file, $path);
     }
 
-    /**
-     * Test Orchestra\Support\Traits\Uploadable::saveUploadedFile() method
-     * when custom getUploadedFilename() are available.
-     *
-     * @test
-     */
-    public function testSaveUploadedFileMethodWithCustomFilename()
+    /** @test */
+    function it_can_save_uploaded_file_with_custom_filename()
     {
         $path = '/var/www/public/';
         $file = m::mock('\Symfony\Component\HttpFoundation\File\UploadedFile[move]', [
@@ -68,17 +55,11 @@ class UploadableTest extends TestCase
 
         $file->shouldReceive('move')->once()->with($path, 'foo.jpg')->andReturnNull();
 
-        $stub = new UploadedStubWithReplacement();
-
-        $filename = $stub->save($file, $path);
+        $filename = (new UploadedStubWithReplacement())->save($file, $path);
     }
 
-    /**
-     * Test Orchestra\Support\Traits\Uploadable::deleteUploadedFile() method.
-     *
-     * @test
-     */
-    public function testDeleteMethod()
+    /** @test */
+    function it_can_delete_uploaded_file()
     {
         $filesystem = m::mock('\Illuminate\Filesystem\Filesystem');
         $filename = '/var/www/foo.jpg';
@@ -87,9 +68,7 @@ class UploadableTest extends TestCase
 
         File::swap($filesystem);
 
-        $stub = new UploadedStub();
-
-        $this->assertTrue($stub->delete($filename));
+        $this->assertTrue((new UploadedStub())->delete($filename));
     }
 }
 
