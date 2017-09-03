@@ -12,6 +12,7 @@ Support (Providers) Component includes some Service Provider helper classes and 
 
 * [Version Compatibility](#version-compatibility)
 * [Installation](#installation)
+* [Changelog](https://github.com/orchestral/support-providers/releases)
 
 ## Version Compatibility
 

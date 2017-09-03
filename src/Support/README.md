@@ -12,6 +12,7 @@ Support (Core) Component includes a basic set of classes for Laravel and Orchest
 
 * [Version Compatibility](#version-compatibility)
 * [Installation](#installation)
+* [Changelog](https://github.com/orchestral/support-core/releases)
 
 ## Version Compatibility
 
