@@ -6,6 +6,13 @@ This changelog references the relevant changes (bug and security fixes) done to 
 
 Released: 2017-09-03
 
+### Changes
+
+* Update support for Laravel Framework v5.5.
+
+### Removed
+
+* Remove deprecated `Orchestra\Support\Contracts\CsvableInterface`, replaced with `Orchestra\Support\Contracts\Csvable`.
 
 ## 3.4.2
 
