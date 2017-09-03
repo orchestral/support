@@ -31,7 +31,7 @@
         "illuminate/routing": "~5.5.0",
         "illuminate/session": "~5.5.0",
         "mockery/mockery": "^0.9.4",
-        "phpunit/phpunit": "~6.0"
+        "phpunit/phpunit": "~6.0.3 || ~6.1"
     },
     "replace": {
         "orchestra/support-core": "self.version",
