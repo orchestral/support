@@ -15,6 +15,7 @@ class ExpressionTest extends TestCase
 
         $this->assertInstanceOf(Expression::class, $actual);
         $this->assertEquals($expected, $actual);
+        $this->assertSame($expected, $actual->toHtml());
         $this->assertSame($expected, $actual->get());
     }
 }
