@@ -45,7 +45,7 @@ class MiddlewareServiceProviderTest extends TestCase
         $kernel = m::mock('\Illuminate\Contracts\Http\Kernel');
 
         $router->shouldReceive('aliasMiddleware')->once()->with('foobar', 'FoobarMiddleware')->andReturnNull();
-
+        $router->shouldReceive('middlewareGroup')->once()->with('api', ['ApiMiddleware'])->andReturnNull();
         $kernel->shouldReceive('pushMiddleware')->once()->with('FooMiddleware')->andReturnNull();
 
         $stub = new StubMiddlewareProvider($app);
@@ -57,6 +57,7 @@ class MiddlewareServiceProviderTest extends TestCase
 class StubMiddlewareProvider extends MiddlewareServiceProvider
 {
     protected $middleware = ['FooMiddleware'];
+    protected $middlewareGroups = ['api' => ['ApiMiddleware']];
     protected $routeMiddleware = ['foobar' => 'FoobarMiddleware'];
 
     public function register()
