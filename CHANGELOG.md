@@ -2,6 +2,14 @@
 
 This changelog references the relevant changes (bug and security fixes) done to `orchestra/support`.
 
+## 3.4.3
+
+Released: 2017-10-30
+
+### Changes
+
+* Allows `Orchestra\Support\Traits\QueryFilter` to access `Illuminate\Database\Query\Expression` to exclude expression with `.` to be converted to relationship `whereHas` query.
+
 ## 3.4.2
 
 Released: 2017-07-11
