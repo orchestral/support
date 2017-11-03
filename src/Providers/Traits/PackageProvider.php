@@ -49,7 +49,7 @@ trait PackageProvider
     public function addViewComponent($package, $namespace, $path)
     {
         $files = $this->app->make('files');
-        $view  = $this->app->make('view');
+        $view = $this->app->make('view');
 
         foreach ($this->getAppViewPaths($package) as $appView) {
             if ($files->isDirectory($appView)) {
@@ -76,7 +76,7 @@ trait PackageProvider
     public function package($package, $namespace = null, $path = null)
     {
         $namespace = $this->getPackageNamespace($package, $namespace);
-        $files     = $this->app->make('files');
+        $files = $this->app->make('files');
 
         // In this method we will register the configuration package for the package
         // so that the configuration options cleanly cascade into the application
@@ -154,7 +154,7 @@ trait PackageProvider
      */
     protected function hasPackageRepository()
     {
-        return ($this->app->make('config') instanceof PackageRepository);
+        return $this->app->make('config') instanceof PackageRepository;
     }
 
     /**

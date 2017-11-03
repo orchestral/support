@@ -15,6 +15,7 @@ class ValidatorTest extends TestCase
         $_SERVER['validator.onFoo'] = null;
         $_SERVER['validator.onFoo'] = null;
     }
+
     /**
      * Teardown the test environment.
      */
@@ -26,7 +27,7 @@ class ValidatorTest extends TestCase
     }
 
     /** @test */
-    function it_can_validate()
+    public function it_can_validate()
     {
         $event = m::mock('\Illuminate\Contracts\Events\Dispatcher');
         $validator = m::mock('\Illuminate\Contracts\Validation\Factory');
@@ -49,7 +50,7 @@ class ValidatorTest extends TestCase
     }
 
     /** @test */
-    function it_can_validate_without_scope()
+    public function it_can_validate_without_scope()
     {
         $event = m::mock('\Illuminate\Contracts\Events\Dispatcher');
         $validator = m::mock('\Illuminate\Contracts\Validation\Factory');

@@ -33,7 +33,7 @@ class NestyTest extends TestCase
     }
 
     /** @test */
-    function instance_has_proper_signature()
+    public function instance_has_proper_signature()
     {
         $this->assertInstanceOf('\Orchestra\Support\Nesty', $this->stub);
 
@@ -45,13 +45,13 @@ class NestyTest extends TestCase
     }
 
     /** @test */
-    function it_can_return_new_instance_with_empty_array()
+    public function it_can_return_new_instance_with_empty_array()
     {
         $this->assertEquals(new Collection([]), (new Nesty([]))->items());
     }
 
     /** @test */
-    function it_can_add_childs()
+    public function it_can_add_childs()
     {
         $foobar = new Fluent([
             'id' => 'foobar',
@@ -126,7 +126,7 @@ class NestyTest extends TestCase
     }
 
     /** @test */
-    function it_can_add_child_before_selected_node()
+    public function it_can_add_child_before_selected_node()
     {
         $stub = new Nesty([]);
 
@@ -148,7 +148,7 @@ class NestyTest extends TestCase
     }
 
     /** @test */
-    function it_can_add_child_after_selected_node()
+    public function it_can_add_child_after_selected_node()
     {
         $stub = new Nesty([]);
 
@@ -170,7 +170,7 @@ class NestyTest extends TestCase
     }
 
     /** @test */
-    function it_can_add_child_when_decendant_is_not_available()
+    public function it_can_add_child_when_decendant_is_not_available()
     {
         $stub = new Nesty([]);
 

@@ -63,11 +63,11 @@ trait QueryFilter
      */
     protected function isColumnExcludedFromFilterable($on, array $columns = [])
     {
-        $only   = $columns['only'] ?? '';
+        $only = $columns['only'] ?? '';
         $except = $columns['except'] ?? '';
 
-        return ((! empty($only) && ! in_array($on, (array) $only)) ||
-            (! empty($except) && in_array($on, (array) $except)));
+        return (! empty($only) && ! in_array($on, (array) $only)) ||
+            (! empty($except) && in_array($on, (array) $except));
     }
 
     /**
@@ -126,7 +126,6 @@ trait QueryFilter
     }
 
     /**
-     *
      * Build wildcard query filter for field using where or orWhere.
      *
      * @param  \Illuminate\Database\Eloquent\Builder|\Illuminate\Database\Query\Builder  $query

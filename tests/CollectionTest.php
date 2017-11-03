@@ -8,7 +8,7 @@ use Orchestra\Support\Collection;
 class CollectionTest extends TestCase
 {
     /** @test */
-    function it_can_be_converted_to_csv()
+    public function it_can_be_converted_to_csv()
     {
         $stub = new Collection([
             ['id' => 1, 'name' => 'Mior Muhammad Zaki'],

@@ -15,7 +15,7 @@ class Collection extends BaseCollection implements Csvable, Transformable
     {
         $delimiter = ',';
         $enclosure = '"';
-        $header    = $this->resolveCsvHeader();
+        $header = $this->resolveCsvHeader();
 
         ob_start();
 

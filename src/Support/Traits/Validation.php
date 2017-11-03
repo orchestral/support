@@ -49,8 +49,8 @@ trait Validation
         list($on, $extend) = $this->getValidationSchemasName($scenario);
 
         $this->validationScenarios = [
-            'on'         => method_exists($this, $on) ? $on : null,
-            'extend'     => method_exists($this, $extend) ? $extend : null,
+            'on' => method_exists($this, $on) ? $on : null,
+            'extend' => method_exists($this, $extend) ? $extend : null,
             'parameters' => $parameters,
         ];
 
@@ -158,11 +158,11 @@ trait Validation
 
         // Convert rules array to Fluent, in order to pass it by references
         // in all event listening to this validation.
-        $rules   = new Fluent($this->getBindedRules());
+        $rules = new Fluent($this->getBindedRules());
         $phrases = new Fluent(array_merge($this->getValidationPhrases(), $phrases));
 
         foreach ((array) $events as $event) {
-            $this->validationDispatcher->fire($event, [& $rules, & $phrases]);
+            $this->validationDispatcher->fire($event, [&$rules, &$phrases]);
         }
 
         return [
@@ -210,7 +210,7 @@ trait Validation
      */
     protected function getValidationSchemasName($scenario)
     {
-        $on     = 'on'.ucfirst($scenario);
+        $on = 'on'.ucfirst($scenario);
         $extend = 'extend'.ucfirst($scenario);
 
         return [$on, $extend];

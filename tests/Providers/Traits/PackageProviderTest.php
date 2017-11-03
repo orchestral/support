@@ -37,7 +37,7 @@ class PackageProviderTest extends TestCase
     }
 
     /** @test */
-    function it_can_use_package()
+    public function it_can_use_package()
     {
         $this->app['config'] = $config = m::mock('\Orchestra\Contracts\Config\PackageRepository, \ArrayAccess');
         $this->app['files'] = $files = m::mock('\Illuminate\Filesystem\Filesystem');
@@ -74,21 +74,21 @@ class PackageProviderTest extends TestCase
     }
 
     /** @test */
-    function it_cant_use_package_when_laravel_installed()
+    public function it_cant_use_package_when_laravel_installed()
     {
         $this->app['config'] = m::mock('\Illuminate\Contracts\Config\Repository');
         $this->assertFalse($this->hasPackageRepository());
     }
 
     /** @test */
-    function it_can_use_package_when_orchestra_installed()
+    public function it_can_use_package_when_orchestra_installed()
     {
         $this->app['config'] = m::mock('\Orchestra\Contracts\Config\PackageRepository');
         $this->assertTrue($this->hasPackageRepository());
     }
 
     /** @test */
-    function it_can_boot_using_laravel()
+    public function it_can_boot_using_laravel()
     {
         $this->assertNull($this->bootUsingLaravel('foo'));
     }
