@@ -55,9 +55,9 @@ class StrTest extends TestCase
     /** @test */
     public function it_can_convert_stream_get_contents_string()
     {
-        $base_path = __DIR__.'/stub/';
+        $basePath = __DIR__.'/Stubs/';
         $expected = 'a:2:{s:4:"name";s:9:"Orchestra";s:5:"theme";a:2:{s:7:"backend";s:7:"default";s:8:"frontend";s:7:"default";}}';
-        $stream = fopen($base_path.'driver1.stub.php', 'r');
+        $stream = fopen($basePath.'driver1.stub', 'r');
         $output = Str::streamGetContents($stream);
 
         $this->assertEquals($expected, $output);
@@ -73,7 +73,7 @@ class StrTest extends TestCase
         $this->assertEquals($expected, unserialize($output));
 
         $expected = 'a:2:{s:4:"name";s:9:"Orchestra";s:5:"theme";a:2:{s:7:"backend";s:7:"default";s:8:"frontend";s:7:"default";}}'."\n";
-        $stream = fopen($base_path.'driver2.stub.php', 'r');
+        $stream = fopen($basePath.'driver2.stub', 'r');
         $output = Str::streamGetContents($stream);
 
         $this->assertEquals($expected, $output);

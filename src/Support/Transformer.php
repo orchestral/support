@@ -10,8 +10,6 @@ use Illuminate\Support\Collection as BaseCollection;
 
 abstract class Transformer
 {
-    use Traits\Transformable;
-
     /**
      * Handle transformation.
      *
@@ -48,19 +46,6 @@ abstract class Transformer
     }
 
     /**
-     * Invoke the transformation.
-     *
-     * @param  mixed  $instance
-     * @param  array  $options
-     *
-     * @return mixed
-     */
-    public static function with($instance, array $options = [])
-    {
-        return (new static())->withOptions($options)->handle($instance);
-    }
-
-    /**
      * Invoke the transformer.
      *
      * @param  mixed  $parameters
@@ -69,14 +54,6 @@ abstract class Transformer
      */
     public function __invoke(...$parameters)
     {
-        return $this->transformByMeta(
-            'excludes',
-            $this->transformByMeta(
-                'includes',
-                $this->transform(...$parameters),
-                ...$parameters
-            ),
-            ...$parameters
-        );
+        return $this->transform(...$parameters);
     }
 }
