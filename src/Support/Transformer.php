@@ -36,6 +36,18 @@ abstract class Transformer
     }
 
     /**
+     * Make the transformer..
+     *
+     * @param  mixed  $instance
+     *
+     * @return mixed
+     */
+    public static function make($instance)
+    {
+        return (new static())->handle($instance);
+    }
+
+    /**
      * Invoke the transformation.
      *
      * @param  mixed  $instance
