@@ -66,7 +66,7 @@ trait Observable
     protected static function registerObservableEvent($event, $callback)
     {
         if (! isset(static::$dispatcher)) {
-            return ;
+            return;
         }
 
         $className = get_called_class();
@@ -91,7 +91,7 @@ trait Observable
         }
 
         $className = get_class($this);
-        $event     = $this->getObservableKey($event);
+        $event = $this->getObservableKey($event);
 
         $method = $halt ? 'until' : 'fire';
 
@@ -106,10 +106,10 @@ trait Observable
     public static function flushEventListeners()
     {
         if (! isset(static::$dispatcher)) {
-            return ;
+            return;
         }
 
-        $instance  = new static();
+        $instance = new static();
         $className = get_called_class();
 
         foreach ($instance->getObservableEvents() as $event) {

@@ -8,7 +8,7 @@ use PHPUnit\Framework\TestCase;
 class KeywordTest extends TestCase
 {
     /** @test */
-    function it_can_be_used()
+    public function it_can_be_used()
     {
         $stub1 = Keyword::make('Hello World');
 
@@ -27,7 +27,7 @@ class KeywordTest extends TestCase
     }
 
     /** @test */
-    function it_can_return_self_when_given_same_type()
+    public function it_can_return_self_when_given_same_type()
     {
         $keyword = new Keyword('hello');
 

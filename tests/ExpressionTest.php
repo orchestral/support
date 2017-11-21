@@ -8,9 +8,9 @@ use Orchestra\Support\Expression;
 class ExpressionTest extends TestCase
 {
     /** @test */
-    function it_can_be_used()
+    public function it_can_be_used()
     {
-        $expected = "foobar";
+        $expected = 'foobar';
         $actual = new Expression($expected);
 
         $this->assertInstanceOf(Expression::class, $actual);

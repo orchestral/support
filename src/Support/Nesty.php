@@ -40,10 +40,10 @@ class Nesty
     protected function toFluent($id)
     {
         $defaults = $this->config['defaults'] ?? [];
-        $class    = $this->config['fluent'] ?? Fluent::class;
+        $class = $this->config['fluent'] ?? Fluent::class;
 
         return new $class(array_merge($defaults, [
-            'id'     => $id,
+            'id' => $id,
             'childs' => [],
         ]));
     }
@@ -58,9 +58,9 @@ class Nesty
      */
     protected function addBefore($id, $before)
     {
-        $items    = [];
-        $item     = $this->toFluent($id);
-        $keys     = array_keys($this->items);
+        $items = [];
+        $item = $this->toFluent($id);
+        $keys = array_keys($this->items);
         $position = array_search($before, $keys);
 
         if ($position === false) {
@@ -90,9 +90,9 @@ class Nesty
      */
     protected function addAfter($id, $after)
     {
-        $items    = [];
-        $item     = $this->toFluent($id);
-        $keys     = array_keys($this->items);
+        $items = [];
+        $item = $this->toFluent($id);
+        $keys = array_keys($this->items);
         $position = array_search($after, $keys);
 
         if ($position === false) {
@@ -131,7 +131,7 @@ class Nesty
             return;
         }
 
-        $item      = $node->get('childs');
+        $item = $node->get('childs');
         $item[$id] = $this->toFluent($id);
 
         $node->childs($item);

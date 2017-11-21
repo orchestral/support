@@ -8,7 +8,7 @@ use PHPUnit\Framework\TestCase;
 class FluentTest extends TestCase
 {
     /** @test */
-    function it_can_be_transformed()
+    public function it_can_be_transformed()
     {
         $stub = new Fluent(['name' => 'Mior Muhammad Zaki', 'email' => 'crynobone@gmail.com']);
 

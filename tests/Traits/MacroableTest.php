@@ -8,7 +8,7 @@ use Orchestra\Support\Traits\Macroable;
 class MacroableTest extends TestCase
 {
     /** @test */
-    function it_can_be_executed()
+    public function it_can_be_executed()
     {
         $stub = tap(new MacroableStub(), function ($stub) {
             $stub->macro('foo', function () {
@@ -24,7 +24,7 @@ class MacroableTest extends TestCase
      * @expectedException \BadMethodCallException
      * @expectedExceptionMessage Method foo does not exist.
      */
-    function it_cant_be_executed_should_throw_exception()
+    public function it_cant_be_executed_should_throw_exception()
     {
         (new MacroableStub())->foo();
     }

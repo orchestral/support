@@ -9,7 +9,7 @@ use Orchestra\Support\Providers\Traits\PackageProvider;
 class ServiceProviderTest extends TestCase
 {
     /** @test */
-    function instance_has_proper_signature()
+    public function instance_has_proper_signature()
     {
         $stub = new StubBasicProvider(null);
 

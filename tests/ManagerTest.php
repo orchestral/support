@@ -16,7 +16,7 @@ class ManagerTest extends TestCase
     }
 
     /** @test */
-    function it_can_be_extended()
+    public function it_can_be_extended()
     {
         $stub = new ManagerStub(m::mock('\Illuminate\Foundation\Application'));
 
@@ -45,7 +45,7 @@ class ManagerTest extends TestCase
      * @test
      * @expectedException \InvalidArgumentException
      */
-    function invalid_driver_should_throw_exception()
+    public function invalid_driver_should_throw_exception()
     {
         (new ManagerStub(m::mock('\Illuminate\Foundation\Application')))->driver('invalidDriver');
     }
@@ -54,7 +54,7 @@ class ManagerTest extends TestCase
      * @test
      * @expectedException \InvalidArgumentException
      */
-    function invalid_driver_with_dotted_should_throw_exception()
+    public function invalid_driver_with_dotted_should_throw_exception()
     {
         (new ManagerStub(m::mock('\Illuminate\Foundation\Application')))
             ->driver('foo.bar.hello');

@@ -19,7 +19,7 @@ class QueryFilterTest extends TestCase
     }
 
     /** @test */
-    function it_can_build_basic_query_filter()
+    public function it_can_build_basic_query_filter()
     {
         $query = m::mock('\Illuminate\Database\Query\Builder');
 
@@ -39,7 +39,7 @@ class QueryFilterTest extends TestCase
     }
 
     /** @test */
-    function it_can_build_basic_query_filter_given_column_excluded()
+    public function it_can_build_basic_query_filter_given_column_excluded()
     {
         $query = m::mock('\Illuminate\Database\Query\Builder');
 
@@ -53,7 +53,7 @@ class QueryFilterTest extends TestCase
     }
 
     /** @test */
-    function it_can_build_wildcard_query_filter_given_column_excluded()
+    public function it_can_build_wildcard_query_filter_given_column_excluded()
     {
         $query = m::mock('\Illuminate\Database\Query\Builder');
 

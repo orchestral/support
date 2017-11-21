@@ -4,6 +4,7 @@ namespace Orchestra\Support\Traits;
 
 use Orchestra\Support\Str;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Query\Expression;
 
 trait QueryFilter
 {
@@ -62,11 +63,11 @@ trait QueryFilter
      */
     protected function isColumnExcludedFromFilterable($on, array $columns = [])
     {
-        $only   = $columns['only'] ?? '';
+        $only = $columns['only'] ?? '';
         $except = $columns['except'] ?? '';
 
-        return ((! empty($only) && ! in_array($on, (array) $only)) ||
-            (! empty($except) && in_array($on, (array) $except)));
+        return (! empty($only) && ! in_array($on, (array) $only)) ||
+            (! empty($except) && in_array($on, (array) $except));
     }
 
     /**
@@ -113,34 +114,53 @@ trait QueryFilter
      * @param  array  $keyword
      * @param  string  $group
      *
-     * @return void
+     * @return \Illuminate\Database\Eloquent\Builder|\Illuminate\Database\Query\Builder
      */
     protected function buildWildcardQueryFilters($query, array $fields, array $keyword = [])
     {
         foreach ($fields as $field) {
-            if (Str::contains($field, '.') && $query instanceof Builder) {
-                list($relation, $field) = explode('.', $field, 2);
-
-                $query->orWhereHas($relation, function ($query) use ($field, $keyword) {
-                    $this->buildWildcardQueryFilterWithKeyword($query, $field, $keyword, 'where');
-                });
-            } else {
-                $this->buildWildcardQueryFilterWithKeyword($query, $field, $keyword, 'orWhere');
-            }
+            $this->buildWildcardForField($query, $field, $keyword);
         }
+
+        return $query;
     }
 
     /**
-     * Build wildcard query filter by keyword.
+     * Build wildcard query filter for field using where or orWhere.
+     *
+     * @param  \Illuminate\Database\Eloquent\Builder|\Illuminate\Database\Query\Builder  $query
+     * @param  string  $field
+     * @param  array  $keyword
+     *
+     * @return \Illuminate\Database\Eloquent\Builder|\Illuminate\Database\Query\Builder
+     */
+    protected function buildWildcardForField($query, $field, array $keyword)
+    {
+        if ($field instanceof Expression) {
+            return $this->buildWildcardForFieldUsing($query, $field->getValue(), $keyword, 'orWhere');
+        } elseif (! (Str::contains($field, '.') && $query instanceof Builder)) {
+            return $this->buildWildcardForFieldUsing($query, $field, $keyword, 'orWhere');
+        }
+
+        $this->buildWildcardForFieldUsing($query, $field, $keyword, 'orWhere');
+        list($relation, $field) = explode('.', $field, 2);
+
+        return $query->orWhereHas($relation, function ($query) use ($field, $keyword) {
+            $this->buildWildcardForFieldUsing($query, $field, $keyword, 'where');
+        });
+    }
+
+    /**
+     * Build wildcard query filter for field using where or orWhere.
      *
      * @param  \Illuminate\Database\Eloquent\Builder|\Illuminate\Database\Query\Builder  $query
      * @param  string  $field
      * @param  array  $keyword
      * @param  string  $group
      *
-     * @return void
+     * @return \Illuminate\Database\Eloquent\Builder|\Illuminate\Database\Query\Builder
      */
-    protected function buildWildcardQueryFilterWithKeyword($query, $field, array $keyword = [], $group = 'where')
+    protected function buildWildcardForFieldUsing($query, $field, array $keyword = [], $group = 'where')
     {
         $callback = function ($query) use ($field, $keyword) {
             foreach ($keyword as $key) {
@@ -148,6 +168,6 @@ trait QueryFilter
             }
         };
 
-        $query->{$group}($callback);
+        return $query->{$group}($callback);
     }
 }

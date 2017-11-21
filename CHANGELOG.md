@@ -2,6 +2,22 @@
 
 This changelog references the relevant changes (bug and security fixes) done to `orchestra/support`.
 
+## 3.5.2
+
+Released: 2017-11-21
+
+### Changes
+
+* Simplify `Orchestra\Support\Transformer`.
+
+## 3.5.1
+
+Released: 2017-10-30
+
+### Changes
+
+* Allows `Orchestra\Support\Traits\QueryFilter` to access `Illuminate\Database\Query\Expression` to exclude expression with `.` to be converted to relationship `whereHas` query.
+
 ## 3.5.0
 
 Released: 2017-09-03
@@ -13,6 +29,14 @@ Released: 2017-09-03
 ### Removed
 
 * Remove deprecated `Orchestra\Support\Contracts\CsvableInterface`, replaced with `Orchestra\Support\Contracts\Csvable`.
+
+## 3.4.3
+
+Released: 2017-10-30
+
+### Changes
+
+* Allows `Orchestra\Support\Traits\QueryFilter` to access `Illuminate\Database\Query\Expression` to exclude expression with `.` to be converted to relationship `whereHas` query.
 
 ## 3.4.2
 

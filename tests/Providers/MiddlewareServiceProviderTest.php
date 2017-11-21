@@ -19,7 +19,7 @@ class MiddlewareServiceProviderTest extends TestCase
     }
 
     /** @test */
-    function instance_has_proper_signature()
+    public function instance_has_proper_signature()
     {
         $stub = new StubMiddlewareProvider(null);
 
@@ -27,7 +27,7 @@ class MiddlewareServiceProviderTest extends TestCase
     }
 
     /** @test */
-    function it_can_be_registered()
+    public function it_can_be_registered()
     {
         $stub = new StubMiddlewareProvider(null);
 
@@ -37,7 +37,7 @@ class MiddlewareServiceProviderTest extends TestCase
     }
 
     /** @test */
-    function it_can_be_booted()
+    public function it_can_be_booted()
     {
         $app = new Container();
 

@@ -60,7 +60,7 @@ class Str extends BaseStr
     protected static function prepareBinding(array $replacements = [], $prefix = '{', $suffix = '}')
     {
         $replacements = Arr::dot($replacements);
-        $bindings     = [];
+        $bindings = [];
 
         foreach ($replacements as $key => $value) {
             if (is_scalar($value)) {

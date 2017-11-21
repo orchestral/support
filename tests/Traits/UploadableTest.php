@@ -30,7 +30,7 @@ class UploadableTest extends TestCase
     }
 
     /** @test */
-    function it_can_save_uploaded_file()
+    public function it_can_save_uploaded_file()
     {
         $path = '/var/www/public/';
         $file = m::mock('\Symfony\Component\HttpFoundation\File\UploadedFile[getClientOriginalExtension,move]', [
@@ -45,7 +45,7 @@ class UploadableTest extends TestCase
     }
 
     /** @test */
-    function it_can_save_uploaded_file_with_custom_filename()
+    public function it_can_save_uploaded_file_with_custom_filename()
     {
         $path = '/var/www/public/';
         $file = m::mock('\Symfony\Component\HttpFoundation\File\UploadedFile[move]', [
@@ -59,7 +59,7 @@ class UploadableTest extends TestCase
     }
 
     /** @test */
-    function it_can_delete_uploaded_file()
+    public function it_can_delete_uploaded_file()
     {
         $filesystem = m::mock('\Illuminate\Filesystem\Filesystem');
         $filename = '/var/www/foo.jpg';

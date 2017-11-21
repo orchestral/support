@@ -38,7 +38,7 @@ abstract class Validator
      */
     public function __construct(Factory $factory, Dispatcher $dispatcher)
     {
-        $this->validationFactory    = $factory;
+        $this->validationFactory = $factory;
         $this->validationDispatcher = $dispatcher;
     }
 

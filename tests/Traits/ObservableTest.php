@@ -17,7 +17,7 @@ class ObservableTest extends TestCase
     }
 
     /** @test */
-    function it_can_use_event_dispatcher()
+    public function it_can_use_event_dispatcher()
     {
         $dispatcher = m::mock('\Illuminate\Contracts\Events\Dispatcher');
 
@@ -33,7 +33,7 @@ class ObservableTest extends TestCase
     }
 
     /** test */
-    function it_can_be_observed()
+    public function it_can_be_observed()
     {
         $stub1 = new ObservableStub();
         $stub2 = new ObservableStubWithoutEvents();
@@ -43,7 +43,7 @@ class ObservableTest extends TestCase
     }
 
     /** @test */
-    function it_can_be_observed_without_event_dispatcher()
+    public function it_can_be_observed_without_event_dispatcher()
     {
         ObservableStub::flushEventListeners();
 
@@ -56,9 +56,8 @@ class ObservableTest extends TestCase
         $this->assertFalse($stub->saved);
     }
 
-
     /** @test */
-    function it_can_be_observed_with_event_dispatcher()
+    public function it_can_be_observed_with_event_dispatcher()
     {
         $dispatcher = m::mock('\Illuminate\Contracts\Events\Dispatcher');
 
