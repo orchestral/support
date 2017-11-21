@@ -2,6 +2,14 @@
 
 This changelog references the relevant changes (bug and security fixes) done to `orchestra/support`.
 
+## 3.5.2
+
+Released: 2017-11-21
+
+### Changes
+
+* Simplify `Orchestra\Support\Transformer`.
+
 ## 3.5.1
 
 Released: 2017-10-30
