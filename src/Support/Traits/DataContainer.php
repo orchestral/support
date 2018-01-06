@@ -123,9 +123,9 @@ trait DataContainer
      *
      * @param  string  $key
      *
-     * @return void
+     * @return bool
      */
-    public function forget(string $key): void
+    public function forget(string $key): bool
     {
         $items = $this->items;
 
@@ -133,6 +133,8 @@ trait DataContainer
         Arr::forget($items, $key);
 
         $this->items = $items;
+
+        return true;
     }
 
     /**
