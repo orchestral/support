@@ -27,7 +27,7 @@ trait AliasesProvider
      *
      * @return void
      */
-    protected function registerCoreContainerAliases()
+    protected function registerCoreContainerAliases(): void
     {
         foreach ((array) $this->aliases as $key => $aliases) {
             foreach ((array) $aliases as $alias) {

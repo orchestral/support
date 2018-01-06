@@ -73,7 +73,7 @@ trait PackageProvider
      *
      * @return void
      */
-    public function package(string $package, ?string $namespace = null, $path = null)
+    public function package(string $package, ?string $namespace = null, $path = null): void
     {
         $namespace = $this->getPackageNamespace($package, $namespace);
         $files = $this->app->make('files');
@@ -109,7 +109,7 @@ trait PackageProvider
      *
      * @return string
      */
-    public function guessPackagePath()
+    public function guessPackagePath(): string
     {
         $path = (new ReflectionClass($this))->getFileName();
 
@@ -124,7 +124,7 @@ trait PackageProvider
      *
      * @return string
      */
-    protected function getPackageNamespace($package, $namespace)
+    protected function getPackageNamespace(string $package, string $namespace): string
     {
         if (is_null($namespace)) {
             list(, $namespace) = explode('/', $package);
@@ -140,7 +140,7 @@ trait PackageProvider
      *
      * @return array
      */
-    protected function getAppViewPaths($package)
+    protected function getAppViewPaths(string $package): array
     {
         return array_map(function ($path) use ($package) {
             return "{$path}/packages/{$package}";
@@ -152,7 +152,7 @@ trait PackageProvider
      *
      * @return bool
      */
-    protected function hasPackageRepository()
+    protected function hasPackageRepository(): bool
     {
         return $this->app->make('config') instanceof PackageRepository;
     }
@@ -164,7 +164,7 @@ trait PackageProvider
      *
      * @return void
      */
-    protected function bootUsingLaravel($path)
+    protected function bootUsingLaravel(string $path): void
     {
         //
     }
