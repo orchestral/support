@@ -13,7 +13,7 @@ class Arr extends BaseArr
      *
      * @return array
      */
-    public static function expand($array)
+    public static function expand(array $array): array
     {
         $results = [];
 

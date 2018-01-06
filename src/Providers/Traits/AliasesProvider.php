@@ -11,7 +11,7 @@ trait AliasesProvider
      *
      * @return void
      */
-    protected function registerFacadesAliases()
+    protected function registerFacadesAliases(): void
     {
         $loader = AliasLoader::getInstance();
 

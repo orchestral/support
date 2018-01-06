@@ -16,7 +16,7 @@ trait Uploadable
      *
      * @return string
      */
-    protected function saveUploadedFile(UploadedFile $file, $path)
+    protected function saveUploadedFile(UploadedFile $file, string $path): string
     {
         $file->move($path, $filename = $this->getUploadedFilename($file));
 
@@ -30,7 +30,7 @@ trait Uploadable
      *
      * @return bool
      */
-    protected function deleteUploadedFile($file)
+    protected function deleteUploadedFile(string $file): bool
     {
         return File::delete($file);
     }
@@ -42,7 +42,7 @@ trait Uploadable
      *
      * @return string
      */
-    protected function getUploadedFilename(UploadedFile $file)
+    protected function getUploadedFilename(UploadedFile $file): string
     {
         $extension = $file->getClientOriginalExtension();
 

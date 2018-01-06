@@ -9,5 +9,5 @@ interface Csvable
      *
      * @return string
      */
-    public function toCsv();
+    public function toCsv(): string;
 }

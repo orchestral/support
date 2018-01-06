@@ -38,7 +38,7 @@ trait DataContainer
      *
      * @return mixed
      */
-    public function get($key, $default = null)
+    public function get(string $key, $default = null)
     {
         $value = Arr::get($this->items, $key, $default);
 
@@ -57,7 +57,7 @@ trait DataContainer
      *
      * @return mixed
      */
-    public function secureGet($key, $default = null)
+    public function secureGet(string $key, $default = null)
     {
         $value = $this->get($key, $default);
 
@@ -80,7 +80,7 @@ trait DataContainer
      *
      * @return mixed
      */
-    public function set($key, $value = null)
+    public function set(string $key, $value = null)
     {
         return Arr::set($this->items, $key, value($value));
     }
@@ -93,7 +93,7 @@ trait DataContainer
      *
      * @return mixed
      */
-    public function secureSet($key, $value = null)
+    public function secureSet(string $key, $value = null)
     {
         try {
             if ($this->encrypter instanceof Encrypter) {
@@ -113,7 +113,7 @@ trait DataContainer
      *
      * @return bool
      */
-    public function has($key)
+    public function has(string $key): bool
     {
         return ! is_null($this->get($key));
     }
@@ -125,7 +125,7 @@ trait DataContainer
      *
      * @return void
      */
-    public function forget($key)
+    public function forget(string $key): void
     {
         $items = $this->items;
 
@@ -140,7 +140,7 @@ trait DataContainer
      *
      * @return array
      */
-    public function all()
+    public function all(): array
     {
         return $this->items;
     }
@@ -150,7 +150,7 @@ trait DataContainer
      *
      * @return array
      */
-    public function allWithRemoved()
+    public function allWithRemoved(): array
     {
         $items = $this->all();
 

@@ -14,7 +14,7 @@ class Str extends BaseStr
      *
      * @return string
      */
-    public static function humanize($text)
+    public static function humanize(string $text): string
     {
         $text = str_replace(['-', '_'], ' ', $text);
 
@@ -24,15 +24,19 @@ class Str extends BaseStr
     /**
      * Replace a text using strtr().
      *
-     * @param  string  $text
+     * @param  string|array  $text
      * @param  array   $replacements
      * @param  string  $prefix
      * @param  string  $suffix
      *
-     * @return string
+     * @return string|array
      */
-    public static function replace($text, array $replacements = [], $prefix = '{', $suffix = '}')
-    {
+    public static function replace(
+        $text,
+        array $replacements = [],
+        string $prefix = '{',
+        string $suffix = '}'
+    ) {
         $replacements = static::prepareBinding($replacements, $prefix, $suffix);
 
         $filter = function ($text) use ($replacements) {
@@ -57,8 +61,11 @@ class Str extends BaseStr
      *
      * @return array
      */
-    protected static function prepareBinding(array $replacements = [], $prefix = '{', $suffix = '}')
-    {
+    protected static function prepareBinding(
+        array $replacements = [],
+        string $prefix = '{',
+        string $suffix = '}'
+    ): array {
         $replacements = Arr::dot($replacements);
         $bindings = [];
 
@@ -80,7 +87,7 @@ class Str extends BaseStr
      *
      * @return array
      */
-    public static function searchable($text, $wildcard = '*', $replacement = '%')
+    public static function searchable(string $text, string $wildcard = '*', string $replacement = '%'): array
     {
         if (! static::contains($text, $wildcard)) {
             return [
@@ -103,7 +110,7 @@ class Str extends BaseStr
      *
      * @return string
      */
-    public static function streamGetContents($data)
+    public static function streamGetContents($data): string
     {
         // check if it's actually a resource, we can directly convert
         // string without any issue.
@@ -136,7 +143,7 @@ class Str extends BaseStr
      *
      * @return string
      */
-    protected static function fromHex($hex)
+    protected static function fromHex(string $hex): string
     {
         $data = '';
 

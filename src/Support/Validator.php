@@ -4,6 +4,7 @@ namespace Orchestra\Support;
 
 use Illuminate\Contracts\Events\Dispatcher;
 use Illuminate\Contracts\Validation\Factory;
+use Illuminate\Contracts\Validation\Validator as ValidatorContract;
 
 abstract class Validator
 {
@@ -48,9 +49,9 @@ abstract class Validator
      * @param  string  $scenario
      * @param  array   $parameters
      *
-     * @return Validator
+     * @return $this
      */
-    public function on($scenario, array $parameters = [])
+    public function on(string $scenario, array $parameters = []): self
     {
         return $this->onValidationScenario($scenario, $parameters);
     }
@@ -60,9 +61,9 @@ abstract class Validator
      *
      * @param  array  $bindings
      *
-     * @return Validator
+     * @return $this
      */
-    public function bind(array $bindings)
+    public function bind(array $bindings): self
     {
         return $this->bindToValidation($bindings);
     }
@@ -76,7 +77,7 @@ abstract class Validator
      *
      * @return \Illuminate\Contracts\Validation\Validator
      */
-    public function with(array $input, $events = [], array $phrases = [])
+    public function with(array $input, $events = [], array $phrases = []): ValidatorContract
     {
         return $this->runValidation($input, $events, $phrases);
     }
@@ -86,7 +87,7 @@ abstract class Validator
      *
      * @return array
      */
-    public function getValidationEvents()
+    public function getValidationEvents(): array
     {
         return $this->events;
     }
@@ -96,7 +97,7 @@ abstract class Validator
      *
      * @return array
      */
-    public function getValidationPhrases()
+    public function getValidationPhrases(): array
     {
         return $this->phrases;
     }
@@ -106,7 +107,7 @@ abstract class Validator
      *
      * @return array
      */
-    public function getValidationRules()
+    public function getValidationRules(): array
     {
         return $this->rules;
     }

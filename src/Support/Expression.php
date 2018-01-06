@@ -18,7 +18,7 @@ class Expression implements Htmlable
      *
      * @param  string  $value
      */
-    public function __construct($value)
+    public function __construct(string $value)
     {
         $this->value = $value;
     }
@@ -28,7 +28,7 @@ class Expression implements Htmlable
      *
      * @return string
      */
-    public function get()
+    public function get(): string
     {
         return $this->value;
     }
@@ -38,7 +38,7 @@ class Expression implements Htmlable
      *
      * @return string
      */
-    public function toHtml()
+    public function toHtml(): string
     {
         return $this->get();
     }

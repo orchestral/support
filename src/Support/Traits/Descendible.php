@@ -2,17 +2,19 @@
 
 namespace Orchestra\Support\Traits;
 
+use Orchestra\Support\Fluent;
+
 trait Descendible
 {
     /**
      * Get last descendant node from items recursively.
      *
-     * @param  array   $array
-     * @param  string  $key
+     * @param  array  $array
+     * @param  string|null  $key
      *
-     * @return \Illuminate\Support\Fluent
+     * @return \Illuminate\Support\Fluent|array|null
      */
-    protected function descendants(array $array, $key = null)
+    protected function descendants(array $array, ?string $key = null)
     {
         if (is_null($key)) {
             return $array;
@@ -22,7 +24,7 @@ trait Descendible
         $first = array_shift($keys);
 
         if (! isset($array[$first])) {
-            return;
+            return null;
         }
 
         return $this->resolveLastDecendant($array[$first], $keys);
@@ -31,12 +33,12 @@ trait Descendible
     /**
      * Resolve last descendant node from items.
      *
-     * @param  array  $array
+     * @param  mixed  $array
      * @param  array  $keys
      *
-     * @return \Illuminate\Support\Fluent
+     * @return \Orchestra\Support\Fluent|null
      */
-    protected function resolveLastDecendant($array, $keys)
+    protected function resolveLastDecendant($array, array $keys): ?Fluent
     {
         $isLastDescendant = function ($array, $segment) {
             return ! is_array($array->childs) || ! isset($array->childs[$segment]);

@@ -44,7 +44,7 @@ trait Validation
      *
      * @return $this
      */
-    public function onValidationScenario($scenario, array $parameters = [])
+    public function onValidationScenario(string $scenario, array $parameters = []): self
     {
         list($on, $extend) = $this->getValidationSchemasName($scenario);
 
@@ -64,7 +64,7 @@ trait Validation
      *
      * @return $this
      */
-    public function bindToValidation(array $bindings)
+    public function bindToValidation(array $bindings): self
     {
         $this->validationBindings = array_merge($this->validationBindings, $bindings);
 
@@ -80,7 +80,7 @@ trait Validation
      *
      * @return \Illuminate\Contracts\Validation\Validator
      */
-    public function runValidation(array $input, $events = [], array $phrases = [])
+    public function runValidation(array $input, $events = [], array $phrases = []): Validator
     {
         if (is_null($this->validationScenarios)) {
             $this->onValidationScenario('any');
@@ -102,7 +102,7 @@ trait Validation
      *
      * @return array
      */
-    protected function getBindedRules()
+    protected function getBindedRules(): array
     {
         $rules = $this->getValidationRules();
 
@@ -120,7 +120,7 @@ trait Validation
      *
      * @return void
      */
-    protected function runQueuedOn()
+    protected function runQueuedOn(): void
     {
         if (! is_null($method = $this->validationScenarios['on'])) {
             $this->{$method}(...$this->validationScenarios['parameters']);
@@ -134,7 +134,7 @@ trait Validation
      *
      * @return void
      */
-    protected function runQueuedExtend(Validator $validationResolver)
+    protected function runQueuedExtend(Validator $validationResolver): void
     {
         if (! is_null($method = $this->validationScenarios['extend'])) {
             $this->{$method}($validationResolver);
@@ -149,7 +149,7 @@ trait Validation
      *
      * @return array
      */
-    protected function runValidationEvents($events, array $phrases)
+    protected function runValidationEvents($events, array $phrases): array
     {
         is_array($events) || $events = (array) $events;
 
@@ -176,7 +176,7 @@ trait Validation
      *
      * @return array
      */
-    public function getValidationEvents()
+    public function getValidationEvents(): array
     {
         return [];
     }
@@ -186,7 +186,7 @@ trait Validation
      *
      * @return array
      */
-    public function getValidationPhrases()
+    public function getValidationPhrases(): array
     {
         return [];
     }
@@ -196,7 +196,7 @@ trait Validation
      *
      * @return array
      */
-    public function getValidationRules()
+    public function getValidationRules(): array
     {
         return [];
     }
@@ -208,7 +208,7 @@ trait Validation
      *
      * @return array
      */
-    protected function getValidationSchemasName($scenario)
+    protected function getValidationSchemasName(string $scenario): array
     {
         $on = 'on'.ucfirst($scenario);
         $extend = 'extend'.ucfirst($scenario);

@@ -35,9 +35,9 @@ class Nesty
      *
      * @param  int  $id
      *
-     * @return \Illuminate\Support\Fluent
+     * @return \Orchestra\Support\Fluent
      */
-    protected function toFluent($id)
+    protected function toFluent($id): Fluent
     {
         $defaults = $this->config['defaults'] ?? [];
         $class = $this->config['fluent'] ?? Fluent::class;
@@ -54,9 +54,9 @@ class Nesty
      * @param  string  $id
      * @param  string  $before
      *
-     * @return \Illuminate\Support\Fluent
+     * @return \Orchestra\Support\Fluent
      */
-    protected function addBefore($id, $before)
+    protected function addBefore(string $id, string $before): Fluent
     {
         $items = [];
         $item = $this->toFluent($id);
@@ -86,9 +86,9 @@ class Nesty
      * @param  string  $id
      * @param  string  $after
      *
-     * @return \Illuminate\Support\Fluent
+     * @return \Orchestra\Support\Fluent
      */
-    protected function addAfter($id, $after)
+    protected function addAfter(string $id, string $after): Fluent
     {
         $items = [];
         $item = $this->toFluent($id);
@@ -118,9 +118,9 @@ class Nesty
      * @param  string  $id
      * @param  string  $parent
      *
-     * @return \Illuminate\Support\Fluent
+     * @return \Orchestra\Support\Fluent|null
      */
-    protected function addChild($id, $parent)
+    protected function addChild(string $id, string $parent): ?Fluent
     {
         $node = $this->descendants($this->items, $parent);
 
@@ -128,7 +128,7 @@ class Nesty
         // case we should simply ignore this request as child should
         // inherit parent ACL access.
         if (! isset($node)) {
-            return;
+            return null;
         }
 
         $item = $node->get('childs');
@@ -144,9 +144,9 @@ class Nesty
      *
      * @param  string  $id
      *
-     * @return \Illuminate\Support\Fluent
+     * @return \Orchestra\Support\Fluent
      */
-    protected function addParent($id)
+    protected function addParent(string $id): Fluent
     {
         return $this->items[$id] = $this->toFluent($id);
     }
@@ -157,9 +157,9 @@ class Nesty
      * @param  string  $id
      * @param  string  $location
      *
-     * @return \Illuminate\Support\Fluent
+     * @return \Orchestra\Support\Fluent|null
      */
-    public function add($id, $location = '#')
+    public function add(string $id, string $location = '#'): ?Fluent
     {
         if ($location === '<' && count($keys = array_keys($this->items)) > 0) {
             return $this->addBefore($id, $keys[0]);
@@ -177,9 +177,9 @@ class Nesty
      * @param  string  $key
      * @param  string  $location
      *
-     * @return \Illuminate\Support\Fluent
+     * @return \Orchestra\Support\Fluent|null
      */
-    protected function pickTraverseFromMatchedExpression($id, $key, $location)
+    protected function pickTraverseFromMatchedExpression(string $id, string $key, string $location): ?Fluent
     {
         $matching = [
             '<' => 'addBefore',
@@ -199,7 +199,7 @@ class Nesty
      *
      * @return bool
      */
-    public function has($key)
+    public function has(string $key): bool
     {
         $key = implode('.childs.', explode('.', $key));
 
@@ -209,11 +209,11 @@ class Nesty
     /**
      * Retrieve an item by id.
      *
-     * @param  string  $key
+     * @param  string|null  $key
      *
-     * @return \Illuminate\Support\Fluent
+     * @return \Orchestra\Support\Fluent|array|null
      */
-    public function is($key)
+    public function is(?string $key)
     {
         return $this->descendants($this->items, $key);
     }
@@ -223,7 +223,7 @@ class Nesty
      *
      * @return \Orchestra\Support\Collection
      */
-    public function items()
+    public function items(): Collection
     {
         return new Collection($this->items);
     }
