@@ -3,7 +3,7 @@ Support Component for Orchestra Platform
 
 Support Component includes a basic set of classes required by Orchestra Platform. The idea behind it is similar to what is `Illuminate\Support` to Laravel 5 Framework.
 
-[![Build Status](https://travis-ci.org/orchestral/support.svg?branch=3.6)](https://travis-ci.org/orchestral/support)
+[![Build Status](https://travis-ci.org/orchestral/support.svg?branch=master)](https://travis-ci.org/orchestral/support)
 [![Latest Stable Version](https://poser.pugx.org/orchestra/support/version)](https://packagist.org/packages/orchestra/support)
 [![Total Downloads](https://poser.pugx.org/orchestra/support/downloads)](https://packagist.org/packages/orchestra/support)
 [![Latest Unstable Version](https://poser.pugx.org/orchestra/support/v/unstable)](//packagist.org/packages/orchestra/support)
@@ -27,6 +27,7 @@ Laravel    | Support
  5.4.x     | 3.4.x
  5.5.x     | 3.5.x
  5.6.x     | 3.6.x@dev
+ 5.7.x     | 3.7.x@dev
 
 ## Installation
 
