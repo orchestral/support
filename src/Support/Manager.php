@@ -73,7 +73,7 @@ abstract class Manager extends BaseManager
      *
      * @return array
      */
-    protected function getDriverName($driverName)
+    protected function getDriverName(string $driverName): array
     {
         if (false === strpos($driverName, '.')) {
             $driverName = "{$driverName}.default";
@@ -95,7 +95,7 @@ abstract class Manager extends BaseManager
      *
      * @return void
      */
-    protected function checkNameIsNotBlacklisted($name)
+    protected function checkNameIsNotBlacklisted(string $name): void
     {
         if (Str::contains($name, $this->blacklisted)) {
             throw new InvalidArgumentException("Invalid character in driver name [{$name}].");

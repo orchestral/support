@@ -15,7 +15,7 @@ trait MiddlewareProvider
      *
      * @return void
      */
-    protected function registerRouteMiddleware(Router $router, Kernel $kernel)
+    protected function registerRouteMiddleware(Router $router, Kernel $kernel): void
     {
         foreach ((array) $this->middleware as $middleware) {
             $kernel->pushMiddleware($middleware);

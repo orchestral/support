@@ -13,7 +13,7 @@ trait EventProvider
      *
      * @return void
      */
-    public function registerEventListeners(DispatcherContract $events)
+    public function registerEventListeners(DispatcherContract $events): void
     {
         foreach ($this->listen as $event => $listeners) {
             foreach ($listeners as $listener) {
@@ -31,7 +31,7 @@ trait EventProvider
      *
      * @return array
      */
-    public function listens()
+    public function listens(): array
     {
         return $this->listen;
     }

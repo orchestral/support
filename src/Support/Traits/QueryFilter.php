@@ -37,12 +37,12 @@ trait QueryFilter
      * Setup wildcard query string filter to eloquent or query builder.
      *
      * @param  \Illuminate\Database\Eloquent\Builder|\Illuminate\Database\Query\Builder  $query
-     * @param  mixed  $keyword
+     * @param  string  $keyword
      * @param  array  $fields
      *
      * @return \Illuminate\Database\Eloquent\Builder|\Illuminate\Database\Query\Builder
      */
-    protected function setupWildcardQueryFilter($query, $keyword, array $fields)
+    protected function setupWildcardQueryFilter($query, string $keyword, array $fields)
     {
         if (! empty($keyword) && ! empty($fields)) {
             $query->where(function ($query) use ($fields, $keyword) {
@@ -61,7 +61,7 @@ trait QueryFilter
      *
      * @return bool
      */
-    protected function isColumnExcludedFromFilterable($on, array $columns = [])
+    protected function isColumnExcludedFromFilterable(string $on, array $columns = []): bool
     {
         $only = $columns['only'] ?? '';
         $except = $columns['except'] ?? '';
@@ -77,7 +77,7 @@ trait QueryFilter
      *
      * @return string
      */
-    protected function getBasicQueryDirection(array $input)
+    protected function getBasicQueryDirection(array $input): string
     {
         $direction = Str::upper($input['direction'] ?? '');
 
@@ -95,7 +95,7 @@ trait QueryFilter
      *
      * @return string
      */
-    protected function getBasicQueryOrderBy(array $input)
+    protected function getBasicQueryOrderBy(array $input): string
     {
         $orderBy = $input['order_by'] ?? '';
 
@@ -134,7 +134,7 @@ trait QueryFilter
      *
      * @return \Illuminate\Database\Eloquent\Builder|\Illuminate\Database\Query\Builder
      */
-    protected function buildWildcardForField($query, $field, array $keyword)
+    protected function buildWildcardForField($query, string $field, array $keyword)
     {
         if ($field instanceof Expression) {
             return $this->buildWildcardForFieldUsing($query, $field->getValue(), $keyword, 'orWhere');
@@ -160,7 +160,7 @@ trait QueryFilter
      *
      * @return \Illuminate\Database\Eloquent\Builder|\Illuminate\Database\Query\Builder
      */
-    protected function buildWildcardForFieldUsing($query, $field, array $keyword = [], $group = 'where')
+    protected function buildWildcardForFieldUsing($query, string $field, array $keyword = [], string $group = 'where')
     {
         $callback = function ($query) use ($field, $keyword) {
             foreach ($keyword as $key) {

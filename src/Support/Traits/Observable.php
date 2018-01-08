@@ -20,7 +20,7 @@ trait Observable
      *
      * @return void
      */
-    public static function observe($class)
+    public static function observe($class): void
     {
         $instance = new static();
 
@@ -40,7 +40,7 @@ trait Observable
      *
      * @return string
      */
-    protected function getObservableKey($event)
+    protected function getObservableKey(string $event): string
     {
         return $event;
     }
@@ -50,7 +50,7 @@ trait Observable
      *
      * @return array
      */
-    public function getObservableEvents()
+    public function getObservableEvents(): array
     {
         return [];
     }
@@ -63,7 +63,7 @@ trait Observable
      *
      * @return void
      */
-    protected static function registerObservableEvent($event, $callback)
+    protected static function registerObservableEvent(string $event, $callback): void
     {
         if (! isset(static::$dispatcher)) {
             return;
@@ -84,7 +84,7 @@ trait Observable
      *
      * @return mixed
      */
-    protected function fireObservableEvent($event, $halt)
+    protected function fireObservableEvent(string $event, bool $halt)
     {
         if (! isset(static::$dispatcher)) {
             return true;
@@ -103,7 +103,7 @@ trait Observable
      *
      * @return void
      */
-    public static function flushEventListeners()
+    public static function flushEventListeners(): void
     {
         if (! isset(static::$dispatcher)) {
             return;
@@ -122,9 +122,9 @@ trait Observable
     /**
      * Get the event dispatcher instance.
      *
-     * @return \Illuminate\Contracts\Events\Dispatcher
+     * @return \Illuminate\Contracts\Events\Dispatcher|null
      */
-    public static function getEventDispatcher()
+    public static function getEventDispatcher(): ?Dispatcher
     {
         return static::$dispatcher;
     }
@@ -136,7 +136,7 @@ trait Observable
      *
      * @return void
      */
-    public static function setEventDispatcher(Dispatcher $dispatcher)
+    public static function setEventDispatcher(Dispatcher $dispatcher): void
     {
         static::$dispatcher = $dispatcher;
     }
@@ -146,7 +146,7 @@ trait Observable
      *
      * @return void
      */
-    public static function unsetEventDispatcher()
+    public static function unsetEventDispatcher(): void
     {
         static::$dispatcher = null;
     }

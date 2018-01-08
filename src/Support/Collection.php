@@ -11,7 +11,7 @@ class Collection extends BaseCollection implements Csvable, Transformable
     /**
      * {@inheritdoc}
      */
-    public function toCsv()
+    public function toCsv(): string
     {
         $delimiter = ',';
         $enclosure = '"';
@@ -35,7 +35,7 @@ class Collection extends BaseCollection implements Csvable, Transformable
      *
      * @return array
      */
-    protected function resolveCsvHeader()
+    protected function resolveCsvHeader(): array
     {
         $header = [];
 

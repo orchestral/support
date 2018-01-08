@@ -2,6 +2,8 @@
 
 namespace Orchestra\Support\Traits;
 
+use BadMethodCallException;
+
 trait Macroable
 {
     /**
@@ -19,7 +21,7 @@ trait Macroable
      *
      * @return void
      */
-    public function macro($name, $macro)
+    public function macro(string $name, callable $macro): void
     {
         $this->macros[$name] = $macro;
     }
@@ -34,12 +36,12 @@ trait Macroable
      *
      * @return mixed
      */
-    public function __call($method, $parameters)
+    public function __call(string $method, array $parameters)
     {
         if (isset($this->macros[$method])) {
             return $this->macros[$method](...$parameters);
         }
 
-        throw new \BadMethodCallException("Method {$method} does not exist.");
+        throw new BadMethodCallException("Method {$method} does not exist.");
     }
 }

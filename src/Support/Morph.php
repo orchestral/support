@@ -23,7 +23,7 @@ abstract class Morph
      *
      * @return mixed
      */
-    public static function __callStatic($method, $parameters)
+    public static function __callStatic(string $method, array $parameters)
     {
         if (! static::isCallable($method)) {
             throw new RuntimeException("Unable to call [{$method}].");
@@ -41,7 +41,7 @@ abstract class Morph
      *
      * @return bool
      */
-    public static function isCallable($method)
+    public static function isCallable(string $method): bool
     {
         return is_callable(static::$prefix.Str::snake($method));
     }

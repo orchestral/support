@@ -16,7 +16,7 @@ trait PackageProvider
      *
      * @return void
      */
-    public function addConfigComponent($package, $namespace, $path)
+    public function addConfigComponent(string $package, string $namespace, string $path): void
     {
         if ($this->hasPackageRepository()) {
             $this->app->make('config')->package($package, $path, $namespace);
@@ -32,7 +32,7 @@ trait PackageProvider
      *
      * @return void
      */
-    public function addLanguageComponent($package, $namespace, $path)
+    public function addLanguageComponent(string $package, string $namespace, string $path): void
     {
         $this->app->make('translator')->addNamespace($namespace, $path);
     }
@@ -46,7 +46,7 @@ trait PackageProvider
      *
      * @return void
      */
-    public function addViewComponent($package, $namespace, $path)
+    public function addViewComponent(string $package, string $namespace, string $path): void
     {
         $files = $this->app->make('files');
         $view = $this->app->make('view');
@@ -68,12 +68,12 @@ trait PackageProvider
      * Register the package's component namespaces.
      *
      * @param  string  $package
-     * @param  string  $namespace
-     * @param  string  $path
+     * @param  string|null  $namespace
+     * @param  string|null  $path
      *
      * @return void
      */
-    public function package($package, $namespace = null, $path = null)
+    public function package(string $package, ?string $namespace = null, $path = null): void
     {
         $namespace = $this->getPackageNamespace($package, $namespace);
         $files = $this->app->make('files');
@@ -109,7 +109,7 @@ trait PackageProvider
      *
      * @return string
      */
-    public function guessPackagePath()
+    public function guessPackagePath(): string
     {
         $path = (new ReflectionClass($this))->getFileName();
 
@@ -124,7 +124,7 @@ trait PackageProvider
      *
      * @return string
      */
-    protected function getPackageNamespace($package, $namespace)
+    protected function getPackageNamespace(string $package, string $namespace): string
     {
         if (is_null($namespace)) {
             list(, $namespace) = explode('/', $package);
@@ -140,7 +140,7 @@ trait PackageProvider
      *
      * @return array
      */
-    protected function getAppViewPaths($package)
+    protected function getAppViewPaths(string $package): array
     {
         return array_map(function ($path) use ($package) {
             return "{$path}/packages/{$package}";
@@ -152,7 +152,7 @@ trait PackageProvider
      *
      * @return bool
      */
-    protected function hasPackageRepository()
+    protected function hasPackageRepository(): bool
     {
         return $this->app->make('config') instanceof PackageRepository;
     }
@@ -164,7 +164,7 @@ trait PackageProvider
      *
      * @return void
      */
-    protected function bootUsingLaravel($path)
+    protected function bootUsingLaravel(string $path): void
     {
         //
     }
