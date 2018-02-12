@@ -37,12 +37,12 @@ trait QueryFilter
      * Setup wildcard query string filter to eloquent or query builder.
      *
      * @param  \Illuminate\Database\Eloquent\Builder|\Illuminate\Database\Query\Builder  $query
-     * @param  string  $keyword
+     * @param  string|null  $keyword
      * @param  array  $fields
      *
      * @return \Illuminate\Database\Eloquent\Builder|\Illuminate\Database\Query\Builder
      */
-    protected function setupWildcardQueryFilter($query, string $keyword, array $fields)
+    protected function setupWildcardQueryFilter($query, ?string $keyword, array $fields)
     {
         if (! empty($keyword) && ! empty($fields)) {
             $query->where(function ($query) use ($fields, $keyword) {
