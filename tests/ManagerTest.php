@@ -10,7 +10,7 @@ class ManagerTest extends TestCase
     /**
      * Teardown the test environment.
      */
-    protected function tearDown()
+    protected function tearDown(): void
     {
         m::close();
     }
@@ -18,7 +18,7 @@ class ManagerTest extends TestCase
     /** @test */
     public function it_can_be_extended()
     {
-        $stub = new ManagerStub(m::mock('\Illuminate\Foundation\Application'));
+        $stub = new ManagerStub(m::mock('\Illuminate\Contracts\Foundation\Application'));
 
         $stub->extend('awesome', function ($app, $name) {
             return new ManagerAwesomeFoobar($app, $name);

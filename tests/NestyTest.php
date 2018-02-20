@@ -19,7 +19,7 @@ class NestyTest extends TestCase
     /**
      * Setup the test environment.
      */
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->stub = new Nesty([]);
     }
@@ -27,7 +27,7 @@ class NestyTest extends TestCase
     /**
      * Teardown the test environment.
      */
-    protected function tearDown()
+    protected function tearDown(): void
     {
         unset($this->stub);
     }
