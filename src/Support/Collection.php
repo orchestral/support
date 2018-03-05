@@ -24,7 +24,7 @@ class Collection extends BaseCollection implements Csvable, Transformable
      *
      * @return void
      */
-    public function streamCsv(): void
+    public function streamCsv()
     {
         $delimiter = ',';
         $enclosure = '"';
