@@ -13,11 +13,22 @@ class Collection extends BaseCollection implements Csvable, Transformable
      */
     public function toCsv()
     {
+        ob_start();
+        $this->streamCsv();
+
+        return ob_get_clean();
+    }
+
+    /**
+     * Stream CSV output.
+     *
+     * @return void
+     */
+    public function streamCsv(): void
+    {
         $delimiter = ',';
         $enclosure = '"';
         $header = $this->resolveCsvHeader();
-
-        ob_start();
 
         $instance = fopen('php://output', 'r+');
 
@@ -27,7 +38,7 @@ class Collection extends BaseCollection implements Csvable, Transformable
             fputcsv($instance, Arr::dot($item), $delimiter, $enclosure);
         }
 
-        return ob_get_clean();
+        fclose($instance);
     }
 
     /**
