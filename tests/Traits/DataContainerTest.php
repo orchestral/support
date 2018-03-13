@@ -9,8 +9,10 @@ class DataContainerTest extends TestCase
 {
     use DataContainer;
 
-    /** @test */
-    public function it_can_get_all_with_removed()
+    /**
+     * Setup the test environment.
+     */
+    protected function setUp()
     {
         $this->items = [
             'fullname' => 'Mior Muhammad Zaki',
@@ -19,7 +21,35 @@ class DataContainerTest extends TestCase
                 'work' => 'crynobone@katsana.com',
             ],
         ];
+    }
 
+    /** @test */
+    public function it_can_get_items()
+    {
+        $this->assertSame('Mior Muhammad Zaki', $this->get('fullname'));
+        $this->assertSame('crynobone@katsana.com', $this->get('emails.work'));
+        $this->assertSame('crynobone+home@gmail.com', $this->get('emails.home', 'crynobone+home@gmail.com'));
+    }
+
+    /** @test */
+    public function it_can_set_items()
+    {
+        $this->set('fullname', 'Mior Muhammad Zaki Mior Khairuddin');
+
+        $this->assertSame('Mior Muhammad Zaki Mior Khairuddin', $this->items['fullname']);
+    }
+
+    /** @test */
+    public function it_can_check_if_item_exists()
+    {
+        $this->assertTrue($this->has('fullname'));
+        $this->assertTrue($this->has('emails.work'));
+        $this->assertFalse($this->has('emails.home'));
+    }
+
+    /** @test */
+    public function it_can_get_all_with_removed()
+    {
         $this->forget('emails.work');
 
         $this->assertSame([
@@ -29,5 +59,7 @@ class DataContainerTest extends TestCase
                 'work' => null,
             ],
         ], $this->allWithRemoved());
+
+        $this->assertSame(['emails.work'], $this->removedItems);
     }
 }
