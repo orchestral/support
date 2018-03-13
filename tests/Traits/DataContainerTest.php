@@ -35,8 +35,9 @@ class DataContainerTest extends TestCase
     public function it_can_set_items()
     {
         $this->set('fullname', 'Mior Muhammad Zaki Mior Khairuddin');
+        $this->set('email.personal', 'crynobone+personal@gmail.com');
 
-        $this->assertSame('Mior Muhammad Zaki Mior Khairuddin', $this->items['fullname']);
+        $this->assertSame('crynobone+personal@gmail.com', $this->items['email']['personal']);
     }
 
     /** @test */
