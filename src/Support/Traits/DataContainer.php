@@ -157,7 +157,7 @@ trait DataContainer
         $items = $this->all();
 
         foreach ($this->removedItems as $deleted) {
-            $items[$deleted] = null;
+            Arr::set($items, $deleted, null);
         }
 
         return $items;
