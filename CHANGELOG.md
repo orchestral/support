@@ -2,6 +2,19 @@
 
 This changelog references the relevant changes (bug and security fixes) done to `orchestra/support`.
 
+## 3.5.3
+
+Released: 2018-03-27
+
+### Added
+
+* Added `Orchestra\Support\Collection::streamCsv()` method.
+
+### Fixes
+
+* Fixes retrieving `$default` from `Orchestra\Support\Traits\DataContainer::get()` method.
+* Fixes fetching `Orchestra\Support\Traits\DataContainer::allWithRemoved()` method.
+
 ## 3.5.2
 
 Released: 2017-11-21
