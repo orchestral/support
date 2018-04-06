@@ -51,7 +51,7 @@ abstract class Validator
      *
      * @return $this
      */
-    public function on(string $scenario, array $parameters = []): self
+    public function on(string $scenario, array $parameters = [])
     {
         return $this->onValidationScenario($scenario, $parameters);
     }
@@ -63,7 +63,7 @@ abstract class Validator
      *
      * @return $this
      */
-    public function bind(array $bindings): self
+    public function bind(array $bindings)
     {
         return $this->bindToValidation($bindings);
     }

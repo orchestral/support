@@ -14,7 +14,7 @@ class Fluent extends BaseFluent implements Transformable
      *
      * @return $this
      */
-    public function transform(callable $callback): self
+    public function transform(callable $callback)
     {
         $this->attributes = $callback($this);
 
