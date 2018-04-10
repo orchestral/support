@@ -21,11 +21,10 @@ abstract class Transformer
     {
         if ($instance instanceof Paginator) {
             $transformable = $instance->getCollection();
-        } elseif ($instance instanceof Transformable
-            || $instance instanceof BaseCollection
-            || $instance instanceof BaseFluent
-        ) {
+        } elseif ($instance instanceof Transformable || $instance instanceof BaseCollection) {
             $transformable = $instance;
+        } elseif ($instance instanceof BaseFluent) {
+            $transformable = new Fluent($instance->getAttributes());
         } else {
             throw new InvalidArgumentException("Unable to transform {get_class($instance)}.");
         }
