@@ -3,6 +3,7 @@
 namespace Orchestra\Support;
 
 use Illuminate\Contracts\Pagination\Paginator;
+use Illuminate\Support\Collection as BaseCollection;
 
 abstract class Serializer
 {
@@ -33,6 +34,7 @@ abstract class Serializer
      * Resolve paginated dataset.
      *
      * @param  mixed  $dataset
+     *
      * @return array
      */
     final protected function serializeBasicDataset($dataset)
@@ -62,7 +64,7 @@ abstract class Serializer
      */
     protected function resolveSerializerKey($dataset)
     {
-        if ($dataset instanceof Collection || $dataset instanceof Paginator) {
+        if ($dataset instanceof BaseCollection || $dataset instanceof Paginator) {
             return Str::plural($this->key);
         }
 

@@ -43,7 +43,6 @@ EXPECTED;
         ob_start();
         $stub->streamCsv();
 
-
         $this->assertEquals($expected, ob_get_clean());
     }
 }
