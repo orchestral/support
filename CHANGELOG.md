@@ -2,6 +2,15 @@
 
 This changelog references the relevant changes (bug and security fixes) done to `orchestra/support`.
 
+## 3.5.4
+
+Released: 2018-04-25
+
+### Changes
+
+* Allow to stream conversion to CSV when using `Orchestra\Support\Collection::toCsv()`.
+* Ensure that `Illuminate\Contracts\Pagination\Paginator` can still be transform and serialize with pagination data intact.
+
 ## 3.5.3
 
 Released: 2018-03-27
