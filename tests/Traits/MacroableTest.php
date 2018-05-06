@@ -10,10 +10,12 @@ class MacroableTest extends TestCase
     /** @test */
     public function it_can_be_executed()
     {
-        $stub = tap(new MacroableStub(), function ($stub) {
-            $stub->macro('foo', function () {
-                return 'foobar';
-            });
+        $stub = new class() {
+            use Macroable;
+        };
+
+        $stub->macro('foo', function () {
+            return 'foobar';
         });
 
         $this->assertEquals('foobar', $stub->foo());
@@ -26,11 +28,8 @@ class MacroableTest extends TestCase
      */
     public function it_cant_be_executed_should_throw_exception()
     {
-        (new MacroableStub())->foo();
+        (new class() {
+            use Macroable;
+        })->foo();
     }
-}
-
-class MacroableStub
-{
-    use Macroable;
 }

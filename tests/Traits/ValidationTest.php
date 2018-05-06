@@ -7,13 +7,15 @@ use Orchestra\Support\Traits\Validation;
 
 class ValidationTest extends TestCase
 {
-    use Validation;
-
     /** @test */
     public function it_can_access_validation_helpers()
     {
-        $this->assertEquals([], $this->getValidationEvents());
-        $this->assertEquals([], $this->getValidationPhrases());
-        $this->assertEquals([], $this->getValidationRules());
+        $stub = new class() {
+            use Validation;
+        };
+
+        $this->assertEquals([], $stub->getValidationEvents());
+        $this->assertEquals([], $stub->getValidationPhrases());
+        $this->assertEquals([], $stub->getValidationRules());
     }
 }

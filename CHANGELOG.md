@@ -2,6 +2,36 @@
 
 This changelog references the relevant changes (bug and security fixes) done to `orchestra/support`.
 
+## 3.6.0
+
+Released: 2018-05-06
+
+### Changes
+
+* Update support for Laravel Framework v5.6.
+
+## 3.5.4
+
+Released: 2018-04-25
+
+### Changes
+
+* Allow to stream conversion to CSV when using `Orchestra\Support\Collection::toCsv()`.
+* Ensure that `Illuminate\Contracts\Pagination\Paginator` can still be transform and serialize with pagination data intact.
+
+## 3.5.3
+
+Released: 2018-03-27
+
+### Added
+
+* Added `Orchestra\Support\Collection::streamCsv()` method.
+
+### Fixes
+
+* Fixes retrieving `$default` from `Orchestra\Support\Traits\DataContainer::get()` method.
+* Fixes fetching `Orchestra\Support\Traits\DataContainer::allWithRemoved()` method.
+
 ## 3.5.2
 
 Released: 2017-11-21
@@ -29,51 +59,3 @@ Released: 2017-09-03
 ### Removed
 
 * Remove deprecated `Orchestra\Support\Contracts\CsvableInterface`, replaced with `Orchestra\Support\Contracts\Csvable`.
-
-## 3.4.3
-
-Released: 2017-10-30
-
-### Changes
-
-* Allows `Orchestra\Support\Traits\QueryFilter` to access `Illuminate\Database\Query\Expression` to exclude expression with `.` to be converted to relationship `whereHas` query.
-
-## 3.4.2
-
-Released: 2017-07-11
-
-### Changes
-
-* Add support to require `danielstjules/stringy` `~3.0`.
-
-## 3.4.1
-
-Released: 2017-04-15
-
-### Fixes
-
-* Fixes `Orchestra\Support\Transformer` implementations.
-
-## 3.4.0
-
-Released: 2017-03-12
-
-### Changes
-
-* Update support for Laravel Framework v5.4.
-
-### Removed
-
-* Remove deprecated classes:
-    - `Orchestra\Support\Providers\Traits\AliasesProviderTrait`
-    - `Orchestra\Support\Providers\Traits\EventProviderTrait`
-    - `Orchestra\Support\Providers\Traits\MiddlewareProviderTrait`
-    - `Orchestra\Support\Providers\Traits\PackageProviderTrait`
-    - `Orchestra\Support\Traits\DataContainerTrait`
-    - `Orchestra\Support\Traits\DescendibleTrait`
-    - `Orchestra\Support\Traits\MacroableTrait`
-    - `Orchestra\Support\Traits\ObservableTrait`
-    - `Orchestra\Support\Traits\QueryFilterTrait`
-    - `Orchestra\Support\Traits\EloquentConnectionTrait`
-    - `Orchestra\Support\Traits\UploadableTrait`
-    - `Orchestra\Support\Traits\ValidationTrait`

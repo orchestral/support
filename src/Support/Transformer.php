@@ -20,12 +20,13 @@ abstract class Transformer
     public function handle($instance)
     {
         if ($instance instanceof Paginator) {
-            $transformable = $instance->getCollection();
-        } elseif ($instance instanceof Transformable
-            || $instance instanceof BaseCollection
-            || $instance instanceof BaseFluent
-        ) {
+            return $instance->setCollection(
+                $instance->getCollection()->transform($this)
+            );
+        } elseif ($instance instanceof Transformable || $instance instanceof BaseCollection) {
             $transformable = $instance;
+        } elseif ($instance instanceof BaseFluent) {
+            $transformable = new Fluent($instance->getAttributes());
         } else {
             throw new InvalidArgumentException("Unable to transform {get_class($instance)}.");
         }

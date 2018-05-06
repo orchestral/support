@@ -2,8 +2,18 @@
 
 namespace Orchestra\Support;
 
+use Illuminate\Contracts\Pagination\Paginator;
+use Illuminate\Support\Collection as BaseCollection;
+
 abstract class Serializer
 {
+    /**
+     * Data serializer key name.
+     *
+     * @var string
+     */
+    protected $key = 'data';
+
     /**
      * Invoke the serializer.
      *
@@ -13,6 +23,51 @@ abstract class Serializer
      */
     public function __invoke(...$parameters)
     {
-        return $this->serialize(...$parameters);
+        if (method_exists($this, 'serialize')) {
+            return $this->serialize(...$parameters);
+        }
+
+        return $this->serializeBasicDataset($parameters[0]);
+    }
+
+    /**
+     * Resolve paginated dataset.
+     *
+     * @param  mixed  $dataset
+     *
+     * @return array
+     */
+    final protected function serializeBasicDataset($dataset)
+    {
+        $key = $this->resolveSerializerKey($dataset);
+
+        if ($dataset instanceof Paginator) {
+            $collection = $dataset->toArray();
+
+            $collection[$key] = $collection['data'];
+            unset($collection['data']);
+
+            return $collection;
+        }
+
+        return [
+            $key => $dataset->toArray(),
+        ];
+    }
+
+    /**
+     * Resolve serializer key.
+     *
+     * @param  mixed  $dataset
+     *
+     * @return string
+     */
+    protected function resolveSerializerKey($dataset)
+    {
+        if ($dataset instanceof BaseCollection || $dataset instanceof Paginator) {
+            return Str::plural($this->key);
+        }
+
+        return $this->key;
     }
 }

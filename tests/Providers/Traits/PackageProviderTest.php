@@ -21,7 +21,7 @@ class PackageProviderTest extends TestCase
     /**
      * Setup the test environment.
      */
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->app = new Container();
     }
@@ -29,9 +29,9 @@ class PackageProviderTest extends TestCase
     /**
      * Teardown the test environment.
      */
-    protected function tearDown()
+    protected function tearDown(): void
     {
-        $this->app = null;
+        unset($this->app);
 
         m::close();
     }

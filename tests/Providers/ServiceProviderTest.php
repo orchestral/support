@@ -11,16 +11,13 @@ class ServiceProviderTest extends TestCase
     /** @test */
     public function instance_has_proper_signature()
     {
-        $stub = new StubBasicProvider(null);
+        $stub = new class(null) extends ServiceProvider {
+            public function register()
+            {
+                //
+            }
+        };
 
         $this->assertContains(PackageProvider::class, class_uses_recursive(get_class($stub)));
-    }
-}
-
-class StubBasicProvider extends ServiceProvider
-{
-    public function register()
-    {
-        //
     }
 }

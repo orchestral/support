@@ -44,7 +44,7 @@ trait Validation
      *
      * @return $this
      */
-    public function onValidationScenario(string $scenario, array $parameters = []): self
+    final public function onValidationScenario(string $scenario, array $parameters = []): self
     {
         list($on, $extend) = $this->getValidationSchemasName($scenario);
 
@@ -64,7 +64,7 @@ trait Validation
      *
      * @return $this
      */
-    public function bindToValidation(array $bindings): self
+    final public function bindToValidation(array $bindings): self
     {
         $this->validationBindings = array_merge($this->validationBindings, $bindings);
 
@@ -80,19 +80,19 @@ trait Validation
      *
      * @return \Illuminate\Contracts\Validation\Validator
      */
-    public function runValidation(array $input, $events = [], array $phrases = []): Validator
+    final public function runValidation(array $input, $events = [], array $phrases = []): Validator
     {
         if (is_null($this->validationScenarios)) {
             $this->onValidationScenario('any');
         }
 
-        $this->runQueuedOn();
+        $this->runOnScenario();
 
         list($rules, $phrases) = $this->runValidationEvents($events, $phrases);
 
         $validationResolver = $this->validationFactory->make($input, $rules, $phrases);
 
-        $this->runQueuedExtend($validationResolver);
+        $this->runExtendedScenario($validationResolver);
 
         return $validationResolver;
     }
@@ -120,7 +120,7 @@ trait Validation
      *
      * @return void
      */
-    protected function runQueuedOn(): void
+    final protected function runOnScenario(): void
     {
         if (! is_null($method = $this->validationScenarios['on'])) {
             $this->{$method}(...$this->validationScenarios['parameters']);
@@ -134,7 +134,7 @@ trait Validation
      *
      * @return void
      */
-    protected function runQueuedExtend(Validator $validationResolver): void
+    final protected function runExtendedScenario(Validator $validationResolver): void
     {
         if (! is_null($method = $this->validationScenarios['extend'])) {
             $this->{$method}($validationResolver);
@@ -149,7 +149,7 @@ trait Validation
      *
      * @return array
      */
-    protected function runValidationEvents($events, array $phrases): array
+    final protected function runValidationEvents($events, array $phrases): array
     {
         is_array($events) || $events = (array) $events;
 

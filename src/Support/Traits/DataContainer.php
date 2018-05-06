@@ -40,7 +40,7 @@ trait DataContainer
      */
     public function get(string $key, $default = null)
     {
-        $value = Arr::get($this->items, $key, $default);
+        $value = Arr::get($this->items, $key);
 
         if (is_null($value)) {
             return value($default);
@@ -157,7 +157,7 @@ trait DataContainer
         $items = $this->all();
 
         foreach ($this->removedItems as $deleted) {
-            $items[$deleted] = null;
+            Arr::set($items, $deleted, null);
         }
 
         return $items;

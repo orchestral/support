@@ -15,7 +15,7 @@ class UploadableTest extends TestCase
     /**
      * Setup the test environment.
      */
-    protected function setUp()
+    protected function setUp(): void
     {
         Facade::clearResolvedInstances();
         Facade::setFacadeApplication(new Container());
@@ -24,7 +24,7 @@ class UploadableTest extends TestCase
     /**
      * Teardown the test environment.
      */
-    protected function tearDown()
+    protected function tearDown(): void
     {
         m::close();
     }

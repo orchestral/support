@@ -10,7 +10,7 @@ class ValidatorTest extends TestCase
     /**
      * Setup the test environment.
      */
-    protected function setUp()
+    protected function setUp(): void
     {
         $_SERVER['validator.onFoo'] = null;
         $_SERVER['validator.onFoo'] = null;
@@ -19,7 +19,7 @@ class ValidatorTest extends TestCase
     /**
      * Teardown the test environment.
      */
-    protected function tearDown()
+    protected function tearDown(): void
     {
         unset($_SERVER['validator.onFoo']);
         unset($_SERVER['validator.extendFoo']);
