@@ -8,6 +8,7 @@ Support Component includes a basic set of classes required by Orchestra Platform
 [![Total Downloads](https://poser.pugx.org/orchestra/support/downloads)](https://packagist.org/packages/orchestra/support)
 [![Latest Unstable Version](https://poser.pugx.org/orchestra/support/v/unstable)](//packagist.org/packages/orchestra/support)
 [![License](https://poser.pugx.org/orchestra/support/license)](https://packagist.org/packages/orchestra/support)
+[![Coverage Status](https://coveralls.io/repos/github/orchestral/support/badge.svg?branch=3.6)](https://coveralls.io/github/orchestral/support?branch=3.6)
 
 ## Table of Content
 
