@@ -17,6 +17,8 @@ class KeywordTest extends TestCase
         $this->assertEquals('Hello World', $stub1->getValue());
         $this->assertEquals(1, $stub1->searchIn(['foo', 'hello-world']));
         $this->assertFalse($stub1->searchIn(['foo', 'bar']));
+        $this->assertTrue($stub1->hasIn(['foo' => 'Foobar', 'hello-world' => 'Hello World']));
+        $this->assertFalse($stub1->hasIn(['foo' => 'Foo', 'bar' => 'Bar']));
 
         $stub2 = Keyword::make(5);
 
@@ -24,6 +26,8 @@ class KeywordTest extends TestCase
         $this->assertEmpty((string) $stub2);
         $this->assertEquals(5, $stub2->getValue());
         $this->assertEquals(4, $stub2->searchIn(['hello', 'world', 'foo', 'bar', 5, 'foobar']));
+        $this->assertTrue($stub2->hasIn(['foo' => 'Foobar', 5 => 'Hello World']));
+        $this->assertFalse($stub2->hasIn(['foo' => 'Foo', 'bar' => 'Bar']));
     }
 
     /** @test */
@@ -34,5 +38,7 @@ class KeywordTest extends TestCase
         $stub = Keyword::make($keyword);
 
         $this->assertEquals($keyword, $stub);
+        $this->assertTrue($stub->hasIn(['foo' => 'Foobar', 'hello' => 'Hello World']));
+        $this->assertFalse($stub->hasIn(['foo' => 'Foo', 'bar' => 'Bar']));
     }
 }
