@@ -2,31 +2,12 @@
 
 namespace Orchestra\Support\Providers\Traits;
 
-use Illuminate\Routing\Router;
-use Illuminate\Contracts\Http\Kernel;
+use Orchestra\Support\Providers\Concerns\MiddlewareProvider as Concern;
 
+/**
+ * @deprecated v3.6.x
+ */
 trait MiddlewareProvider
 {
-    /**
-     * Register route middleware.
-     *
-     * @param  \Illuminate\Routing\Router  $router
-     * @param  \Illuminate\Contracts\Http\Kernel  $kernel
-     *
-     * @return void
-     */
-    protected function registerRouteMiddleware(Router $router, Kernel $kernel): void
-    {
-        foreach ((array) $this->middleware as $middleware) {
-            $kernel->pushMiddleware($middleware);
-        }
-
-        foreach ((array) $this->middlewareGroups as $key => $middleware) {
-            $router->middlewareGroup($key, $middleware);
-        }
-
-        foreach ((array) $this->routeMiddleware as $key => $middleware) {
-            $router->aliasMiddleware($key, $middleware);
-        }
-    }
+    use Concern;
 }

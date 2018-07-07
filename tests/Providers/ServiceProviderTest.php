@@ -4,7 +4,7 @@ namespace Orchestra\Support\TestCase\Providers;
 
 use PHPUnit\Framework\TestCase;
 use Orchestra\Support\Providers\ServiceProvider;
-use Orchestra\Support\Providers\Traits\PackageProvider;
+use Orchestra\Support\Providers\Concerns\PackageProvider;
 
 class ServiceProviderTest extends TestCase
 {

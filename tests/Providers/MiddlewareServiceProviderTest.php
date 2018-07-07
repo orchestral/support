@@ -6,7 +6,7 @@ use Mockery as m;
 use PHPUnit\Framework\TestCase;
 use Illuminate\Container\Container;
 use Orchestra\Support\Providers\MiddlewareServiceProvider;
-use Orchestra\Support\Providers\Traits\MiddlewareProvider;
+use Orchestra\Support\Providers\Concerns\MiddlewareProvider;
 
 class MiddlewareServiceProviderTest extends TestCase
 {

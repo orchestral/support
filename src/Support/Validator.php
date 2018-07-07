@@ -8,7 +8,7 @@ use Illuminate\Contracts\Validation\Validator as ValidatorContract;
 
 abstract class Validator
 {
-    use Traits\Validation;
+    use Concerns\Validation;
 
     /**
      * List of rules.

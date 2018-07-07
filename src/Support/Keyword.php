@@ -89,7 +89,7 @@ class Keyword
      *
      * @param  array  $items
      *
-     * @return mixed
+     * @return bool
      */
     public function hasIn(array $items = [])
     {

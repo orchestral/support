@@ -7,7 +7,7 @@ use Illuminate\Contracts\Http\Kernel;
 
 abstract class MiddlewareServiceProvider extends ServiceProvider
 {
-    use Traits\MiddlewareProvider;
+    use Concerns\MiddlewareProvider;
 
     /**
      * The application's middleware stack.

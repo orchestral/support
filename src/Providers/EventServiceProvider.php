@@ -7,7 +7,7 @@ use Illuminate\Contracts\Events\Dispatcher as DispatcherContract;
 
 abstract class EventServiceProvider extends BaseServiceProvider
 {
-    use Traits\EventProvider;
+    use Concerns\EventProvider;
 
     /**
      * The event handler mappings for the application.

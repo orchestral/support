@@ -4,7 +4,7 @@ namespace Orchestra\Support;
 
 class Nesty
 {
-    use Traits\Descendible;
+    use Concerns\Descendible;
 
     /**
      * List of items.
