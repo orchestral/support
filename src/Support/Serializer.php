@@ -37,7 +37,7 @@ abstract class Serializer
      *
      * @return array
      */
-    final protected function serializeBasicDataset($dataset)
+    final protected function serializeBasicDataset($dataset): array
     {
         $key = $this->resolveSerializerKey($dataset);
 
@@ -62,7 +62,7 @@ abstract class Serializer
      *
      * @return string
      */
-    protected function resolveSerializerKey($dataset)
+    protected function resolveSerializerKey($dataset): string
     {
         if ($dataset instanceof BaseCollection || $dataset instanceof Paginator) {
             return Str::plural($this->key);
