@@ -1,6 +1,6 @@
 <?php
 
-namespace Orchestra\Support\Traits\Testing;
+namespace Orchestra\Support\Concerns\Testing;
 
 use Mockery as m;
 use Illuminate\Database\Eloquent\Model;
