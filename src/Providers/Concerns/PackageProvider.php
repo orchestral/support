@@ -1,6 +1,6 @@
 <?php
 
-namespace Orchestra\Support\Providers\Traits;
+namespace Orchestra\Support\Providers\Concerns;
 
 use ReflectionClass;
 use Orchestra\Contracts\Config\PackageRepository;

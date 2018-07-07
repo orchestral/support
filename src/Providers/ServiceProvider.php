@@ -6,5 +6,5 @@ use Illuminate\Support\ServiceProvider as BaseServiceProvider;
 
 abstract class ServiceProvider extends BaseServiceProvider
 {
-    use Traits\PackageProvider;
+    use Concerns\PackageProvider;
 }
