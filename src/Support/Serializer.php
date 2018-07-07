@@ -56,6 +56,16 @@ abstract class Serializer
     }
 
     /**
+     * Get serializer key.
+     *
+     * @return string
+     */
+    final public function getKey(): string
+    {
+        return $this->key;
+    }
+
+    /**
      * Resolve serializer key.
      *
      * @param  mixed  $dataset
@@ -65,9 +75,9 @@ abstract class Serializer
     protected function resolveSerializerKey($dataset)
     {
         if ($dataset instanceof BaseCollection || $dataset instanceof Paginator) {
-            return Str::plural($this->key);
+            return Str::plural($this->getKey());
         }
 
-        return $this->key;
+        return $this->getKey();
     }
 }
