@@ -38,7 +38,7 @@ class SerializerTest extends TestCase
                 ]),
                 new Fluent([
                     'fullname' => 'Miki', 'email' => 'hello@orchestraplatform.com',
-                ])
+                ]),
             ]
         );
 
