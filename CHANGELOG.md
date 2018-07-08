@@ -2,6 +2,19 @@
 
 This changelog references the relevant changes (bug and security fixes) done to `orchestra/support`.
 
+## 3.6.1
+
+Released: 2018-07-07
+
+### Added
+
+* Add `Orchestra\Support\Serializer::getKey()`.
+
+### Changes
+
+* Moves `Orchestra\Support\Traits` to `Orchestra\Support\Concerns`.
+* Moves `Orchestra\Support\Providers\Traits` to `Orchestra\Support\Providers\Concerns`.
+
 ## 3.6.0
 
 Released: 2018-05-06
