@@ -129,12 +129,12 @@ trait QueryFilter
      * Build wildcard query filter for field using where or orWhere.
      *
      * @param  \Illuminate\Database\Eloquent\Builder|\Illuminate\Database\Query\Builder  $query
-     * @param  string  $field
+     * @param  \Illuminate\Database\Query\Expression|string  $field
      * @param  array  $keyword
      *
      * @return \Illuminate\Database\Eloquent\Builder|\Illuminate\Database\Query\Builder
      */
-    protected function buildWildcardForField($query, string $field, array $keyword)
+    protected function buildWildcardForField($query, $field, array $keyword)
     {
         if ($field instanceof Expression) {
             return $this->buildWildcardForFieldUsing($query, $field->getValue(), $keyword, 'orWhere');

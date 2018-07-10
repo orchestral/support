@@ -2,6 +2,14 @@
 
 This changelog references the relevant changes (bug and security fixes) done to `orchestra/support`.
 
+## 3.6.2
+
+Released: 2018-07-10
+
+### Fixes
+
+* Fixes `Orchestra\Support\Concerns\QueryFilter::buildWildcardForField()` to accept `Illuminate\Database\Query\Expression` as `$field` variable instead of casting it to `string`.
+
 ## 3.6.1
 
 Released: 2018-07-07
