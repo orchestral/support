@@ -18,7 +18,7 @@
     },
     "require": {
         "php": ">=7.1",
-        "illuminate/support": "dev-master"
+        "illuminate/support": "~5.8.0"
     },
     "extra": {
         "branch-alias": {
