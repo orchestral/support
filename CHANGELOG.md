@@ -2,6 +2,14 @@
 
 This changelog references the relevant changes (bug and security fixes) done to `orchestra/support`.
 
+## 3.7.0
+
+Released: 2018-11-08
+
+### Changes
+
+* Update support for Laravel Framework v5.7.
+
 ## 3.6.2
 
 Released: 2018-07-10
