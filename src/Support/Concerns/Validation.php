@@ -162,7 +162,7 @@ trait Validation
         $phrases = new Fluent(array_merge($this->getValidationPhrases(), $phrases));
 
         foreach ((array) $events as $event) {
-            $this->validationDispatcher->fire($event, [&$rules, &$phrases]);
+            $this->validationDispatcher->dispatch($event, [&$rules, &$phrases]);
         }
 
         return [

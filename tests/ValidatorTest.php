@@ -35,7 +35,7 @@ class ValidatorTest extends TestCase
         $rules = ['email' => ['email', 'foo:2'], 'name' => 'any'];
         $phrases = ['email.required' => 'Email required'];
 
-        $event->shouldReceive('fire')->once()->with('foo.event', m::any())->andReturn(null);
+        $event->shouldReceive('dispatch')->once()->with('foo.event', m::any())->andReturn(null);
         $validator->shouldReceive('make')->once()->with([], $rules, $phrases)
             ->andReturn(m::mock('\Illuminate\Contracts\Validation\Validator'));
 
