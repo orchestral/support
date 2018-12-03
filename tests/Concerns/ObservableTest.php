@@ -1,10 +1,10 @@
 <?php
 
-namespace Orchestra\Support\TestCase\Traits;
+namespace Orchestra\Support\TestCase\Concerns;
 
 use Mockery as m;
 use PHPUnit\Framework\TestCase;
-use Orchestra\Support\Traits\Observable;
+use Orchestra\Support\Concerns\Observable;
 
 class ObservableTest extends TestCase
 {

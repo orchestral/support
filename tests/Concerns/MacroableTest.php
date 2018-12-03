@@ -1,9 +1,9 @@
 <?php
 
-namespace Orchestra\Support\TestCase\Traits;
+namespace Orchestra\Support\TestCase\Concerns;
 
 use PHPUnit\Framework\TestCase;
-use Orchestra\Support\Traits\Macroable;
+use Orchestra\Support\Concerns\Macroable;
 
 class MacroableTest extends TestCase
 {

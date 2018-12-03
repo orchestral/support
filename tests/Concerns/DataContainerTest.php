@@ -1,9 +1,9 @@
 <?php
 
-namespace Orchestra\Support\TestCase\Traits;
+namespace Orchestra\Support\TestCase\Concerns;
 
 use PHPUnit\Framework\TestCase;
-use Orchestra\Support\Traits\DataContainer;
+use Orchestra\Support\Concerns\DataContainer;
 
 class DataContainerTest extends TestCase
 {

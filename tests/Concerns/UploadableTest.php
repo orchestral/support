@@ -1,13 +1,13 @@
 <?php
 
-namespace Orchestra\Support\TestCase\Traits;
+namespace Orchestra\Support\TestCase\Concerns;
 
 use Mockery as m;
 use PHPUnit\Framework\TestCase;
 use Illuminate\Container\Container;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Facade;
-use Orchestra\Support\Traits\Uploadable;
+use Orchestra\Support\Concerns\Uploadable;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 class UploadableTest extends TestCase
@@ -89,7 +89,7 @@ class UploadedStub
 
 class UploadedStubWithReplacement
 {
-    use \Orchestra\Support\Traits\Uploadable;
+    use Uploadable;
 
     public function save(UploadedFile $file, $path)
     {

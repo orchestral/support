@@ -1,9 +1,9 @@
 <?php
 
-namespace Orchestra\Support\TestCase\Traits;
+namespace Orchestra\Support\TestCase\Concerns;
 
 use PHPUnit\Framework\TestCase;
-use Orchestra\Support\Traits\Validation;
+use Orchestra\Support\Concerns\Validation;
 
 class ValidationTest extends TestCase
 {

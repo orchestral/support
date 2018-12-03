@@ -1,10 +1,10 @@
 <?php
 
-namespace Orchestra\Support\TestCase\Traits;
+namespace Orchestra\Support\TestCase\Concerns;
 
 use Mockery as m;
 use PHPUnit\Framework\TestCase;
-use Orchestra\Support\Traits\QueryFilter;
+use Orchestra\Support\Concerns\QueryFilter;
 
 class QueryFilterTest extends TestCase
 {
