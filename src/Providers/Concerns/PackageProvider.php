@@ -34,7 +34,7 @@ trait PackageProvider
      */
     public function addLanguageComponent(string $package, string $namespace, string $path): void
     {
-        $this->app->make('translator')->addNamespace($namespace, $path);
+        $this->loadTranslationsFrom($namespace, $path);
     }
 
     /**
