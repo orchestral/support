@@ -69,11 +69,9 @@ trait Observable
             return;
         }
 
-        $className = get_called_class();
-
         $event = with(new static())->getObservableKey($event);
 
-        static::$dispatcher->listen("{$event}: {$className}", $callback);
+        static::$dispatcher->listen("{$event}: ".static::class, $callback);
     }
 
     /**
@@ -110,7 +108,7 @@ trait Observable
         }
 
         $instance = new static();
-        $className = get_called_class();
+        $className = static::class;
 
         foreach ($instance->getObservableEvents() as $event) {
             $event = $instance->getObservableKey($event);
