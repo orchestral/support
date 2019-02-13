@@ -6,6 +6,6 @@ else
     git subsplit init git@github.com:orchestral/support.git
 fi
 
-git subsplit publish --heads="3.8" src/Facades:git@github.com:orchestral/support-facades.git
-git subsplit publish --heads="3.8" src/Providers:git@github.com:orchestral/support-providers.git
-git subsplit publish --heads="3.8" src/Support:git@github.com:orchestral/support-core.git
+git subsplit publish --heads="master" src/Facades:git@github.com:orchestral/support-facades.git
+git subsplit publish --heads="master" src/Providers:git@github.com:orchestral/support-providers.git
+git subsplit publish --heads="master" src/Support:git@github.com:orchestral/support-core.git
