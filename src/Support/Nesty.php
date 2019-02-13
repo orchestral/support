@@ -42,7 +42,7 @@ class Nesty
         $defaults = $this->config['defaults'] ?? [];
         $class = $this->config['fluent'] ?? Fluent::class;
 
-        return new $class(array_merge($defaults, [
+        return new $class(\array_merge($defaults, [
             'id' => $id,
             'childs' => [],
         ]));
@@ -60,8 +60,8 @@ class Nesty
     {
         $items = [];
         $item = $this->toFluent($id);
-        $keys = array_keys($this->items);
-        $position = array_search($before, $keys);
+        $keys = \array_keys($this->items);
+        $position = \array_search($before, $keys);
 
         if ($position === false) {
             return $this->addParent($id);
@@ -92,8 +92,8 @@ class Nesty
     {
         $items = [];
         $item = $this->toFluent($id);
-        $keys = array_keys($this->items);
-        $position = array_search($after, $keys);
+        $keys = \array_keys($this->items);
+        $position = \array_search($after, $keys);
 
         if ($position === false) {
             return $this->addParent($id);
@@ -163,7 +163,7 @@ class Nesty
     {
         if ($location === '<' && count($keys = array_keys($this->items)) > 0) {
             return $this->addBefore($id, $keys[0]);
-        } elseif (preg_match('/^(<|>|\^):(.+)$/', $location, $matches) && count($matches) >= 3) {
+        } elseif (\preg_match('/^(<|>|\^):(.+)$/', $location, $matches) && count($matches) >= 3) {
             return $this->pickTraverseFromMatchedExpression($id, $matches[1], $matches[2]);
         }
 
@@ -201,9 +201,9 @@ class Nesty
      */
     public function has(string $key): bool
     {
-        $key = implode('.childs.', explode('.', $key));
+        $key = \implode('.childs.', \explode('.', $key));
 
-        return ! is_null(data_get($this->items, $key));
+        return ! \is_null(\data_get($this->items, $key));
     }
 
     /**

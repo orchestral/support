@@ -24,7 +24,7 @@ trait QueryFilter
 
         $columns = $input['columns'] ?? null;
 
-        if (is_array($columns) && $this->isColumnExcludedFromFilterable($orderBy, $columns)) {
+        if (\is_array($columns) && $this->isColumnExcludedFromFilterable($orderBy, $columns)) {
             return $query;
         }
 
@@ -66,8 +66,8 @@ trait QueryFilter
         $only = $columns['only'] ?? '';
         $except = $columns['except'] ?? '';
 
-        return (! empty($only) && ! in_array($on, (array) $only)) ||
-            (! empty($except) && in_array($on, (array) $except));
+        return (! empty($only) && ! \in_array($on, (array) $only)) ||
+            (! empty($except) && \in_array($on, (array) $except));
     }
 
     /**
@@ -81,7 +81,7 @@ trait QueryFilter
     {
         $direction = Str::upper($input['direction'] ?? '');
 
-        if (in_array($direction, ['ASC', 'DESC'])) {
+        if (\in_array($direction, ['ASC', 'DESC'])) {
             return $direction;
         }
 
@@ -99,7 +99,7 @@ trait QueryFilter
     {
         $orderBy = $input['order_by'] ?? '';
 
-        if (in_array($orderBy, ['created', 'updated', 'deleted'])) {
+        if (\in_array($orderBy, ['created', 'updated', 'deleted'])) {
             $orderBy = "{$orderBy}_at";
         }
 
@@ -143,7 +143,7 @@ trait QueryFilter
         }
 
         $this->buildWildcardForFieldUsing($query, $field, $keyword, 'orWhere');
-        list($relation, $field) = explode('.', $field, 2);
+        list($relation, $field) = \explode('.', $field, 2);
 
         return $query->orWhereHas($relation, function ($query) use ($field, $keyword) {
             $this->buildWildcardForFieldUsing($query, $field, $keyword, 'where');

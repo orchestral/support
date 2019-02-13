@@ -16,12 +16,12 @@ trait Descendible
      */
     protected function descendants(array $array, ?string $key = null)
     {
-        if (is_null($key)) {
+        if (\is_null($key)) {
             return $array;
         }
 
-        $keys = explode('.', $key);
-        $first = array_shift($keys);
+        $keys = \explode('.', $key);
+        $first = \array_shift($keys);
 
         if (! isset($array[$first])) {
             return null;
@@ -41,7 +41,7 @@ trait Descendible
     protected function resolveLastDecendant($array, array $keys): ?Fluent
     {
         $isLastDescendant = function ($array, $segment) {
-            return ! is_array($array->childs) || ! isset($array->childs[$segment]);
+            return ! \is_array($array->childs) || ! isset($array->childs[$segment]);
         };
 
         // To retrieve the array item using dot syntax, we'll iterate through

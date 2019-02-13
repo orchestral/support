@@ -24,10 +24,10 @@ trait Observable
     {
         $instance = new static();
 
-        $className = get_class($class);
+        $className = \get_class($class);
 
         foreach ($instance->getObservableEvents() as $event) {
-            if (method_exists($class, $event)) {
+            if (\method_exists($class, $event)) {
                 static::registerObservableEvent($event, "{$className}@{$event}");
             }
         }
@@ -69,7 +69,7 @@ trait Observable
             return;
         }
 
-        $event = with(new static())->getObservableKey($event);
+        $event = (new static())->getObservableKey($event);
 
         static::$dispatcher->listen("{$event}: ".static::class, $callback);
     }
@@ -88,10 +88,10 @@ trait Observable
             return true;
         }
 
-        $className = get_class($this);
+        $className = \get_class($this);
         $event = $this->getObservableKey($event);
 
-        $method = $halt ? 'until' : 'fire';
+        $method = $halt ? 'until' : 'handle';
 
         return static::$dispatcher->$method("{$event}: {$className}", $this);
     }
