@@ -41,21 +41,19 @@ class ManagerTest extends TestCase
         $this->assertEquals('taylor', $output5->name);
     }
 
-    /**
-     * @test
-     * @expectedException \InvalidArgumentException
-     */
+    /** @test */
     public function invalid_driver_should_throw_exception()
     {
+        $this->expectException('InvalidArgumentException');
+
         (new ManagerStub(m::mock('\Illuminate\Foundation\Application')))->driver('invalidDriver');
     }
 
-    /**
-     * @test
-     * @expectedException \InvalidArgumentException
-     */
+    /** @test */
     public function invalid_driver_with_dotted_should_throw_exception()
     {
+        $this->expectException('InvalidArgumentException');
+
         (new ManagerStub(m::mock('\Illuminate\Foundation\Application')))
             ->driver('foo.bar.hello');
     }

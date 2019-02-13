@@ -13,12 +13,11 @@ class MorphTest extends TestCase
         $this->assertTrue(MorphStub::connect());
     }
 
-    /**
-     * @test
-     * @expectedException \RuntimeException
-     */
+    /** @test */
     public function invalid_morph_should_throw_exception()
     {
+        $this->expectException('RuntimeException');
+
         MorphStub::invalid();
     }
 }

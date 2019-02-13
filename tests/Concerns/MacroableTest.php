@@ -21,13 +21,12 @@ class MacroableTest extends TestCase
         $this->assertEquals('foobar', $stub->foo());
     }
 
-    /**
-     * @test
-     * @expectedException \BadMethodCallException
-     * @expectedExceptionMessage Method foo does not exist.
-     */
+    /** @test */
     public function it_cant_be_executed_should_throw_exception()
     {
+        $this->expectException('BadMethodCallException');
+        $this->expectExceptionMessage('Method foo does not exist.');
+
         (new class() {
             use Macroable;
         })->foo();
