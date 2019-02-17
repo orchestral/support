@@ -113,7 +113,7 @@ trait PackageProvider
     {
         $path = (new ReflectionClass($this))->getFileName();
 
-        return realpath(dirname($path).'/../../');
+        return \realpath(\dirname($path).'/../../');
     }
 
     /**
@@ -126,8 +126,8 @@ trait PackageProvider
      */
     protected function getPackageNamespace(string $package, string $namespace): string
     {
-        if (is_null($namespace)) {
-            list(, $namespace) = explode('/', $package);
+        if (\is_null($namespace)) {
+            list(, $namespace) = \explode('/', $package);
         }
 
         return $namespace;
@@ -142,7 +142,7 @@ trait PackageProvider
      */
     protected function getAppViewPaths(string $package): array
     {
-        return array_map(function ($path) use ($package) {
+        return \array_map(function ($path) use ($package) {
             return "{$path}/packages/{$package}";
         }, $this->app->make('config')->get('view.paths', []));
     }

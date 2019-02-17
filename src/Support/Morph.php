@@ -43,6 +43,6 @@ abstract class Morph
      */
     public static function isCallable(string $method): bool
     {
-        return is_callable(static::$prefix.Str::snake($method));
+        return \is_callable(static::$prefix.Str::snake($method));
     }
 }
