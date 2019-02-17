@@ -13,12 +13,12 @@ class Collection extends BaseCollection implements Csvable, Transformable
      */
     public function toCsv(): string
     {
-        ob_start();
+        \ob_start();
 
         $stream = $this->streamCsv();
-        fclose($stream);
+        \fclose($stream);
 
-        return ob_get_clean();
+        return \ob_get_clean();
     }
 
     /**
@@ -32,12 +32,12 @@ class Collection extends BaseCollection implements Csvable, Transformable
         $enclosure = '"';
         $header = $this->resolveCsvHeader();
 
-        $stream = fopen('php://output', 'r+');
+        $stream = \fopen('php://output', 'r+');
 
-        fputcsv($stream, $header, $delimiter, $enclosure);
+        \fputcsv($stream, $header, $delimiter, $enclosure);
 
         foreach ($this->items as $key => $item) {
-            fputcsv($stream, Arr::dot($item), $delimiter, $enclosure);
+            \fputcsv($stream, Arr::dot($item), $delimiter, $enclosure);
         }
 
         return $stream;
@@ -54,7 +54,7 @@ class Collection extends BaseCollection implements Csvable, Transformable
 
         if (! $this->isEmpty()) {
             $single = $this->first();
-            $header = array_keys(Arr::dot($single));
+            $header = \array_keys(Arr::dot($single));
         }
 
         return $header;

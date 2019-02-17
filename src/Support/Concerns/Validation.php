@@ -49,8 +49,8 @@ trait Validation
         list($on, $extend) = $this->getValidationSchemasName($scenario);
 
         $this->validationScenarios = [
-            'on' => method_exists($this, $on) ? $on : null,
-            'extend' => method_exists($this, $extend) ? $extend : null,
+            'on' => \method_exists($this, $on) ? $on : null,
+            'extend' => \method_exists($this, $extend) ? $extend : null,
             'parameters' => $parameters,
         ];
 
@@ -66,7 +66,7 @@ trait Validation
      */
     final public function bindToValidation(array $bindings): self
     {
-        $this->validationBindings = array_merge($this->validationBindings, $bindings);
+        $this->validationBindings = \array_merge($this->validationBindings, $bindings);
 
         return $this;
     }
@@ -82,7 +82,7 @@ trait Validation
      */
     final public function runValidation(array $input, $events = [], array $phrases = []): Validator
     {
-        if (is_null($this->validationScenarios)) {
+        if (\is_null($this->validationScenarios)) {
             $this->onValidationScenario('any');
         }
 
@@ -122,7 +122,7 @@ trait Validation
      */
     final protected function runOnScenario(): void
     {
-        if (! is_null($method = $this->validationScenarios['on'])) {
+        if (! \is_null($method = $this->validationScenarios['on'])) {
             $this->{$method}(...$this->validationScenarios['parameters']);
         }
     }
@@ -136,7 +136,7 @@ trait Validation
      */
     final protected function runExtendedScenario(Validator $validationResolver): void
     {
-        if (! is_null($method = $this->validationScenarios['extend'])) {
+        if (! \is_null($method = $this->validationScenarios['extend'])) {
             $this->{$method}($validationResolver);
         }
     }
@@ -151,15 +151,15 @@ trait Validation
      */
     final protected function runValidationEvents($events, array $phrases): array
     {
-        is_array($events) || $events = (array) $events;
+        \is_array($events) || $events = (array) $events;
 
         // Merge all the events.
-        $events = array_merge($this->getValidationEvents(), $events);
+        $events = \array_merge($this->getValidationEvents(), $events);
 
         // Convert rules array to Fluent, in order to pass it by references
         // in all event listening to this validation.
         $rules = new Fluent($this->getBindedRules());
-        $phrases = new Fluent(array_merge($this->getValidationPhrases(), $phrases));
+        $phrases = new Fluent(\array_merge($this->getValidationPhrases(), $phrases));
 
         foreach ((array) $events as $event) {
             $this->validationDispatcher->dispatch($event, [&$rules, &$phrases]);
@@ -210,8 +210,8 @@ trait Validation
      */
     protected function getValidationSchemasName(string $scenario): array
     {
-        $on = 'on'.ucfirst($scenario);
-        $extend = 'extend'.ucfirst($scenario);
+        $on = 'on'.\ucfirst($scenario);
+        $extend = 'extend'.\ucfirst($scenario);
 
         return [$on, $extend];
     }

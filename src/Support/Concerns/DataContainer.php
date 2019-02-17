@@ -42,8 +42,8 @@ trait DataContainer
     {
         $value = Arr::get($this->items, $key);
 
-        if (is_null($value)) {
-            return value($default);
+        if (\is_null($value)) {
+            return \value($default);
         }
 
         return $value;
@@ -129,7 +129,7 @@ trait DataContainer
     {
         $items = $this->items;
 
-        array_push($this->removedItems, $key);
+        \array_push($this->removedItems, $key);
         Arr::forget($items, $key);
 
         $this->items = $items;

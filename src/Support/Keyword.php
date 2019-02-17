@@ -27,8 +27,8 @@ class Keyword
     {
         $this->value = $value;
 
-        if (is_string($value)) {
-            $this->slug = trim(Str::slug($value, '-'));
+        if (\is_string($value)) {
+            $this->slug = \trim(Str::slug($value, '-'));
         }
     }
 
@@ -77,11 +77,11 @@ class Keyword
      */
     public function searchIn(array $items = [])
     {
-        if (is_null($slug = $this->slug)) {
-            return array_search($this->value, $items);
+        if (\is_null($slug = $this->slug)) {
+            return \array_search($this->value, $items);
         }
 
-        return array_search($slug, $items);
+        return \array_search($slug, $items);
     }
 
     /**
@@ -93,7 +93,7 @@ class Keyword
      */
     public function hasIn(array $items = [])
     {
-        if (is_null($slug = $this->slug)) {
+        if (\is_null($slug = $this->slug)) {
             return isset($items[$this->value]);
         }
 
