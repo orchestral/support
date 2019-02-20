@@ -166,8 +166,7 @@ trait Validation
         }
 
         return [
-            $rules->getAttributes(),
-            $phrases->getAttributes(),
+            $rules->getAttributes(), $phrases->getAttributes(),
         ];
     }
 
