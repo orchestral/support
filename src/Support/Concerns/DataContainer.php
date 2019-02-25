@@ -82,7 +82,7 @@ trait DataContainer
      */
     public function set(string $key, $value = null)
     {
-        return Arr::set($this->items, $key, value($value));
+        return Arr::set($this->items, $key, \value($value));
     }
 
     /**
@@ -115,7 +115,7 @@ trait DataContainer
      */
     public function has(string $key): bool
     {
-        return ! is_null($this->get($key));
+        return ! \is_null($this->get($key));
     }
 
     /**

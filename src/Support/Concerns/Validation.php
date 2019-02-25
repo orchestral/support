@@ -46,13 +46,9 @@ trait Validation
      */
     final public function onValidationScenario(string $scenario, array $parameters = []): self
     {
-        list($on, $extend) = $this->getValidationSchemasName($scenario);
+        [$on, $extend] = $this->getValidationSchemasName($scenario);
 
-        $this->validationScenarios = [
-            'on' => \method_exists($this, $on) ? $on : null,
-            'extend' => \method_exists($this, $extend) ? $extend : null,
-            'parameters' => $parameters,
-        ];
+        $this->validationScenarios = \compact('on', 'extend', 'parameters');
 
         return $this;
     }
@@ -88,13 +84,11 @@ trait Validation
 
         $this->runOnScenario();
 
-        list($rules, $phrases) = $this->runValidationEvents($events, $phrases);
+        [$rules, $phrases] = $this->runValidationEvents($events, $phrases);
 
-        $validationResolver = $this->validationFactory->make($input, $rules, $phrases);
-
-        $this->runExtendedScenario($validationResolver);
-
-        return $validationResolver;
+        return \tap($this->validationFactory->make($input, $rules, $phrases), function ($validator) {
+            $this->runExtendedScenario($validator);
+        });
     }
 
     /**
@@ -122,23 +116,27 @@ trait Validation
      */
     final protected function runOnScenario(): void
     {
-        if (! \is_null($method = $this->validationScenarios['on'])) {
-            $this->{$method}(...$this->validationScenarios['parameters']);
+        if (\is_null($method = $this->validationScenarios['on'])) {
+            return;
         }
+
+        $this->{$method}(...$this->validationScenarios['parameters']);
     }
 
     /**
      * Run queued extend scenario.
      *
-     * @param  \Illuminate\Contracts\Validation\Validator  $validationResolver
+     * @param  \Illuminate\Contracts\Validation\Validator  $validator
      *
      * @return void
      */
-    final protected function runExtendedScenario(Validator $validationResolver): void
+    final protected function runExtendedScenario(Validator $validator): void
     {
-        if (! \is_null($method = $this->validationScenarios['extend'])) {
-            $this->{$method}($validationResolver);
+        if (\is_null($method = $this->validationScenarios['extend'])) {
+            return;
         }
+
+        $this->{$method}($validator);
     }
 
     /**
@@ -209,9 +207,14 @@ trait Validation
      */
     protected function getValidationSchemasName(string $scenario): array
     {
-        $on = 'on'.\ucfirst($scenario);
-        $extend = 'extend'.\ucfirst($scenario);
+        $scenario = \ucfirst($scenario);
 
-        return [$on, $extend];
+        $on = "on{$scenario}";
+        $extend = "extend{$scenario}";
+
+        return [
+            \method_exists($this, $on) ? $on : null,
+            \method_exists($this, $extend) ? $extend : null,
+        ];
     }
 }
