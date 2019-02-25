@@ -4,6 +4,9 @@ namespace Orchestra\Support;
 
 use RuntimeException;
 
+/**
+ * @deprecated v3.8.0
+ */
 abstract class Morph
 {
     /**
