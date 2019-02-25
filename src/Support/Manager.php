@@ -35,7 +35,7 @@ abstract class Manager extends BaseManager
      */
     protected function createDriver($driverName)
     {
-        list($driver, $name) = $this->getDriverName($driverName);
+        [$driver, $name] = $this->getDriverName($driverName);
 
         $method = 'create'.Str::studly($driver).'Driver';
 
@@ -61,7 +61,7 @@ abstract class Manager extends BaseManager
      */
     protected function callCustomCreator($driverName)
     {
-        list($driver, $name) = $this->getDriverName($driverName);
+        [$driver, $name] = $this->getDriverName($driverName);
 
         return $this->customCreators[$driver]($this->app, $name);
     }
@@ -79,7 +79,7 @@ abstract class Manager extends BaseManager
             $driverName = "{$driverName}.default";
         }
 
-        list($driver, $name) = \explode('.', $driverName, 2);
+        [$driver, $name] = \explode('.', $driverName, 2);
 
         $this->checkNameIsNotBlacklisted($name);
 

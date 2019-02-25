@@ -143,7 +143,7 @@ trait QueryFilter
         }
 
         $this->buildWildcardForFieldUsing($query, $field, $keyword, 'orWhere');
-        list($relation, $field) = \explode('.', $field, 2);
+        [$relation, $field] = \explode('.', $field, 2);
 
         return $query->orWhereHas($relation, function ($query) use ($field, $keyword) {
             $this->buildWildcardForFieldUsing($query, $field, $keyword, 'where');
