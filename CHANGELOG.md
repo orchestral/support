@@ -2,6 +2,27 @@
 
 This changelog references the relevant changes (bug and security fixes) done to `orchestra/support`.
 
+## 3.8.0
+
+Released: 2019-12-27
+
+### Changes
+
+* Update support for Laravel Framework v5.8.
+* Update upport for `danielstjules/stringy` to `^3.0`.
+
+### Removed
+
+* Remove deprecated traits:
+    - `Orchestra\Support\Traits\DataContainer`
+    - `Orchestra\Support\Traits\Descendible`
+    - `Orchestra\Support\Traits\Marcoable`
+    - `Orchestra\Support\Traits\Observable`
+    - `Orchestra\Support\Traits\QueryFilter`
+    - `Orchestra\Support\Traits\Testing\MockEloquentConnection`
+    - `Orchestra\Support\Traits\Uploadable`
+    - `Orchestra\Support\Traits\Validation`
+
 ## 3.7.1
 
 Released: 2019-12-19
@@ -48,53 +69,3 @@ Released: 2018-05-06
 ### Changes
 
 * Update support for Laravel Framework v5.6.
-
-## 3.5.4
-
-Released: 2018-04-25
-
-### Changes
-
-* Allow to stream conversion to CSV when using `Orchestra\Support\Collection::toCsv()`.
-* Ensure that `Illuminate\Contracts\Pagination\Paginator` can still be transform and serialize with pagination data intact.
-
-## 3.5.3
-
-Released: 2018-03-27
-
-### Added
-
-* Added `Orchestra\Support\Collection::streamCsv()` method.
-
-### Fixes
-
-* Fixes retrieving `$default` from `Orchestra\Support\Traits\DataContainer::get()` method.
-* Fixes fetching `Orchestra\Support\Traits\DataContainer::allWithRemoved()` method.
-
-## 3.5.2
-
-Released: 2017-11-21
-
-### Changes
-
-* Simplify `Orchestra\Support\Transformer`.
-
-## 3.5.1
-
-Released: 2017-10-30
-
-### Changes
-
-* Allows `Orchestra\Support\Traits\QueryFilter` to access `Illuminate\Database\Query\Expression` to exclude expression with `.` to be converted to relationship `whereHas` query.
-
-## 3.5.0
-
-Released: 2017-09-03
-
-### Changes
-
-* Update support for Laravel Framework v5.5.
-
-### Removed
-
-* Remove deprecated `Orchestra\Support\Contracts\CsvableInterface`, replaced with `Orchestra\Support\Contracts\Csvable`.

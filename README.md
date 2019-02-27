@@ -8,7 +8,7 @@ Support Component includes a basic set of classes required by Orchestra Platform
 [![Total Downloads](https://poser.pugx.org/orchestra/support/downloads)](https://packagist.org/packages/orchestra/support)
 [![Latest Unstable Version](https://poser.pugx.org/orchestra/support/v/unstable)](//packagist.org/packages/orchestra/support)
 [![License](https://poser.pugx.org/orchestra/support/license)](https://packagist.org/packages/orchestra/support)
-[![Coverage Status](https://coveralls.io/repos/github/orchestral/support/badge.svg?branch=master)](https://coveralls.io/github/orchestral/support?branch=master)
+[![Coverage Status](https://coveralls.io/repos/github/orchestral/support/badge.svg?branch=3.8)](https://coveralls.io/github/orchestral/support?branch=3.8)
 
 ## Table of Content
 
@@ -23,7 +23,7 @@ Laravel    | Support
  5.5.x     | 3.5.x
  5.6.x     | 3.6.x
  5.7.x     | 3.7.x
- 5.8.x     | 3.8.x@dev
+ 5.8.x     | 3.8.x
 
 ## Installation
 
