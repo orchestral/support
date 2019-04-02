@@ -2,6 +2,7 @@
 
 namespace Orchestra\Support\Providers;
 
+use Illuminate\Foundation\Events\DiscoverEvents;
 use Illuminate\Support\ServiceProvider as BaseServiceProvider;
 use Illuminate\Contracts\Events\Dispatcher as DispatcherContract;
 

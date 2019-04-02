@@ -3,6 +3,7 @@
 composer.lock
 
 # Subsplit
+/.subsplit
 /.subsplit/*
 
 # PHPUnit
