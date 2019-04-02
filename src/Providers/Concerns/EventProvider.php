@@ -15,8 +15,13 @@ trait EventProvider
      */
     public function registerEventListeners(DispatcherContract $events): void
     {
-        foreach ($this->listen as $event => $listeners) {
-            foreach ($listeners as $listener) {
+        $events = \array_merge_recursive(
+            (\method_exists($this, 'discoveredEvents') ? $this->discoveredEvents() : []),
+            $this->listens()
+        );
+
+        foreach ($events as $event => $listeners) {
+            foreach (\array_unique($listeners) as $listener) {
                 $events->listen($event, $listener);
             }
         }
