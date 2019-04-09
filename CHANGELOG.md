@@ -2,6 +2,18 @@
 
 This changelog references the relevant changes (bug and security fixes) done to `orchestra/support`.
 
+## 3.8.1
+
+Released: 2019-04-09
+
+### Added
+
+* Added `Orchestra\Support\Providers\Concerns\DiscoverableEventProvider`.
+
+### Changes
+
+* Update `Orchestra\Support\Providers\EventServiceProvider` to use `DiscoverableEventProvider`.
+
 ## 3.8.0
 
 Released: 2019-12-27
