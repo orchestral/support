@@ -9,11 +9,11 @@ trait EventProvider
     /**
      * Register the application's event listeners.
      *
-     * @param  \Illuminate\Contracts\Events\Dispatcher  $events
+     * @param  \Illuminate\Contracts\Events\Dispatcher  $dispatcher
      *
      * @return void
      */
-    public function registerEventListeners(DispatcherContract $events): void
+    public function registerEventListeners(DispatcherContract $dispatcher): void
     {
         $events = \array_merge_recursive(
             (\method_exists($this, 'discoveredEvents') ? $this->discoveredEvents() : []),
@@ -22,12 +22,12 @@ trait EventProvider
 
         foreach ($events as $event => $listeners) {
             foreach (\array_unique($listeners) as $listener) {
-                $events->listen($event, $listener);
+                $dispatcher->listen($event, $listener);
             }
         }
 
         foreach ($this->subscribe as $subscriber) {
-            $events->subscribe($subscriber);
+            $dispatcher->subscribe($subscriber);
         }
     }
 
