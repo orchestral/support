@@ -18,11 +18,11 @@
     },
     "require": {
         "php": ">=7.2",
-        "illuminate/support": "~5.9.0"
+        "illuminate/support": "dev-master"
     },
     "extra": {
         "branch-alias": {
-            "dev-master": "3.9-dev"
+            "dev-master": "3.10-dev"
         }
     },
     "config": {
