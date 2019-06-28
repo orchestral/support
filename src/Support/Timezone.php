@@ -603,7 +603,7 @@ class Timezone
     }
 
     /**
-     * Timezones by given hour.
+     * Timezones by given UTC hour.
      *
      * @return \Illuminate\Support\Collection
      */
