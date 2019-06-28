@@ -583,23 +583,26 @@ class Timezone
     /**
      * Timezones by now.
      *
+     * @param \DateTimeZone|string|null $timezone
+     *
      * @return \Illuminate\Support\Collection
      */
-    public static function now(): Collection
+    public static function now($timezone = null): Collection
     {
-        return static::on(Carbon::now()->hour);
+        return static::on(Carbon::now($timezone)->timezone('UTC')->hour);
     }
 
     /**
      * Timezones offset by hours.
      *
      * @param int $hour
+     * @param \DateTimeZone|string|null $timezone
      *
      * @return \Illuminate\Support\Collection
      */
-    public static function at(int $hour): Collection
+    public static function at(int $hour, $timezone = null): Collection
     {
-        return static::on(Carbon::now()->subHours($hour)->hour);
+        return static::on(Carbon::now($timezone)->subHours($hour)->timezone('UTC')->hour);
     }
 
     /**
