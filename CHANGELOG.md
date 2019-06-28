@@ -2,6 +2,14 @@
 
 This changelog references the relevant changes (bug and security fixes) done to `orchestra/support`.
 
+## 3.8.2
+
+Released: 2019-06-28
+
+### Added
+
+* Added `Orchestra\Support\Timezone`.
+
 ## 3.8.1
 
 Released: 2019-04-09
