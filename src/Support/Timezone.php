@@ -581,7 +581,7 @@ class Timezone
     ];
 
     /**
-     * Timezone should be scheduled by now.
+     * Timezones by now.
      *
      * @return \Illuminate\Support\Collection
      */
@@ -591,7 +591,7 @@ class Timezone
     }
 
     /**
-     * Timezone should be scheduled by offset by hours.
+     * Timezones offset by hours.
      *
      * @param int $hour
      *
@@ -603,7 +603,7 @@ class Timezone
     }
 
     /**
-     * Timezone should be scheduled by given hour.
+     * Timezones by given hour.
      *
      * @return \Illuminate\Support\Collection
      */
