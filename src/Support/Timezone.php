@@ -583,9 +583,11 @@ class Timezone
     /**
      * Timezones by now.
      *
+     * @param \DateTimeZone|string|null $timezone
+     *
      * @return \Illuminate\Support\Collection
      */
-    public static function now(): Collection
+    public static function now($timezone = null): Collection
     {
         return static::on(Carbon::now()->hour);
     }
@@ -594,10 +596,11 @@ class Timezone
      * Timezones offset by hours.
      *
      * @param int $hour
+     * @param \DateTimeZone|string|null $timezone
      *
      * @return \Illuminate\Support\Collection
      */
-    public static function at(int $hour): Collection
+    public static function at(int $hour, $timezone = null): Collection
     {
         return static::on(Carbon::now()->subHours($hour)->hour);
     }
@@ -605,24 +608,40 @@ class Timezone
     /**
      * Timezones by given UTC hour.
      *
+     * @param int $hourOnUtc
+     *
      * @return \Illuminate\Support\Collection
      */
-    public static function on(int $hour): Collection
+    public static function midnight(int $hourOnUtc): Collection
     {
         $where = ['UTC', 'GMT'];
 
-        if ($hour > 12) {
-            $offsetHour = \str_pad((24 - $hour), 2, '0', STR_PAD_LEFT);
-            $beforeOffsetHour = \str_pad(((24 - $hour) - 1), 2, '0', STR_PAD_LEFT);
+        if ($hourOnUtc > 12) {
+            $offsetHour = \str_pad((24 - $hourOnUtc), 2, '0', STR_PAD_LEFT);
+            $beforeOffsetHour = \str_pad(((24 - $hourOnUtc) - 1), 2, '0', STR_PAD_LEFT);
 
             $where = ["+{$offsetHour}00", "+{$beforeOffsetHour}30", "+{$beforeOffsetHour}45"];
-        } elseif ($hour > 0) {
-            $offsetHour = \str_pad($hour, 2, '0', STR_PAD_LEFT);
+        } elseif ($hourOnUtc > 0) {
+            $offsetHour = \str_pad($hourOnUtc, 2, '0', STR_PAD_LEFT);
 
             $where = ["-{$offsetHour}00", "-{$offsetHour}30", "-{$offsetHour}45"];
         }
 
         return static::whereIn('offset', $where)->pluck('code');
+    }
+
+    /**
+     * Timezones by given UTC hour.
+     *
+     * @param  int  $hourOnUtc
+     *
+     * @return \Illuminate\Support\Collection
+     *
+     * @see static::midnight()
+     */
+    public static function on(int $hourOnUtc): Collection
+    {
+        return static::midnight($hourOnUtc);
     }
 
     /**
