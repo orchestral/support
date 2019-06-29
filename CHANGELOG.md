@@ -2,6 +2,14 @@
 
 This changelog references the relevant changes (bug and security fixes) done to `orchestra/support`.
 
+## 3.8.3
+
+Released: 2019-06-29
+
+### Added
+
+* Added `Orchestra\Support\Timezone::whereHourInUtc()` helper method as replacement to `Timezone::on()`.
+
 ## 3.8.2
 
 Released: 2019-06-28
