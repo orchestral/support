@@ -608,21 +608,21 @@ class Timezone
     /**
      * Timezones by given UTC hour.
      *
-     * @param int $hourOnUtc
+     * @param int $hourInUtc
      *
      * @return \Illuminate\Support\Collection
      */
-    public static function midnight(int $hourOnUtc): Collection
+    public static function midnight(int $hourInUtc): Collection
     {
         $where = ['UTC', 'GMT'];
 
-        if ($hourOnUtc > 12) {
-            $offsetHour = \str_pad((24 - $hourOnUtc), 2, '0', STR_PAD_LEFT);
-            $beforeOffsetHour = \str_pad(((24 - $hourOnUtc) - 1), 2, '0', STR_PAD_LEFT);
+        if ($hourInUtc > 12) {
+            $offsetHour = \str_pad((24 - $hourInUtc), 2, '0', STR_PAD_LEFT);
+            $beforeOffsetHour = \str_pad(((24 - $hourInUtc) - 1), 2, '0', STR_PAD_LEFT);
 
             $where = ["+{$offsetHour}00", "+{$beforeOffsetHour}30", "+{$beforeOffsetHour}45"];
-        } elseif ($hourOnUtc > 0) {
-            $offsetHour = \str_pad($hourOnUtc, 2, '0', STR_PAD_LEFT);
+        } elseif ($hourInUtc > 0) {
+            $offsetHour = \str_pad($hourInUtc, 2, '0', STR_PAD_LEFT);
 
             $where = ["-{$offsetHour}00", "-{$offsetHour}30", "-{$offsetHour}45"];
         }
@@ -633,15 +633,15 @@ class Timezone
     /**
      * Timezones by given UTC hour.
      *
-     * @param  int  $hourOnUtc
+     * @param  int  $hourInUtc
      *
      * @return \Illuminate\Support\Collection
      *
      * @see static::midnight()
      */
-    public static function on(int $hourOnUtc): Collection
+    public static function on(int $hourInUtc): Collection
     {
-        return static::midnight($hourOnUtc);
+        return static::midnight($hourInUtc);
     }
 
     /**
