@@ -583,7 +583,7 @@ class Timezone
     /**
      * Timezones by now.
      *
-     * @param \DateTimeZone|string|null $timezone
+     * @param  \DateTimeZone|string|null  $timezone
      *
      * @return \Illuminate\Support\Collection
      */
@@ -595,8 +595,8 @@ class Timezone
     /**
      * Timezones offset by hours.
      *
-     * @param int $hour
-     * @param \DateTimeZone|string|null $timezone
+     * @param  int  $hour
+     * @param  \DateTimeZone|string|null  $timezone
      *
      * @return \Illuminate\Support\Collection
      */
@@ -608,7 +608,7 @@ class Timezone
     /**
      * Timezones by given UTC hour.
      *
-     * @param int $hourInUtc
+     * @param  int  $hourInUtc
      *
      * @return \Illuminate\Support\Collection
      */
