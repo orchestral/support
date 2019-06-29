@@ -581,7 +581,7 @@ class Timezone
     ];
 
     /**
-     * Timezones by now.
+     * Timezones midnight by now.
      *
      * @param  \DateTimeZone|string|null  $timezone
      *
