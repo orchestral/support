@@ -581,51 +581,65 @@ class Timezone
     ];
 
     /**
-     * Timezones by now.
-     *
-     * @param \DateTimeZone|string|null $timezone
+     * Timezones midnight by now.
      *
      * @return \Illuminate\Support\Collection
      */
-    public static function now($timezone = null): Collection
+    public static function now(): Collection
     {
-        return static::on(Carbon::now($timezone)->timezone('UTC')->hour);
+        return static::whereHourInUtc(Carbon::now()->hour);
     }
 
     /**
      * Timezones offset by hours.
      *
-     * @param int $hour
-     * @param \DateTimeZone|string|null $timezone
+     * @param  int  $hour
+     * @param  \DateTimeZone|string|null  $timezone
      *
      * @return \Illuminate\Support\Collection
      */
     public static function at(int $hour, $timezone = null): Collection
     {
-        return static::on(Carbon::now($timezone)->subHours($hour)->timezone('UTC')->hour);
+        return static::whereHourInUtc(Carbon::now($timezone)->subHours($hour)->timezone('UTC')->hour);
     }
 
     /**
-     * Timezones by given hour.
+     * Timezones by given UTC hour.
+     *
+     * @param  int  $hourInUtc
      *
      * @return \Illuminate\Support\Collection
      */
-    public static function on(int $hour): Collection
+    public static function whereHourInUtc(int $hourInUtc): Collection
     {
         $where = ['UTC', 'GMT'];
 
-        if ($hour > 12) {
-            $offsetHour = \str_pad((24 - $hour), 2, '0', STR_PAD_LEFT);
-            $beforeOffsetHour = \str_pad(((24 - $hour) - 1), 2, '0', STR_PAD_LEFT);
+        if ($hourInUtc > 12) {
+            $offsetHour = \str_pad((24 - $hourInUtc), 2, '0', STR_PAD_LEFT);
+            $beforeOffsetHour = \str_pad(((24 - $hourInUtc) - 1), 2, '0', STR_PAD_LEFT);
 
             $where = ["+{$offsetHour}00", "+{$beforeOffsetHour}30", "+{$beforeOffsetHour}45"];
-        } elseif ($hour > 0) {
-            $offsetHour = \str_pad($hour, 2, '0', STR_PAD_LEFT);
+        } elseif ($hourInUtc > 0) {
+            $offsetHour = \str_pad($hourInUtc, 2, '0', STR_PAD_LEFT);
 
             $where = ["-{$offsetHour}00", "-{$offsetHour}30", "-{$offsetHour}45"];
         }
 
         return static::whereIn('offset', $where)->pluck('code');
+    }
+
+    /**
+     * Timezones by given UTC hour.
+     *
+     * @param  int  $hourInUtc
+     *
+     * @return \Illuminate\Support\Collection
+     *
+     * @see static::midnight()
+     */
+    public static function on(int $hourInUtc): Collection
+    {
+        return static::whereHourInUtc($hourInUtc);
     }
 
     /**
