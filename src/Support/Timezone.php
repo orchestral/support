@@ -589,7 +589,7 @@ class Timezone
      */
     public static function now($timezone = null): Collection
     {
-        return static::midnight(Carbon::now()->hour);
+        return static::whereHourInUtc(Carbon::now()->hour);
     }
 
     /**
@@ -602,7 +602,7 @@ class Timezone
      */
     public static function at(int $hour, $timezone = null): Collection
     {
-        return static::midnight(Carbon::now()->subHours($hour)->hour);
+        return static::whereHourInUtc(Carbon::now()->subHours($hour)->hour);
     }
 
     /**
@@ -612,7 +612,7 @@ class Timezone
      *
      * @return \Illuminate\Support\Collection
      */
-    public static function midnight(int $hourInUtc): Collection
+    public static function whereHourInUtc(int $hourInUtc): Collection
     {
         $where = ['UTC', 'GMT'];
 
@@ -641,7 +641,7 @@ class Timezone
      */
     public static function on(int $hourInUtc): Collection
     {
-        return static::midnight($hourInUtc);
+        return static::whereHourInUtc($hourInUtc);
     }
 
     /**
