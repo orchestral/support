@@ -589,7 +589,7 @@ class Timezone
      */
     public static function now($timezone = null): Collection
     {
-        return static::on(Carbon::now()->hour);
+        return static::midnight(Carbon::now()->hour);
     }
 
     /**
@@ -602,7 +602,7 @@ class Timezone
      */
     public static function at(int $hour, $timezone = null): Collection
     {
-        return static::on(Carbon::now()->subHours($hour)->hour);
+        return static::midnight(Carbon::now()->subHours($hour)->hour);
     }
 
     /**
