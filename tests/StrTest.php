@@ -96,4 +96,14 @@ class StrTest extends TestCase
         $this->assertEquals('Taylor', Str::title('taylor'));
         $this->assertEquals('Άχιστη', Str::title('άχιστη'));
     }
+
+    /** @test */
+    public function it_can_validate_column_name()
+    {
+        $this->assertTrue(Str::validateColumnName('email'));
+        $this->assertTrue(Str::validateColumnName(str_pad('email', 64, 'x')));
+
+        $this->assertFalse(Str::validateColumnName('email->"%27))%23injectedSQL'));
+        $this->assertFalse(Str::validateColumnName(str_pad('email', 65, 'x')));
+    }
 }

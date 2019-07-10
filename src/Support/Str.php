@@ -8,6 +8,20 @@ use Illuminate\Support\Str as BaseStr;
 class Str extends BaseStr
 {
     /**
+     * Based on maximum column name length.
+     *
+     * @var int
+     */
+    public const MAX_COLUMN_NAME_LENGTH = 64;
+    /**
+     * Column names are alphanumeric strings that can contain
+     * underscores (`_`) but can't start with a number.
+     *
+     * @var string
+     */
+    private const VALID_COLUMN_NAME_REGEX = "/^(?![0-9])[A-Za-z0-9_-]*$/";
+
+    /**
      * Convert slug type text to human readable text.
      *
      * @param  string  $text
@@ -73,6 +87,19 @@ class Str extends BaseStr
         }
 
         return [\str_replace($wildcard, $replacement, $text)];
+    }
+
+    public static function validateColumnName(string $column): bool
+    {
+        if (\strlen($column) > self::MAX_COLUMN_NAME_LENGTH) {
+            return false;
+        }
+
+        if (! \preg_match(self::VALID_COLUMN_NAME_REGEX, $column)) {
+            return false;
+        }
+
+        return true;
     }
 
     /**
