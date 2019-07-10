@@ -53,32 +53,6 @@ class Str extends BaseStr
     }
 
     /**
-     * Prepare bindings for text replacement.
-     *
-     * @param  array   $replacements
-     * @param  string  $prefix
-     * @param  string  $suffix
-     *
-     * @return array
-     */
-    protected static function prepareBinding(
-        array $replacements = [],
-        string $prefix = '{',
-        string $suffix = '}'
-    ): array {
-        $replacements = Arr::dot($replacements);
-        $bindings = [];
-
-        foreach ($replacements as $key => $value) {
-            if (\is_scalar($value)) {
-                $bindings["{$prefix}{$key}{$suffix}"] = $value;
-            }
-        }
-
-        return $bindings;
-    }
-
-    /**
      * Convert basic string to searchable result.
      *
      * @param  string  $text
@@ -153,5 +127,31 @@ class Str extends BaseStr
         }
 
         return $data;
+    }
+
+    /**
+     * Prepare bindings for text replacement.
+     *
+     * @param  array   $replacements
+     * @param  string  $prefix
+     * @param  string  $suffix
+     *
+     * @return array
+     */
+    protected static function prepareBinding(
+        array $replacements = [],
+        string $prefix = '{',
+        string $suffix = '}'
+    ): array {
+        $replacements = Arr::dot($replacements);
+        $bindings = [];
+
+        foreach ($replacements as $key => $value) {
+            if (\is_scalar($value)) {
+                $bindings["{$prefix}{$key}{$suffix}"] = $value;
+            }
+        }
+
+        return $bindings;
     }
 }
