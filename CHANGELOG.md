@@ -2,6 +2,14 @@
 
 This changelog references the relevant changes (bug and security fixes) done to `orchestra/support`.
 
+## 3.8.4
+
+Released: 2019-07-14
+
+### Added
+
+* Added `Orchestra\Support\Str::validateColumnName()`.
+
 ## 3.8.3
 
 Released: 2019-06-29
