@@ -583,11 +583,9 @@ class Timezone
     /**
      * Timezones midnight by now.
      *
-     * @param  \DateTimeZone|string|null  $timezone
-     *
      * @return \Illuminate\Support\Collection
      */
-    public static function now($timezone = null): Collection
+    public static function now(): Collection
     {
         return static::whereHourInUtc(Carbon::now()->hour);
     }
@@ -602,7 +600,7 @@ class Timezone
      */
     public static function at(int $hour, $timezone = null): Collection
     {
-        return static::whereHourInUtc(Carbon::now()->subHours($hour)->hour);
+        return static::whereHourInUtc(Carbon::now($timezone)->subHours($hour)->timezone('UTC')->hour);
     }
 
     /**
