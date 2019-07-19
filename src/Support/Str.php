@@ -89,9 +89,16 @@ class Str extends BaseStr
         return [\str_replace($wildcard, $replacement, $text)];
     }
 
-    public static function validateColumnName(string $column): bool
+    /**
+     * Validate column name.
+     *
+     * @param  string|null  $column
+     *
+     * @return bool
+     */
+    public static function validateColumnName(?string $column): bool
     {
-        if (\strlen($column) > self::MAX_COLUMN_NAME_LENGTH) {
+        if (empty($column) || \strlen($column) > self::MAX_COLUMN_NAME_LENGTH) {
             return false;
         }
 
