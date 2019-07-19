@@ -92,7 +92,7 @@ class Str extends BaseStr
     /**
      * Validate column name.
      *
-     * @param  string  $column
+     * @param  string|null  $column
      *
      * @return bool
      */
