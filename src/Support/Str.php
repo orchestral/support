@@ -98,7 +98,7 @@ class Str extends BaseStr
      */
     public static function validateColumnName(?string $column): bool
     {
-        if (\strlen($column) > self::MAX_COLUMN_NAME_LENGTH) {
+        if (empty($column) || \strlen($column) > self::MAX_COLUMN_NAME_LENGTH) {
             return false;
         }
 
