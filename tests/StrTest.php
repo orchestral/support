@@ -105,5 +105,6 @@ class StrTest extends TestCase
 
         $this->assertFalse(Str::validateColumnName('email->"%27))%23injectedSQL'));
         $this->assertFalse(Str::validateColumnName(str_pad('email', 65, 'x')));
+        $this->assertFalse(Str::validateColumnName(null));
     }
 }

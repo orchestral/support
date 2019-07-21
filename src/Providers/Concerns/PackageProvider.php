@@ -142,7 +142,7 @@ trait PackageProvider
      */
     protected function getAppViewPaths(string $package): array
     {
-        return \array_map(function ($path) use ($package) {
+        return \array_map(static function ($path) use ($package) {
             return "{$path}/packages/{$package}";
         }, $this->app->make('config')->get('view.paths', []));
     }
