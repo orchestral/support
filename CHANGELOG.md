@@ -2,6 +2,15 @@
 
 This changelog references the relevant changes (bug and security fixes) done to `orchestra/support`.
 
+## 3.8.5
+
+Released: 2019-07-24
+
+### Fixes
+
+* Fixed `Orchestra\Support\Str::validateColumnName()` to return `false` when given `null` or empty string.
+* Fixes `$timezone` parameter usage when using `Orchestra\Support\Timezone`.
+
 ## 3.8.4
 
 Released: 2019-07-14
