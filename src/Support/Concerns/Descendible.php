@@ -40,7 +40,7 @@ trait Descendible
      */
     protected function resolveLastDecendant($array, array $keys): ?Fluent
     {
-        $isLastDescendant = function ($array, $segment) {
+        $isLastDescendant = static function ($array, $segment) {
             return ! \is_array($array->childs) || ! isset($array->childs[$segment]);
         };
 

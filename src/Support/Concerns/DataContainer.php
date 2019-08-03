@@ -40,13 +40,7 @@ trait DataContainer
      */
     public function get(string $key, $default = null)
     {
-        $value = Arr::get($this->items, $key);
-
-        if (\is_null($value)) {
-            return \value($default);
-        }
-
-        return $value;
+        return Arr::get($this->items, $key, $default);
     }
 
     /**

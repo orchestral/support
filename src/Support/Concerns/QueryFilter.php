@@ -162,7 +162,7 @@ trait QueryFilter
      */
     protected function buildWildcardForFieldUsing($query, string $field, array $keyword = [], string $group = 'where')
     {
-        $callback = function ($query) use ($field, $keyword) {
+        $callback = static function ($query) use ($field, $keyword) {
             foreach ($keyword as $key) {
                 $query->orWhere($field, 'LIKE', $key);
             }

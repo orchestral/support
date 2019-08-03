@@ -2,17 +2,11 @@
 
 namespace Orchestra\Support\Providers;
 
+use Illuminate\Contracts\Support\DeferrableProvider;
 use Illuminate\Support\ServiceProvider as BaseServiceProvider;
 
-abstract class CommandServiceProvider extends BaseServiceProvider
+abstract class CommandServiceProvider extends BaseServiceProvider implements DeferrableProvider
 {
-    /**
-     * Indicates if loading of the provider is deferred.
-     *
-     * @var bool
-     */
-    protected $defer = true;
-
     /**
      * The commands to be registered.
      *
@@ -34,13 +28,13 @@ abstract class CommandServiceProvider extends BaseServiceProvider
      */
     public function register()
     {
-        foreach (array_keys($this->commands) as $command) {
+        foreach (\array_keys($this->commands) as $command) {
             $method = "register{$command}Command";
 
             $this->{$method}();
         }
 
-        $this->commands(array_values($this->commands));
+        $this->commands(\array_values($this->commands));
     }
 
     /**
@@ -50,6 +44,6 @@ abstract class CommandServiceProvider extends BaseServiceProvider
      */
     public function provides()
     {
-        return array_merge(array_values($this->commands), $this->provides);
+        return \array_merge(\array_values($this->commands), $this->provides);
     }
 }
