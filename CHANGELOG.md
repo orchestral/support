@@ -2,6 +2,15 @@
 
 This changelog references the relevant changes (bug and security fixes) done to `orchestra/support`.
 
+## 3.8.6
+
+Released: 2019-08-04
+
+### Changes
+
+* Implements `Illuminate\Contracts\Support\DeferrableProvider` on `Orchestra\Support\Providers\CommandServiceProvider`.
+* Use `static function` rather than `function` whenever possible, the PHP engine does not need to instantiate and later GC a `$this` variable for said closure.
+
 ## 3.8.5
 
 Released: 2019-07-24
