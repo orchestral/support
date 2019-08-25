@@ -19,12 +19,12 @@
     "require": {
         "php": ">=7.2",
         "danielstjules/stringy": "^3.1",
-        "illuminate/support": "^6.0",
-        "orchestra/contracts": "^4.0"
+        "illuminate/support": "^7.0",
+        "orchestra/contracts": "^5.0"
     },
     "extra": {
         "branch-alias": {
-            "dev-master": "4.0-dev"
+            "dev-master": "5.0-dev"
         }
     },
     "config": {
