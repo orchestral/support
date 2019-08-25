@@ -18,7 +18,10 @@ class ManagerTest extends TestCase
     /** @test */
     public function it_can_be_extended()
     {
-        $stub = new ManagerStub(m::mock('Illuminate\Contracts\Container\Container'));
+        $container = m::mock('Illuminate\Contracts\Container\Container');
+        $container->shouldReceive('make')->once()->with('config')->andReturn(m::mock('Illuminate\Contracts\Config\Repository'));
+
+        $stub = new ManagerStub($container);
 
         $stub->extend('awesome', function ($app, $name) {
             return new ManagerAwesomeFoobar($app, $name);
@@ -46,7 +49,10 @@ class ManagerTest extends TestCase
     {
         $this->expectException('InvalidArgumentException');
 
-        (new ManagerStub(m::mock('Illuminate\Contracts\Container\Container')))->driver('invalidDriver');
+        $container = m::mock('Illuminate\Contracts\Container\Container');
+        $container->shouldReceive('make')->once()->with('config')->andReturn(m::mock('Illuminate\Contracts\Config\Repository'));
+
+        (new ManagerStub($container))->driver('invalidDriver');
     }
 
     /** @test */
@@ -54,7 +60,10 @@ class ManagerTest extends TestCase
     {
         $this->expectException('InvalidArgumentException');
 
-        (new ManagerStub(m::mock('Illuminate\Contracts\Container\Container')))
+        $container = m::mock('Illuminate\Contracts\Container\Container');
+        $container->shouldReceive('make')->once()->with('config')->andReturn(m::mock('Illuminate\Contracts\Config\Repository'));
+
+        (new ManagerStub($container))
             ->driver('foo.bar.hello');
     }
 }
