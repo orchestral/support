@@ -1,6 +1,6 @@
 <?php
 
-namespace Orchestra\Support\TestCase\Providers\Concerns;
+namespace Orchestra\Support\Tests\Providers\Concerns;
 
 use Mockery as m;
 use PHPUnit\Framework\TestCase;
@@ -39,10 +39,10 @@ class PackageProviderTest extends TestCase
     /** @test */
     public function it_can_use_package()
     {
-        $this->app['config'] = $config = m::mock('\Orchestra\Contracts\Config\PackageRepository, \ArrayAccess');
-        $this->app['files'] = $files = m::mock('\Illuminate\Filesystem\Filesystem');
-        $this->app['translator'] = $translator = m::mock('\Illuminate\Translation\Translator');
-        $this->app['view'] = $view = m::mock('\Illuminate\Contracts\View\Factory');
+        $this->app['config'] = $config = m::mock('Orchestra\Contracts\Config\PackageRepository, \ArrayAccess');
+        $this->app['files'] = $files = m::mock('Illuminate\Filesystem\Filesystem');
+        $this->app['translator'] = $translator = m::mock('Illuminate\Translation\Translator');
+        $this->app['view'] = $view = m::mock('Illuminate\Contracts\View\Factory');
 
         $path = '/var/www/vendor/foo/bar';
 
@@ -76,14 +76,14 @@ class PackageProviderTest extends TestCase
     /** @test */
     public function it_cant_use_package_when_laravel_installed()
     {
-        $this->app['config'] = m::mock('\Illuminate\Contracts\Config\Repository');
+        $this->app['config'] = m::mock('Illuminate\Contracts\Config\Repository');
         $this->assertFalse($this->hasPackageRepository());
     }
 
     /** @test */
     public function it_can_use_package_when_orchestra_installed()
     {
-        $this->app['config'] = m::mock('\Orchestra\Contracts\Config\PackageRepository');
+        $this->app['config'] = m::mock('Orchestra\Contracts\Config\PackageRepository');
         $this->assertTrue($this->hasPackageRepository());
     }
 

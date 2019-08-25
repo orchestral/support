@@ -1,6 +1,6 @@
 <?php
 
-namespace Orchestra\Support\TestCase\Concerns;
+namespace Orchestra\Support\Tests\Concerns;
 
 use PHPUnit\Framework\TestCase;
 use Orchestra\Support\Concerns\Validation;

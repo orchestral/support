@@ -1,6 +1,6 @@
 <?php
 
-namespace Orchestra\Support\TestCase;
+namespace Orchestra\Support\Tests;
 
 use Carbon\Carbon;
 use Orchestra\Support\Timezone;

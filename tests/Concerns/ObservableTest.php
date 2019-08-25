@@ -1,6 +1,6 @@
 <?php
 
-namespace Orchestra\Support\TestCase\Concerns;
+namespace Orchestra\Support\Tests\Concerns;
 
 use Mockery as m;
 use PHPUnit\Framework\TestCase;
@@ -19,7 +19,7 @@ class ObservableTest extends TestCase
     /** @test */
     public function it_can_use_event_dispatcher()
     {
-        $dispatcher = m::mock('\Illuminate\Contracts\Events\Dispatcher');
+        $dispatcher = m::mock('Illuminate\Contracts\Events\Dispatcher');
 
         $this->assertNull(ObservableStub::getEventDispatcher());
 
@@ -59,7 +59,7 @@ class ObservableTest extends TestCase
     /** @test */
     public function it_can_be_observed_with_event_dispatcher()
     {
-        $dispatcher = m::mock('\Illuminate\Contracts\Events\Dispatcher');
+        $dispatcher = m::mock('Illuminate\Contracts\Events\Dispatcher');
 
         $stub = new ObservableStub();
 

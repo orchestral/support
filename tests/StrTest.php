@@ -1,6 +1,6 @@
 <?php
 
-namespace Orchestra\Support\TestCase;
+namespace Orchestra\Support\Tests;
 
 use Orchestra\Support\Str;
 use PHPUnit\Framework\TestCase;

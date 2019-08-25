@@ -1,6 +1,6 @@
 <?php
 
-namespace Orchestra\Support\TestCase;
+namespace Orchestra\Support\Tests;
 
 use Mockery as m;
 use PHPUnit\Framework\TestCase;
@@ -29,15 +29,15 @@ class ValidatorTest extends TestCase
     /** @test */
     public function it_can_validate()
     {
-        $event = m::mock('\Illuminate\Contracts\Events\Dispatcher');
-        $validator = m::mock('\Illuminate\Contracts\Validation\Factory');
+        $event = m::mock('Illuminate\Contracts\Events\Dispatcher');
+        $validator = m::mock('Illuminate\Contracts\Validation\Factory');
 
         $rules = ['email' => ['email', 'foo:2'], 'name' => 'any'];
         $phrases = ['email.required' => 'Email required'];
 
         $event->shouldReceive('dispatch')->once()->with('foo.event', m::any())->andReturn(null);
         $validator->shouldReceive('make')->once()->with([], $rules, $phrases)
-            ->andReturn(m::mock('\Illuminate\Contracts\Validation\Validator'));
+            ->andReturn(m::mock('Illuminate\Contracts\Validation\Validator'));
 
         $stub = new FooValidator($validator, $event);
         $stub->on('foo', ['orchestra'])->bind(['id' => '2']);
@@ -46,27 +46,27 @@ class ValidatorTest extends TestCase
 
         $this->assertEquals('orchestra', $_SERVER['validator.onFoo']);
         $this->assertEquals($validation, $_SERVER['validator.extendFoo']);
-        $this->assertInstanceOf('\Illuminate\Contracts\Validation\Validator', $validation);
+        $this->assertInstanceOf('Illuminate\Contracts\Validation\Validator', $validation);
     }
 
     /** @test */
     public function it_can_validate_without_scope()
     {
-        $event = m::mock('\Illuminate\Contracts\Events\Dispatcher');
-        $validator = m::mock('\Illuminate\Contracts\Validation\Factory');
+        $event = m::mock('Illuminate\Contracts\Events\Dispatcher');
+        $validator = m::mock('Illuminate\Contracts\Validation\Factory');
 
         $rules = ['email' => ['email', 'foo:2'], 'name' => 'any'];
         $phrases = ['email.required' => 'Email required', 'name' => 'Any name'];
 
         $validator->shouldReceive('make')->once()->with([], $rules, $phrases)
-            ->andReturn(m::mock('\Illuminate\Contracts\Validation\Validator'));
+            ->andReturn(m::mock('Illuminate\Contracts\Validation\Validator'));
 
         $stub = new FooValidator($validator, $event);
         $stub->bind(['id' => '2']);
 
         $validation = $stub->with([], null, ['name' => 'Any name']);
 
-        $this->assertInstanceOf('\Illuminate\Contracts\Validation\Validator', $validation);
+        $this->assertInstanceOf('Illuminate\Contracts\Validation\Validator', $validation);
     }
 }
 

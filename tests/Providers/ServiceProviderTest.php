@@ -1,6 +1,6 @@
 <?php
 
-namespace Orchestra\Support\TestCase\Providers;
+namespace Orchestra\Support\Tests\Providers;
 
 use PHPUnit\Framework\TestCase;
 use Orchestra\Support\Providers\ServiceProvider;

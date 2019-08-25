@@ -1,6 +1,6 @@
 <?php
 
-namespace Orchestra\Support\TestCase;
+namespace Orchestra\Support\Tests;
 
 use Orchestra\Support\Nesty;
 use Orchestra\Support\Fluent;
@@ -35,7 +35,7 @@ class NestyTest extends TestCase
     /** @test */
     public function instance_has_proper_signature()
     {
-        $this->assertInstanceOf('\Orchestra\Support\Nesty', $this->stub);
+        $this->assertInstanceOf('Orchestra\Support\Nesty', $this->stub);
 
         $refl = new \ReflectionObject($this->stub);
         $config = $refl->getProperty('config');

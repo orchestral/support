@@ -1,6 +1,6 @@
 <?php
 
-namespace Orchestra\Support\TestCase\Concerns;
+namespace Orchestra\Support\Tests\Concerns;
 
 use Mockery as m;
 use PHPUnit\Framework\TestCase;
@@ -33,7 +33,7 @@ class UploadableTest extends TestCase
     public function it_can_save_uploaded_file()
     {
         $path = '/var/www/public/';
-        $file = m::mock('\Symfony\Component\HttpFoundation\File\UploadedFile[getClientOriginalExtension,move]', [
+        $file = m::mock('Symfony\Component\HttpFoundation\File\UploadedFile[getClientOriginalExtension,move]', [
             realpath(__DIR__.'/fixtures').'/test.gif',
             'test',
         ]);
@@ -48,7 +48,7 @@ class UploadableTest extends TestCase
     public function it_can_save_uploaded_file_with_custom_filename()
     {
         $path = '/var/www/public/';
-        $file = m::mock('\Symfony\Component\HttpFoundation\File\UploadedFile[move]', [
+        $file = m::mock('Symfony\Component\HttpFoundation\File\UploadedFile[move]', [
             realpath(__DIR__.'/fixtures').'/test.gif',
             'test',
         ]);
@@ -61,7 +61,7 @@ class UploadableTest extends TestCase
     /** @test */
     public function it_can_delete_uploaded_file()
     {
-        $filesystem = m::mock('\Illuminate\Filesystem\Filesystem');
+        $filesystem = m::mock('Illuminate\Filesystem\Filesystem');
         $filename = '/var/www/foo.jpg';
 
         $filesystem->shouldReceive('delete')->once()->with($filename)->andReturn(true);

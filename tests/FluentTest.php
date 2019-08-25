@@ -1,6 +1,6 @@
 <?php
 
-namespace Orchestra\Support\TestCase;
+namespace Orchestra\Support\Tests;
 
 use Orchestra\Support\Fluent;
 use PHPUnit\Framework\TestCase;

@@ -1,6 +1,6 @@
 <?php
 
-namespace Orchestra\Support\TestCase\Concerns;
+namespace Orchestra\Support\Tests\Concerns;
 
 use Mockery as m;
 use PHPUnit\Framework\TestCase;
@@ -21,7 +21,7 @@ class QueryFilterTest extends TestCase
     /** @test */
     public function it_can_build_basic_query_filter()
     {
-        $query = m::mock('\Illuminate\Database\Query\Builder');
+        $query = m::mock('Illuminate\Database\Query\Builder');
 
         $query->shouldReceive('orderBy')->once()->with('updated_at', 'DESC')->andReturn($query)
             ->shouldReceive('orderBy')->once()->with('created_at', 'DESC')->andReturn($query);
@@ -41,7 +41,7 @@ class QueryFilterTest extends TestCase
     /** @test */
     public function it_can_build_basic_query_filter_given_column_excluded()
     {
-        $query = m::mock('\Illuminate\Database\Query\Builder');
+        $query = m::mock('Illuminate\Database\Query\Builder');
 
         $query->shouldReceive('orderBy')->never()->with('password', 'DESC')->andReturn($query);
 
@@ -55,7 +55,7 @@ class QueryFilterTest extends TestCase
     /** @test */
     public function it_can_build_wildcard_query_filter_given_column_excluded()
     {
-        $query = m::mock('\Illuminate\Database\Query\Builder');
+        $query = m::mock('Illuminate\Database\Query\Builder');
 
         $query->shouldReceive('where')->once()->with(m::type('Closure'))
                 ->andReturnUsing(function ($c) use ($query) {

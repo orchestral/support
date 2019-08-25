@@ -1,6 +1,6 @@
 <?php
 
-namespace Orchestra\Support\TestCase;
+namespace Orchestra\Support\Tests;
 
 use Mockery as m;
 use PHPUnit\Framework\TestCase;
@@ -18,7 +18,7 @@ class ManagerTest extends TestCase
     /** @test */
     public function it_can_be_extended()
     {
-        $stub = new ManagerStub(m::mock('\Illuminate\Contracts\Foundation\Application'));
+        $stub = new ManagerStub(m::mock('Illuminate\Contracts\Container\Container'));
 
         $stub->extend('awesome', function ($app, $name) {
             return new ManagerAwesomeFoobar($app, $name);
@@ -30,14 +30,14 @@ class ManagerTest extends TestCase
         $output4 = $stub->driver('foobar.daylerees');
         $output5 = $stub->driver('awesome.taylor');
 
-        $this->assertInstanceOf('\Orchestra\Support\TestCase\ManagerFoo', $output1);
+        $this->assertInstanceOf('Orchestra\Support\Tests\ManagerFoo', $output1);
         $this->assertEquals('bar', $output1->name);
         $this->assertEquals($output1, $output2);
         $this->assertEquals('default', $output3->name);
         $this->assertNotEquals($output2, $output3);
-        $this->assertInstanceOf('\Orchestra\Support\TestCase\ManagerFoobar', $output4);
+        $this->assertInstanceOf('Orchestra\Support\Tests\ManagerFoobar', $output4);
         $this->assertEquals('daylerees', $output4->name);
-        $this->assertInstanceOf('\Orchestra\Support\TestCase\ManagerAwesomeFoobar', $output5);
+        $this->assertInstanceOf('Orchestra\Support\Tests\ManagerAwesomeFoobar', $output5);
         $this->assertEquals('taylor', $output5->name);
     }
 
@@ -46,7 +46,7 @@ class ManagerTest extends TestCase
     {
         $this->expectException('InvalidArgumentException');
 
-        (new ManagerStub(m::mock('\Illuminate\Foundation\Application')))->driver('invalidDriver');
+        (new ManagerStub(m::mock('Illuminate\Foundation\Container\Container')))->driver('invalidDriver');
     }
 
     /** @test */
@@ -54,7 +54,7 @@ class ManagerTest extends TestCase
     {
         $this->expectException('InvalidArgumentException');
 
-        (new ManagerStub(m::mock('\Illuminate\Foundation\Application')))
+        (new ManagerStub(m::mock('Illuminate\Contracts\Container\Container')))
             ->driver('foo.bar.hello');
     }
 }

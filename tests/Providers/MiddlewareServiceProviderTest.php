@@ -1,6 +1,6 @@
 <?php
 
-namespace Orchestra\Support\TestCase\Providers;
+namespace Orchestra\Support\Tests\Providers;
 
 use Mockery as m;
 use PHPUnit\Framework\TestCase;
@@ -41,8 +41,8 @@ class MiddlewareServiceProviderTest extends TestCase
     {
         $app = new Container();
 
-        $router = m::mock('\Illuminate\Routing\Router');
-        $kernel = m::mock('\Illuminate\Contracts\Http\Kernel');
+        $router = m::mock('Illuminate\Routing\Router');
+        $kernel = m::mock('Illuminate\Contracts\Http\Kernel');
 
         $router->shouldReceive('aliasMiddleware')->once()->with('foobar', 'FoobarMiddleware')->andReturnNull();
         $router->shouldReceive('middlewareGroup')->once()->with('api', ['ApiMiddleware'])->andReturnNull();
