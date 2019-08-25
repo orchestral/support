@@ -63,7 +63,7 @@ abstract class Manager extends BaseManager
     {
         [$driver, $name] = $this->getDriverName($driverName);
 
-        return $this->customCreators[$driver]($this->app, $name);
+        return $this->customCreators[$driver]($this->container, $name);
     }
 
     /**
