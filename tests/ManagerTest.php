@@ -46,7 +46,7 @@ class ManagerTest extends TestCase
     {
         $this->expectException('InvalidArgumentException');
 
-        (new ManagerStub(m::mock('Illuminate\Foundation\Container\Container')))->driver('invalidDriver');
+        (new ManagerStub(m::mock('Illuminate\Contracts\Container\Container')))->driver('invalidDriver');
     }
 
     /** @test */
