@@ -102,12 +102,12 @@ class ManagerStub extends \Orchestra\Support\Manager
 {
     public function createFooDriver($name)
     {
-        return new ManagerFoo($this->app, $name);
+        return new ManagerFoo($this->container, $name);
     }
 
     public function createFoobarDriver($name)
     {
-        return new ManagerFoobar($this->app, $name);
+        return new ManagerFoobar($this->container, $name);
     }
 
     public function getDefaultDriver()
