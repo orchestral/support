@@ -19,7 +19,7 @@ class Str extends BaseStr
      *
      * @var string
      */
-    private const VALID_COLUMN_NAME_REGEX = "/^(?![0-9])[A-Za-z0-9_-]*$/";
+    private const VALID_COLUMN_NAME_REGEX = '/^(?![0-9])[A-Za-z0-9_-]*$/';
 
     /**
      * Convert slug type text to human readable text.
@@ -53,7 +53,7 @@ class Str extends BaseStr
     ) {
         $replacements = static::prepareBinding($replacements, $prefix, $suffix);
 
-        $filter = function ($text) use ($replacements) {
+        $filter = static function ($text) use ($replacements) {
             return \strtr($text, $replacements);
         };
 

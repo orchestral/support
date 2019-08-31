@@ -127,7 +127,7 @@ trait PackageProvider
     protected function getPackageNamespace(string $package, string $namespace): string
     {
         if (\is_null($namespace)) {
-            list(, $namespace) = \explode('/', $package);
+            [, $namespace] = \explode('/', $package);
         }
 
         return $namespace;
