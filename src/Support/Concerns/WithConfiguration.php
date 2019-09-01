@@ -34,4 +34,16 @@ trait WithConfiguration
 
         return $this;
     }
+
+    /**
+     * Set configuration from.
+     *
+     * @param  string  $namespace
+     *
+     * @return $this
+     */
+    public function setConfigurationFrom(string $namespace)
+    {
+        return $this->setConfiguration($this->config->get($namespace));
+    }
 }
