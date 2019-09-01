@@ -3,7 +3,6 @@
 namespace Orchestra\Support;
 
 use Carbon\Carbon;
-use Illuminate\Support\Collection;
 
 class Timezone
 {
@@ -583,7 +582,7 @@ class Timezone
     /**
      * Timezones midnight by now.
      *
-     * @return \Illuminate\Support\Collection
+     * @return \Orchestra\Support\Collection
      */
     public static function now(): Collection
     {
@@ -596,7 +595,7 @@ class Timezone
      * @param  int  $hour
      * @param  \DateTimeZone|string|null  $timezone
      *
-     * @return \Illuminate\Support\Collection
+     * @return \Orchestra\Support\Collection
      */
     public static function at(int $hour, $timezone = null): Collection
     {
@@ -608,7 +607,7 @@ class Timezone
      *
      * @param  int  $hourInUtc
      *
-     * @return \Illuminate\Support\Collection
+     * @return \Orchestra\Support\Collection
      */
     public static function whereHourInUtc(int $hourInUtc): Collection
     {
@@ -633,9 +632,7 @@ class Timezone
      *
      * @param  int  $hourInUtc
      *
-     * @return \Illuminate\Support\Collection
-     *
-     * @see static::midnight()
+     * @return \Orchestra\Support\Collection
      */
     public static function on(int $hourInUtc): Collection
     {
@@ -645,7 +642,10 @@ class Timezone
     /**
      * Get all timezones as collection.
      *
-     * @return \Illuminate\Support\Collection
+     * @param  string  $method
+     * @param  array  $parameters
+     *
+     * @return mixed
      */
     public static function __callStatic($method, array $parameters)
     {
