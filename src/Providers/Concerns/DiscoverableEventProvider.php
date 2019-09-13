@@ -2,8 +2,8 @@
 
 namespace Orchestra\Support\Providers\Concerns;
 
-use Illuminate\Support\Collection;
 use Illuminate\Foundation\Events\DiscoverEvents;
+use Illuminate\Support\Collection;
 
 trait DiscoverableEventProvider
 {

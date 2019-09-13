@@ -2,11 +2,11 @@
 
 namespace Orchestra\Support\Tests\Providers;
 
-use Mockery as m;
-use PHPUnit\Framework\TestCase;
 use Illuminate\Container\Container;
-use Orchestra\Support\Providers\MiddlewareServiceProvider;
+use Mockery as m;
 use Orchestra\Support\Providers\Concerns\MiddlewareProvider;
+use Orchestra\Support\Providers\MiddlewareServiceProvider;
+use PHPUnit\Framework\TestCase;
 
 class MiddlewareServiceProviderTest extends TestCase
 {

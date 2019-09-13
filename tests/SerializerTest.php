@@ -2,10 +2,10 @@
 
 namespace Orchestra\Support\Tests;
 
-use Orchestra\Support\Fluent;
-use PHPUnit\Framework\TestCase;
-use Orchestra\Support\Serializer;
 use Illuminate\Support\Collection;
+use Orchestra\Support\Fluent;
+use Orchestra\Support\Serializer;
+use PHPUnit\Framework\TestCase;
 
 class SerializerTest extends TestCase
 {

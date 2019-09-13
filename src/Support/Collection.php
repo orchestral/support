@@ -2,9 +2,9 @@
 
 namespace Orchestra\Support;
 
-use Orchestra\Support\Contracts\Csvable;
-use Orchestra\Contracts\Support\Transformable;
 use Illuminate\Support\Collection as BaseCollection;
+use Orchestra\Contracts\Support\Transformable;
+use Orchestra\Support\Contracts\Csvable;
 
 class Collection extends BaseCollection implements Csvable, Transformable
 {

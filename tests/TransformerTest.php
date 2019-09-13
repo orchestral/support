@@ -3,8 +3,8 @@
 namespace Orchestra\Support\Tests;
 
 use Orchestra\Support\Fluent;
-use PHPUnit\Framework\TestCase;
 use Orchestra\Support\Transformer;
+use PHPUnit\Framework\TestCase;
 
 class TransformerTest extends TestCase
 {

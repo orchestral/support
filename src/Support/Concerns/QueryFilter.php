@@ -2,9 +2,9 @@
 
 namespace Orchestra\Support\Concerns;
 
-use Orchestra\Support\Str;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Query\Expression;
+use Orchestra\Support\Str;
 
 trait QueryFilter
 {

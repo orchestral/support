@@ -2,8 +2,8 @@
 
 namespace Orchestra\Support\Tests\Concerns;
 
-use PHPUnit\Framework\TestCase;
 use Orchestra\Support\Concerns\WithConfiguration;
+use PHPUnit\Framework\TestCase;
 
 class WithConfigurationTest extends TestCase
 {

@@ -2,8 +2,8 @@
 
 namespace Orchestra\Support;
 
-use Stringy\Stringy;
 use Illuminate\Support\Str as BaseStr;
+use Stringy\Stringy;
 
 class Str extends BaseStr
 {

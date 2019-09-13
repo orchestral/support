@@ -2,8 +2,8 @@
 
 namespace Orchestra\Support\Tests\Concerns;
 
-use PHPUnit\Framework\TestCase;
 use Orchestra\Support\Concerns\Macroable;
+use PHPUnit\Framework\TestCase;
 
 class MacroableTest extends TestCase
 {

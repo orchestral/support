@@ -2,11 +2,11 @@
 
 namespace Orchestra\Support;
 
-use InvalidArgumentException;
-use Illuminate\Support\Fluent as BaseFluent;
 use Illuminate\Contracts\Pagination\Paginator;
-use Orchestra\Contracts\Support\Transformable;
 use Illuminate\Support\Collection as BaseCollection;
+use Illuminate\Support\Fluent as BaseFluent;
+use InvalidArgumentException;
+use Orchestra\Contracts\Support\Transformable;
 
 abstract class Transformer
 {

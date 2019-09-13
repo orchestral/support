@@ -2,12 +2,12 @@
 
 namespace Orchestra\Support\Tests\Concerns;
 
-use Mockery as m;
-use PHPUnit\Framework\TestCase;
 use Illuminate\Container\Container;
-use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Facade;
+use Illuminate\Support\Facades\File;
+use Mockery as m;
 use Orchestra\Support\Concerns\Uploadable;
+use PHPUnit\Framework\TestCase;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 class UploadableTest extends TestCase
