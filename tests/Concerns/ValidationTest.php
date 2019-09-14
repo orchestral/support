@@ -2,8 +2,8 @@
 
 namespace Orchestra\Support\Tests\Concerns;
 
-use PHPUnit\Framework\TestCase;
 use Orchestra\Support\Concerns\Validation;
+use PHPUnit\Framework\TestCase;
 
 class ValidationTest extends TestCase
 {

@@ -2,8 +2,8 @@
 
 namespace Orchestra\Support;
 
-use InvalidArgumentException;
 use Illuminate\Support\Manager as BaseManager;
+use InvalidArgumentException;
 
 abstract class Manager extends BaseManager
 {

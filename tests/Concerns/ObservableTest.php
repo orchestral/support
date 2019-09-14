@@ -3,8 +3,8 @@
 namespace Orchestra\Support\Tests\Concerns;
 
 use Mockery as m;
-use PHPUnit\Framework\TestCase;
 use Orchestra\Support\Concerns\Observable;
+use PHPUnit\Framework\TestCase;
 
 class ObservableTest extends TestCase
 {

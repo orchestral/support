@@ -2,8 +2,8 @@
 
 namespace Orchestra\Support;
 
-use Stringy\Stringy;
 use Illuminate\Support\Str as BaseStr;
+use Stringy\Stringy;
 
 class Str extends BaseStr
 {
@@ -13,6 +13,7 @@ class Str extends BaseStr
      * @var int
      */
     public const MAX_COLUMN_NAME_LENGTH = 64;
+
     /**
      * Column names are alphanumeric strings that can contain
      * underscores (`_`) but can't start with a number.

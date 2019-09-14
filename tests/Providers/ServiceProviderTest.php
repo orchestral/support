@@ -2,9 +2,9 @@
 
 namespace Orchestra\Support\Tests\Providers;
 
-use PHPUnit\Framework\TestCase;
-use Orchestra\Support\Providers\ServiceProvider;
 use Orchestra\Support\Providers\Concerns\PackageProvider;
+use Orchestra\Support\Providers\ServiceProvider;
+use PHPUnit\Framework\TestCase;
 
 class ServiceProviderTest extends TestCase
 {

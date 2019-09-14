@@ -2,8 +2,8 @@
 
 namespace Orchestra\Support\Providers;
 
-use Illuminate\Routing\Router;
 use Illuminate\Contracts\Http\Kernel;
+use Illuminate\Routing\Router;
 
 abstract class MiddlewareServiceProvider extends ServiceProvider
 {

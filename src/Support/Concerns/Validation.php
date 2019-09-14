@@ -2,9 +2,9 @@
 
 namespace Orchestra\Support\Concerns;
 
-use Orchestra\Support\Str;
-use Illuminate\Support\Fluent;
 use Illuminate\Contracts\Validation\Validator;
+use Illuminate\Support\Fluent;
+use Orchestra\Support\Str;
 
 trait Validation
 {

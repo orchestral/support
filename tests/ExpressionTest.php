@@ -2,8 +2,8 @@
 
 namespace Orchestra\Support\Tests;
 
-use PHPUnit\Framework\TestCase;
 use Orchestra\Support\Expression;
+use PHPUnit\Framework\TestCase;
 
 class ExpressionTest extends TestCase
 {

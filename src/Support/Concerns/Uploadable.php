@@ -2,8 +2,8 @@
 
 namespace Orchestra\Support\Concerns;
 
-use Orchestra\Support\Str;
 use Illuminate\Support\Facades\File;
+use Orchestra\Support\Str;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 trait Uploadable

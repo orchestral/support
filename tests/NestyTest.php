@@ -2,10 +2,10 @@
 
 namespace Orchestra\Support\Tests;
 
-use Orchestra\Support\Nesty;
-use Orchestra\Support\Fluent;
-use PHPUnit\Framework\TestCase;
 use Orchestra\Support\Collection;
+use Orchestra\Support\Fluent;
+use Orchestra\Support\Nesty;
+use PHPUnit\Framework\TestCase;
 
 class NestyTest extends TestCase
 {

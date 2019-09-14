@@ -2,10 +2,10 @@
 
 namespace Orchestra\Support\Concerns;
 
-use Illuminate\Support\Arr;
-use Illuminate\Contracts\Encryption\Encrypter;
 use Illuminate\Contracts\Encryption\DecryptException;
+use Illuminate\Contracts\Encryption\Encrypter;
 use Illuminate\Contracts\Encryption\EncryptException;
+use Illuminate\Support\Arr;
 
 trait DataContainer
 {

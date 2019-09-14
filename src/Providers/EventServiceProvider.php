@@ -2,8 +2,8 @@
 
 namespace Orchestra\Support\Providers;
 
-use Illuminate\Support\ServiceProvider as BaseServiceProvider;
 use Illuminate\Contracts\Events\Dispatcher as DispatcherContract;
+use Illuminate\Support\ServiceProvider as BaseServiceProvider;
 
 abstract class EventServiceProvider extends BaseServiceProvider
 {
