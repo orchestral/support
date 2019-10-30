@@ -2,6 +2,14 @@
 
 This changelog references the relevant changes (bug and security fixes) done to `orchestra/support`.
 
+## 4.0.2
+
+Released: 2019-10-30
+
+### Fixes
+
+* Fixes `Orchestra\Support\Facades\Mail` accessor.
+
 ## 4.0.1
 
 Released: 2019-09-14
