@@ -6,6 +6,9 @@ use Illuminate\Database\Eloquent\Builder as EloquentBuilder;
 use Illuminate\Database\Query\Expression;
 use Orchestra\Support\Str;
 
+/**
+ * @deprecated v4.x
+ */
 trait QueryFilter
 {
     /**
