@@ -2,7 +2,7 @@
 
 namespace Orchestra\Support\Concerns;
 
-use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Builder as EloquentBuilder;
 use Illuminate\Database\Query\Expression;
 use Orchestra\Support\Str;
 
@@ -118,8 +118,14 @@ trait QueryFilter
      */
     protected function buildWildcardQueryFilters($query, array $fields, array $keyword = [])
     {
+        $connectionType = $query instanceof EloquentBuilder
+            ? $query->getModel()->getConnection()->getDriverName()
+            : $query->getConnection()->getDriverName();
+
+        $likeOperator = $connectionType == 'pgsql' ? 'ilike' : 'like';
+
         foreach ($fields as $field) {
-            $this->buildWildcardForField($query, $field, $keyword);
+            $this->buildWildcardForField($query, $field, $keyword, $likeOperator);
         }
 
         return $query;
@@ -131,22 +137,23 @@ trait QueryFilter
      * @param  \Illuminate\Database\Eloquent\Builder|\Illuminate\Database\Query\Builder  $query
      * @param  \Illuminate\Database\Query\Expression|string  $field
      * @param  array  $keyword
+     * @param  string  $likeOperator
      *
      * @return \Illuminate\Database\Eloquent\Builder|\Illuminate\Database\Query\Builder
      */
-    protected function buildWildcardForField($query, $field, array $keyword)
+    protected function buildWildcardForField($query, $field, array $keyword, string $likeOperator = 'like')
     {
         if ($field instanceof Expression) {
-            return $this->buildWildcardForFieldUsing($query, $field->getValue(), $keyword, 'orWhere');
-        } elseif (! (Str::contains($field, '.') && $query instanceof Builder)) {
-            return $this->buildWildcardForFieldUsing($query, $field, $keyword, 'orWhere');
+            return $this->buildWildcardForFieldUsing($query, $field->getValue(), $keyword, $likeOperator, 'orWhere');
+        } elseif (! (Str::contains($field, '.') && $query instanceof EloquentBuilder)) {
+            return $this->buildWildcardForFieldUsing($query, $field, $keyword, $likeOperator, 'orWhere');
         }
 
-        $this->buildWildcardForFieldUsing($query, $field, $keyword, 'orWhere');
+        $this->buildWildcardForFieldUsing($query, $field, $keyword, $likeOperator, 'orWhere');
         [$relation, $field] = \explode('.', $field, 2);
 
         return $query->orWhereHas($relation, function ($query) use ($field, $keyword) {
-            $this->buildWildcardForFieldUsing($query, $field, $keyword, 'where');
+            $this->buildWildcardForFieldUsing($query, $field, $keyword, $likeOperator, 'where');
         });
     }
 
@@ -156,18 +163,24 @@ trait QueryFilter
      * @param  \Illuminate\Database\Eloquent\Builder|\Illuminate\Database\Query\Builder  $query
      * @param  string  $field
      * @param  array  $keyword
-     * @param  string  $group
+     * @param  string  $likeOperator
+     * @param  string  $whereOperator
      *
      * @return \Illuminate\Database\Eloquent\Builder|\Illuminate\Database\Query\Builder
      */
-    protected function buildWildcardForFieldUsing($query, string $field, array $keyword = [], string $group = 'where')
-    {
-        $callback = static function ($query) use ($field, $keyword) {
+    protected function buildWildcardForFieldUsing(
+        $query,
+        string $field,
+        array $keyword = [],
+        string $likeOperator,
+        string $whereOperator = 'where'
+    ) {
+        $callback = static function ($query) use ($field, $keyword, $likeOperator) {
             foreach ($keyword as $key) {
-                $query->orWhere($field, 'LIKE', $key);
+                $query->orWhere($field, $likeOperator, $key);
             }
         };
 
-        return $query->{$group}($callback);
+        return $query->{$whereOperator}($callback);
     }
 }
