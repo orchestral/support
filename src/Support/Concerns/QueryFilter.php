@@ -16,15 +16,15 @@ trait QueryFilter
      *
      * @return \Illuminate\Database\Eloquent\Builder|\Illuminate\Database\Query\Builder
      */
-    protected function sortQueryUsing($query, array $input = [])
+    protected function setupBasicQueryFilter($query, array $input = [])
     {
-        $orderBy = $this->sortQueryOrderedBy($input);
+        $orderBy = $this->getBasicQueryOrderBy($input);
 
-        $direction = $this->sortQueryDirection($input);
+        $direction = $this->getBasicQueryDirection($input);
 
         $columns = $input['columns'] ?? null;
 
-        if (\is_array($columns) && $this->isColumnExcludedFromFilter($orderBy, $columns)) {
+        if (\is_array($columns) && $this->isColumnExcludedFromFilterable($orderBy, $columns)) {
             return $query;
         }
 
@@ -42,11 +42,11 @@ trait QueryFilter
      *
      * @return \Illuminate\Database\Eloquent\Builder|\Illuminate\Database\Query\Builder
      */
-    protected function filterQueryUsing($query, ?string $keyword, array $fields)
+    protected function setupWildcardQueryFilter($query, ?string $keyword, array $fields)
     {
         if (! empty($keyword) && ! empty($fields)) {
             $query->where(function ($query) use ($fields, $keyword) {
-                $this->buildFilteredQuery($query, $fields, Str::searchable($keyword));
+                $this->buildWildcardQueryFilters($query, $fields, Str::searchable($keyword));
             });
         }
 
@@ -61,7 +61,7 @@ trait QueryFilter
      *
      * @return bool
      */
-    protected function isColumnExcludedFromFilter(string $on, array $columns = []): bool
+    protected function isColumnExcludedFromFilterable(string $on, array $columns = []): bool
     {
         $only = $columns['only'] ?? '';
         $except = $columns['except'] ?? '';
@@ -77,7 +77,7 @@ trait QueryFilter
      *
      * @return string
      */
-    protected function sortQueryDirection(array $input): string
+    protected function getBasicQueryDirection(array $input): string
     {
         $direction = Str::upper($input['direction'] ?? '');
 
@@ -95,7 +95,7 @@ trait QueryFilter
      *
      * @return string
      */
-    protected function sortQueryOrderedBy(array $input): string
+    protected function getBasicQueryOrderBy(array $input): string
     {
         $orderBy = $input['order_by'] ?? '';
 
@@ -116,7 +116,7 @@ trait QueryFilter
      *
      * @return \Illuminate\Database\Eloquent\Builder|\Illuminate\Database\Query\Builder
      */
-    protected function buildFilteredQuery($query, array $fields, array $keyword = [])
+    protected function buildWildcardQueryFilters($query, array $fields, array $keyword = [])
     {
         $connectionType = $query instanceof EloquentBuilder
             ? $query->getModel()->getConnection()->getDriverName()
@@ -125,7 +125,7 @@ trait QueryFilter
         $likeOperator = $connectionType == 'pgsql' ? 'ilike' : 'like';
 
         foreach ($fields as $field) {
-            $this->filterQueryOnColumn($query, $field, $keyword, $likeOperator);
+            $this->buildWildcardForField($query, $field, $keyword, $likeOperator);
         }
 
         return $query;
@@ -135,86 +135,52 @@ trait QueryFilter
      * Build wildcard query filter for field using where or orWhere.
      *
      * @param  \Illuminate\Database\Eloquent\Builder|\Illuminate\Database\Query\Builder  $query
-     * @param  \Illuminate\Database\Query\Expression|string  $column
+     * @param  \Illuminate\Database\Query\Expression|string  $field
      * @param  array  $keyword
      * @param  string  $likeOperator
      *
      * @return \Illuminate\Database\Eloquent\Builder|\Illuminate\Database\Query\Builder
      */
-    protected function filterQueryOnColumn($query, $column, array $keyword, string $likeOperator = 'like')
+    protected function buildWildcardForField($query, $field, array $keyword, string $likeOperator = 'like')
     {
-        if ($column instanceof Expression) {
-            return $this->filterQueryOnColumnUsing($query, $column->getValue(), $keyword, $likeOperator, 'orWhere');
-        } elseif (! (Str::contains($column, '.') && $query instanceof EloquentBuilder)) {
-            return $this->filterQueryOnColumnUsing($query, $column, $keyword, $likeOperator, 'orWhere');
+        if ($field instanceof Expression) {
+            return $this->buildWildcardForFieldUsing($query, $field->getValue(), $keyword, $likeOperator, 'orWhere');
+        } elseif (! (Str::contains($field, '.') && $query instanceof EloquentBuilder)) {
+            return $this->buildWildcardForFieldUsing($query, $field, $keyword, $likeOperator, 'orWhere');
         }
 
-        $this->filterQueryOnColumnUsing($query, $column, $keyword, $likeOperator, 'orWhere');
-        [$relation, $column] = \explode('.', $column, 2);
+        $this->buildWildcardForFieldUsing($query, $field, $keyword, $likeOperator, 'orWhere');
+        [$relation, $field] = \explode('.', $field, 2);
 
-        return $query->orWhereHas($relation, function ($query) use ($column, $keyword) {
-            $this->filterQueryOnColumnUsing($query, $column, $keyword, $likeOperator, 'where');
+        return $query->orWhereHas($relation, function ($query) use ($field, $keyword) {
+            $this->buildWildcardForFieldUsing($query, $field, $keyword, $likeOperator, 'where');
         });
     }
 
     /**
-     * Build wildcard query filter for column using where or orWhere.
+     * Build wildcard query filter for field using where or orWhere.
      *
      * @param  \Illuminate\Database\Eloquent\Builder|\Illuminate\Database\Query\Builder  $query
-     * @param  string  $column
+     * @param  string  $field
      * @param  array  $keyword
      * @param  string  $likeOperator
      * @param  string  $whereOperator
      *
      * @return \Illuminate\Database\Eloquent\Builder|\Illuminate\Database\Query\Builder
      */
-    protected function filterQueryOnColumnUsing(
+    protected function buildWildcardForFieldUsing(
         $query,
-        string $column,
+        string $field,
         array $keyword = [],
         string $likeOperator,
         string $whereOperator = 'where'
     ) {
-        Str::contains($column, '->');
-
-        $callback = static function ($query) use ($column, $keyword, $likeOperator) {
+        $callback = static function ($query) use ($field, $keyword, $likeOperator) {
             foreach ($keyword as $key) {
-                $query->orWhere($column, $likeOperator, $key);
+                $query->orWhere($field, $likeOperator, $key);
             }
         };
 
         return $query->{$whereOperator}($callback);
-    }
-
-
-    /**
-     * Setup basic query string filter to eloquent or query builder.
-     *
-     * @param  \Illuminate\Database\Eloquent\Builder|\Illuminate\Database\Query\Builder  $query
-     * @param  array  $input
-     *
-     * @return \Illuminate\Database\Eloquent\Builder|\Illuminate\Database\Query\Builder
-     *
-     * @deprecated v4.x
-     */
-    protected function setupBasicQueryFilter($query, array $input = [])
-    {
-        return $this->sortQueryUsing($query, $input);
-    }
-
-    /**
-     * Setup wildcard query string filter to eloquent or query builder.
-     *
-     * @param  \Illuminate\Database\Eloquent\Builder|\Illuminate\Database\Query\Builder  $query
-     * @param  string|null  $keyword
-     * @param  array  $fields
-     *
-     * @return \Illuminate\Database\Eloquent\Builder|\Illuminate\Database\Query\Builder
-     *
-     * @deprecated v4.x
-     */
-    protected function setupWildcardQueryFilter($query, ?string $keyword, array $fields)
-    {
-        return $this->filterQueryUsing($query, $keyword, $fields);
     }
 }
