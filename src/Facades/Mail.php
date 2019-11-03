@@ -13,6 +13,6 @@ class Mail extends Facade
      */
     protected static function getFacadeAccessor()
     {
-        return 'orchestra.mail';
+        return 'orchestra.postal';
     }
 }

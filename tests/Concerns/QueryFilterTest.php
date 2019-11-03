@@ -57,6 +57,7 @@ class QueryFilterTest extends TestCase
     {
         $query = m::mock('Illuminate\Database\Query\Builder');
 
+        $query->shouldReceive('getConnection->getDriverName')->andReturn('mysql');
         $query->shouldReceive('where')->once()->with(m::type('Closure'))
                 ->andReturnUsing(function ($c) use ($query) {
                     $c($query);
@@ -65,10 +66,10 @@ class QueryFilterTest extends TestCase
                 ->andReturnUsing(function ($c) use ($query) {
                     $c($query);
                 })
-            ->shouldReceive('orWhere')->once()->with('name', 'LIKE', 'hello')
-            ->shouldReceive('orWhere')->once()->with('name', 'LIKE', 'hello%')
-            ->shouldReceive('orWhere')->once()->with('name', 'LIKE', '%hello')
-            ->shouldReceive('orWhere')->once()->with('name', 'LIKE', '%hello%');
+            ->shouldReceive('orWhere')->once()->with('name', 'like', 'hello')
+            ->shouldReceive('orWhere')->once()->with('name', 'like', 'hello%')
+            ->shouldReceive('orWhere')->once()->with('name', 'like', '%hello')
+            ->shouldReceive('orWhere')->once()->with('name', 'like', '%hello%');
 
         $this->assertEquals($query, $this->setupWildcardQueryFilter($query, 'hello', ['name']));
     }
