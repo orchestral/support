@@ -34,11 +34,6 @@
         "orchestra/support-facades": "self.version",
         "orchestra/support-providers": "self.version"
     },
-    "extra": {
-        "branch-alias": {
-            "dev-master": "5.0-dev"
-        }
-    },
     "config": {
         "sort-packages": true
     },
