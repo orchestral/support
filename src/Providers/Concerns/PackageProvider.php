@@ -34,7 +34,7 @@ trait PackageProvider
      */
     public function addLanguageComponent(string $package, string $namespace, string $path): void
     {
-        $this->app->make('translator')->addNamespace($namespace, $path);
+        $this->loadTranslationsFrom($path, $namespace);
     }
 
     /**
@@ -49,19 +49,21 @@ trait PackageProvider
     public function addViewComponent(string $package, string $namespace, string $path): void
     {
         $files = $this->app->make('files');
-        $view = $this->app->make('view');
+        $paths = $this->getAppViewPaths($package);
 
-        foreach ($this->getAppViewPaths($package) as $appView) {
-            if ($files->isDirectory($appView)) {
-                $view->addNamespace($namespace, $appView);
+        $this->callAfterResolving('view', function ($view) use ($files, $paths, $namespace, $path) {
+           foreach ($paths as $appView) {
+                if ($files->isDirectory($appView)) {
+                    $view->addNamespace($namespace, $appView);
+                }
             }
-        }
 
-        // Finally we will register the view namespace so that we can access each of
-        // the views available in this package. We use a standard convention when
-        // registering the paths to every package's views and other components.
+            // Finally we will register the view namespace so that we can access each of
+            // the views available in this package. We use a standard convention when
+            // registering the paths to every package's views and other components.
 
-        $view->addNamespace($namespace, $path);
+            $view->addNamespace($namespace, $path);
+        });
     }
 
     /**

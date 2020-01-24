@@ -19,8 +19,8 @@ trait DiscoverableEventProvider
         }
 
         return $this->shouldDiscoverEvents()
-                    ? $this->discoverEvents()
-                    : [];
+            ? $this->discoverEvents()
+            : [];
     }
 
     /**
@@ -40,13 +40,15 @@ trait DiscoverableEventProvider
      */
     public function discoverEvents()
     {
+        $basePath = $this->app->basePath();
+
         return Collection::make($this->discoverEventsWithin())
-                    ->reduce(function ($discovered, $directory) {
-                        return \array_merge_recursive(
-                            $discovered,
-                            DiscoverEvents::within($directory, $this->app->basePath())
-                        );
-                    }, []);
+            ->reduce(static function ($discovered, $directory) use ($basePath) {
+                return \array_merge_recursive(
+                    $discovered,
+                    DiscoverEvents::within($directory, $basePath)
+                );
+            }, []);
     }
 
     /**

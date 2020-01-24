@@ -6,22 +6,14 @@ use Illuminate\Container\Container;
 use Mockery as m;
 use Orchestra\Support\Providers\Concerns\MiddlewareProvider;
 use Orchestra\Support\Providers\MiddlewareServiceProvider;
-use PHPUnit\Framework\TestCase;
+use Orchestra\Testbench\TestCase;
 
 class MiddlewareServiceProviderTest extends TestCase
 {
-    /**
-     * Teardown the test environment.
-     */
-    protected function tearDown(): void
-    {
-        m::close();
-    }
-
     /** @test */
     public function instance_has_proper_signature()
     {
-        $stub = new StubMiddlewareProvider(null);
+        $stub = new StubMiddlewareProvider($this->app);
 
         $this->assertContains(MiddlewareProvider::class, class_uses_recursive(get_class($stub)));
     }
@@ -29,7 +21,7 @@ class MiddlewareServiceProviderTest extends TestCase
     /** @test */
     public function it_can_be_registered()
     {
-        $stub = new StubMiddlewareProvider(null);
+        $stub = new StubMiddlewareProvider($this->app);
 
         $this->assertContains(MiddlewareProvider::class, class_uses_recursive(get_class($stub)));
 
