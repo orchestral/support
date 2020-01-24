@@ -2,6 +2,23 @@
 
 This changelog references the relevant changes (bug and security fixes) done to `orchestra/support`.
 
+## 4.1.0
+
+Released: 2020-01-24
+
+### Changes
+
+* Override `ServiceProvider::loadFactoriesFrom()` to only be loaded from unit testing environment.
+* Update `addLanguageComponent` and `addViewComponent` under `Orchestra\Support\Provider\Concerns\PackageProvider` based on `callAfterResolving` changes to `Illuminate\Support\ServiceProvider`.
+
+### Fixes
+
+* Fixes class name not shown when `Orchestra\Support\Transformer` can't transform the instance.
+
+### Deprecated
+
+* Deprecate `Orchestra\Support\Concerns\QueryFilter`, please use [laravie/query-filter](https://github.com/laravie/query-filter) instead.
+
 ## 4.0.2
 
 Released: 2019-10-30
