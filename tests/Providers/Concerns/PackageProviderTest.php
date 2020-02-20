@@ -3,46 +3,20 @@
 namespace Orchestra\Support\Tests\Providers\Concerns;
 
 use Illuminate\Container\Container;
+use Illuminate\Support\ServiceProvider;
 use Mockery as m;
 use Orchestra\Support\Providers\Concerns\PackageProvider;
-use PHPUnit\Framework\TestCase;
+use Orchestra\Testbench\TestCase;
 
 class PackageProviderTest extends TestCase
 {
-    use PackageProvider;
-
-    /**
-     * The application implementation.
-     *
-     * @var \Illuminate\Contracts\Container\Container
-     */
-    private $app;
-
-    /**
-     * Setup the test environment.
-     */
-    protected function setUp(): void
-    {
-        $this->app = new Container();
-    }
-
-    /**
-     * Teardown the test environment.
-     */
-    protected function tearDown(): void
-    {
-        unset($this->app);
-
-        m::close();
-    }
-
     /** @test */
     public function it_can_use_package()
     {
-        $this->app['config'] = $config = m::mock('Orchestra\Contracts\Config\PackageRepository, \ArrayAccess');
-        $this->app['files'] = $files = m::mock('Illuminate\Filesystem\Filesystem');
-        $this->app['translator'] = $translator = m::mock('Illuminate\Translation\Translator');
-        $this->app['view'] = $view = m::mock('Illuminate\Contracts\View\Factory');
+        $this->instance('config', $config = m::mock('Orchestra\Contracts\Config\PackageRepository, \ArrayAccess'));
+        $this->instance('files', $files = m::mock('Illuminate\Filesystem\Filesystem'));
+        $this->instance('translator', $translator = m::mock('Illuminate\Translation\Translator'));
+        $this->instance('view', $view = m::mock('Illuminate\Contracts\View\Factory'));
 
         $path = '/var/www/vendor/foo/bar';
 
@@ -68,7 +42,11 @@ class PackageProviderTest extends TestCase
             ->shouldReceive('addNamespace')->once()
                 ->with('foo', "{$path}/views")->andReturnNull();
 
-        $this->assertNull($this->package('foo/bar', 'foo', $path));
+        $stub = new class($this->app) extends ServiceProvider {
+            use PackageProvider;
+        };
+
+        $this->assertNull($stub->package('foo/bar', 'foo', $path));
 
         $this->app->make('translator');
     }
@@ -76,20 +54,49 @@ class PackageProviderTest extends TestCase
     /** @test */
     public function it_cant_use_package_when_laravel_installed()
     {
-        $this->app['config'] = m::mock('Illuminate\Contracts\Config\Repository');
-        $this->assertFalse($this->hasPackageRepository());
+        $this->instance('config', m::mock('Illuminate\Contracts\Config\Repository'));
+
+        $stub = new class($this->app) extends ServiceProvider {
+            use PackageProvider;
+
+            public function isLaravelConfig()
+            {
+                return $this->hasPackageRepository() === false;
+            }
+        };
+
+        $this->assertTrue($stub->isLaravelConfig());
     }
 
     /** @test */
     public function it_can_use_package_when_orchestra_installed()
     {
-        $this->app['config'] = m::mock('Orchestra\Contracts\Config\PackageRepository');
-        $this->assertTrue($this->hasPackageRepository());
+        $this->instance('config', m::mock('Orchestra\Contracts\Config\PackageRepository'));
+
+        $stub = new class($this->app) extends ServiceProvider {
+            use PackageProvider;
+
+            public function isOrchestraConfig()
+            {
+                return $this->hasPackageRepository() === true;
+            }
+        };
+
+        $this->assertTrue($stub->isOrchestraConfig());
     }
 
     /** @test */
     public function it_can_boot_using_laravel()
     {
-        $this->assertNull($this->bootUsingLaravel('foo'));
+        $stub = new class($this->app) extends ServiceProvider {
+            use PackageProvider;
+
+            public function boot()
+            {
+                $this->bootUsingLaravel('foo');
+            }
+        };
+
+        $this->assertNull($stub->boot());
     }
 }

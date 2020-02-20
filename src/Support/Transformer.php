@@ -28,7 +28,7 @@ abstract class Transformer
         } elseif ($instance instanceof BaseFluent) {
             $transformable = new Fluent($instance->getAttributes());
         } else {
-            throw new InvalidArgumentException("Unable to transform {get_class($instance)}.");
+            throw new InvalidArgumentException('Unable to transform '.\get_class($instance).'."');
         }
 
         return $transformable->transform($this);
