@@ -4,6 +4,11 @@ namespace Orchestra\Support\Facades;
 
 use Illuminate\Support\Facades\Facade;
 
+/**
+ * @method bool map(string $name, array $aliases)
+ *
+ * @see \Orchestra\Extension\Config\Repository
+ */
 class Config extends Facade
 {
     /**

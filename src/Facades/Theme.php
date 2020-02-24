@@ -18,7 +18,6 @@ use Illuminate\Support\Facades\Facade;
  * @method string asset(string $url = '')
  * @method \Illuminate\Support\Collection detect()
  *
- *
  * @see \Orchestra\View\Theme\ThemeManager
  */
 class Theme extends Facade
