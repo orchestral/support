@@ -4,6 +4,9 @@ namespace Orchestra\Support\Facades;
 
 use Illuminate\Support\Facades\Facade;
 
+/**
+ * @deprecated 4.x
+ */
 class Profiler extends Facade
 {
     /**
