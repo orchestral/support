@@ -4,6 +4,12 @@ namespace Orchestra\Support\Facades;
 
 use Illuminate\Support\Facades\Facade;
 
+/**
+ * @method void macro(string $name, callable $macro)
+ * @method string render(string $name, ...$parameters)
+ *
+ * @see \Orchestra\View\Decorator
+ */
 class Decorator extends Facade
 {
     /**
