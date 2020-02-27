@@ -2,6 +2,14 @@
 
 This changelog references the relevant changes (bug and security fixes) done to `orchestra/support`.
 
+## 4.1.1
+
+Released: 2020-02-27
+
+### Changes
+
+* Update facades docblock.
+
 ## 4.1.0
 
 Released: 2020-01-24
