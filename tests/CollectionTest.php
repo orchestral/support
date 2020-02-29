@@ -4,7 +4,6 @@ namespace Orchestra\Support\Tests;
 
 use Orchestra\Support\Collection;
 use PHPUnit\Framework\TestCase;
-use SebastianBergmann\Environment\OperatingSystem;
 
 class CollectionTest extends TestCase
 {
