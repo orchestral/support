@@ -2,7 +2,6 @@
 
 namespace Orchestra\Support\Tests\Providers\Concerns;
 
-use Illuminate\Container\Container;
 use Illuminate\Support\ServiceProvider;
 use Mockery as m;
 use Orchestra\Support\Providers\Concerns\PackageProvider;

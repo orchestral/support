@@ -12,7 +12,6 @@ use Illuminate\Support\Facades\Facade;
  * @method string toJson(int $options = 0)
  * @method int count()
  * @method bool isEmpty()
- *
  * @method \Orchestra\Widget\Handler of(string|\Closure $name, \Closure|null $callback = null)
  *
  * @see \Orchestra\Widget\WidgetManager

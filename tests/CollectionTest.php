@@ -15,12 +15,7 @@ class CollectionTest extends TestCase
             ['id' => 2, 'name' => 'Taylor Otwell'],
         ]);
 
-        $expected = <<<EXPECTED
-id,name
-1,"Mior Muhammad Zaki"
-2,"Taylor Otwell"
-
-EXPECTED;
+        $expected = "id,name\n1,\"Mior Muhammad Zaki\"\n2,\"Taylor Otwell\"\n";
 
         $this->assertEquals($expected, $stub->toCsv());
     }
@@ -33,12 +28,7 @@ EXPECTED;
             ['id' => 2, 'name' => 'Taylor Otwell'],
         ]);
 
-        $expected = <<<EXPECTED
-id,name
-1,"Mior Muhammad Zaki"
-2,"Taylor Otwell"
-
-EXPECTED;
+        $expected = "id,name\n1,\"Mior Muhammad Zaki\"\n2,\"Taylor Otwell\"\n";
 
         ob_start();
         $stub->streamCsv();
