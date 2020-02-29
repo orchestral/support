@@ -4,6 +4,7 @@ namespace Orchestra\Support\Tests;
 
 use Orchestra\Support\Collection;
 use PHPUnit\Framework\TestCase;
+use SebastianBergmann\Environment\OperatingSystem;
 
 class CollectionTest extends TestCase
 {
@@ -42,6 +43,10 @@ EXPECTED;
 
         ob_start();
         $stub->streamCsv();
+
+        if ((new OperatingSystem())->getFamily() === 'Windows') {
+            $expected = str_replace('\r\n', '\n', $expected);
+        }
 
         $this->assertEquals($expected, ob_get_clean());
     }
