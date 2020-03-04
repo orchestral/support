@@ -4,6 +4,7 @@ namespace Orchestra\Support\Tests;
 
 use Orchestra\Support\Str;
 use PHPUnit\Framework\TestCase;
+use SebastianBergmann\Environment\OperatingSystem;
 
 class StrTest extends TestCase
 {
@@ -55,6 +56,12 @@ class StrTest extends TestCase
     /** @test */
     public function it_can_convert_stream_get_contents_string()
     {
+        if ((new OperatingSystem())->getFamily() === 'Windows') {
+            $this->markTestSkipped(
+                'Unable to tests on Windows environment.'
+            );
+        }
+
         $basePath = __DIR__.'/Stubs/';
         $expected = 'a:2:{s:4:"name";s:9:"Orchestra";s:5:"theme";a:2:{s:7:"backend";s:7:"default";s:8:"frontend";s:7:"default";}}';
         $stream = fopen($basePath.'driver1.stub', 'r');

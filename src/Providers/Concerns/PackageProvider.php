@@ -52,7 +52,7 @@ trait PackageProvider
         $paths = $this->getAppViewPaths($package);
 
         $this->callAfterResolving('view', function ($view) use ($files, $paths, $namespace, $path) {
-           foreach ($paths as $appView) {
+            foreach ($paths as $appView) {
                 if ($files->isDirectory($appView)) {
                     $view->addNamespace($namespace, $appView);
                 }
