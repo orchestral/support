@@ -3,7 +3,7 @@
 namespace Orchestra\Support\Tests\Concerns;
 
 use Orchestra\Support\Concerns\Validation;
-use PHPUnit\Framework\TestCase;
+use Orchestra\Testbench\TestCase;
 
 class ValidationTest extends TestCase
 {
