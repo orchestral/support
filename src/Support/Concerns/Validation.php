@@ -3,7 +3,8 @@
 namespace Orchestra\Support\Concerns;
 
 use Illuminate\Contracts\Validation\Validator;
-use Illuminate\Support\Fluent;
+use Orchestra\Support\Arr;
+use Orchestra\Support\Fluent;
 use Orchestra\Support\Str;
 
 trait Validation
@@ -151,22 +152,21 @@ trait Validation
      */
     final protected function runValidationEvents($events, array $phrases): array
     {
-        \is_array($events) || $events = (array) $events;
-
         // Merge all the events.
-        $events = \array_merge($this->getValidationEvents(), $events);
+        $events = \array_merge($this->getValidationEvents(), Arr::wrap($events));
 
         // Convert rules array to Fluent, in order to pass it by references
         // in all event listening to this validation.
         $rules = new Fluent($this->getBindedRules());
         $phrases = new Fluent(\array_merge($this->getValidationPhrases(), $phrases));
 
-        foreach ((array) $events as $event) {
+        foreach ($events as $event) {
             $this->validationDispatcher->dispatch($event, [&$rules, &$phrases]);
         }
 
         return [
-            $rules->getAttributes(), $phrases->getAttributes(),
+            $rules->getAttributes(),
+            $phrases->getAttributes(),
         ];
     }
 
