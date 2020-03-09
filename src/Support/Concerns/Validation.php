@@ -207,7 +207,7 @@ trait Validation
      */
     protected function getValidationSchemasName(string $scenario): array
     {
-        $scenario = \ucfirst($scenario);
+        $scenario = Str::camel($scenario);
 
         $on = "on{$scenario}";
         $extend = "extend{$scenario}";

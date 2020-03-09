@@ -3,6 +3,7 @@
 namespace Orchestra\Support\Tests;
 
 use Illuminate\Contracts\Validation\Factory as ValidationFactory;
+use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Support\Facades\Event;
 use Mockery as m;
 use Orchestra\Testbench\TestCase;
@@ -18,7 +19,7 @@ class ValidatorTest extends TestCase
         $phrases = ['email.required' => 'Email required'];
 
         $stub = new FooValidator(app(ValidationFactory::class), app('events'));
-        $stub->on('optionalName', ['orchestra'])->bind(['id' => '2']);
+        $stub->on('optional-name', ['orchestra'])->bind(['id' => '2']);
 
         $validation = $stub->with($input, 'foo.event');
 
@@ -58,5 +59,10 @@ class FooValidator extends \Orchestra\Support\Validator
     protected function onOptionalName($value)
     {
         $this->rules['name'] = ['sometimes'];
+    }
+
+    protected function extendOptionalName(Validator $validator)
+    {
+        //
     }
 }
