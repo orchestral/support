@@ -4,91 +4,66 @@ namespace Orchestra\Support\Tests;
 
 use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Contracts\Validation\Factory as ValidationFactory;
+use Illuminate\Contracts\Validation\Validator as ValidatorContract;
 use Mockery as m;
 use Orchestra\Testbench\TestCase;
 
 class ValidatorTest extends TestCase
 {
-    /**
-     * Setup the test environment.
-     */
-    protected function setUp(): void
-    {
-        parent::setUp();
 
-        $_SERVER['validator.onFoo'] = null;
-        $_SERVER['validator.onFoo'] = null;
-    }
-
-    /**
-     * Teardown the test environment.
-     */
-    protected function tearDown(): void
-    {
-        parent::tearDown();
-
-        unset($_SERVER['validator.onFoo']);
-        unset($_SERVER['validator.extendFoo']);
-        m::close();
-    }
 
     /** @test */
     public function it_can_validate()
     {
-
-        $rules = ['email' => ['email', 'foo:2'], 'name' => 'any'];
+        $input = ['email' => 'crynobone@gmail.com'];
         $phrases = ['email.required' => 'Email required'];
 
-        Event::shouldReceive('dispatch')->once()->with('foo.event', m::any())->andReturn(null);
-        Validator::shouldReceive('make')->once()->with([], $rules, $phrases)
-            ->andReturn(m::mock('Illuminate\Contracts\Validation\Validator'));
+        Event::shouldReceive('dispatch')->once()->with('foo.event', m::any())->andReturnNull();
 
         $stub = new FooValidator();
-        $stub->on('foo', ['orchestra'])->bind(['id' => '2']);
+        $stub->on('optional-name', ['orchestra'])->bind(['id' => '2']);
 
-        $validation = $stub->with([], 'foo.event');
+        $validation = $stub->with($input, 'foo.event');
 
-        $this->assertEquals('orchestra', $_SERVER['validator.onFoo']);
-        $this->assertEquals($validation, $_SERVER['validator.extendFoo']);
         $this->assertInstanceOf('Illuminate\Contracts\Validation\Validator', $validation);
+        $this->assertTrue($validation->passes());
     }
 
     /** @test */
     public function it_can_validate_without_scope()
     {
-        $rules = ['email' => ['email', 'foo:2'], 'name' => 'any'];
-        $phrases = ['email.required' => 'Email required', 'name' => 'Any name'];
-
-        Validator::shouldReceive('make')->once()->with([], $rules, $phrases)
-            ->andReturn(m::mock('Illuminate\Contracts\Validation\Validator'));
+        $input = ['email' => 'crynobone@gmail.com', 'name' => 'Mior Muhammad Zaki'];
+        $phrases = ['email.required' => 'Email required'];
 
         $stub = new FooValidator();
         $stub->bind(['id' => '2']);
 
-        $validation = $stub->with([], null, ['name' => 'Any name']);
+        $validation = $stub->with($input, [], $phrases);
 
         $this->assertInstanceOf('Illuminate\Contracts\Validation\Validator', $validation);
+        $this->assertTrue($validation->passes());
     }
 }
 
 class FooValidator extends \Orchestra\Support\Validator
 {
     protected $rules = [
-        'email' => ['email', 'foo:{id}'],
-        'name' => 'any',
+        'email' => ['email'],
+        'name' => ['required'],
     ];
 
     protected $phrases = [
         'email.required' => 'Email required',
     ];
 
-    protected function onFoo($value)
+    protected function onOptionalName($value)
     {
-        $_SERVER['validator.onFoo'] = $value;
+        $this->rules['name'] = ['sometimes'];
     }
 
-    protected function extendFoo($validation)
+    protected function extendOptionalName(ValidatorContract $validator)
     {
-        $_SERVER['validator.extendFoo'] = $validation;
+        //
     }
 }

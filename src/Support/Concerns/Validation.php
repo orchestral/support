@@ -5,6 +5,7 @@ namespace Orchestra\Support\Concerns;
 use Illuminate\Contracts\Validation\Validator as ValidatorContract;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Facades\Validator;
+use Orchestra\Support\Arr;
 use Illuminate\Support\Fluent;
 use Orchestra\Support\Str;
 
@@ -90,7 +91,9 @@ trait Validation
 
         if (! empty($this->validationBindings)) {
             foreach ($rules as $key => $value) {
-                $rules[$key] = Str::replace($value, $this->validationBindings);
+                if (\is_string($value)) {
+                    $rules[$key] = Str::replace($value, $this->validationBindings);
+                }
             }
         }
 
@@ -137,10 +140,8 @@ trait Validation
      */
     final protected function runValidationEvents($events, array $phrases): array
     {
-        \is_array($events) || $events = (array) $events;
-
         // Merge all the events.
-        $events = \array_merge($this->getValidationEvents(), $events);
+        $events = \array_merge($this->getValidationEvents(), Arr::wrap($events));
 
         // Convert rules array to Fluent, in order to pass it by references
         // in all event listening to this validation.
@@ -152,7 +153,8 @@ trait Validation
         }
 
         return [
-            $rules->getAttributes(), $phrases->getAttributes(),
+            $rules->getAttributes(),
+            $phrases->getAttributes(),
         ];
     }
 
@@ -195,7 +197,7 @@ trait Validation
      */
     protected function getValidationSchemasName(string $scenario): array
     {
-        $scenario = \ucfirst($scenario);
+        $scenario = Str::camel($scenario);
 
         $on = "on{$scenario}";
         $extend = "extend{$scenario}";
