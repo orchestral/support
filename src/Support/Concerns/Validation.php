@@ -11,20 +11,6 @@ use Orchestra\Support\Str;
 trait Validation
 {
     /**
-     * The validation factory implementation.
-     *
-     * @var \Illuminate\Contracts\Validation\Factory
-     */
-    protected $validationFactory;
-
-    /**
-     * The event dispatcher implementation.
-     *
-     * @var \Illuminate\Contracts\Events\Dispatcher
-     */
-    protected $validationDispatcher;
-
-    /**
      * List of bindings.
      *
      * @var array
