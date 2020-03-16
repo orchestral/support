@@ -2,8 +2,10 @@
 
 namespace Orchestra\Support\Tests;
 
+use Illuminate\Support\Facades\Event;
+use Illuminate\Support\Facades\Validator;
 use Mockery as m;
-use PHPUnit\Framework\TestCase;
+use Orchestra\Testbench\TestCase;
 
 class ValidatorTest extends TestCase
 {
@@ -12,6 +14,8 @@ class ValidatorTest extends TestCase
      */
     protected function setUp(): void
     {
+        parent::setUp();
+
         $_SERVER['validator.onFoo'] = null;
         $_SERVER['validator.onFoo'] = null;
     }
@@ -21,6 +25,8 @@ class ValidatorTest extends TestCase
      */
     protected function tearDown(): void
     {
+        parent::tearDown();
+
         unset($_SERVER['validator.onFoo']);
         unset($_SERVER['validator.extendFoo']);
         m::close();
@@ -29,17 +35,15 @@ class ValidatorTest extends TestCase
     /** @test */
     public function it_can_validate()
     {
-        $event = m::mock('Illuminate\Contracts\Events\Dispatcher');
-        $validator = m::mock('Illuminate\Contracts\Validation\Factory');
 
         $rules = ['email' => ['email', 'foo:2'], 'name' => 'any'];
         $phrases = ['email.required' => 'Email required'];
 
-        $event->shouldReceive('dispatch')->once()->with('foo.event', m::any())->andReturn(null);
-        $validator->shouldReceive('make')->once()->with([], $rules, $phrases)
+        Event::shouldReceive('dispatch')->once()->with('foo.event', m::any())->andReturn(null);
+        Validator::shouldReceive('make')->once()->with([], $rules, $phrases)
             ->andReturn(m::mock('Illuminate\Contracts\Validation\Validator'));
 
-        $stub = new FooValidator($validator, $event);
+        $stub = new FooValidator();
         $stub->on('foo', ['orchestra'])->bind(['id' => '2']);
 
         $validation = $stub->with([], 'foo.event');
@@ -52,16 +56,13 @@ class ValidatorTest extends TestCase
     /** @test */
     public function it_can_validate_without_scope()
     {
-        $event = m::mock('Illuminate\Contracts\Events\Dispatcher');
-        $validator = m::mock('Illuminate\Contracts\Validation\Factory');
-
         $rules = ['email' => ['email', 'foo:2'], 'name' => 'any'];
         $phrases = ['email.required' => 'Email required', 'name' => 'Any name'];
 
-        $validator->shouldReceive('make')->once()->with([], $rules, $phrases)
+        Validator::shouldReceive('make')->once()->with([], $rules, $phrases)
             ->andReturn(m::mock('Illuminate\Contracts\Validation\Validator'));
 
-        $stub = new FooValidator($validator, $event);
+        $stub = new FooValidator();
         $stub->bind(['id' => '2']);
 
         $validation = $stub->with([], null, ['name' => 'Any name']);

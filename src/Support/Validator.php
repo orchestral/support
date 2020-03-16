@@ -32,18 +32,6 @@ abstract class Validator
     protected $phrases = [];
 
     /**
-     * Create a new Validator instance.
-     *
-     * @param  \Illuminate\Contracts\Validation\Factory  $factory
-     * @param  \Illuminate\Contracts\Events\Dispatcher  $dispatcher
-     */
-    public function __construct(Factory $factory, Dispatcher $dispatcher)
-    {
-        $this->validationFactory = $factory;
-        $this->validationDispatcher = $dispatcher;
-    }
-
-    /**
      * Create a scope scenario.
      *
      * @param  string  $scenario

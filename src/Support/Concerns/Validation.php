@@ -2,7 +2,9 @@
 
 namespace Orchestra\Support\Concerns;
 
-use Illuminate\Contracts\Validation\Validator;
+use Illuminate\Contracts\Validation\Validator as ValidatorContract;
+use Illuminate\Support\Facades\Event;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Fluent;
 use Orchestra\Support\Str;
 
@@ -76,7 +78,7 @@ trait Validation
      *
      * @return \Illuminate\Contracts\Validation\Validator
      */
-    final public function runValidation(array $input, $events = [], array $phrases = []): Validator
+    final public function runValidation(array $input, $events = [], array $phrases = []): ValidatorContract
     {
         if (\is_null($this->validationScenarios)) {
             $this->onValidationScenario('any');
@@ -86,7 +88,7 @@ trait Validation
 
         [$rules, $phrases] = $this->runValidationEvents($events, $phrases);
 
-        return \tap($this->validationFactory->make($input, $rules, $phrases), function ($validator) {
+        return \tap(Validator::make($input, $rules, $phrases), function (ValidatorContract $validator) {
             $this->runExtendedScenario($validator);
         });
     }
@@ -130,7 +132,7 @@ trait Validation
      *
      * @return void
      */
-    final protected function runExtendedScenario(Validator $validator): void
+    final protected function runExtendedScenario(ValidatorContract $validator): void
     {
         if (\is_null($method = $this->validationScenarios['extend'])) {
             return;
@@ -160,7 +162,7 @@ trait Validation
         $phrases = new Fluent(\array_merge($this->getValidationPhrases(), $phrases));
 
         foreach ((array) $events as $event) {
-            $this->validationDispatcher->dispatch($event, [&$rules, &$phrases]);
+            Event::dispatch($event, [&$rules, &$phrases]);
         }
 
         return [
