@@ -5,7 +5,9 @@ namespace Orchestra\Support;
 use Illuminate\Contracts\Events\Dispatcher;
 use Illuminate\Contracts\Validation\Factory;
 use Illuminate\Contracts\Validation\Validator as ValidatorContract;
+use Illuminate\Http\Request;
 
+// $validator->state(...)->listen(...)->validate();
 abstract class Validator
 {
     use Concerns\Validation;
@@ -23,6 +25,13 @@ abstract class Validator
      * @var array
      */
     protected $events = [];
+
+    /**
+     * List of local events.
+     *
+     * @var array
+     */
+    protected $localEvents = [];
 
     /**
      * List of phrases.
@@ -84,6 +93,37 @@ abstract class Validator
     }
 
     /**
+     * Listen to events.
+     *
+     * @param  string|array  $events
+     *
+     * @return $this
+     */
+    public function listen($events)
+    {
+        $this->localEvents = \array_merge($this->localEvents, Arr::wrap($events));
+
+        return $this;
+    }
+
+    /**
+     * Execute validation service.
+     *
+     * @param  \Illuminate\Http\Request|array  $input
+     * @param  array  $phrases
+     *
+     * @return \Illuminate\Contracts\Validation\Validator
+     */
+    public function validate($input, array $phrases = []): ValidatorContract
+    {
+        if ($input instanceof Request) {
+            return $this->runValidation($input->all(), $this->localEvents, $phrases);
+        }
+
+        return $this->runValidation($input, $this->localEvents, $phrases);
+    }
+
+    /**
      * Execute validation service.
      *
      * @param  array  $input
@@ -91,6 +131,8 @@ abstract class Validator
      * @param  array   $phrases
      *
      * @return \Illuminate\Contracts\Validation\Validator
+     *
+     * @deprecated v5.1.0
      */
     public function with(array $input, $events = [], array $phrases = []): ValidatorContract
     {
