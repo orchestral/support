@@ -7,7 +7,6 @@ use Illuminate\Contracts\Validation\Factory;
 use Illuminate\Contracts\Validation\Validator as ValidatorContract;
 use Illuminate\Http\Request;
 
-// $validator->state(...)->listen(...)->validate();
 abstract class Validator
 {
     use Concerns\Validation;
