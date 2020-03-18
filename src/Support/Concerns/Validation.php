@@ -3,10 +3,11 @@
 namespace Orchestra\Support\Concerns;
 
 use Illuminate\Contracts\Validation\Validator as ValidatorContract;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Facades\Validator;
-use Orchestra\Support\Arr;
 use Illuminate\Support\Fluent;
+use Orchestra\Support\Arr;
 use Orchestra\Support\Str;
 
 trait Validation
@@ -59,14 +60,16 @@ trait Validation
     /**
      * Execute validation service.
      *
-     * @param  array  $input
-     * @param  string|array  $events
+     * @param  \Illuminate\Http\Request|array  $request
      * @param  array  $phrases
+     * @param  string|array  $events
      *
      * @return \Illuminate\Contracts\Validation\Validator
      */
-    final public function runValidation(array $input, $events = [], array $phrases = []): ValidatorContract
+    final public function runValidation($request, array $phrases = [], $events = []): ValidatorContract
     {
+        $input = $request instanceof Request ? $request->all() : $request;
+
         if (\is_null($this->validationScenarios)) {
             $this->onValidationScenario('any');
         }

@@ -5,6 +5,7 @@ namespace Orchestra\Support;
 use Illuminate\Contracts\Events\Dispatcher;
 use Illuminate\Contracts\Validation\Factory;
 use Illuminate\Contracts\Validation\Validator as ValidatorContract;
+use Illuminate\Http\Request;
 
 abstract class Validator
 {
@@ -25,6 +26,13 @@ abstract class Validator
     protected $events = [];
 
     /**
+     * List of local events.
+     *
+     * @var array
+     */
+    protected $localEvents = [];
+
+    /**
      * List of phrases.
      *
      * @var array
@@ -32,14 +40,14 @@ abstract class Validator
     protected $phrases = [];
 
     /**
-     * Create a scope scenario.
+     * Set state.
      *
      * @param  string  $scenario
      * @param  array   $parameters
      *
      * @return $this
      */
-    public function on(string $scenario, array $parameters = [])
+    public function state(string $scenario, array $parameters = [])
     {
         return $this->onValidationScenario($scenario, $parameters);
     }
@@ -57,17 +65,30 @@ abstract class Validator
     }
 
     /**
+     * Listen to events.
+     *
+     * @param  string|array  $events
+     *
+     * @return $this
+     */
+    public function listen($events)
+    {
+        $this->localEvents = \array_merge($this->localEvents, Arr::wrap($events));
+
+        return $this;
+    }
+
+    /**
      * Execute validation service.
      *
-     * @param  array  $input
-     * @param  string|array  $events
-     * @param  array   $phrases
+     * @param  \Illuminate\Http\Request|array  $input
+     * @param  array  $phrases
      *
      * @return \Illuminate\Contracts\Validation\Validator
      */
-    public function with(array $input, $events = [], array $phrases = []): ValidatorContract
+    public function validate($input, array $phrases = []): ValidatorContract
     {
-        return $this->runValidation($input, $events, $phrases);
+        return $this->runValidation($input, $phrases, $this->localEvents);
     }
 
     /**
