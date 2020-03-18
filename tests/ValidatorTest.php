@@ -11,8 +11,6 @@ use Orchestra\Testbench\TestCase;
 
 class ValidatorTest extends TestCase
 {
-
-
     /** @test */
     public function it_can_validate()
     {
@@ -22,9 +20,9 @@ class ValidatorTest extends TestCase
         Event::shouldReceive('dispatch')->once()->with('foo.event', m::any())->andReturnNull();
 
         $stub = new FooValidator();
-        $stub->on('optional-name', ['orchestra'])->bind(['id' => '2']);
+        $stub->state('optional-name', ['orchestra'])->bind(['id' => '2']);
 
-        $validation = $stub->with($input, 'foo.event');
+        $validation = $stub->listen('foo.event')->validate($input);
 
         $this->assertInstanceOf('Illuminate\Contracts\Validation\Validator', $validation);
         $this->assertTrue($validation->passes());
@@ -39,7 +37,7 @@ class ValidatorTest extends TestCase
         $stub = new FooValidator();
         $stub->bind(['id' => '2']);
 
-        $validation = $stub->with($input, [], $phrases);
+        $validation = $stub->validate($input, $phrases);
 
         $this->assertInstanceOf('Illuminate\Contracts\Validation\Validator', $validation);
         $this->assertTrue($validation->passes());
