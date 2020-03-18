@@ -44,16 +44,31 @@ abstract class Validator
     }
 
     /**
-     * Create a scope scenario.
+     * Set state.
      *
      * @param  string  $scenario
      * @param  array   $parameters
      *
      * @return $this
      */
-    public function on(string $scenario, array $parameters = [])
+    public function state(string $scenario, array $parameters = [])
     {
         return $this->onValidationScenario($scenario, $parameters);
+    }
+
+    /**
+     * Create a scope scenario.
+     *
+     * @param  string  $scenario
+     * @param  array   $parameters
+     *
+     * @return $this
+     *
+     * @deprecated v5.1.0
+     */
+    public function on(string $scenario, array $parameters = [])
+    {
+        return $this->state($scenario, $parameters);
     }
 
     /**
