@@ -8,12 +8,6 @@ Support (Facades) Component includes a basic set of classes for Laravel and Orch
 [![Latest Unstable Version](https://poser.pugx.org/orchestra/support-facades/v/unstable)](//packagist.org/packages/orchestra/support-facades)
 [![License](https://poser.pugx.org/orchestra/support-facades/license)](https://packagist.org/packages/orchestra/support-facades)
 
-## Table of Content
-
-* [Version Compatibility](#version-compatibility)
-* [Installation](#installation)
-* [Changelog](https://github.com/orchestral/support-facades/releases)
-
 ## Version Compatibility
 
 Laravel    | Support (Core)
@@ -24,6 +18,7 @@ Laravel    | Support (Core)
  5.8.x     | 3.8.x
  6.x       | 4.x
  7.x       | 5.x
+ 8.x       | 6.x
 
 ## Installation
 

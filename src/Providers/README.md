@@ -8,12 +8,6 @@ Support (Providers) Component includes some Service Provider helper classes and 
 [![Latest Unstable Version](https://poser.pugx.org/orchestra/support-providers/v/unstable)](//packagist.org/packages/orchestra/support-providers)
 [![License](https://poser.pugx.org/orchestra/support-providers/license)](https://packagist.org/packages/orchestra/support-providers)
 
-## Table of Content
-
-* [Version Compatibility](#version-compatibility)
-* [Installation](#installation)
-* [Changelog](https://github.com/orchestral/support-providers/releases)
-
 ## Version Compatibility
 
 Laravel    | Support (Providers)
@@ -24,6 +18,7 @@ Laravel    | Support (Providers)
  5.8.x     | 3.8.x
  6.x       | 4.x
  7.x       | 5.x
+ 8.x       | 6.x
 
 ## Installation
 
