@@ -8,12 +8,6 @@ Support (Core) Component includes a basic set of classes for Laravel and Orchest
 [![Latest Unstable Version](https://poser.pugx.org/orchestra/support-core/v/unstable)](//packagist.org/packages/orchestra/support-core)
 [![License](https://poser.pugx.org/orchestra/support-core/license)](https://packagist.org/packages/orchestra/support-core)
 
-## Table of Content
-
-* [Version Compatibility](#version-compatibility)
-* [Installation](#installation)
-* [Changelog](https://github.com/orchestral/support-core/releases)
-
 ## Version Compatibility
 
 Laravel    | Support (Core)
@@ -24,6 +18,7 @@ Laravel    | Support (Core)
  5.8.x     | 3.8.x
  6.x       | 4.x
  7.x       | 5.x
+ 8.x       | 6.x
 
 ## Installation
 
