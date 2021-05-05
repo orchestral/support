@@ -46,7 +46,7 @@ class Str extends BaseStr
      *
      * @return string|array
      */
-    public static function replace(
+    public static function translate(
         $text,
         array $replacements = [],
         string $prefix = '{',

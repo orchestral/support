@@ -21,7 +21,7 @@ class StrTest extends TestCase
     public function it_can_replace_string()
     {
         $expected = 'Orchestra Platform is awesome';
-        $output = Str::replace('{name} is awesome', ['name' => 'Orchestra Platform']);
+        $output = Str::translate('{name} is awesome', ['name' => 'Orchestra Platform']);
 
         $this->assertEquals($expected, $output);
 
@@ -34,7 +34,7 @@ class StrTest extends TestCase
             '{name} is awesome',
             '{name} is not a {foo}',
         ];
-        $output = Str::replace($data, ['name' => 'Orchestra Platform', 'foo' => 'foobar']);
+        $output = Str::translate($data, ['name' => 'Orchestra Platform', 'foo' => 'foobar']);
 
         $this->assertEquals($expected, $output);
     }
