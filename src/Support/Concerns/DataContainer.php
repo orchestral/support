@@ -76,7 +76,7 @@ trait DataContainer
      */
     public function set(string $key, $value = null)
     {
-        return Arr::set($this->items, $key, \value($value));
+        return Arr::set($this->items, $key, value($value));
     }
 
     /**
@@ -123,7 +123,7 @@ trait DataContainer
     {
         $items = $this->items;
 
-        \array_push($this->removedItems, $key);
+        array_push($this->removedItems, $key);
         Arr::forget($items, $key);
 
         $this->items = $items;

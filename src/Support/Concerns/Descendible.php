@@ -20,8 +20,8 @@ trait Descendible
             return $array;
         }
 
-        $keys = \explode('.', $key);
-        $first = \array_shift($keys);
+        $keys = explode('.', $key);
+        $first = array_shift($keys);
 
         if (! isset($array[$first])) {
             return null;

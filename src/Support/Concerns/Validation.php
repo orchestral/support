@@ -38,7 +38,7 @@ trait Validation
     {
         [$on, $extend] = $this->getValidationSchemasName($scenario);
 
-        $this->validationScenarios = \compact('on', 'extend', 'parameters');
+        $this->validationScenarios = compact('on', 'extend', 'parameters');
 
         return $this;
     }
@@ -52,7 +52,7 @@ trait Validation
      */
     final public function bindToValidation(array $bindings): self
     {
-        $this->validationBindings = \array_merge($this->validationBindings, $bindings);
+        $this->validationBindings = array_merge($this->validationBindings, $bindings);
 
         return $this;
     }
@@ -78,7 +78,7 @@ trait Validation
 
         [$rules, $phrases] = $this->runValidationEvents($events, $phrases);
 
-        return \tap(Validator::make($input, $rules, $phrases), function (ValidatorContract $validator) {
+        return tap(Validator::make($input, $rules, $phrases), function (ValidatorContract $validator) {
             $this->runExtendedScenario($validator);
         });
     }
@@ -144,12 +144,12 @@ trait Validation
     final protected function runValidationEvents($events, array $phrases): array
     {
         // Merge all the events.
-        $events = \array_merge($this->getValidationEvents(), Arr::wrap($events));
+        $events = array_merge($this->getValidationEvents(), Arr::wrap($events));
 
         // Convert rules array to Fluent, in order to pass it by references
         // in all event listening to this validation.
         $rules = new Fluent($this->getBindedRules());
-        $phrases = new Fluent(\array_merge($this->getValidationPhrases(), $phrases));
+        $phrases = new Fluent(array_merge($this->getValidationPhrases(), $phrases));
 
         foreach ((array) $events as $event) {
             Event::dispatch($event, [&$rules, &$phrases]);
@@ -206,8 +206,8 @@ trait Validation
         $extend = "extend{$scenario}";
 
         return [
-            \method_exists($this, $on) ? $on : null,
-            \method_exists($this, $extend) ? $extend : null,
+            method_exists($this, $on) ? $on : null,
+            method_exists($this, $extend) ? $extend : null,
         ];
     }
 }

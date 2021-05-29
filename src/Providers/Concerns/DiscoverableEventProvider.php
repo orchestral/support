@@ -44,7 +44,7 @@ trait DiscoverableEventProvider
 
         return Collection::make($this->discoverEventsWithin())
             ->reduce(static function ($discovered, $directory) use ($basePath) {
-                return \array_merge_recursive(
+                return array_merge_recursive(
                     $discovered,
                     DiscoverEvents::within($directory, $basePath)
                 );

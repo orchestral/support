@@ -46,6 +46,6 @@ trait Uploadable
     {
         $extension = $file->getClientOriginalExtension();
 
-        return \sprintf('%s.%s', Str::random(10), $extension);
+        return sprintf('%s.%s', Str::random(10), $extension);
     }
 }

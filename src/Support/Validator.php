@@ -2,10 +2,7 @@
 
 namespace Orchestra\Support;
 
-use Illuminate\Contracts\Events\Dispatcher;
-use Illuminate\Contracts\Validation\Factory;
 use Illuminate\Contracts\Validation\Validator as ValidatorContract;
-use Illuminate\Http\Request;
 
 abstract class Validator
 {
@@ -73,7 +70,7 @@ abstract class Validator
      */
     public function listen($events)
     {
-        $this->localEvents = \array_merge($this->localEvents, Arr::wrap($events));
+        $this->localEvents = array_merge($this->localEvents, Arr::wrap($events));
 
         return $this;
     }

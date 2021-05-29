@@ -15,7 +15,7 @@ class MiddlewareServiceProviderTest extends TestCase
     {
         $stub = new StubMiddlewareProvider($this->app);
 
-        $this->assertContains(MiddlewareProvider::class, class_uses_recursive(get_class($stub)));
+        $this->assertContains(MiddlewareProvider::class, class_uses_recursive(\get_class($stub)));
     }
 
     /** @test */
@@ -23,7 +23,7 @@ class MiddlewareServiceProviderTest extends TestCase
     {
         $stub = new StubMiddlewareProvider($this->app);
 
-        $this->assertContains(MiddlewareProvider::class, class_uses_recursive(get_class($stub)));
+        $this->assertContains(MiddlewareProvider::class, class_uses_recursive(\get_class($stub)));
 
         $this->assertNull($stub->register());
     }

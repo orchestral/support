@@ -18,6 +18,6 @@ class ServiceProviderTest extends TestCase
             }
         };
 
-        $this->assertContains(PackageProvider::class, class_uses_recursive(get_class($stub)));
+        $this->assertContains(PackageProvider::class, class_uses_recursive(\get_class($stub)));
     }
 }

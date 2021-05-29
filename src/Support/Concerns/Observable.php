@@ -27,7 +27,7 @@ trait Observable
         $className = \get_class($class);
 
         foreach ($instance->getObservableEvents() as $event) {
-            if (\method_exists($class, $event)) {
+            if (method_exists($class, $event)) {
                 static::registerObservableEvent($event, "{$className}@{$event}");
             }
         }

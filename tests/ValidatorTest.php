@@ -2,10 +2,8 @@
 
 namespace Orchestra\Support\Tests;
 
-use Illuminate\Support\Facades\Event;
-use Illuminate\Support\Facades\Validator;
-use Illuminate\Contracts\Validation\Factory as ValidationFactory;
 use Illuminate\Contracts\Validation\Validator as ValidatorContract;
+use Illuminate\Support\Facades\Event;
 use Mockery as m;
 use Orchestra\Testbench\TestCase;
 

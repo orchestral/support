@@ -614,12 +614,12 @@ class Timezone
         $where = ['UTC', 'GMT'];
 
         if ($hourInUtc > 12) {
-            $offsetHour = \str_pad((24 - $hourInUtc), 2, '0', STR_PAD_LEFT);
-            $beforeOffsetHour = \str_pad(((24 - $hourInUtc) - 1), 2, '0', STR_PAD_LEFT);
+            $offsetHour = str_pad((24 - $hourInUtc), 2, '0', STR_PAD_LEFT);
+            $beforeOffsetHour = str_pad(((24 - $hourInUtc) - 1), 2, '0', STR_PAD_LEFT);
 
             $where = ["+{$offsetHour}00", "+{$beforeOffsetHour}30", "+{$beforeOffsetHour}45"];
         } elseif ($hourInUtc > 0) {
-            $offsetHour = \str_pad($hourInUtc, 2, '0', STR_PAD_LEFT);
+            $offsetHour = str_pad($hourInUtc, 2, '0', STR_PAD_LEFT);
 
             $where = ["-{$offsetHour}00", "-{$offsetHour}30", "-{$offsetHour}45"];
         }
