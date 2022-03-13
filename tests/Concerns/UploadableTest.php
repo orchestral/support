@@ -39,7 +39,7 @@ class UploadableTest extends TestCase
         ]);
 
         $file->shouldReceive('getClientOriginalExtension')->once()->andReturn('jpg')
-            ->shouldReceive('move')->once()->with($path, m::type('String'))->andReturnNull();
+            ->shouldReceive('move')->once()->with($path, m::type('String'))->andReturn(m::mock('Symfony\Component\HttpFoundation\File\File'));
 
         $filename = (new UploadedStub())->save($file, $path);
     }
@@ -53,7 +53,7 @@ class UploadableTest extends TestCase
             'test',
         ]);
 
-        $file->shouldReceive('move')->once()->with($path, 'foo.jpg')->andReturnNull();
+        $file->shouldReceive('move')->once()->with($path, 'foo.jpg')->andReturn(m::mock('Symfony\Component\HttpFoundation\File\File'));
 
         $filename = (new UploadedStubWithReplacement())->save($file, $path);
     }
