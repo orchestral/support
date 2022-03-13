@@ -31,7 +31,7 @@ class Str extends BaseStr
      */
     public static function humanize(string $text): string
     {
-        $text = \str_replace(['-', '_'], ' ', $text);
+        $text = str_replace(['-', '_'], ' ', $text);
 
         return Stringy::create($text)->humanize()->titleize();
     }
@@ -55,11 +55,11 @@ class Str extends BaseStr
         $replacements = static::prepareBinding($replacements, $prefix, $suffix);
 
         $filter = static function ($text) use ($replacements) {
-            return \strtr($text, $replacements);
+            return strtr($text, $replacements);
         };
 
         if (\is_array($text)) {
-            $text = \array_map($filter, $text);
+            $text = array_map($filter, $text);
         } else {
             $text = $filter($text);
         }
@@ -87,7 +87,7 @@ class Str extends BaseStr
             ];
         }
 
-        return [\str_replace($wildcard, $replacement, $text)];
+        return [str_replace($wildcard, $replacement, $text)];
     }
 
     /**
@@ -103,7 +103,7 @@ class Str extends BaseStr
             return false;
         }
 
-        if (! \preg_match(self::VALID_COLUMN_NAME_REGEX, $column)) {
+        if (! preg_match(self::VALID_COLUMN_NAME_REGEX, $column)) {
             return false;
         }
 
@@ -128,17 +128,17 @@ class Str extends BaseStr
         }
 
         // Get the content from stream.
-        $hex = \stream_get_contents($data);
+        $hex = stream_get_contents($data);
 
         // For some reason hex would always start with 'x' and if we
         // don't filter out this char, it would mess up hex to string
         // conversion.
-        if (\preg_match('/^x(.*)$/', $hex, $matches)) {
+        if (preg_match('/^x(.*)$/', $hex, $matches)) {
             $hex = $matches[1];
         }
 
         // Check if it's actually a hex string before trying to convert.
-        if (! \ctype_xdigit($hex)) {
+        if (! ctype_xdigit($hex)) {
             return $hex;
         }
 
@@ -158,7 +158,7 @@ class Str extends BaseStr
 
         // Convert hex to string.
         for ($i = 0; $i < \strlen($hex) - 1; $i += 2) {
-            $data .= \chr(\hexdec($hex[$i].$hex[$i + 1]));
+            $data .= \chr(hexdec($hex[$i].$hex[$i + 1]));
         }
 
         return $data;
@@ -182,7 +182,7 @@ class Str extends BaseStr
         $bindings = [];
 
         foreach ($replacements as $key => $value) {
-            if (\is_scalar($value)) {
+            if (is_scalar($value)) {
                 $bindings["{$prefix}{$key}{$suffix}"] = $value;
             }
         }

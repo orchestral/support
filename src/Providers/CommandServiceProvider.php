@@ -28,13 +28,13 @@ abstract class CommandServiceProvider extends BaseServiceProvider implements Def
      */
     public function register()
     {
-        foreach (\array_keys($this->commands) as $command) {
+        foreach (array_keys($this->commands) as $command) {
             $method = "register{$command}Command";
 
             $this->{$method}();
         }
 
-        $this->commands(\array_values($this->commands));
+        $this->commands(array_values($this->commands));
     }
 
     /**
@@ -44,6 +44,6 @@ abstract class CommandServiceProvider extends BaseServiceProvider implements Def
      */
     public function provides()
     {
-        return \array_merge(\array_values($this->commands), $this->provides);
+        return array_merge(array_values($this->commands), $this->provides);
     }
 }

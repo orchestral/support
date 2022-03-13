@@ -23,7 +23,7 @@ abstract class Serializer
      */
     public function __invoke(...$parameters)
     {
-        if (\method_exists($this, 'serialize')) {
+        if (method_exists($this, 'serialize')) {
             return $this->serialize(...$parameters);
         }
 

@@ -18,7 +18,7 @@ abstract class ServiceProvider extends BaseServiceProvider
      */
     protected function loadFactoriesFrom($paths)
     {
-        if (\method_exists($this->app, 'runningUnitTests') && $this->app->runningUnitTests()) {
+        if (method_exists($this->app, 'runningUnitTests') && $this->app->runningUnitTests()) {
             $this->callAfterResolving(EloquentFactory::class, function ($factory) use ($paths) {
                 foreach ((array) $paths as $path) {
                     $factory->load($path);

@@ -45,7 +45,7 @@ abstract class Manager extends BaseManager
         // creator Closure to create it.
         if (isset($this->customCreators[$driver])) {
             return $this->callCustomCreator($driverName);
-        } elseif (\method_exists($this, $method)) {
+        } elseif (method_exists($this, $method)) {
             return $this->{$method}($name);
         }
 
@@ -75,11 +75,11 @@ abstract class Manager extends BaseManager
      */
     protected function getDriverName(string $driverName): array
     {
-        if (false === \strpos($driverName, '.')) {
+        if (false === strpos($driverName, '.')) {
             $driverName = "{$driverName}.default";
         }
 
-        [$driver, $name] = \explode('.', $driverName, 2);
+        [$driver, $name] = explode('.', $driverName, 2);
 
         $this->checkNameIsNotBlacklisted($name);
 
