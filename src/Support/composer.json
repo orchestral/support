@@ -17,7 +17,7 @@
         }
     },
     "require": {
-        "php": "^7.4 || ^8.0",
+        "php": "^8.0",
         "illuminate/support": "^9.0",
         "orchestra/contracts": "^7.0",
         "statamic/stringy": "^3.1"
