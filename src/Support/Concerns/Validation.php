@@ -92,10 +92,10 @@ trait Validation
     {
         $rules = $this->getValidationRules();
 
-        if (! empty($this->validationBindings)) {
+        if (!empty($this->validationBindings)) {
             foreach ($rules as $key => $value) {
                 if (\is_string($value)) {
-                    $rules[$key] = Str::replace($value, $this->validationBindings);
+                    $rules[$key] = Str::translate($value, $this->validationBindings);
                 }
             }
         }
